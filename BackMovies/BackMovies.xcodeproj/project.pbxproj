@@ -13,6 +13,8 @@
 		64501B9C29B7A5EC0019D7B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64501B9A29B7A5EC0019D7B3 /* Main.storyboard */; };
 		64501B9E29B7A5ED0019D7B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64501B9D29B7A5ED0019D7B3 /* Assets.xcassets */; };
 		64501BA129B7A5ED0019D7B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64501B9F29B7A5ED0019D7B3 /* LaunchScreen.storyboard */; };
+		64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5529BA659B00F14BFC /* RegisterViewController.swift */; };
+		64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		64501B9D29B7A5ED0019D7B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64501BA029B7A5ED0019D7B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64501BA229B7A5ED0019D7B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64E70E5529BA659B00F14BFC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +84,8 @@
 		64E70E4529BA4F9C00F14BFC /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				64501B9829B7A5EC0019D7B3 /* LoginViewController.swift */,
-				64501B9A29B7A5EC0019D7B3 /* Main.storyboard */,
+				64E70E5229BA656B00F14BFC /* ViewController */,
+				64E70E5129BA655E00F14BFC /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -96,6 +100,8 @@
 		64E70E4729BA4FB100F14BFC /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				64E70E5429BA658200F14BFC /* ViewController */,
+				64E70E5329BA657A00F14BFC /* View */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -163,6 +169,38 @@
 			path = SearchSelected;
 			sourceTree = "<group>";
 		};
+		64E70E5129BA655E00F14BFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64501B9A29B7A5EC0019D7B3 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		64E70E5229BA656B00F14BFC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				64501B9829B7A5EC0019D7B3 /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		64E70E5329BA657A00F14BFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		64E70E5429BA658200F14BFC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				64E70E5529BA659B00F14BFC /* RegisterViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,6 +261,7 @@
 			files = (
 				64501BA129B7A5ED0019D7B3 /* LaunchScreen.storyboard in Resources */,
 				64501B9E29B7A5ED0019D7B3 /* Assets.xcassets in Resources */,
+				64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */,
 				64501B9C29B7A5EC0019D7B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +276,7 @@
 				64501B9929B7A5EC0019D7B3 /* LoginViewController.swift in Sources */,
 				64501B9529B7A5EC0019D7B3 /* AppDelegate.swift in Sources */,
 				64501B9729B7A5EC0019D7B3 /* SceneDelegate.swift in Sources */,
+				64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
