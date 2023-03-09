@@ -15,6 +15,8 @@
 		64501BA129B7A5ED0019D7B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64501B9F29B7A5ED0019D7B3 /* LaunchScreen.storyboard */; };
 		64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5529BA659B00F14BFC /* RegisterViewController.swift */; };
 		64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */; };
+		64E70E5C29BA6E7000F14BFC /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */; };
+		64E70E5E29BA6E7B00F14BFC /* RecoverView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E5D29BA6E7B00F14BFC /* RecoverView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		64501BA229B7A5ED0019D7B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E70E5529BA659B00F14BFC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterView.storyboard; sourceTree = "<group>"; };
+		64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewController.swift; sourceTree = "<group>"; };
+		64E70E5D29BA6E7B00F14BFC /* RecoverView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecoverView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 		64E70E4929BA504900F14BFC /* Recover */ = {
 			isa = PBXGroup;
 			children = (
+				64E70E5A29BA6E5900F14BFC /* ViewController */,
+				64E70E5929BA6E5400F14BFC /* View */,
 			);
 			path = Recover;
 			sourceTree = "<group>";
@@ -201,6 +207,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		64E70E5929BA6E5400F14BFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64E70E5D29BA6E7B00F14BFC /* RecoverView.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		64E70E5A29BA6E5900F14BFC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E70E5E29BA6E7B00F14BFC /* RecoverView.storyboard in Resources */,
 				64501BA129B7A5ED0019D7B3 /* LaunchScreen.storyboard in Resources */,
 				64501B9E29B7A5ED0019D7B3 /* Assets.xcassets in Resources */,
 				64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */,
@@ -276,6 +299,7 @@
 				64501B9929B7A5EC0019D7B3 /* LoginViewController.swift in Sources */,
 				64501B9529B7A5EC0019D7B3 /* AppDelegate.swift in Sources */,
 				64501B9729B7A5EC0019D7B3 /* SceneDelegate.swift in Sources */,
+				64E70E5C29BA6E7000F14BFC /* RecoverViewController.swift in Sources */,
 				64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
