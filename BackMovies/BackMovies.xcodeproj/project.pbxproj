@@ -32,7 +32,7 @@
 		64E70E5C29BA6E7000F14BFC /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */; };
 		64E70E5E29BA6E7B00F14BFC /* RecoverView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E5D29BA6E7B00F14BFC /* RecoverView.storyboard */; };
 		64E70E6229BA6F0400F14BFC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E6129BA6F0400F14BFC /* TabBarViewController.swift */; };
-		64E70E6429BA6F0C00F14BFC /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E6329BA6F0C00F14BFC /* Storyboard.storyboard */; };
+		64E70E6429BA6F0C00F14BFC /* TabBarView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E6329BA6F0C00F14BFC /* TabBarView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +63,7 @@
 		64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewController.swift; sourceTree = "<group>"; };
 		64E70E5D29BA6E7B00F14BFC /* RecoverView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecoverView.storyboard; sourceTree = "<group>"; };
 		64E70E6129BA6F0400F14BFC /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		64E70E6329BA6F0C00F14BFC /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		64E70E6329BA6F0C00F14BFC /* TabBarView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,7 +386,7 @@
 		64E70E5F29BA6EBB00F14BFC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				64E70E6329BA6F0C00F14BFC /* Storyboard.storyboard */,
+				64E70E6329BA6F0C00F14BFC /* TabBarView.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 				64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */,
 				64501B9C29B7A5EC0019D7B3 /* Main.storyboard in Resources */,
 				64B17B7529BBA175003DC667 /* SearchView.storyboard in Resources */,
-				64E70E6429BA6F0C00F14BFC /* Storyboard.storyboard in Resources */,
+				64E70E6429BA6F0C00F14BFC /* TabBarView.storyboard in Resources */,
 				64B17B6529BBA0CE003DC667 /* PosterView.storyboard in Resources */,
 				64B17B8929BBA29B003DC667 /* SearchSelectedView.storyboard in Resources */,
 				64B17B7D29BBA1F0003DC667 /* ProfileView.storyboard in Resources */,
