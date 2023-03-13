@@ -26,40 +26,40 @@
             </objects>
             <point key="canvasLocation" x="-232" y="829"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--SearchView-->
         <scene sceneID="m6U-4V-Mwp">
             <objects>
-                <viewControllerPlaceholder id="Z7z-5z-MK5" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SearchView" id="Z7z-5z-MK5" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Byr-Vf-gPC"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HdO-G2-0vF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2155" y="479"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--FavoriteView-->
         <scene sceneID="NQn-Hr-PDb">
             <objects>
-                <viewControllerPlaceholder id="iWc-AD-seA" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="FavoriteView" id="iWc-AD-seA" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="blf-Oo-g2c"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2f-BY-cwf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2155" y="1120"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--ProfileView-->
         <scene sceneID="lVj-UQ-c2g">
             <objects>
-                <viewControllerPlaceholder id="TPu-lz-sKs" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="ProfileView" id="TPu-lz-sKs" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="QgP-m7-Jz9"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PrF-RV-81G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2155" y="1765"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--PosterView-->
         <scene sceneID="e2U-gc-GvO">
             <objects>
-                <viewControllerPlaceholder id="U1j-lB-jiF" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="PosterView" id="U1j-lB-jiF" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Vo6-ff-Bpm"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yzi-si-Iyy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

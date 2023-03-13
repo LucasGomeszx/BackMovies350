@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zyH-8A-OZY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NGr-Rw-1i1">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -20,13 +20,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-Vi-6pX">
-                                <rect key="frame" x="45" y="99" width="340" height="92"/>
+                                <rect key="frame" x="45" y="143" width="340" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="I6u-dv-0gZ"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="RUD-TX-Ope">
-                                <rect key="frame" x="26" y="215" width="378" height="175"/>
+                                <rect key="frame" x="26" y="259" width="378" height="175"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9G7-yX-ROo">
                                         <rect key="frame" x="0.0" y="0.0" width="78" height="28.666666666666668"/>
@@ -59,13 +59,13 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="V6a-9v-rHx">
-                                <rect key="frame" x="26" y="432" width="378" height="50"/>
+                                <rect key="frame" x="26" y="476" width="378" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" image="googlelog" translatesAutoresizingMaskIntoConstraints="NO" id="25g-JF-43H">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="25g-JF-43H">
                                         <rect key="frame" x="0.0" y="0.0" width="189" height="50"/>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" image="appleid" translatesAutoresizingMaskIntoConstraints="NO" id="ndn-sL-Hyx">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" image="appleid 1" translatesAutoresizingMaskIntoConstraints="NO" id="ndn-sL-Hyx">
                                         <rect key="frame" x="189" y="0.0" width="189" height="50"/>
                                     </imageView>
                                 </subviews>
@@ -79,6 +79,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cadastrar"/>
+                                <connections>
+                                    <segue destination="5VB-Zf-q5n" kind="show" id="D1D-sK-wqo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl8-RC-UIX">
                                 <rect key="frame" x="64" y="738" width="302" height="34.333333333333371"/>
@@ -86,12 +89,18 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Conectar"/>
+                                <connections>
+                                    <segue destination="4Uu-mK-XpF" kind="show" id="hSu-Cm-WHS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUk-OG-p4a">
                                 <rect key="frame" x="91" y="843.66666666666663" width="248" height="34.333333333333371"/>
                                 <color key="tintColor" red="0.66274511810000003" green="0.14509806040000001" blue="0.40392160420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Esqueceu sua senha ?"/>
+                                <connections>
+                                    <segue destination="KBc-Fz-1Ev" kind="show" id="hyj-05-PGZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kqU-un-Pgs"/>
@@ -122,17 +131,71 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BRe-F1-M2m"/>
+                    <connections>
+                        <outlet property="appleImageView" destination="ndn-sL-Hyx" id="x7K-5O-zjc"/>
+                        <outlet property="emailTextField" destination="jFC-w0-FMF" id="p2j-p7-yfR"/>
+                        <outlet property="googleImageView" destination="25g-JF-43H" id="7uv-eW-A3z"/>
+                        <outlet property="senhaTextField" destination="PKh-Qt-SYk" id="YVq-cy-ZA6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBI-ha-6jk" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="671" y="72"/>
+            <point key="canvasLocation" x="1568.3720930232557" y="71.459227467811161"/>
+        </scene>
+        <!--TabBarView-->
+        <scene sceneID="msb-Zd-bsI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TabBarView" id="4Uu-mK-XpF" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jTg-Ng-DkZ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uah-oU-nCQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2267.4418604651164" y="-25.107296137339059"/>
+        </scene>
+        <!--RegisterView-->
+        <scene sceneID="jJ0-Qt-zpm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RegisterView" id="5VB-Zf-q5n" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dRP-ei-ua1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4bJ-di-IXc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2262" y="90"/>
+        </scene>
+        <!--RecoverView-->
+        <scene sceneID="zFK-M2-xcb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RecoverView" id="KBc-Fz-1Ev" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="crG-D5-TNh"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KJs-Sf-hQ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2272" y="186"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QCY-hC-j1t">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NGr-Rw-1i1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vlY-Yi-PKy">
+                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zyH-8A-OZY" kind="relationship" relationship="rootViewController" id="xxF-MT-Iwd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B1H-Re-ykG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="669.76744186046506" y="71.459227467811161"/>
         </scene>
     </scenes>
     <resources>
         <image name="CinemaBack" width="675" height="1500"/>
         <image name="Logo" width="1234" height="432"/>
-        <image name="appleid" width="1280" height="853"/>
-        <image name="googlelog" width="236" height="236"/>
+        <image name="appleid 1" width="1600" height="1600"/>
+        <image name="google" width="1920" height="1920"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
