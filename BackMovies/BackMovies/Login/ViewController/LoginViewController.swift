@@ -19,12 +19,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurandoLoginView()
     }
-
-    func configurandoLoginView() {
-        appleImageView.clipsToBounds = true
-    }
-
+    
 }
-
