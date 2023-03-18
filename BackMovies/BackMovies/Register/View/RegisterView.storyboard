@@ -25,14 +25,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowshape.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sjo-K8-pDB">
-                                <rect key="frame" x="24" y="67.666666666666657" width="50" height="49.666666666666657"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52.5" id="8fw-JJ-dvL"/>
-                                    <constraint firstAttribute="width" constant="50" id="yqU-bz-hP6"/>
-                                </constraints>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-tj-EVx">
                                 <rect key="frame" x="26" y="143" width="338" height="434"/>
                                 <subviews>
@@ -100,26 +92,40 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cadastrar"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5N-ML-JCe">
+                                <rect key="frame" x="16.000000000000004" y="75" width="49.333333333333343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="ftt-6t-uiL"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="tappedBackButton:" destination="kbq-wM-jUS" eventType="touchUpInside" id="ZT0-ro-nw8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7aQ-Xf-MXO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7aQ-Xf-MXO" firstAttribute="trailing" secondItem="GqL-9R-1fk" secondAttribute="trailing" constant="64" id="1as-Y6-NdW"/>
+                            <constraint firstItem="p5N-ML-JCe" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" constant="16" id="5TH-Uu-2cT"/>
                             <constraint firstItem="YrB-tj-EVx" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" constant="26" id="61t-IT-rCR"/>
-                            <constraint firstItem="sjo-K8-pDB" firstAttribute="top" secondItem="7aQ-Xf-MXO" secondAttribute="top" constant="19" id="BcS-3U-DHq"/>
-                            <constraint firstItem="sjo-K8-pDB" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" constant="24" id="BnU-Vj-ewa"/>
                             <constraint firstItem="7ln-LL-jEf" firstAttribute="centerX" secondItem="Tzn-1w-hAz" secondAttribute="centerX" id="Hd6-5h-Fb3"/>
+                            <constraint firstItem="p5N-ML-JCe" firstAttribute="top" secondItem="7aQ-Xf-MXO" secondAttribute="top" constant="28" id="IkC-nj-b8C"/>
                             <constraint firstAttribute="trailing" secondItem="BOg-Uz-uov" secondAttribute="trailing" id="JO4-ki-7th"/>
+                            <constraint firstItem="YrB-tj-EVx" firstAttribute="top" secondItem="7ln-LL-jEf" secondAttribute="bottom" constant="34.329999999999998" id="LBX-Ym-hZE"/>
                             <constraint firstItem="BOg-Uz-uov" firstAttribute="leading" secondItem="Tzn-1w-hAz" secondAttribute="leading" id="WG3-wJ-5FN"/>
                             <constraint firstItem="BOg-Uz-uov" firstAttribute="top" secondItem="Tzn-1w-hAz" secondAttribute="top" id="fZ6-w5-I0K"/>
                             <constraint firstItem="GqL-9R-1fk" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" constant="64" id="hio-aG-d3l"/>
                             <constraint firstItem="7aQ-Xf-MXO" firstAttribute="bottom" secondItem="GqL-9R-1fk" secondAttribute="bottom" constant="48.5" id="iHw-fy-mWa"/>
-                            <constraint firstItem="YrB-tj-EVx" firstAttribute="top" secondItem="sjo-K8-pDB" secondAttribute="bottom" constant="24.5" id="oqo-4f-hdL"/>
                             <constraint firstItem="7ln-LL-jEf" firstAttribute="top" secondItem="7aQ-Xf-MXO" secondAttribute="top" constant="28" id="sPn-Ab-lhT"/>
                             <constraint firstAttribute="bottom" secondItem="BOg-Uz-uov" secondAttribute="bottom" id="t5f-Kk-ahg"/>
                             <constraint firstItem="7aQ-Xf-MXO" firstAttribute="trailing" secondItem="YrB-tj-EVx" secondAttribute="trailing" constant="26" id="tSb-Lb-rzb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="p5N-ML-JCe" id="7D7-su-ho3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLa-Rg-Qg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -128,7 +134,7 @@
     </scenes>
     <resources>
         <image name="CinemaBack" width="675" height="1500"/>
-        <image name="arrowshape.backward" catalog="system" width="128" height="104"/>
+        <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
