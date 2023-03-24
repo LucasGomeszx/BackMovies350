@@ -9,6 +9,8 @@ import UIKit
 
 class PosterViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var posterTableView: UITableView!
     
     //MARK: - LifeCycle
@@ -19,17 +21,24 @@ class PosterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigation()
+        setUpView()
         configTableView()
     }
     
     
     //MARK: - SetUps
     
+    private func setUpView() {
+        mainView.backgroundColor = .black
+        titleLabel.textColor = .white
+        posterTableView.backgroundColor = UIColor(displayP3Red: 50, green: 50, blue: 50, alpha: 1)
+    }
+    
     private func configTableView() {
         posterTableView.delegate = self
         posterTableView.dataSource = self
         posterTableView.register(PosterTableViewCell.nib(), forCellReuseIdentifier: PosterTableViewCell.identifier)
-        posterTableView.backgroundColor = .clear
+        posterTableView.backgroundColor = .black
     }
     
     private func configureNavigation(){

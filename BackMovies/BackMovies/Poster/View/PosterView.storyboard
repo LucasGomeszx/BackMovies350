@@ -22,29 +22,32 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="alu-y7-CwZ">
-                                <rect key="frame" x="0.0" y="113" width="390" height="697"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-zD-AcX">
+                                <rect key="frame" x="0.0" y="121" width="390" height="689"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="alu-y7-CwZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="CC3-bH-2gT"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="alu-y7-CwZ" secondAttribute="trailing" id="QCL-Qi-hYa"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="alu-y7-CwZ" secondAttribute="bottom" id="RcY-RP-eCC"/>
-                            <constraint firstItem="alu-y7-CwZ" firstAttribute="top" secondItem="2hl-Gk-IAT" secondAttribute="bottom" constant="8" id="Yu1-Gs-019"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="3RO-zD-AcX" secondAttribute="bottom" id="GL0-s1-Pjl"/>
+                            <constraint firstItem="3RO-zD-AcX" firstAttribute="top" secondItem="2hl-Gk-IAT" secondAttribute="bottom" constant="16" id="aEa-h6-dA7"/>
+                            <constraint firstItem="3RO-zD-AcX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="lPs-e3-3aA"/>
                             <constraint firstItem="2hl-Gk-IAT" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="mmN-Ad-e2r"/>
                             <constraint firstItem="2hl-Gk-IAT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="uau-Xi-9di"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3RO-zD-AcX" secondAttribute="trailing" id="zcV-Xz-BJV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="zqD-re-cwk"/>
                     <connections>
-                        <outlet property="posterTableView" destination="alu-y7-CwZ" id="XrK-Sp-6oD"/>
+                        <outlet property="mainView" destination="5EZ-qb-Rvc" id="kVE-46-OZf"/>
+                        <outlet property="posterTableView" destination="3RO-zD-AcX" id="nMF-b9-V9D"/>
+                        <outlet property="titleLabel" destination="2hl-Gk-IAT" id="OG2-yB-ivY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135.38461538461539" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="1064.6153846153845" y="3.5545023696682461"/>
         </scene>
     </scenes>
     <resources>
