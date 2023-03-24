@@ -13,6 +13,10 @@
 		64501B9C29B7A5EC0019D7B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64501B9A29B7A5EC0019D7B3 /* Main.storyboard */; };
 		64501B9E29B7A5ED0019D7B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64501B9D29B7A5ED0019D7B3 /* Assets.xcassets */; };
 		64501BA129B7A5ED0019D7B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64501B9F29B7A5ED0019D7B3 /* LaunchScreen.storyboard */; };
+		645179AA29C77DBF001D7B9D /* PosterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645179A829C77DBF001D7B9D /* PosterTableViewCell.swift */; };
+		645179AB29C77DBF001D7B9D /* PosterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 645179A929C77DBF001D7B9D /* PosterTableViewCell.xib */; };
+		645179B029C78F43001D7B9D /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645179AE29C78F43001D7B9D /* PosterCollectionViewCell.swift */; };
+		645179B129C78F43001D7B9D /* PosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 645179AF29C78F43001D7B9D /* PosterCollectionViewCell.xib */; };
 		64B17B6329BBA0BF003DC667 /* PosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B6229BBA0BF003DC667 /* PosterViewController.swift */; };
 		64B17B6529BBA0CE003DC667 /* PosterView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B17B6429BBA0CE003DC667 /* PosterView.storyboard */; };
 		64B17B7329BBA16B003DC667 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B7229BBA16B003DC667 /* SearchViewController.swift */; };
@@ -44,6 +48,10 @@
 		64501B9D29B7A5ED0019D7B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64501BA029B7A5ED0019D7B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64501BA229B7A5ED0019D7B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		645179A829C77DBF001D7B9D /* PosterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterTableViewCell.swift; sourceTree = "<group>"; };
+		645179A929C77DBF001D7B9D /* PosterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterTableViewCell.xib; sourceTree = "<group>"; };
+		645179AE29C78F43001D7B9D /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
+		645179AF29C78F43001D7B9D /* PosterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterCollectionViewCell.xib; sourceTree = "<group>"; };
 		64B17B6229BBA0BF003DC667 /* PosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewController.swift; sourceTree = "<group>"; };
 		64B17B6429BBA0CE003DC667 /* PosterView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PosterView.storyboard; sourceTree = "<group>"; };
 		64B17B7229BBA16B003DC667 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +123,32 @@
 				64501BA229B7A5ED0019D7B3 /* Info.plist */,
 			);
 			path = BackMovies;
+			sourceTree = "<group>";
+		};
+		645179A729C77D95001D7B9D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				645179AC29C786CB001D7B9D /* PosterTableViewCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		645179AC29C786CB001D7B9D /* PosterTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				645179A829C77DBF001D7B9D /* PosterTableViewCell.swift */,
+				645179A929C77DBF001D7B9D /* PosterTableViewCell.xib */,
+			);
+			path = PosterTableViewCell;
+			sourceTree = "<group>";
+		};
+		645179AD29C786E9001D7B9D /* PosterCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				645179AE29C78F43001D7B9D /* PosterCollectionViewCell.swift */,
+				645179AF29C78F43001D7B9D /* PosterCollectionViewCell.xib */,
+			);
+			path = PosterCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		64B17B6029BBA099003DC667 /* View */ = {
@@ -259,6 +293,7 @@
 		64E70E4829BA503200F14BFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				645179AD29C786E9001D7B9D /* PosterCollectionViewCell */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -275,6 +310,7 @@
 		64E70E4A29BA507500F14BFC /* Poster */ = {
 			isa = PBXGroup;
 			children = (
+				645179A729C77D95001D7B9D /* Cell */,
 				64B17B6129BBA09E003DC667 /* ViewController */,
 				64B17B6029BBA099003DC667 /* View */,
 			);
@@ -461,8 +497,10 @@
 				64E70E5E29BA6E7B00F14BFC /* RecoverView.storyboard in Resources */,
 				64501BA129B7A5ED0019D7B3 /* LaunchScreen.storyboard in Resources */,
 				64B17B7929BBA193003DC667 /* FavoriteView.storyboard in Resources */,
+				645179AB29C77DBF001D7B9D /* PosterTableViewCell.xib in Resources */,
 				64501B9E29B7A5ED0019D7B3 /* Assets.xcassets in Resources */,
 				64B17B8129BBA21D003DC667 /* MoviesDetailsView.storyboard in Resources */,
+				645179B129C78F43001D7B9D /* PosterCollectionViewCell.xib in Resources */,
 				64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */,
 				64501B9C29B7A5EC0019D7B3 /* Main.storyboard in Resources */,
 				64B17B7529BBA175003DC667 /* SearchView.storyboard in Resources */,
@@ -484,10 +522,12 @@
 				64501B9929B7A5EC0019D7B3 /* LoginViewController.swift in Sources */,
 				64B17B7B29BBA1E7003DC667 /* ProfileViewController.swift in Sources */,
 				64B17B7329BBA16B003DC667 /* SearchViewController.swift in Sources */,
+				645179AA29C77DBF001D7B9D /* PosterTableViewCell.swift in Sources */,
 				64501B9529B7A5EC0019D7B3 /* AppDelegate.swift in Sources */,
 				64B17B8329BBA254003DC667 /* ActorDetailViewController.swift in Sources */,
 				64B17B7F29BBA20F003DC667 /* MovieDetailsViewController.swift in Sources */,
 				64B17B7729BBA188003DC667 /* FavoriteViewController.swift in Sources */,
+				645179B029C78F43001D7B9D /* PosterCollectionViewCell.swift in Sources */,
 				64501B9729B7A5EC0019D7B3 /* SceneDelegate.swift in Sources */,
 				64E70E5C29BA6E7000F14BFC /* RecoverViewController.swift in Sources */,
 				64E70E6229BA6F0400F14BFC /* TabBarViewController.swift in Sources */,

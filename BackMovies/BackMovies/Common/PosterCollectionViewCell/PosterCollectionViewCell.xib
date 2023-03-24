@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PosterCollectionViewCell" customModule="BackMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="135" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="135" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ajp-f4-B0z">
+                        <rect key="frame" x="0.0" y="0.0" width="135" height="200"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CinemaBack" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-4u-3Ac">
+                                <rect key="frame" x="0.0" y="0.0" width="135" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="IPZ-MJ-qgl"/>
+                                    <constraint firstAttribute="width" constant="135" id="blK-22-aY3"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9q-dv-IfQ">
+                                <rect key="frame" x="0.0" y="170" width="135" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JOz-4u-3Ac" secondAttribute="trailing" id="8Jn-Lt-FqA"/>
+                            <constraint firstItem="S9q-dv-IfQ" firstAttribute="top" secondItem="JOz-4u-3Ac" secondAttribute="bottom" id="9SB-wh-Pj4"/>
+                            <constraint firstItem="JOz-4u-3Ac" firstAttribute="top" secondItem="Ajp-f4-B0z" secondAttribute="top" id="CeQ-ex-iwj"/>
+                            <constraint firstAttribute="trailing" secondItem="S9q-dv-IfQ" secondAttribute="trailing" id="LLT-Pe-Wta"/>
+                            <constraint firstAttribute="bottom" secondItem="S9q-dv-IfQ" secondAttribute="bottom" id="OPB-1o-2sj"/>
+                            <constraint firstItem="S9q-dv-IfQ" firstAttribute="leading" secondItem="Ajp-f4-B0z" secondAttribute="leading" id="czS-Yi-KgQ"/>
+                            <constraint firstItem="JOz-4u-3Ac" firstAttribute="leading" secondItem="Ajp-f4-B0z" secondAttribute="leading" id="yoq-Sn-6UV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="Ajp-f4-B0z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0aY-Gf-vCJ"/>
+                <constraint firstAttribute="bottom" secondItem="Ajp-f4-B0z" secondAttribute="bottom" id="878-7K-GTI"/>
+                <constraint firstAttribute="trailing" secondItem="Ajp-f4-B0z" secondAttribute="trailing" id="BOz-OS-h0J"/>
+                <constraint firstItem="Ajp-f4-B0z" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="erB-ju-D9n"/>
+            </constraints>
+            <size key="customSize" width="135" height="200"/>
+            <connections>
+                <outlet property="mainView" destination="Ajp-f4-B0z" id="xz5-EI-hze"/>
+                <outlet property="movieNameLabel" destination="S9q-dv-IfQ" id="ElB-ml-jY9"/>
+            </connections>
+            <point key="canvasLocation" x="126.92307692307692" y="73.93364928909952"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="CinemaBack" width="675" height="1500"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
