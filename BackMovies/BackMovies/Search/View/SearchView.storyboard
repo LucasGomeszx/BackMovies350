@@ -15,9 +15,34 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wK2-sa-hGK">
+                                <rect key="frame" x="159.33333333333334" y="71" width="71.666666666666657" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wn4-RY-cWY">
+                                <rect key="frame" x="8" y="120.66666666666669" width="374" height="681.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wn4-RY-cWY" secondAttribute="trailing" constant="8" id="Enb-z0-Beh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="wn4-RY-cWY" secondAttribute="bottom" constant="8" id="QIK-EM-X1q"/>
+                            <constraint firstItem="wK2-sa-hGK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="RKD-up-NiR"/>
+                            <constraint firstItem="wK2-sa-hGK" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="VCH-Mz-wNg"/>
+                            <constraint firstItem="wn4-RY-cWY" firstAttribute="top" secondItem="wK2-sa-hGK" secondAttribute="bottom" constant="16" id="X95-yc-R6c"/>
+                            <constraint firstItem="wn4-RY-cWY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="a4h-qt-wUX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainView" destination="5EZ-qb-Rvc" id="4gK-gb-cXd"/>
+                        <outlet property="searchTableView" destination="wn4-RY-cWY" id="o2G-tm-5Av"/>
+                        <outlet property="titleLabel" destination="wK2-sa-hGK" id="UiS-lg-a7a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
