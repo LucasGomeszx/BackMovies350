@@ -15,9 +15,42 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favoritos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhf-gm-alI">
+                                <rect key="frame" x="16" y="71" width="358" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DZM-jm-2kF">
+                                <rect key="frame" x="8" y="120.66666666666669" width="374" height="681.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bGE-HI-7nb">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="vhf-gm-alI" secondAttribute="trailing" constant="16" id="0mV-5t-1Lk"/>
+                            <constraint firstItem="DZM-jm-2kF" firstAttribute="top" secondItem="vhf-gm-alI" secondAttribute="bottom" constant="16" id="FLg-2t-IwE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="DZM-jm-2kF" secondAttribute="trailing" constant="8" id="WaY-Te-C3T"/>
+                            <constraint firstItem="vhf-gm-alI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="f0j-T6-Thu"/>
+                            <constraint firstItem="DZM-jm-2kF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="sYy-Ce-1R8"/>
+                            <constraint firstItem="vhf-gm-alI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="tdO-Vk-Q4i"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="DZM-jm-2kF" secondAttribute="bottom" constant="8" id="v5u-we-QJc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="favoriteCollectionView" destination="DZM-jm-2kF" id="oXB-xv-3nZ"/>
+                        <outlet property="mainView" destination="5EZ-qb-Rvc" id="bEd-Uo-0Uv"/>
+                        <outlet property="titleLabel" destination="vhf-gm-alI" id="Q5P-34-IcO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,22 +8,59 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-
+    
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var favoriteCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureNavigation()
+        configureView()
+        configCollectionView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configCollectionView() {
+        favoriteCollectionView.delegate = self
+        favoriteCollectionView.dataSource = self
+        if let layout = favoriteCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .vertical
+            layout.estimatedItemSize = .zero
+        }
+        favoriteCollectionView.register(PosterCollectionViewCell.nib(), forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
     }
-    */
 
+    private func configureView() {
+        mainView.backgroundColor = .black
+        titleLabel.textColor = .white
+        favoriteCollectionView.backgroundColor = .gray
+        favoriteCollectionView.layer.cornerRadius = 15
+    }
+    
+    private func configureNavigation(){
+        navigationController?.navigationBar.isHidden = true
+    }
+
+}
+
+//MARK: - UICollectionView Delegate, DataSource
+extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
+        return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 135, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
+    }
+    
 }
