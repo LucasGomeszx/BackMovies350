@@ -37,6 +37,7 @@ class MovieDetailsViewController: UIViewController {
         detailTableView.register(WatchTableViewCell.nib(), forCellReuseIdentifier: WatchTableViewCell.identifier)
         detailTableView.register(ActorTableViewCell.nib(), forCellReuseIdentifier: ActorTableViewCell.identifier)
         detailTableView.register(RetatedTableViewCell.nib(), forCellReuseIdentifier: RetatedTableViewCell.identifier)
+        detailTableView.register(MapTableViewCell.nib(), forCellReuseIdentifier: MapTableViewCell.identifier)
     }
 
 }
@@ -45,7 +46,7 @@ class MovieDetailsViewController: UIViewController {
 
 extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,6 +66,9 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: RetatedTableViewCell.identifier, for: indexPath) as? RetatedTableViewCell
             return cell ?? UITableViewCell()
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: MapTableViewCell.identifier, for: indexPath) as? MapTableViewCell
+            return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
         }
@@ -83,6 +87,8 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return 250
         case 4:
             return 270
+        case 5:
+            return 240
         default:
             return 0
         }
