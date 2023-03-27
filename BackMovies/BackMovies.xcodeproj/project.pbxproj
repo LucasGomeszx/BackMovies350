@@ -39,6 +39,8 @@
 		6482AB0929D1C62100BC1FDB /* RetatedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6482AB0729D1C62100BC1FDB /* RetatedTableViewCell.xib */; };
 		6482AB0D29D1D63600BC1FDB /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */; };
 		6482AB0E29D1D63600BC1FDB /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6482AB0C29D1D63600BC1FDB /* MapTableViewCell.xib */; };
+		6482AB1329D1F97900BC1FDB /* ActorTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB1129D1F97900BC1FDB /* ActorTopTableViewCell.swift */; };
+		6482AB1429D1F97900BC1FDB /* ActorTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6482AB1229D1F97900BC1FDB /* ActorTopTableViewCell.xib */; };
 		64B17B6329BBA0BF003DC667 /* PosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B6229BBA0BF003DC667 /* PosterViewController.swift */; };
 		64B17B6529BBA0CE003DC667 /* PosterView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B17B6429BBA0CE003DC667 /* PosterView.storyboard */; };
 		64B17B7329BBA16B003DC667 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B7229BBA16B003DC667 /* SearchViewController.swift */; };
@@ -96,6 +98,8 @@
 		6482AB0729D1C62100BC1FDB /* RetatedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RetatedTableViewCell.xib; sourceTree = "<group>"; };
 		6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		6482AB0C29D1D63600BC1FDB /* MapTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
+		6482AB1129D1F97900BC1FDB /* ActorTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTopTableViewCell.swift; sourceTree = "<group>"; };
+		6482AB1229D1F97900BC1FDB /* ActorTopTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorTopTableViewCell.xib; sourceTree = "<group>"; };
 		64B17B6229BBA0BF003DC667 /* PosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewController.swift; sourceTree = "<group>"; };
 		64B17B6429BBA0CE003DC667 /* PosterView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PosterView.storyboard; sourceTree = "<group>"; };
 		64B17B7229BBA16B003DC667 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +339,23 @@
 			path = MapCell;
 			sourceTree = "<group>";
 		};
+		6482AB0F29D1F8EA00BC1FDB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6482AB1029D1F95C00BC1FDB /* ActorTopCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		6482AB1029D1F95C00BC1FDB /* ActorTopCell */ = {
+			isa = PBXGroup;
+			children = (
+				6482AB1129D1F97900BC1FDB /* ActorTopTableViewCell.swift */,
+				6482AB1229D1F97900BC1FDB /* ActorTopTableViewCell.xib */,
+			);
+			path = ActorTopCell;
+			sourceTree = "<group>";
+		};
 		64B17B6029BBA099003DC667 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +563,7 @@
 		64E70E4F29BA50D900F14BFC /* ActorDetails */ = {
 			isa = PBXGroup;
 			children = (
+				6482AB0F29D1F8EA00BC1FDB /* Cells */,
 				64B17B6F29BBA144003DC667 /* ViewController */,
 				64B17B6E29BBA140003DC667 /* View */,
 			);
@@ -691,6 +713,7 @@
 				645179AB29C77DBF001D7B9D /* PosterTableViewCell.xib in Resources */,
 				64501B9E29B7A5ED0019D7B3 /* Assets.xcassets in Resources */,
 				64B17B8129BBA21D003DC667 /* MoviesDetailsView.storyboard in Resources */,
+				6482AB1429D1F97900BC1FDB /* ActorTopTableViewCell.xib in Resources */,
 				644BD77929D126E20036008F /* WatchTableViewCell.xib in Resources */,
 				644BD75D29D0B0580036008F /* BodyCollectionViewCell.xib in Resources */,
 				645179B129C78F43001D7B9D /* PosterCollectionViewCell.xib in Resources */,
@@ -738,6 +761,7 @@
 				644BD75C29D0B0580036008F /* BodyCollectionViewCell.swift in Sources */,
 				64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */,
 				6482AB0D29D1D63600BC1FDB /* MapTableViewCell.swift in Sources */,
+				6482AB1329D1F97900BC1FDB /* ActorTopTableViewCell.swift in Sources */,
 				64B17B8729BBA28B003DC667 /* SearchSelectedViewController.swift in Sources */,
 				644BD78429D141AF0036008F /* ActorTableViewCell.swift in Sources */,
 				644BD75229D0A7D50036008F /* BodyTableViewCell.swift in Sources */,
