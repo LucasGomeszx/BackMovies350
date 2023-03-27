@@ -32,7 +32,7 @@ class MovieTopTableViewCell: UITableViewCell {
         posterImageView.layer.cornerRadius = 15
         posterImageView.clipsToBounds = true
         posterImageView.image = UIImage(named: "inter")
-        movieNameLabel.text = "Interestellar"
+        movieNameLabel.text = "Interestelar"
         movieNameLabel.textColor = .white
         starImageView.image = UIImage(systemName: "star")
         starImageView.tintColor = .white
