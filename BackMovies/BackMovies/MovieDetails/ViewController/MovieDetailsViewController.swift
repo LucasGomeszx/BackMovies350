@@ -34,13 +34,14 @@ class MovieDetailsViewController: UIViewController {
         detailTableView.separatorStyle = .none
         detailTableView.register(MovieTopTableViewCell.nib(), forCellReuseIdentifier: MovieTopTableViewCell.identifier)
         detailTableView.register(TrailerTableViewCell.nib(), forCellReuseIdentifier: TrailerTableViewCell.identifier)
+        detailTableView.register(WatchTableViewCell.nib(), forCellReuseIdentifier: WatchTableViewCell.identifier)
     }
 
 }
 
 extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,6 +51,9 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: TrailerTableViewCell.identifier, for: indexPath) as? TrailerTableViewCell
+            return cell ?? UITableViewCell()
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: WatchTableViewCell.identifier, for: indexPath) as? WatchTableViewCell
             return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
@@ -63,6 +67,8 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return 523
         case 1:
             return 500
+        case 2:
+            return 220
         default:
             return 0
         }
