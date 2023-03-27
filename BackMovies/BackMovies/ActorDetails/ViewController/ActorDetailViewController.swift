@@ -31,6 +31,7 @@ class ActorDetailViewController: UIViewController {
         actorTableView.delegate = self
         actorTableView.dataSource = self
         actorTableView.register(ActorTopTableViewCell.nib(), forCellReuseIdentifier: ActorTopTableViewCell.identifier)
+        actorTableView.register(ActorInfoTableViewCell.nib(), forCellReuseIdentifier: ActorInfoTableViewCell.identifier)
     }
     
 }
@@ -39,13 +40,16 @@ class ActorDetailViewController: UIViewController {
 
 extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTopTableViewCell.identifier, for: indexPath) as? ActorTopTableViewCell
+            return cell ?? UITableViewCell()
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ActorInfoTableViewCell.identifier, for: indexPath) as? ActorInfoTableViewCell
             return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
@@ -56,6 +60,8 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
         switch indexPath.row {
         case 0:
             return 750
+        case 1:
+            return 250
         default:
             return 0
         }
