@@ -15,9 +15,44 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2j-yn-AIT">
+                                <rect key="frame" x="159.33333333333334" y="71" width="71.666666666666657" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJo-On-jId">
+                                <rect key="frame" x="16.000000000000004" y="71" width="49.333333333333343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="6IC-kn-8rk"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system" title=""/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8yj-zf-H0y">
+                                <rect key="frame" x="8" y="120.66666666666669" width="374" height="681.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8yj-zf-H0y" firstAttribute="top" secondItem="h2j-yn-AIT" secondAttribute="bottom" constant="16" id="GYm-49-g9f"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8yj-zf-H0y" secondAttribute="trailing" constant="8" id="H6C-l3-1AB"/>
+                            <constraint firstItem="GJo-On-jId" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="R7x-xF-eNv"/>
+                            <constraint firstItem="GJo-On-jId" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="UJd-Zi-gmZ"/>
+                            <constraint firstItem="8yj-zf-H0y" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="eEM-rn-Nus"/>
+                            <constraint firstItem="h2j-yn-AIT" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fwM-vA-KMP"/>
+                            <constraint firstItem="h2j-yn-AIT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="gia-sz-Psf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="8yj-zf-H0y" secondAttribute="bottom" constant="8" id="oSB-gn-9Ir"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="actorTableView" destination="8yj-zf-H0y" id="FBU-LX-LNS"/>
+                        <outlet property="actorTitleLabel" destination="h2j-yn-AIT" id="BzM-IP-60A"/>
+                        <outlet property="mainView" destination="5EZ-qb-Rvc" id="bde-DD-hmz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,6 +60,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

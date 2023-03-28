@@ -15,13 +15,39 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filmes em cartaz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hl-Gk-IAT">
+                                <rect key="frame" x="84.666666666666671" y="71" width="220.66666666666663" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-zD-AcX">
+                                <rect key="frame" x="0.0" y="121" width="390" height="689"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="3RO-zD-AcX" secondAttribute="bottom" id="GL0-s1-Pjl"/>
+                            <constraint firstItem="3RO-zD-AcX" firstAttribute="top" secondItem="2hl-Gk-IAT" secondAttribute="bottom" constant="16" id="aEa-h6-dA7"/>
+                            <constraint firstItem="3RO-zD-AcX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="lPs-e3-3aA"/>
+                            <constraint firstItem="2hl-Gk-IAT" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="mmN-Ad-e2r"/>
+                            <constraint firstItem="2hl-Gk-IAT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="uau-Xi-9di"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3RO-zD-AcX" secondAttribute="trailing" id="zcV-Xz-BJV"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="zqD-re-cwk"/>
+                    <connections>
+                        <outlet property="mainView" destination="5EZ-qb-Rvc" id="kVE-46-OZf"/>
+                        <outlet property="posterTableView" destination="3RO-zD-AcX" id="nMF-b9-V9D"/>
+                        <outlet property="titleLabel" destination="2hl-Gk-IAT" id="OG2-yB-ivY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="4"/>
+            <point key="canvasLocation" x="1064.6153846153845" y="3.5545023696682461"/>
         </scene>
     </scenes>
     <resources>
