@@ -7,23 +7,44 @@
 
 import UIKit
 
+protocol profileViewControllerProtocol: AnyObject {
+    func backLoginScreen()
+}
+
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var profilePhoto: UIImageView!
+    var delegate: profileViewControllerProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureNavigation()
+        imageToCircle()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configureNavigation() {
+        navigationController?.navigationBar.isHidden = true
+        
     }
-    */
+    
+    func imageToCircle() {
+            profilePhoto.layer.borderWidth = 1
+            profilePhoto.layer.masksToBounds = false
+            profilePhoto.layer.borderColor = UIColor.black.cgColor
+            profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
+            profilePhoto.clipsToBounds = true
+    }
 
+    @IBAction func tappedExitButton(_ sender: Any) {
+//        let someTabIndex = 0
+//        let t = self.tabBarController
+//        t?.selectedIndex = someTabIndex
+//        let v = t?.viewControllers?[someTabIndex]
+//        if let n = v?.navigationController {
+//            n.popToRootViewController(animated: true)
+//        }
+        
+        delegate?.backLoginScreen()
+    }
+    
 }
