@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol HeadTableViewCellDelegate: NSObject {
+    func navMovieButton()
+    func navActorButton()
+}
+
 class HeadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var movieButton: UIButton!
@@ -14,6 +19,8 @@ class HeadTableViewCell: UITableViewCell {
     @IBOutlet weak var genderLabel: UILabel!
     
     static let identifier: String = "HeadTableViewCell"
+    
+    weak var delegate: HeadTableViewCellDelegate?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -35,6 +42,14 @@ class HeadTableViewCell: UITableViewCell {
         actorMovie.setTitle("Ator", for: .normal)
         genderLabel.textColor = .white
         genderLabel.text = "Gênero"
+    }
+    
+    @IBAction func tappedMovieButton(_ sender: Any) {
+        delegate?.navMovieButton()
+    }
+    
+    @IBAction func tappedActorButton(_ sender: Any) {
+        delegate?.navActorButton()
     }
     
 }

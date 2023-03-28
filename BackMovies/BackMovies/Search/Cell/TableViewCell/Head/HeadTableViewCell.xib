@@ -24,6 +24,9 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <connections>
+                            <action selector="tappedMovieButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nAQ-Ik-XvV"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ro-uy-UYi">
                         <rect key="frame" x="180" y="16" width="150" height="125"/>
@@ -33,6 +36,9 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <connections>
+                            <action selector="tappedActorButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="D5F-x4-hBm"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DtH-7c-Gzc">
                         <rect key="frame" x="16" y="157" width="314" height="2"/>

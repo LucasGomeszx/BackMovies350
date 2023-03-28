@@ -9,7 +9,8 @@ import UIKit
 
 class BodyCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     static let identifier: String = "BodyCollectionViewCell"
     
@@ -19,9 +20,18 @@ class BodyCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        searchButton.backgroundColor = .black
-        searchButton.tintColor = .white
-        searchButton.layer.cornerRadius = 15
+        setUpCell()
+    }
+    
+    private func setUpCell() {
+        mainView.backgroundColor = .black
+        mainView.layer.cornerRadius = 15
+        mainView.clipsToBounds = true
+        nameLabel.textColor = .white
+    }
+    
+    public func setUpCell(nome: String) {
+        nameLabel.text = nome
     }
 
 }

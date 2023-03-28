@@ -7,13 +7,20 @@
 
 import UIKit
 
+protocol SearchSelectedViewControllerDelegate: NSObject {
+    func navMovieDetail()
+}
+
 class SearchSelectedViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var backTappedButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var movieSearch: UISearchBar!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
+    
+    weak var delegate: SearchSelectedViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +41,22 @@ class SearchSelectedViewController: UIViewController {
 
     private func configureView() {
         mainView.backgroundColor = .black
-        contentView.backgroundColor = .lightGray
+        contentView.backgroundColor = UIColor(named: "BackGray")
         contentView.layer.cornerRadius = 15
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        movieSearch.barTintColor = .lightGray
+        movieSearch.barTintColor = UIColor(named: "BackGray")
         moviesCollectionView.backgroundColor = .clear
     }
     
     private func configureNavigation(){
         navigationController?.navigationBar.isHidden = true
     }
+    
+    @IBAction func backTappedButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 //MARK: - UICollectionView Delegate, DataSource
@@ -57,6 +69,11 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
+        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

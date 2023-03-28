@@ -7,11 +7,19 @@
 
 import UIKit
 
+protocol BodyTableViewCellDelegate: NSObject {
+    func navSearchSelected()
+}
+
 class BodyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var searchCollectionView: UICollectionView!
     
     static let identifier: String = "BodyTableViewCell"
+    
+    weak var delegate: BodyTableViewCellDelegate?
+    
+    var nome: [String] = []
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -20,6 +28,10 @@ class BodyTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollectionView()
+    }
+    
+    public func setUpCell(nome: [String]) {
+        self.nome = nome
     }
 
     private func setupCollectionView() {
@@ -41,12 +53,17 @@ class BodyTableViewCell: UITableViewCell {
 extension BodyTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 12
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BodyCollectionViewCell.identifier, for: indexPath) as? BodyCollectionViewCell
+        cell?.setUpCell(nome: nome[indexPath.row])
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.navSearchSelected()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

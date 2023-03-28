@@ -148,9 +148,8 @@
 		644BD74729D099530036008F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				644BD74829D0996F0036008F /* Head */,
-				644BD74F29D0A7BF0036008F /* Body */,
-				644BD75929D0B0430036008F /* BodyCell */,
+				6482AB2729D363B000BC1FDB /* CollectionViewCell */,
+				6482AB2629D363A100BC1FDB /* TableViewCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -412,6 +411,23 @@
 				6482AB2329D2164A00BC1FDB /* ActorMoviesTableViewCell.xib */,
 			);
 			path = ActorMoviesCell;
+			sourceTree = "<group>";
+		};
+		6482AB2629D363A100BC1FDB /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				644BD74829D0996F0036008F /* Head */,
+				644BD74F29D0A7BF0036008F /* Body */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		6482AB2729D363B000BC1FDB /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				644BD75929D0B0430036008F /* BodyCell */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		64B17B6029BBA099003DC667 /* View */ = {

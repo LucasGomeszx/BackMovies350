@@ -20,11 +20,13 @@ class SearchViewController: UIViewController {
         configureTableView()
     }
     
+    let list: [String] = ["Ação","Aventura","Cinema de arte","Chanchada","Comédia","Comédia de ação","Comédia de terror","Comédia dramática","Comédia","romântica","Dança","Documentário", "Drama"]
+    
     private func setUpView() {
         mainView.backgroundColor = .black
         titleLabel.textColor = .white
         titleLabel.text = "Busca"
-        searchTableView.backgroundColor = .gray
+        searchTableView.backgroundColor = UIColor(named: "BackGray")
         searchTableView.layer.cornerRadius = 15
     }
     
@@ -41,6 +43,11 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
 
+    private func navMovieDetail() {
+        let vc: SearchSelectedViewController? = UIStoryboard(name: "SearchSelectedView", bundle: nil).instantiateViewController(withIdentifier: "SearchSelectedView") as? SearchSelectedViewController
+        self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+    }
+    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -52,9 +59,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row{
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: HeadTableViewCell.identifier, for: indexPath) as? HeadTableViewCell
+            cell?.delegate = self
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: BodyTableViewCell.identifier, for: indexPath) as? BodyTableViewCell
+            cell?.delegate = self
+            cell?.setUpCell(nome: list)
             return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
@@ -66,8 +76,25 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 220
         default:
-            return 1000
+            return 830
         }
     }
+}
+
+extension SearchViewController: BodyTableViewCellDelegate {
+    func navSearchSelected() {
+        navMovieDetail()
+    }
+}
+
+extension SearchViewController: HeadTableViewCellDelegate {
+    func navMovieButton() {
+        navMovieDetail()
+    }
+    
+    func navActorButton() {
+        navMovieDetail()
+    }
+    
     
 }
