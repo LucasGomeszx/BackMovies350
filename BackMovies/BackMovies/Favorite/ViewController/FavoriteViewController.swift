@@ -33,7 +33,7 @@ class FavoriteViewController: UIViewController {
     private func configureView() {
         mainView.backgroundColor = .black
         titleLabel.textColor = .white
-        favoriteCollectionView.backgroundColor = .gray
+        favoriteCollectionView.backgroundColor = UIColor(named: "BackGray")
         favoriteCollectionView.layer.cornerRadius = 15
     }
     
@@ -53,6 +53,11 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
+        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
