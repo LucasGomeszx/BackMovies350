@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol RetatedTableViewCellDelegate: AnyObject {
+    func navRelatedMovies()
+}
+
 class RetatedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -14,6 +18,8 @@ class RetatedTableViewCell: UITableViewCell {
     @IBOutlet weak var relatedCollectionView: UICollectionView!
     
     static let identifier: String = "RetatedTableViewCell"
+    
+    weak var delegate: RetatedTableViewCellDelegate?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -55,6 +61,10 @@ extension RetatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.navRelatedMovies()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

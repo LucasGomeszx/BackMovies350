@@ -68,8 +68,6 @@ extension PosterViewController: UITableViewDelegate, UITableViewDataSource {
 extension PosterViewController: PosterTableViewCellDelegate {
     func nav() {
         let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
-//        vc?.modalPresentationStyle = .fullScreen
-//        present(vc ?? UIViewController(), animated: true)
         navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
     }
 }

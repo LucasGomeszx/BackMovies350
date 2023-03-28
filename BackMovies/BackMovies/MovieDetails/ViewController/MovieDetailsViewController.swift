@@ -66,9 +66,11 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return cell ?? UITableViewCell()
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTableViewCell.identifier, for: indexPath) as? ActorTableViewCell
+            cell?.delegate = self
             return cell ?? UITableViewCell()
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: RetatedTableViewCell.identifier, for: indexPath) as? RetatedTableViewCell
+            cell?.delegate = self
             return cell ?? UITableViewCell()
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: MapTableViewCell.identifier, for: indexPath) as? MapTableViewCell
@@ -98,4 +100,22 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         }
     }
     
+}
+
+//MARK: - ActorTableViewCellDelegate
+
+extension MovieDetailsViewController: ActorTableViewCellDelegate {
+    func navActorDetail() {
+        let vc: ActorDetailViewController? = UIStoryboard(name: "ActorDetailView", bundle: nil).instantiateViewController(withIdentifier: "ActorDetailView") as? ActorDetailViewController
+        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
+    }
+}
+
+//MARK: - ActorTableViewCellDelegate
+
+extension MovieDetailsViewController: RetatedTableViewCellDelegate {
+    func navRelatedMovies() {
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
+        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
+    }
 }

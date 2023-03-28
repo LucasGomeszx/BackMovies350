@@ -30,9 +30,15 @@ class ActorDetailViewController: UIViewController {
     private func configureTableView() {
         actorTableView.delegate = self
         actorTableView.dataSource = self
+        actorTableView.allowsSelection = false
         actorTableView.register(ActorTopTableViewCell.nib(), forCellReuseIdentifier: ActorTopTableViewCell.identifier)
         actorTableView.register(ActorInfoTableViewCell.nib(), forCellReuseIdentifier: ActorInfoTableViewCell.identifier)
         actorTableView.register(ActorMoviesTableViewCell.nib(), forCellReuseIdentifier: ActorMoviesTableViewCell.identifier)
+    }
+    
+    
+    @IBAction func tappedBackButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
 }

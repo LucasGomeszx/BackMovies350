@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ActorTableViewCellDelegate: NSObject {
+    func navActorDetail()
+}
+
 class ActorTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -14,6 +18,8 @@ class ActorTableViewCell: UITableViewCell {
     @IBOutlet weak var actorCollectionView: UICollectionView!
     
     static let identifier: String = "ActorTableViewCell"
+    
+    weak var delegate: ActorTableViewCellDelegate?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -54,6 +60,10 @@ extension ActorTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActorCollectionViewCell.identifier, for: indexPath) as? ActorCollectionViewCell
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.navActorDetail()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
