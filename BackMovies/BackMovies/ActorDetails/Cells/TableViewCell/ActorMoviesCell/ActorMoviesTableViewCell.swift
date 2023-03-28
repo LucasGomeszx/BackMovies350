@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ActorMoviesTableViewCellDelegate: AnyObject {
+    func navActorMovies()
+}
+
 class ActorMoviesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -14,6 +18,8 @@ class ActorMoviesTableViewCell: UITableViewCell {
     @IBOutlet weak var actorMoviesCollectionView: UICollectionView!
     
     static let identifier: String = "ActorMoviesTableViewCell"
+    
+    weak var delegate: ActorMoviesTableViewCellDelegate?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -54,6 +60,10 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.navActorMovies()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

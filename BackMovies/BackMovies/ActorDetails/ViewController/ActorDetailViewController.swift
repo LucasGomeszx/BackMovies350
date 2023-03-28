@@ -60,6 +60,7 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorMoviesTableViewCell.identifier, for: indexPath) as? ActorMoviesTableViewCell
+            cell?.delegate = self
             return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
@@ -79,4 +80,11 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
+}
+
+extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
+    func navActorMovies() {
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
+        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
+    }
 }
