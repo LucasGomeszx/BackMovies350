@@ -29,7 +29,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
         mainView.backgroundColor = .black
         mainView.layer.cornerRadius = 20
         mainView.clipsToBounds = true
-        
+        movieNameLabel.text = "Interestelar"
         movieNameLabel.textColor = .white
     }
     

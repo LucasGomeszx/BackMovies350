@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ajp-f4-B0z">
                         <rect key="frame" x="0.0" y="0.0" width="135" height="200"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CinemaBack" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-4u-3Ac">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inter" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-4u-3Ac">
                                 <rect key="frame" x="0.0" y="0.0" width="135" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="IPZ-MJ-qgl"/>
@@ -64,7 +64,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="CinemaBack" width="675" height="1500"/>
+        <image name="inter" width="540" height="800"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

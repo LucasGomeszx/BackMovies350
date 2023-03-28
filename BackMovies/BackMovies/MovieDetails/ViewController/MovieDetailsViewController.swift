@@ -39,7 +39,11 @@ class MovieDetailsViewController: UIViewController {
         detailTableView.register(RetatedTableViewCell.nib(), forCellReuseIdentifier: RetatedTableViewCell.identifier)
         detailTableView.register(MapTableViewCell.nib(), forCellReuseIdentifier: MapTableViewCell.identifier)
     }
-
+    
+    @IBAction func tappedBackButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -80,7 +84,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             return 523
         case 1:
-            return 500
+            return 450
         case 2:
             return 220
         case 3:

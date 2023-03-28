@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol PosterTableViewCellDelegate: NSObject {
+    func nav()
+}
+
 class PosterTableViewCell: UITableViewCell {
     
     @IBOutlet weak var posterCollectionView: UICollectionView!
     
     static let identifier: String = "PosterTableViewCell"
+    
+    weak var delegate: PosterTableViewCellDelegate?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -37,7 +43,7 @@ class PosterTableViewCell: UITableViewCell {
     }
     
     private func configureView() {
-        posterCollectionView.backgroundColor = .gray
+        posterCollectionView.backgroundColor = UIColor(named: "BackGray")
         posterCollectionView.layer.cornerRadius = 15
         contentView.backgroundColor = .clear
     }
@@ -45,6 +51,7 @@ class PosterTableViewCell: UITableViewCell {
 }
 
 //MARK: - UICollectionView Delegate, DataSource
+
 extension PosterTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,6 +61,10 @@ extension PosterTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.nav()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -31,14 +31,13 @@ class PosterViewController: UIViewController {
     private func setUpView() {
         mainView.backgroundColor = .black
         titleLabel.textColor = .white
-        posterTableView.backgroundColor = UIColor(displayP3Red: 50, green: 50, blue: 50, alpha: 1)
     }
     
     private func configTableView() {
         posterTableView.delegate = self
         posterTableView.dataSource = self
         posterTableView.register(PosterTableViewCell.nib(), forCellReuseIdentifier: PosterTableViewCell.identifier)
-        posterTableView.backgroundColor = .black
+        posterTableView.backgroundColor = .clear
     }
     
     private func configureNavigation(){
@@ -56,6 +55,7 @@ extension PosterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PosterTableViewCell.identifier, for: indexPath) as? PosterTableViewCell
+        cell?.delegate = self
         return cell ?? UITableViewCell()
     }
     
@@ -63,4 +63,13 @@ extension PosterViewController: UITableViewDelegate, UITableViewDataSource {
         return 2150
     }
     
+}
+
+extension PosterViewController: PosterTableViewCellDelegate {
+    func nav() {
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
+//        vc?.modalPresentationStyle = .fullScreen
+//        present(vc ?? UIViewController(), animated: true)
+        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
+    }
 }
