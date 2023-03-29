@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NGr-Rw-1i1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NGr-Rw-1i1">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -65,7 +65,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4h-HP-tPa">
-                                <rect key="frame" x="64" y="788.33333333333337" width="302" height="34.333333333333371"/>
+                                <rect key="frame" x="64" y="807.66666666666663" width="302" height="34.333333333333371"/>
                                 <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -75,7 +75,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl8-RC-UIX">
-                                <rect key="frame" x="64" y="738" width="302" height="34.333333333333371"/>
+                                <rect key="frame" x="64" y="757.33333333333337" width="302" height="34.333333333333371"/>
                                 <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -85,14 +85,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1Z-cj-JRY">
-                                <rect key="frame" x="64" y="687.66666666666663" width="302" height="34.333333333333371"/>
+                                <rect key="frame" x="64" y="707" width="302" height="34.333333333333371"/>
                                 <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="googleIcon" title="          Logar com Google"/>
+                                <buttonConfiguration key="configuration" style="plain" image="googleIcon" imagePlacement="leading" title="          Logar com Google"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUk-OG-p4a">
-                                <rect key="frame" x="91" y="843.66666666666663" width="248" height="34.333333333333371"/>
+                                <rect key="frame" x="91" y="849.66666666666663" width="248" height="34.333333333333371"/>
                                 <color key="tintColor" red="0.66274511810000003" green="0.14509806040000001" blue="0.40392160420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Esqueceu sua senha ?"/>
@@ -100,39 +100,43 @@
                                     <segue destination="KBc-Fz-1Ev" kind="show" id="hyj-05-PGZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ0-2h-Ldd">
-                                <rect key="frame" x="64" y="630" width="302" height="34.333333333333371"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ0-2h-Ldd">
+                                <rect key="frame" x="64" y="657" width="302" height="34"/>
                                 <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="lFO-Gt-I1Z"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="appleIcon" title="        Logar com Apple"/>
+                                <buttonConfiguration key="configuration" style="plain" image="appleIcon" imagePlacement="leading" title="        Logar com Apple"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kqU-un-Pgs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="xJ0-2h-Ldd" secondAttribute="trailing" constant="64" id="0Fu-fa-M5A"/>
                             <constraint firstItem="bWv-CZ-OLB" firstAttribute="top" secondItem="rO3-FE-UT6" secondAttribute="top" id="1Ow-ld-xZD"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="T9O-Vi-6pX" secondAttribute="trailing" constant="45" id="4Jx-rL-G1y"/>
-                            <constraint firstItem="E1Z-cj-JRY" firstAttribute="top" secondItem="xJ0-2h-Ldd" secondAttribute="bottom" constant="16" id="Bbl-YU-cRW"/>
                             <constraint firstItem="E1Z-cj-JRY" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="BeO-pm-HhL"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="dl8-RC-UIX" secondAttribute="trailing" constant="64" id="CIW-vL-aa5"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="RUD-TX-Ope" secondAttribute="trailing" constant="26" id="CjM-L5-Y1N"/>
                             <constraint firstItem="dl8-RC-UIX" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="Ej1-sR-BXu"/>
+                            <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="xJ0-2h-Ldd" secondAttribute="trailing" constant="64" id="Fzx-zy-dm6"/>
                             <constraint firstItem="V6a-9v-rHx" firstAttribute="top" secondItem="RUD-TX-Ope" secondAttribute="bottom" constant="42" id="GtM-qp-nvj"/>
                             <constraint firstItem="T9O-Vi-6pX" firstAttribute="top" secondItem="kqU-un-Pgs" secondAttribute="top" constant="40" id="M4D-ep-MZh"/>
                             <constraint firstItem="bWv-CZ-OLB" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" id="Mqg-Be-vGK"/>
                             <constraint firstItem="RUD-TX-Ope" firstAttribute="top" secondItem="T9O-Vi-6pX" secondAttribute="bottom" constant="24" id="NO6-PD-LLx"/>
                             <constraint firstItem="bWv-CZ-OLB" firstAttribute="trailing" secondItem="kqU-un-Pgs" secondAttribute="trailing" id="NYD-U2-pSy"/>
                             <constraint firstAttribute="bottom" secondItem="bWv-CZ-OLB" secondAttribute="bottom" id="Ndl-Xp-UPL"/>
-                            <constraint firstItem="kqU-un-Pgs" firstAttribute="bottom" secondItem="t4h-HP-tPa" secondAttribute="bottom" constant="75.5" id="O1A-D5-eHQ"/>
+                            <constraint firstItem="kqU-un-Pgs" firstAttribute="bottom" secondItem="t4h-HP-tPa" secondAttribute="bottom" constant="56" id="O1A-D5-eHQ"/>
+                            <constraint firstItem="E1Z-cj-JRY" firstAttribute="top" secondItem="xJ0-2h-Ldd" secondAttribute="bottom" constant="16" id="O9B-AZ-YAF"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="V6a-9v-rHx" secondAttribute="trailing" constant="26" id="OAQ-HK-N2N"/>
-                            <constraint firstItem="kqU-un-Pgs" firstAttribute="bottom" secondItem="uUk-OG-p4a" secondAttribute="bottom" constant="20" id="P7y-YA-V1e"/>
+                            <constraint firstItem="kqU-un-Pgs" firstAttribute="bottom" secondItem="uUk-OG-p4a" secondAttribute="bottom" constant="14" id="P7y-YA-V1e"/>
                             <constraint firstItem="dl8-RC-UIX" firstAttribute="top" secondItem="E1Z-cj-JRY" secondAttribute="bottom" constant="16" id="iPA-p4-I69"/>
                             <constraint firstItem="T9O-Vi-6pX" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="45" id="ie0-hM-vbI"/>
                             <constraint firstItem="uUk-OG-p4a" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="91" id="ilr-0Y-sCI"/>
                             <constraint firstItem="V6a-9v-rHx" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="26" id="kec-vE-4X6"/>
                             <constraint firstItem="t4h-HP-tPa" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="r16-Xs-eQj"/>
+                            <constraint firstItem="xJ0-2h-Ldd" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="tX1-aI-dxL"/>
                             <constraint firstItem="RUD-TX-Ope" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="26" id="xO2-DF-0C4"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="E1Z-cj-JRY" secondAttribute="trailing" constant="64" id="yIJ-Yd-mvG"/>
                             <constraint firstItem="t4h-HP-tPa" firstAttribute="top" secondItem="dl8-RC-UIX" secondAttribute="bottom" constant="16" id="yS1-na-ZRE"/>
