@@ -7,14 +7,9 @@
 
 import UIKit
 
-protocol profileViewControllerProtocol: AnyObject {
-    func backLoginScreen()
-}
-
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profilePhoto: UIImageView!
-    var delegate: profileViewControllerProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +31,7 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func tappedExitButton(_ sender: Any) {
-//        let someTabIndex = 0
-//        let t = self.tabBarController
-//        t?.selectedIndex = someTabIndex
-//        let v = t?.viewControllers?[someTabIndex]
-//        if let n = v?.navigationController {
-//            n.popToRootViewController(animated: true)
-//        }
-        
-        delegate?.backLoginScreen()
+        tabBarController?.navigationController?.popViewController(animated: true)
     }
     
 }
