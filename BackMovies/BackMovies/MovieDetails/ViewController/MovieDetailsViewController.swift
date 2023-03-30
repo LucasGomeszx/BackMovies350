@@ -86,7 +86,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             return 523
         case 1:
-            return 450
+            return 460
         case 2:
             return 220
         case 3:

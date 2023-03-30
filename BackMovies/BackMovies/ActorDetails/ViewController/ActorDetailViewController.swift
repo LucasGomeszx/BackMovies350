@@ -30,6 +30,7 @@ class ActorDetailViewController: UIViewController {
     private func configureTableView() {
         actorTableView.delegate = self
         actorTableView.dataSource = self
+        actorTableView.separatorStyle = .none
         actorTableView.allowsSelection = false
         actorTableView.register(ActorTopTableViewCell.nib(), forCellReuseIdentifier: ActorTopTableViewCell.identifier)
         actorTableView.register(ActorInfoTableViewCell.nib(), forCellReuseIdentifier: ActorInfoTableViewCell.identifier)
@@ -70,7 +71,7 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 750
+            return 780
         case 1:
             return 220
         case 2:
