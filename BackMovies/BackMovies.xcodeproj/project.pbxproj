@@ -61,6 +61,8 @@
 		64B17B8529BBA266003DC667 /* ActorDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B17B8429BBA266003DC667 /* ActorDetailView.storyboard */; };
 		64B17B8729BBA28B003DC667 /* SearchSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B8629BBA28B003DC667 /* SearchSelectedViewController.swift */; };
 		64B17B8929BBA29B003DC667 /* SearchSelectedView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B17B8829BBA29B003DC667 /* SearchSelectedView.storyboard */; };
+		64CEAAFB29E08323006DCBD2 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEAAFA29E08323006DCBD2 /* Service.swift */; };
+		64CEAAFD29E08342006DCBD2 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEAAFC29E08342006DCBD2 /* NetworkHandler.swift */; };
 		64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5529BA659B00F14BFC /* RegisterViewController.swift */; };
 		64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */; };
 		64E70E5C29BA6E7000F14BFC /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */; };
@@ -126,6 +128,8 @@
 		64B17B8429BBA266003DC667 /* ActorDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActorDetailView.storyboard; sourceTree = "<group>"; };
 		64B17B8629BBA28B003DC667 /* SearchSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectedViewController.swift; sourceTree = "<group>"; };
 		64B17B8829BBA29B003DC667 /* SearchSelectedView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchSelectedView.storyboard; sourceTree = "<group>"; };
+		64CEAAFA29E08323006DCBD2 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		64CEAAFC29E08342006DCBD2 /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		64E70E5529BA659B00F14BFC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterView.storyboard; sourceTree = "<group>"; };
 		64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewController.swift; sourceTree = "<group>"; };
@@ -542,6 +546,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		64CEAAF629E07EFF006DCBD2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				64CEAAFA29E08323006DCBD2 /* Service.swift */,
+				64CEAAFC29E08342006DCBD2 /* NetworkHandler.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		64CEAAF929E07F36006DCBD2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		64E70E4529BA4F9C00F14BFC /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +592,8 @@
 		64E70E4829BA503200F14BFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				64CEAAF929E07F36006DCBD2 /* Model */,
+				64CEAAF629E07EFF006DCBD2 /* Service */,
 				645179AD29C786E9001D7B9D /* PosterCollectionViewCell */,
 			);
 			path = Common;
@@ -828,6 +850,7 @@
 				64B17B7729BBA188003DC667 /* FavoriteViewController.swift in Sources */,
 				644BD76F29D0FB2C0036008F /* TrailerTableViewCell.swift in Sources */,
 				6482AB1F29D20DEA00BC1FDB /* SocialMediaCollectionViewCell.swift in Sources */,
+				64CEAAFB29E08323006DCBD2 /* Service.swift in Sources */,
 				644BD77829D126E20036008F /* WatchTableViewCell.swift in Sources */,
 				644BD77F29D12E540036008F /* StreamingCollectionViewCell.swift in Sources */,
 				645179B029C78F43001D7B9D /* PosterCollectionViewCell.swift in Sources */,
@@ -837,6 +860,7 @@
 				64E70E5C29BA6E7000F14BFC /* RecoverViewController.swift in Sources */,
 				6482AB1829D2020600BC1FDB /* ActorInfoTableViewCell.swift in Sources */,
 				64E70E6229BA6F0400F14BFC /* TabBarViewController.swift in Sources */,
+				64CEAAFD29E08342006DCBD2 /* NetworkHandler.swift in Sources */,
 				644BD75C29D0B0580036008F /* BodyCollectionViewCell.swift in Sources */,
 				64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */,
 				6482AB2429D2164A00BC1FDB /* ActorMoviesTableViewCell.swift in Sources */,
