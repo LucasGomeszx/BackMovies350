@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64036EC929E78B2000E848BD /* PosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64036EC829E78B2000E848BD /* PosterViewModel.swift */; };
 		644BD74D29D09A020036008F /* HeadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD74B29D09A020036008F /* HeadTableViewCell.swift */; };
 		644BD74E29D09A020036008F /* HeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644BD74C29D09A020036008F /* HeadTableViewCell.xib */; };
 		644BD75229D0A7D50036008F /* BodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD75029D0A7D50036008F /* BodyTableViewCell.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64036EC829E78B2000E848BD /* PosterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewModel.swift; sourceTree = "<group>"; };
 		644BD74B29D09A020036008F /* HeadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadTableViewCell.swift; sourceTree = "<group>"; };
 		644BD74C29D09A020036008F /* HeadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeadTableViewCell.xib; sourceTree = "<group>"; };
 		644BD75029D0A7D50036008F /* BodyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64036EC729E78AF400E848BD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				64036EC829E78B2000E848BD /* PosterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		644BD74729D099530036008F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -614,6 +624,7 @@
 		64E70E4A29BA507500F14BFC /* Poster */ = {
 			isa = PBXGroup;
 			children = (
+				64036EC729E78AF400E848BD /* ViewModel */,
 				645179A729C77D95001D7B9D /* Cell */,
 				64B17B6129BBA09E003DC667 /* ViewController */,
 				64B17B6029BBA099003DC667 /* View */,
@@ -849,6 +860,7 @@
 				64B17B8329BBA254003DC667 /* ActorDetailViewController.swift in Sources */,
 				644BD74D29D09A020036008F /* HeadTableViewCell.swift in Sources */,
 				64B17B7F29BBA20F003DC667 /* MovieDetailsViewController.swift in Sources */,
+				64036EC929E78B2000E848BD /* PosterViewModel.swift in Sources */,
 				644BD76229D0EE830036008F /* MovieTopTableViewCell.swift in Sources */,
 				64B17B7729BBA188003DC667 /* FavoriteViewController.swift in Sources */,
 				644BD76F29D0FB2C0036008F /* TrailerTableViewCell.swift in Sources */,

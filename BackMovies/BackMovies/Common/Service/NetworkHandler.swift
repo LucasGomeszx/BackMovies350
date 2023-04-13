@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias NetworkResult<T: Decodable> = ((Result<T, NetworkError>) -> Void)
+typealias NetworkResult<T: Codable> = ((Result<T, NetworkError>) -> Void)
 
 struct NetworkRequest {
     var endpointURL: String

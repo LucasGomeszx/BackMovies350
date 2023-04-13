@@ -15,6 +15,8 @@ class PosterViewController: UIViewController {
     
     //MARK: - LifeCycle
     
+    var viewModel: PosterViewModel = PosterViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,6 +25,7 @@ class PosterViewController: UIViewController {
         configureNavigation()
         setUpView()
         configTableView()
+        viewModel.fetchMovies()
     }
     
     
