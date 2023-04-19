@@ -7,34 +7,37 @@
 
 import Foundation
 
-typealias NetworkResult<T: Codable> = ((Result<T, NetworkError>) -> Void)
+typealias NetworkResult<T: Decodable> = ((Result<T, NetworkError>) -> Void)
 
 struct NetworkRequest {
     var endpointURL: String
 }
 
 enum NetworkError: Error {
-    case decodeError
+    case invalidURL(url: String)
+    case networkError(error: Error)
+    case invalidResponse
+    case invalidStatusCode(statusCode: Int)
     case noData
-    case invalidURL
-    case invalidStatusCode
-    case networkError
+    case decodeError(error: Error)
 }
 
 extension NetworkError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .decodeError:
-            return "Erro no decoder"
+        case .invalidURL(let url):
+            return "URL inválida: \(url)"
+        case .networkError(let error):
+            return "Erro de rede: \(error.localizedDescription)"
+        case .invalidResponse:
+            return "Resposta inválida"
+        case .invalidStatusCode(let statusCode):
+            return "Status code inválido: \(statusCode)"
         case .noData:
-            return "Data error"
-        case .invalidURL:
-            return "URL Invalida"
-        case .invalidStatusCode:
-            return "Status Code Invalido"
-        case .networkError:
-            return "Erro desconhecido"
+            return "Dados não encontrados"
+        case .decodeError(let error):
+            return "Erro de decodificação: \(error.localizedDescription)"
         }
     }
 }

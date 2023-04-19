@@ -70,7 +70,8 @@ extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -84,12 +85,12 @@ extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 extension PosterViewController: PosterViewModelDelegate {
-    func success() {
+    func didFetchMovies() {
         posterCollectionView.reloadData()
     }
     
-    func failure() {
-        
+    func didFailToFetchMovies(with error: String) {
+        Alert.showAlert(on: self, withTitle: "Error", message: error, actions: nil)
     }
     
 }

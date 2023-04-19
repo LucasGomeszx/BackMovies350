@@ -8,8 +8,8 @@
 import Foundation
 
 protocol PosterViewModelDelegate: AnyObject {
-    func success()
-    func failure()
+    func didFetchMovies()
+    func didFailToFetchMovies(with error: String)
 }
 
 class PosterViewModel {
@@ -46,12 +46,12 @@ class PosterViewModel {
             case .success(let success):
                 DispatchQueue.main.async {
                     self.posterList = success
-                    self.delegate?.success()
+                    self.delegate?.didFetchMovies()
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     print(error.localizedDescription)
-                    self.delegate?.failure()
+                    self.delegate?.didFailToFetchMovies(with: error.localizedDescription)
                 }
             }
         }
