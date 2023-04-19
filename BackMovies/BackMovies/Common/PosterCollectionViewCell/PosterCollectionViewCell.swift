@@ -11,6 +11,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var movieNameLabel: UILabel!
+    @IBOutlet weak var movieImageView: UIImageView!
     
     static let identifier: String = "PosterCollectionViewCell"
     
@@ -29,8 +30,13 @@ class PosterCollectionViewCell: UICollectionViewCell {
         mainView.backgroundColor = .black
         mainView.layer.cornerRadius = 20
         mainView.clipsToBounds = true
-        movieNameLabel.text = "Interestelar"
         movieNameLabel.textColor = .white
+    }
+    
+    public func setUpCell(movies: Poster) {
+        self.movieNameLabel.text = movies.title
+        guard let image = URL(string: Api.posterPath + "\(movies.posterPath ?? "")") else {return}
+        movieImageView.loadImageFromURL(image, placeholder: nil, errorImage: UIImage(systemName: "eraser.fill"))
     }
     
 }

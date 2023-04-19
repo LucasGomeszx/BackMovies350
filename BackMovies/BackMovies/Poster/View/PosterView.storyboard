@@ -22,26 +22,33 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-zD-AcX">
-                                <rect key="frame" x="0.0" y="121" width="390" height="689"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="M6B-th-aPX">
+                                <rect key="frame" x="8" y="121" width="374" height="681"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cKe-cP-dsO">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="3RO-zD-AcX" secondAttribute="bottom" id="GL0-s1-Pjl"/>
-                            <constraint firstItem="3RO-zD-AcX" firstAttribute="top" secondItem="2hl-Gk-IAT" secondAttribute="bottom" constant="16" id="aEa-h6-dA7"/>
-                            <constraint firstItem="3RO-zD-AcX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="lPs-e3-3aA"/>
+                            <constraint firstItem="M6B-th-aPX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="UOL-br-xcm"/>
                             <constraint firstItem="2hl-Gk-IAT" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="mmN-Ad-e2r"/>
+                            <constraint firstItem="M6B-th-aPX" firstAttribute="top" secondItem="2hl-Gk-IAT" secondAttribute="bottom" constant="16" id="ohL-MB-PQC"/>
                             <constraint firstItem="2hl-Gk-IAT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="uau-Xi-9di"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3RO-zD-AcX" secondAttribute="trailing" id="zcV-Xz-BJV"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="M6B-th-aPX" secondAttribute="trailing" constant="8" id="yI1-ro-Hbo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="M6B-th-aPX" secondAttribute="bottom" constant="8" id="yWQ-Xx-RUy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zqD-re-cwk"/>
                     <connections>
                         <outlet property="mainView" destination="5EZ-qb-Rvc" id="kVE-46-OZf"/>
-                        <outlet property="posterTableView" destination="3RO-zD-AcX" id="nMF-b9-V9D"/>
+                        <outlet property="posterCollectionView" destination="M6B-th-aPX" id="6Ka-OK-MIL"/>
                         <outlet property="titleLabel" destination="2hl-Gk-IAT" id="OG2-yB-ivY"/>
                     </connections>
                 </viewController>
