@@ -29,7 +29,6 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpTableView()
-        viewModel.test()
     }
     
     private func setUpView() {
