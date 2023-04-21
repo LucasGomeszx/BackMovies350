@@ -55,7 +55,7 @@ class PosterViewController: UIViewController {
     }
 }
 
-//MARK: - UICollectionView Delegate, DataSource
+    //MARK: - UICollectionView Delegate, DataSource
 
 extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -70,7 +70,9 @@ extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+            return MovieDetailsViewController(coder: coder, poster: self.viewModel.getPoster(index: indexPath.row))
+        }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
@@ -83,6 +85,8 @@ extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
 }
+
+    //MARK: - PosterViewModelDelegate
 
 extension PosterViewController: PosterViewModelDelegate {
     func didFetchMovies() {
