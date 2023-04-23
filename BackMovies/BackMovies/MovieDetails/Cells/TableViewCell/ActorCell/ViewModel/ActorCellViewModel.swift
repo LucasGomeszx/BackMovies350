@@ -37,7 +37,7 @@ class ActorCellViewModel {
     }
     
     var getCellSize: CGSize {
-        CGSize(width: 125, height: 225)
+        CGSize(width: 125, height: 275)
     }
     
     public func setUpDelegate(delegate: ActorCellViewModelDelegate) {

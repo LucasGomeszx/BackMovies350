@@ -32,7 +32,7 @@ class MovieDetailViewModel {
     }
     
     var getActorCellSize: CGFloat {
-        250
+        300
     }
     
     var getRelatedCell: CGFloat {

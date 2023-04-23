@@ -7,6 +7,15 @@
 
 import UIKit
 
+enum TableViewSection: Int {
+    case movieTopCell
+    case trailerCell
+    case watchCell
+    case actorsCell
+    case relatedCell
+    case mapCell
+}
+
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
@@ -65,30 +74,30 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row{
-        case 0:
+        switch TableViewSection(rawValue: indexPath.row){
+        case .movieTopCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieTopTableViewCell.identifier, for: indexPath) as? MovieTopTableViewCell
             cell?.setUpCell(poster: viewModel.getMovie)
             return cell ?? UITableViewCell()
-        case 1:
+        case .trailerCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: TrailerTableViewCell.identifier, for: indexPath) as? TrailerTableViewCell
             cell?.setUpCell(movie: viewModel.getMovie)
             return cell ?? UITableViewCell()
-        case 2:
+        case .watchCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: WatchTableViewCell.identifier, for: indexPath) as? WatchTableViewCell
             cell?.setUpCell(movie: viewModel.getMovie)
             return cell ?? UITableViewCell()
-        case 3:
+        case .actorsCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTableViewCell.identifier, for: indexPath) as? ActorTableViewCell
             cell?.delegate = self
             cell?.setUpCell(id: viewModel.getMovieId)
             return cell ?? UITableViewCell()
-        case 4:
+        case .relatedCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: RetatedTableViewCell.identifier, for: indexPath) as? RetatedTableViewCell
             cell?.delegate = self
             cell?.setUpCell(id: viewModel.getMovieId)
             return cell ?? UITableViewCell()
-        case 5:
+        case .mapCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: MapTableViewCell.identifier, for: indexPath) as? MapTableViewCell
             return cell ?? UITableViewCell()
         default:
@@ -98,18 +107,18 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row{
-        case 0:
+        switch TableViewSection(rawValue: indexPath.row) {
+        case .movieTopCell:
             return viewModel.getMovieTopCellSize
-        case 1:
+        case .trailerCell:
             return viewModel.getTrailerCellSize
-        case 2:
+        case .watchCell:
             return viewModel.getWatchCellSize
-        case 3:
+        case .actorsCell:
             return viewModel.getActorCellSize
-        case 4:
+        case .relatedCell:
             return viewModel.getRelatedCell
-        case 5:
+        case .mapCell:
             return viewModel.getMapCellSize
         default:
             return 0
