@@ -12,6 +12,7 @@ class StreamingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var logoImage: UIImageView!
     
     static let identifier: String = "StreamingCollectionViewCell"
+    var viewModel: StreamingCellViewModel?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -22,8 +23,8 @@ class StreamingCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func setUpView() {
-        
+    private func setUpCell() {
+        viewModel = StreamingCellViewModel()
     }
 
 }

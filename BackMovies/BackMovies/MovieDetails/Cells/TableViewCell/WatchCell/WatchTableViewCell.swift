@@ -18,6 +18,8 @@ class WatchTableViewCell: UITableViewCell {
     
     static let identifier: String = "WatchTableViewCell"
     
+    var viewModel: WatchCellViewModel = WatchCellViewModel()
+    
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -26,6 +28,10 @@ class WatchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setUpView()
         configureCollection()
+    }
+    
+    public func setUpCell(movie: Poster) {
+        viewModel.setUpViewModel(movie: movie)
     }
     
     private func setUpView() {
@@ -54,7 +60,7 @@ class WatchTableViewCell: UITableViewCell {
 
 extension WatchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return viewModel.getProviderCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -63,7 +69,7 @@ extension WatchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        return viewModel.getSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

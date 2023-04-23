@@ -19,6 +19,7 @@ class ActorTableViewCell: UITableViewCell {
     
     static let identifier: String = "ActorTableViewCell"
     
+    private var viewModel: ActorCellViewModel = ActorCellViewModel()
     weak var delegate: ActorTableViewCellDelegate?
     
     static func nib() -> UINib {
@@ -29,7 +30,10 @@ class ActorTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setUpView()
         configureCollection()
+
     }
+    
+    //MARK: - SetUps
     
     private func setUpView() {
         mainView.backgroundColor = .clear
@@ -48,13 +52,19 @@ class ActorTableViewCell: UITableViewCell {
         actorCollectionView.register(ActorCollectionViewCell.nib(), forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
     }
     
+    public func setUpCell(id: Int) {
+        viewModel.setUpViewModel(id: id)
+        viewModel.setUpDelegate(delegate: self)
+        viewModel.fetchActors()
+    }
+    
 }
 
 //MARK: - CollectionView Delegate, DataSource, FlowLayout
 
 extension ActorTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return viewModel.getActorCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,11 +77,23 @@ extension ActorTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 125, height: 225)
+        return viewModel.getCellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+    }
+    
+}
+
+extension ActorTableViewCell : ActorCellViewModelDelegate {
+    func didFetchMovies() {
+        actorCollectionView.reloadData()
+        print("SEM ERRO")
+    }
+    
+    func didFailToFetchMovies(with error: String) {
+        print(error)
     }
     
 }

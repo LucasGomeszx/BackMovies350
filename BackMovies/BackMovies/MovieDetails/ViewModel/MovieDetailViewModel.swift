@@ -9,10 +9,18 @@ import Foundation
 
 class MovieDetailViewModel {
     
-    var poster: Poster
+    private var poster: Poster
     
     init(poster: Poster){
         self.poster  = poster
+    }
+    
+    var getMovie: Poster {
+        poster
+    }
+    
+    var getMovieId: Int {
+        poster.id ?? 0
     }
     
 }

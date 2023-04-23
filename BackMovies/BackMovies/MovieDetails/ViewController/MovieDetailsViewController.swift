@@ -23,7 +23,6 @@ class MovieDetailsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,16 +68,20 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         switch indexPath.row{
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieTopTableViewCell.identifier, for: indexPath) as? MovieTopTableViewCell
+            cell?.setUpCell(poster: viewModel.getMovie)
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: TrailerTableViewCell.identifier, for: indexPath) as? TrailerTableViewCell
+            cell?.setUpCell(movie: viewModel.getMovie)
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: WatchTableViewCell.identifier, for: indexPath) as? WatchTableViewCell
+            cell?.setUpCell(movie: viewModel.getMovie)
             return cell ?? UITableViewCell()
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTableViewCell.identifier, for: indexPath) as? ActorTableViewCell
             cell?.delegate = self
+            cell?.setUpCell(id: viewModel.getMovieId)
             return cell ?? UITableViewCell()
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: RetatedTableViewCell.identifier, for: indexPath) as? RetatedTableViewCell
@@ -96,7 +99,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row{
         case 0:
-            return 523
+            return 623
         case 1:
             return 460
         case 2:

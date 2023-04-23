@@ -45,6 +45,7 @@
 		6478639029F2D16200DF2D58 /* MapCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478638F29F2D16200DF2D58 /* MapCellViewModel.swift */; };
 		6478639429F2D1B400DF2D58 /* ActorCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639329F2D1B400DF2D58 /* ActorCollectionViewCellViewModel.swift */; };
 		6478639629F2D1CE00DF2D58 /* StreamingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639529F2D1CE00DF2D58 /* StreamingCellViewModel.swift */; };
+		6478639829F57FCA00DF2D58 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639729F57FCA00DF2D58 /* Cast.swift */; };
 		6482AB0829D1C62100BC1FDB /* RetatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB0629D1C62100BC1FDB /* RetatedTableViewCell.swift */; };
 		6482AB0929D1C62100BC1FDB /* RetatedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6482AB0729D1C62100BC1FDB /* RetatedTableViewCell.xib */; };
 		6482AB0D29D1D63600BC1FDB /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */; };
@@ -125,6 +126,7 @@
 		6478638F29F2D16200DF2D58 /* MapCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCellViewModel.swift; sourceTree = "<group>"; };
 		6478639329F2D1B400DF2D58 /* ActorCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		6478639529F2D1CE00DF2D58 /* StreamingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingCellViewModel.swift; sourceTree = "<group>"; };
+		6478639729F57FCA00DF2D58 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		6482AB0629D1C62100BC1FDB /* RetatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetatedTableViewCell.swift; sourceTree = "<group>"; };
 		6482AB0729D1C62100BC1FDB /* RetatedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RetatedTableViewCell.xib; sourceTree = "<group>"; };
 		6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 			isa = PBXGroup;
 			children = (
 				64CEAAFE29E09F0B006DCBD2 /* PosterMovies.swift */,
+				6478639729F57FCA00DF2D58 /* Cast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -994,6 +997,7 @@
 				64CEAAFD29E08342006DCBD2 /* NetworkHandler.swift in Sources */,
 				6478638729F2D0DD00DF2D58 /* TrailerCellViewModel.swift in Sources */,
 				644BD75C29D0B0580036008F /* BodyCollectionViewCell.swift in Sources */,
+				6478639829F57FCA00DF2D58 /* Cast.swift in Sources */,
 				64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */,
 				6482AB2429D2164A00BC1FDB /* ActorMoviesTableViewCell.swift in Sources */,
 				6482AB0D29D1D63600BC1FDB /* MapTableViewCell.swift in Sources */,
