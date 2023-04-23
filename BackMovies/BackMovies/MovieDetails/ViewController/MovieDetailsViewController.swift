@@ -61,7 +61,7 @@ class MovieDetailsViewController: UIViewController {
 
 extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        viewModel.getTableViewCellCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,6 +86,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: RetatedTableViewCell.identifier, for: indexPath) as? RetatedTableViewCell
             cell?.delegate = self
+            cell?.setUpCell(id: viewModel.getMovieId)
             return cell ?? UITableViewCell()
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: MapTableViewCell.identifier, for: indexPath) as? MapTableViewCell
@@ -99,17 +100,17 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row{
         case 0:
-            return 623
+            return viewModel.getMovieTopCellSize
         case 1:
-            return 460
+            return viewModel.getTrailerCellSize
         case 2:
-            return 220
+            return viewModel.getWatchCellSize
         case 3:
-            return 250
+            return viewModel.getActorCellSize
         case 4:
-            return 270
+            return viewModel.getRelatedCell
         case 5:
-            return 240
+            return viewModel.getMapCellSize
         default:
             return 0
         }
@@ -120,8 +121,10 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
 //MARK: - ActorTableViewCellDelegate
 
 extension MovieDetailsViewController: ActorTableViewCellDelegate {
-    func navActorDetail() {
-        let vc: ActorDetailViewController? = UIStoryboard(name: "ActorDetailView", bundle: nil).instantiateViewController(withIdentifier: "ActorDetailView") as? ActorDetailViewController
+    func navActorDetail(actorId: Int) {
+        let vc: ActorDetailViewController? = UIStoryboard(name: "ActorDetailView", bundle: nil).instantiateViewController(identifier: "ActorDetailView") { coder -> ActorDetailViewController? in
+            return ActorDetailViewController(coder: coder, actorId: actorId)
+        }
         navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
     }
 }
@@ -129,8 +132,10 @@ extension MovieDetailsViewController: ActorTableViewCellDelegate {
 //MARK: - ActorTableViewCellDelegate
 
 extension MovieDetailsViewController: RetatedTableViewCellDelegate {
-    func navRelatedMovies() {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
-        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
+    func navRelatedMovies(movie: Poster) {
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+            return MovieDetailsViewController(coder: coder, poster: movie)
+        }
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
 }

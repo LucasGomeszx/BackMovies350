@@ -46,6 +46,8 @@
 		6478639429F2D1B400DF2D58 /* ActorCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639329F2D1B400DF2D58 /* ActorCollectionViewCellViewModel.swift */; };
 		6478639629F2D1CE00DF2D58 /* StreamingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639529F2D1CE00DF2D58 /* StreamingCellViewModel.swift */; };
 		6478639829F57FCA00DF2D58 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639729F57FCA00DF2D58 /* Cast.swift */; };
+		6478639A29F5A21B00DF2D58 /* SimilarMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639929F5A21B00DF2D58 /* SimilarMovies.swift */; };
+		6478639D29F5C36000DF2D58 /* ActorDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639C29F5C36000DF2D58 /* ActorDetailsViewModel.swift */; };
 		6482AB0829D1C62100BC1FDB /* RetatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB0629D1C62100BC1FDB /* RetatedTableViewCell.swift */; };
 		6482AB0929D1C62100BC1FDB /* RetatedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6482AB0729D1C62100BC1FDB /* RetatedTableViewCell.xib */; };
 		6482AB0D29D1D63600BC1FDB /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */; };
@@ -127,6 +129,8 @@
 		6478639329F2D1B400DF2D58 /* ActorCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		6478639529F2D1CE00DF2D58 /* StreamingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingCellViewModel.swift; sourceTree = "<group>"; };
 		6478639729F57FCA00DF2D58 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
+		6478639929F5A21B00DF2D58 /* SimilarMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovies.swift; sourceTree = "<group>"; };
+		6478639C29F5C36000DF2D58 /* ActorDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetailsViewModel.swift; sourceTree = "<group>"; };
 		6482AB0629D1C62100BC1FDB /* RetatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetatedTableViewCell.swift; sourceTree = "<group>"; };
 		6482AB0729D1C62100BC1FDB /* RetatedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RetatedTableViewCell.xib; sourceTree = "<group>"; };
 		6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -449,6 +453,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6478639B29F5C34300DF2D58 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6478639C29F5C36000DF2D58 /* ActorDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6482AB0529D1C5C700BC1FDB /* RelatedCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +696,7 @@
 			children = (
 				64CEAAFE29E09F0B006DCBD2 /* PosterMovies.swift */,
 				6478639729F57FCA00DF2D58 /* Cast.swift */,
+				6478639929F5A21B00DF2D58 /* SimilarMovies.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -789,6 +802,7 @@
 		64E70E4F29BA50D900F14BFC /* ActorDetails */ = {
 			isa = PBXGroup;
 			children = (
+				6478639B29F5C34300DF2D58 /* ViewModel */,
 				6482AB0F29D1F8EA00BC1FDB /* Cells */,
 				64B17B6F29BBA144003DC667 /* ViewController */,
 				64B17B6E29BBA140003DC667 /* View */,
@@ -980,10 +994,12 @@
 				644BD76229D0EE830036008F /* MovieTopTableViewCell.swift in Sources */,
 				64B17B7729BBA188003DC667 /* FavoriteViewController.swift in Sources */,
 				644BD76F29D0FB2C0036008F /* TrailerTableViewCell.swift in Sources */,
+				6478639D29F5C36000DF2D58 /* ActorDetailsViewModel.swift in Sources */,
 				6482AB1F29D20DEA00BC1FDB /* SocialMediaCollectionViewCell.swift in Sources */,
 				64CEAAFB29E08323006DCBD2 /* Service.swift in Sources */,
 				644BD77829D126E20036008F /* WatchTableViewCell.swift in Sources */,
 				644BD77F29D12E540036008F /* StreamingCollectionViewCell.swift in Sources */,
+				6478639A29F5A21B00DF2D58 /* SimilarMovies.swift in Sources */,
 				645179B029C78F43001D7B9D /* PosterCollectionViewCell.swift in Sources */,
 				64501B9729B7A5EC0019D7B3 /* SceneDelegate.swift in Sources */,
 				64462B3129EEE7F40021A8BE /* Api.swift in Sources */,

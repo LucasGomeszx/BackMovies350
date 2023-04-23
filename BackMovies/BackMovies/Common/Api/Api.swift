@@ -19,4 +19,8 @@ struct Api {
         "https://api.themoviedb.org/3/movie/\(id)/credits?api_key=a418c1d2207524b9f775ba6cb3c50ad6"
     }
     
+    static func similarMovies(id: Int) -> String {
+        "https://api.themoviedb.org/3/movie/\(id)/similar?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR&page=1"
+    }
+    
 }

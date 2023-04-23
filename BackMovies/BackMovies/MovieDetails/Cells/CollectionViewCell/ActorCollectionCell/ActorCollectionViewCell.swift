@@ -16,6 +16,8 @@ class ActorCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "ActorCollectionViewCell"
     
+    var viewModel: ActorCollectionViewCellViewModel?
+    
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -25,14 +27,20 @@ class ActorCollectionViewCell: UICollectionViewCell {
         setUpView()
     }
     
+    public func setUpCell(actor: Cast) {
+        viewModel = ActorCollectionViewCellViewModel(actor: actor)
+        actorNameLabel.text = viewModel?.getActorName
+        personLabel.text = viewModel?.getActorCharacter
+        guard let url = URL(string: Api.posterPath + (viewModel?.getActorProfilePath ?? "")) else {return}
+        actorImage.loadImageFromURL(url)
+    }
+    
     private func setUpView() {
         mainView.backgroundColor = .black
         mainView.layer.cornerRadius = 20
         mainView.clipsToBounds = true
         actorImage.contentMode = .scaleAspectFill
-        actorNameLabel.text = "Matthew McConaughey"
         actorNameLabel.textColor = .white
-        personLabel.text = "Joseph Coop Cooper"
         personLabel.textColor = UIColor(named: "TextColor")
     }
 

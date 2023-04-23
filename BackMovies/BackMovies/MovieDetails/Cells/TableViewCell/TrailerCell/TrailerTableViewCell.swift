@@ -16,7 +16,7 @@ class TrailerTableViewCell: UITableViewCell {
     @IBOutlet weak var sinopseLabel: UILabel!
     @IBOutlet weak var sinopseContencLabel: UILabel!
     
-    static let identifier: String = "TrailerTableViewCell"
+    static let identifier: String = String(describing: TrailerTableViewCell.self)
     
     var viewModel: TrailerCellViewModel?
     

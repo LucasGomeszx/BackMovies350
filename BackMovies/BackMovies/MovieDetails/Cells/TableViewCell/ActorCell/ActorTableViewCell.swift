@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ActorTableViewCellDelegate: NSObject {
-    func navActorDetail()
+    func navActorDetail(actorId: Int)
 }
 
 class ActorTableViewCell: UITableViewCell {
@@ -17,7 +17,7 @@ class ActorTableViewCell: UITableViewCell {
     @IBOutlet weak var actorLabel: UILabel!
     @IBOutlet weak var actorCollectionView: UICollectionView!
     
-    static let identifier: String = "ActorTableViewCell"
+    static let identifier: String = String(describing: ActorTableViewCell.self)
     
     private var viewModel: ActorCellViewModel = ActorCellViewModel()
     weak var delegate: ActorTableViewCellDelegate?
@@ -30,7 +30,6 @@ class ActorTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setUpView()
         configureCollection()
-
     }
     
     //MARK: - SetUps
@@ -69,11 +68,12 @@ extension ActorTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActorCollectionViewCell.identifier, for: indexPath) as? ActorCollectionViewCell
+        cell?.setUpCell(actor: viewModel.getCast(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navActorDetail()
+        delegate?.navActorDetail(actorId: viewModel.getCastId(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -86,10 +86,11 @@ extension ActorTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     
 }
 
+//MARK: - ActorCellViewModelDelegate
+
 extension ActorTableViewCell : ActorCellViewModelDelegate {
     func didFetchMovies() {
         actorCollectionView.reloadData()
-        print("SEM ERRO")
     }
     
     func didFailToFetchMovies(with error: String) {

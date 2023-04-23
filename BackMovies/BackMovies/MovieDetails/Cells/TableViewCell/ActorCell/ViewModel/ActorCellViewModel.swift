@@ -24,8 +24,16 @@ class ActorCellViewModel {
         movieId = id
     }
     
+    public func getCast(index: Int) -> Cast {
+        return actor?.cast?[index] ?? Cast()
+    }
+    
+    public func getCastId(index: Int) -> Int {
+        actor?.cast?[index].id ?? 0
+    }
+    
     var getActorCount: Int {
-        actor?.cast.count ?? 0
+        actor?.cast?.count ?? 0
     }
     
     var getCellSize: CGSize {

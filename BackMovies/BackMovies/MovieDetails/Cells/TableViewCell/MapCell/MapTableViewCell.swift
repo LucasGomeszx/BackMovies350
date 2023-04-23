@@ -12,7 +12,7 @@ class MapTableViewCell: UITableViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mapLabel: UILabel!
     
-    static let identifier: String = "MapTableViewCell"
+    static let identifier: String = String(describing: MapTableViewCell.self)
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)

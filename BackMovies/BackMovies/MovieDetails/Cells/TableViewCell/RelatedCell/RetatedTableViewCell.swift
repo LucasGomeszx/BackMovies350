@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RetatedTableViewCellDelegate: AnyObject {
-    func navRelatedMovies()
+    func navRelatedMovies(movie: Poster)
 }
 
 class RetatedTableViewCell: UITableViewCell {
@@ -17,8 +17,9 @@ class RetatedTableViewCell: UITableViewCell {
     @IBOutlet weak var relatedLabel: UILabel!
     @IBOutlet weak var relatedCollectionView: UICollectionView!
     
-    static let identifier: String = "RetatedTableViewCell"
+    static let identifier: String = String(describing: RetatedTableViewCell.self)
     
+    let viewModel: RelatedCellViewModel = RelatedCellViewModel()
     weak var delegate: RetatedTableViewCellDelegate?
     
     static func nib() -> UINib {
@@ -29,6 +30,12 @@ class RetatedTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setUpView()
         configCollectionView()
+    }
+    
+    public func setUpCell(id: Int) {
+        viewModel.setMovieId(id: id)
+        viewModel.setUpDelegate(delegate: self)
+        viewModel.fetchSimilar()
     }
     
     private func setUpView() {
@@ -48,7 +55,6 @@ class RetatedTableViewCell: UITableViewCell {
         relatedCollectionView.register(PosterCollectionViewCell.nib(), forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
     }
 
-
 }
 
 //MARK: - UICollectionView Delegate, DataSource
@@ -60,11 +66,12 @@ extension RetatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
+        cell?.setUpCell(movies: viewModel.getSimilarMovie(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navRelatedMovies()
+        delegate?.navRelatedMovies(movie: self.viewModel.getSimilarMovie(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -73,6 +80,17 @@ extension RetatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+    }
+    
+}
+
+extension RetatedTableViewCell: RelatedCellViewModelDelegate {
+    func didFetchMovies() {
+        relatedCollectionView.reloadData()
+    }
+    
+    func didFailToFetchMovies(with error: String) {
+        print(error)
     }
     
 }

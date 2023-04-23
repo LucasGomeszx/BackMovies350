@@ -16,7 +16,7 @@ class WatchTableViewCell: UITableViewCell {
     @IBOutlet weak var youtubeImage: UIImageView!
     @IBOutlet weak var lineView: UIView!
     
-    static let identifier: String = "WatchTableViewCell"
+    static let identifier: String = String(describing: WatchTableViewCell.self)
     
     var viewModel: WatchCellViewModel = WatchCellViewModel()
     

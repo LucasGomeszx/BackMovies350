@@ -13,6 +13,17 @@ class ActorDetailViewController: UIViewController {
     @IBOutlet weak var actorTitleLabel: UILabel!
     @IBOutlet weak var actorTableView: UITableView!
     
+    var viewModel: ActorDetailsViewModel
+    
+    init?(coder: NSCoder, actorId: Int) {
+        viewModel = ActorDetailsViewModel(actorInd: actorId)
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()

@@ -9,7 +9,7 @@ import Foundation
 
 class MovieTopCellViewModel {
     
-    var movie: Poster
+    private var movie: Poster
     
     init(movie: Poster) {
         self.movie = movie
