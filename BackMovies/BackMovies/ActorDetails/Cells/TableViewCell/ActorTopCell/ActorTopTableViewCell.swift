@@ -26,6 +26,10 @@ class ActorTopTableViewCell: UITableViewCell {
         setUpView()
     }
     
+    public func setUpCell(actor: ActorModel) {
+        
+    }
+    
     private func setUpView() {
         mainView.backgroundColor = .clear
         actorImage.layer.cornerRadius = 15

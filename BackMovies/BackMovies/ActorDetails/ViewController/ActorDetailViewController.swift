@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum ActorDetailSection: Int {
+    case ActorTopCell
+    case ActorInfoCell
+    case ActorMoviesCell
+}
+
 class ActorDetailViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
@@ -16,7 +22,7 @@ class ActorDetailViewController: UIViewController {
     var viewModel: ActorDetailsViewModel
     
     init?(coder: NSCoder, actorId: Int) {
-        viewModel = ActorDetailsViewModel(actorInd: actorId)
+        viewModel = ActorDetailsViewModel(actorId: actorId)
         super.init(coder: coder)
     }
     
@@ -28,6 +34,8 @@ class ActorDetailViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         configureTableView()
+        viewModel.setUpDelegate(delegate: self)
+        viewModel.fetchActor()
     }
     
     private func setUpView() {
@@ -59,18 +67,19 @@ class ActorDetailViewController: UIViewController {
 
 extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        viewModel.getTableViewCellCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        switch ActorDetailSection(rawValue: indexPath.row){
+        case .ActorTopCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTopTableViewCell.identifier, for: indexPath) as? ActorTopTableViewCell
+            cell?.setUpCell(actor: viewModel.getActorDetail)
             return cell ?? UITableViewCell()
-        case 1:
+        case .ActorInfoCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorInfoTableViewCell.identifier, for: indexPath) as? ActorInfoTableViewCell
             return cell ?? UITableViewCell()
-        case 2:
+        case .ActorMoviesCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorMoviesTableViewCell.identifier, for: indexPath) as? ActorMoviesTableViewCell
             cell?.delegate = self
             return cell ?? UITableViewCell()
@@ -80,13 +89,13 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return 780
-        case 1:
-            return 220
-        case 2:
-            return 260
+        switch ActorDetailSection(rawValue: indexPath.row) {
+        case .ActorTopCell:
+            return viewModel.getActorTopCell
+        case .ActorInfoCell:
+            return viewModel.getActorInfoCell
+        case .ActorMoviesCell:
+            return viewModel.getActorMoviesCell
         default:
             return 0
         }
@@ -99,4 +108,15 @@ extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
         let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
         navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
     }
+}
+
+extension ActorDetailViewController: ActorDetailsViewModelDelegate {
+    func sim() {
+        actorTableView.reloadData()
+    }
+    
+    func nao() {
+        
+    }
+    
 }

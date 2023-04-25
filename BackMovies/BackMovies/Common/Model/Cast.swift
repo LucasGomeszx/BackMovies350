@@ -27,4 +27,3 @@ struct Cast: Codable {
         case character
     }
 }
-
