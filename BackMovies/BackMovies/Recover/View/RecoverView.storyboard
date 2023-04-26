@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A7t-vS-G4a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A7t-vS-G4a">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,6 +80,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Alterar"/>
+                                <connections>
+                                    <action selector="tappedRecoverButton:" destination="A7t-vS-G4a" eventType="touchUpInside" id="NUJ-y3-J7n"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjZ-Dw-mC3">
                                 <rect key="frame" x="16.000000000000004" y="75" width="49.333333333333343" height="35"/>
@@ -114,6 +117,11 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="wjZ-Dw-mC3" id="sf8-ZL-f0D"/>
+                        <outlet property="cpfTextField" destination="Imo-RV-Q21" id="Vy6-aw-58P"/>
+                        <outlet property="emailTextField" destination="MsY-dx-2q9" id="XIa-ew-cGg"/>
+                        <outlet property="passwordTextField" destination="CWs-IT-DAl" id="two-Lb-MyY"/>
+                        <outlet property="recoverButton" destination="FQP-Vg-70z" id="F6b-JX-ffc"/>
+                        <outlet property="repeatPassword" destination="FSt-9p-AD3" id="p8y-XV-g04"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kx-NQ-q4R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

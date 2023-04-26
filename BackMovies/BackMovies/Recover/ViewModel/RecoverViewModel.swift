@@ -1,37 +1,29 @@
 //
-//  RegisterViewModel.swift
+//  RecoverViewModel.swift
 //  BackMovies
 //
-//  Created by Lucas Gomesx on 25/04/23.
+//  Created by Lucas Gomesx on 26/04/23.
 //
 
 import Foundation
 
-class RegisterViewModel {
+class RecoverViewModel {
     
-    var name: String?
     var email: String?
     var cpf: String?
     var password: String?
     var repeatedPassword: String?
     
     func isFormValid() -> Bool {
-        guard let name = name,
-              let email = email,
+        guard let email = email,
               let cpf = cpf,
               let password = password,
               let repeatedPassword = repeatedPassword else {return false}
-        if isValidName(name: name) && isValidCPF(cpf: cpf) && isValidEmail(email: email) && isValidPassword(password: password) && repeatedPassword == password {
+        if isValidCPF(cpf: cpf) && isValidEmail(email: email) && isValidPassword(password: password) && isValidRepeatPassword(repeatPassword: repeatedPassword){
             return true
         }else {
             return false
         }
-    }
-    
-    func isValidName(name: String) -> Bool {
-        self.name = name
-        let nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
-        return NSPredicate(format: "SELF MATCHES %@", nameRegex).evaluate(with: name)
     }
     
     func isValidCPF(cpf: String) -> Bool {
@@ -51,7 +43,7 @@ class RegisterViewModel {
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
     }
     
-    func isValidaRepeatPassword(repeatPassword: String) -> Bool {
+    func isValidRepeatPassword(repeatPassword: String) -> Bool {
         self.repeatedPassword = repeatPassword
         if repeatPassword == password {
             return true

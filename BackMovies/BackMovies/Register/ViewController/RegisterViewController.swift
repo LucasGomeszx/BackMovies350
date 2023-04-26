@@ -24,7 +24,6 @@ class RegisterViewController: UIViewController {
         configureNavigation()
         setupView()
         setUpTextFieldDelegate()
-        registerButton.isEnabled = false
     }
     
     private func setUpTextFieldDelegate() {
@@ -54,7 +53,11 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func tappedRegisterButton(_ sender: Any) {
-        Alert.showAlert(on: self, withTitle: "Registro", message: "Usuario cadastrado!!", actions: nil)
+        if viewModel.isFormValid() && nameTextField.hasText && emailTextField.hasText && cpfTextField.hasText && passwordTextField.hasText && repeatPasswordTextField.hasText {
+            Alert.showAlert(on: self, withTitle: "Registro", message: "Usuario cadastrado!!", actions: nil)
+        }else {
+            Alert.showAlert(on: self, withTitle: "Registro", message: "Preencha todos os campos", actions: nil)
+        }
     }
     
     private func validateNameTextField(_ textField: UITextField) {
@@ -64,7 +67,6 @@ class RegisterViewController: UIViewController {
         
         if viewModel.isValidName(name: name) {
             textField.layer.borderWidth = 0
-            viewModel.name = name
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
@@ -78,7 +80,6 @@ class RegisterViewController: UIViewController {
         
         if viewModel.isValidEmail(email: email) {
             textField.layer.borderWidth = 0
-            viewModel.email = email
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
@@ -93,7 +94,6 @@ class RegisterViewController: UIViewController {
         
         if viewModel.isValidCPF(cpf: cpf) {
             textField.layer.borderWidth = 0
-            viewModel.cpf = cpf
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
@@ -107,7 +107,6 @@ class RegisterViewController: UIViewController {
         
         if viewModel.isValidPassword(password: password) {
             textField.layer.borderWidth = 0
-            viewModel.password = password
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
@@ -120,10 +119,9 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        if repeatPassword == viewModel.password {
+        if viewModel.isValidaRepeatPassword(repeatPassword: repeatPassword){
             textField.layer.borderWidth = 0
             passwordTextField.layer.borderWidth = 0
-            viewModel.repeatedPassword = repeatPassword
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
@@ -152,8 +150,6 @@ extension RegisterViewController: UITextFieldDelegate {
         default:
             break
         }
-        
-        registerButton.isEnabled = viewModel.isFormValid()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
