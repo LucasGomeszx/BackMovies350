@@ -82,6 +82,7 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return cell ?? UITableViewCell()
         case .ActorMoviesCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorMoviesTableViewCell.identifier, for: indexPath) as? ActorMoviesTableViewCell
+            cell?.setUpCell(actorId: viewModel.getActorId)
             cell?.delegate = self
             return cell ?? UITableViewCell()
         default:
@@ -105,9 +106,11 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
-    func navActorMovies() {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
-        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
+    func navActorMovies(movieId: Int) {
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+            return MovieDetailsViewController(coder: coder, movieId: movieId)
+        }
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
 }
 

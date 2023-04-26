@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ActorMoviesTableViewCellDelegate: AnyObject {
-    func navActorMovies()
+    func navActorMovies(movieId: Int)
 }
 
 class ActorMoviesTableViewCell: UITableViewCell {
@@ -30,6 +30,12 @@ class ActorMoviesTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setUpView()
         configureCollectionView()
+    }
+    
+    public func setUpCell(actorId: Int) {
+        viewModel.setUpViewModel(actorId: actorId)
+        viewModel.serUpDelegate(delegate: self)
+        viewModel.fetchActorMovies()
     }
     
     private func setUpView() {
@@ -61,11 +67,12 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
+        cell?.setUpCell(movieId: viewModel.getActorMoviesId(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navActorMovies()
+        delegate?.navActorMovies(movieId: viewModel.getActorMoviesId(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -76,4 +83,10 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
         return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
     
+}
+
+extension ActorMoviesTableViewCell: ActorMoviesViewModelDelegate {
+    func suss() {
+        actorMoviesCollectionView.reloadData()
+    }
 }

@@ -51,6 +51,10 @@ class ActorDetailsViewModel {
         actorModel ?? ActorModel()
     }
     
+    var getActorId: Int {
+        actorId
+    }
+    
     var getTableViewCellCount: Int {
         3
     }

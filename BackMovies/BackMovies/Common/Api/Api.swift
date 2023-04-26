@@ -31,4 +31,8 @@ struct Api {
         "https://api.themoviedb.org/3/movie/\(id)?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR"
     }
     
+    static func actorMovies(id: Int) -> String {
+        "https://api.themoviedb.org/3/person/\(id)/credits?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR"
+    }
+    
 }
