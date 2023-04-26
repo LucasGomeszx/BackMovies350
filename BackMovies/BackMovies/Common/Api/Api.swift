@@ -27,4 +27,8 @@ struct Api {
         "https://api.themoviedb.org/3/movie/\(id)/similar?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR&page=1"
     }
     
+    static func movieDetail(id: Int) -> String {
+        "https://api.themoviedb.org/3/movie/\(id)?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR"
+    }
+    
 }

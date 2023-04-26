@@ -9,22 +9,22 @@ import Foundation
 
 class MovieTopCellViewModel {
     
-    private var movie: Poster
+    private var movieDetail: MovieDetail
     
-    init(movie: Poster) {
-        self.movie = movie
+    init(movieDetail: MovieDetail) {
+        self.movieDetail = movieDetail
     }
     
     var posterPath: String {
-        return movie.posterPath ?? ""
+        return movieDetail.posterPath ?? ""
     }
     
     var title: String {
-        movie.title ?? ""
+        movieDetail.title ?? ""
     }
     
     var voteAvg: String {
-        return String(movie.voteAverage ?? 0)
+        return String(movieDetail.voteAverage ?? 0)
     }
     
 }

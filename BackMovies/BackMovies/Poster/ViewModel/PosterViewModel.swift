@@ -24,6 +24,10 @@ class PosterViewModel {
     
     //MARK: - Getters
     
+    public func getMoviesId(index: Int) -> Int {
+        posterList?.results?[index].id ?? 0 
+    }
+    
     public func getCgSize() -> CGSize {
         return CGSize(width: 140, height: 260)
     }

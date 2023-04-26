@@ -7,12 +7,40 @@
 
 import Foundation
 
+protocol MovieDetailViewModelDelegate: AnyObject {
+    func suss()
+}
+
 class MovieDetailViewModel {
     
-    private var poster: Poster
+    private var movieId: Int
+    private var service: Service = Service()
+    private var movieDetail: MovieDetail?
+    private var delegate: MovieDetailViewModelDelegate?
     
-    init(poster: Poster){
-        self.poster  = poster
+    init(movieId: Int){
+        self.movieId  = movieId
+    }
+    
+    public func setUpDelegate(delegate: MovieDetailViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
+    func fetchMovieDetail() {
+        let net = NetworkRequest(endpointURL: Api.movieDetail(id: movieId))
+        service.request(net) { (result: Result<MovieDetail, NetworkError>) in
+            switch result {
+            case .success(let success):
+                DispatchQueue.main.async {
+                    self.movieDetail = success
+                    self.delegate?.suss()
+                }
+            case .failure(let failure):
+                DispatchQueue.main.async {
+                    print(failure.localizedDescription)
+                }
+            }
+        }
     }
     
     var getTableViewCellCount: Int {
@@ -20,11 +48,11 @@ class MovieDetailViewModel {
     }
     
     var getMovieTopCellSize: CGFloat {
-        623
+        640
     }
     
     var getTrailerCellSize: CGFloat {
-        CGFloat((((poster.overview?.count ?? 10) / 2)) + 310)
+        CGFloat((((movieDetail?.overview?.count ?? 10) / 2)) + 310)
     }
     
     var getWatchCellSize: CGFloat {
@@ -36,19 +64,19 @@ class MovieDetailViewModel {
     }
     
     var getRelatedCell: CGFloat {
-        270
+        340
     }
     
     var getMapCellSize: CGFloat {
         250
     }
     
-    var getMovie: Poster {
-        poster
+    var getMovieDetail: MovieDetail {
+        movieDetail ?? MovieDetail()
     }
-    
+
     var getMovieId: Int {
-        poster.id ?? 0
+        movieId
     }
     
 }

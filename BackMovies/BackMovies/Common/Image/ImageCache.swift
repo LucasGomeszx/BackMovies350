@@ -14,7 +14,7 @@ class ImageCache {
     private let cacheQueue = DispatchQueue(label: "ImageCache.ioQueue")
     
     private init() {
-        cache.countLimit = 50
+        cache.countLimit = 100
     }
     
     func clearCache() {

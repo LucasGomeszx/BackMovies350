@@ -27,7 +27,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAN-vJ-nmn">
-                                <rect key="frame" x="157" y="540" width="61.333333333333343" height="28.666666666666629"/>
+                                <rect key="frame" x="32" y="540" width="311" height="28.666666666666629"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -58,6 +58,8 @@
                             <constraint firstItem="J3M-Vg-PK1" firstAttribute="leading" secondItem="D6Y-FZ-R3A" secondAttribute="leading" constant="32" id="2qE-mh-dKC"/>
                             <constraint firstItem="sbf-SW-Ark" firstAttribute="leading" secondItem="J3M-Vg-PK1" secondAttribute="trailing" constant="8" id="6Kc-F1-uBx"/>
                             <constraint firstItem="zhl-qE-5SI" firstAttribute="top" secondItem="D6Y-FZ-R3A" secondAttribute="top" constant="24" id="Crk-4m-oXf"/>
+                            <constraint firstItem="OAN-vJ-nmn" firstAttribute="leading" secondItem="D6Y-FZ-R3A" secondAttribute="leading" constant="32" id="Fz1-Yf-UaV"/>
+                            <constraint firstAttribute="trailing" secondItem="OAN-vJ-nmn" secondAttribute="trailing" constant="32" id="Jld-Lx-uJi"/>
                             <constraint firstItem="zhl-qE-5SI" firstAttribute="leading" secondItem="D6Y-FZ-R3A" secondAttribute="leading" constant="32" id="RKt-Sv-7wZ"/>
                             <constraint firstAttribute="trailing" secondItem="OXR-08-U0l" secondAttribute="trailing" constant="32" id="ZLU-ga-p88"/>
                             <constraint firstItem="J3M-Vg-PK1" firstAttribute="top" secondItem="OAN-vJ-nmn" secondAttribute="bottom" constant="16" id="bew-Js-EVX"/>

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RetatedTableViewCellDelegate: AnyObject {
-    func navRelatedMovies(movie: Poster)
+    func navRelatedMovies(movieId: Int)
 }
 
 class RetatedTableViewCell: UITableViewCell {
@@ -61,21 +61,21 @@ class RetatedTableViewCell: UITableViewCell {
 extension RetatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.getSimilarMoviesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-        cell?.setUpCell(movies: viewModel.getSimilarMovie(index: indexPath.row))
+        cell?.setUpCell(movieId: viewModel.getSimilarMovieId(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navRelatedMovies(movie: self.viewModel.getSimilarMovie(index: indexPath.row))
+        delegate?.navRelatedMovies(movieId: viewModel.getSimilarMovieId(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 135, height: 200)
+        return viewModel.getSimilarMovieCellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

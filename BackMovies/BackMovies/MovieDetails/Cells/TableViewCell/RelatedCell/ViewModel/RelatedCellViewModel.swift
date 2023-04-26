@@ -28,8 +28,12 @@ class RelatedCellViewModel {
         similarMovies?.results?.count ?? 0
     }
     
-    public func getSimilarMovie(index: Int) -> Poster {
-        similarMovies?.results?[index] ?? Poster()
+    var getSimilarMovieCellSize: CGSize {
+        CGSize(width: 140, height: 260)
+    }
+    
+    public func getSimilarMovieId(index: Int) -> Int {
+        similarMovies?.results?[index].id ?? 0
     }
     
     public func setMovieId(id: Int) {

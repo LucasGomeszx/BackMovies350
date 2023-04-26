@@ -24,8 +24,8 @@ class MovieDetailsViewController: UIViewController {
     
     var viewModel: MovieDetailViewModel
     
-    init?(coder: NSCoder, poster: Poster) {
-        self.viewModel = MovieDetailViewModel(poster: poster)
+    init?(coder: NSCoder, movieId: Int) {
+        self.viewModel = MovieDetailViewModel(movieId: movieId)
         super.init(coder: coder)
     }
     
@@ -37,6 +37,8 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpTableView()
+        viewModel.setUpDelegate(delegate: self)
+        viewModel.fetchMovieDetail()
     }
     
     private func setUpView() {
@@ -77,15 +79,15 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         switch TableViewSection(rawValue: indexPath.row){
         case .movieTopCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieTopTableViewCell.identifier, for: indexPath) as? MovieTopTableViewCell
-            cell?.setUpCell(poster: viewModel.getMovie)
+            cell?.setUpCell(movieDetail: viewModel.getMovieDetail)
             return cell ?? UITableViewCell()
         case .trailerCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: TrailerTableViewCell.identifier, for: indexPath) as? TrailerTableViewCell
-            cell?.setUpCell(movie: viewModel.getMovie)
+            cell?.setUpCell(movieDetail: viewModel.getMovieDetail)
             return cell ?? UITableViewCell()
         case .watchCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: WatchTableViewCell.identifier, for: indexPath) as? WatchTableViewCell
-            cell?.setUpCell(movie: viewModel.getMovie)
+            cell?.setUpCell(movieDetail: viewModel.getMovieDetail)
             return cell ?? UITableViewCell()
         case .actorsCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTableViewCell.identifier, for: indexPath) as? ActorTableViewCell
@@ -141,10 +143,18 @@ extension MovieDetailsViewController: ActorTableViewCellDelegate {
 //MARK: - ActorTableViewCellDelegate
 
 extension MovieDetailsViewController: RetatedTableViewCellDelegate {
-    func navRelatedMovies(movie: Poster) {
+    func navRelatedMovies(movieId: Int) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
-            return MovieDetailsViewController(coder: coder, poster: movie)
+            return MovieDetailsViewController(coder: coder, movieId: movieId)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+    }
+}
+
+//MARK - ViewModelDelegate
+
+extension MovieDetailsViewController: MovieDetailViewModelDelegate {
+    func suss() {
+        detailTableView.reloadData()
     }
 }

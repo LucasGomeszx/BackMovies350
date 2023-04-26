@@ -29,8 +29,8 @@ class TrailerTableViewCell: UITableViewCell {
         setUpView()
     }
     
-    public func setUpCell(movie: Poster) {
-        viewModel = TrailerCellViewModel(movie: movie)
+    public func setUpCell(movieDetail: MovieDetail) {
+        viewModel = TrailerCellViewModel(movieDetail: movieDetail)
         sinopseContencLabel.text = viewModel?.getOverview
     }
     

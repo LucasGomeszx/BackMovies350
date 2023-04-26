@@ -9,11 +9,11 @@ import Foundation
 
 class WatchCellViewModel {
     
-    private var movie: Poster?
+    private var movieDetail: MovieDetail?
     private var providerList: [Int] = [1,2,3,4]
     
-    public func setUpViewModel(movie: Poster) {
-        self.movie = movie
+    public func setUpViewModel(movieDetail: MovieDetail) {
+        self.movieDetail = movieDetail
     }
     
     var getProviderCount: Int {

@@ -29,8 +29,8 @@ class MovieTopTableViewCell: UITableViewCell {
         setUpView()
     }
     
-    public func setUpCell(poster: Poster) {
-        viewModel = MovieTopCellViewModel(movie: poster)
+    public func setUpCell(movieDetail: MovieDetail) {
+        viewModel = MovieTopCellViewModel(movieDetail: movieDetail)
         guard let url = URL(string: Api.posterPath + (viewModel?.posterPath ?? "") ) else {return}
         posterImageView.loadImageFromURL(url)
         movieNameLabel.text = viewModel?.title
@@ -42,6 +42,8 @@ class MovieTopTableViewCell: UITableViewCell {
         posterImageView.layer.cornerRadius = 15
         posterImageView.clipsToBounds = true
         movieNameLabel.textColor = .white
+        movieNameLabel.numberOfLines = 0
+        movieNameLabel.textAlignment = .center
         starImageView.image = UIImage(systemName: "star")
         starImageView.tintColor = .white
         movieRateLebel.textColor = .white

@@ -9,14 +9,14 @@ import Foundation
 
 class TrailerCellViewModel {
     
-    private let movie: Poster
+    private let movieDetail: MovieDetail
     
-    init(movie: Poster) {
-        self.movie = movie
+    init(movieDetail: MovieDetail) {
+        self.movieDetail = movieDetail
     }
     
     var getOverview: String {
-        movie.overview ?? ""
+        movieDetail.overview ?? ""
     }
     
 }

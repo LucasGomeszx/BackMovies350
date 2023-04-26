@@ -15,6 +15,8 @@ class PosterCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "PosterCollectionViewCell"
     
+    private var viewModel: PosterCollectionViewModel?
+    
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -33,10 +35,18 @@ class PosterCollectionViewCell: UICollectionViewCell {
         movieNameLabel.textColor = .white
     }
     
-    public func setUpCell(movies: Poster) {
-        self.movieNameLabel.text = movies.title
-        guard let image = URL(string: Api.posterPath + "\(movies.posterPath ?? "")") else {return}
-        movieImageView.loadImageFromURL(image, placeholder: nil, errorImage: UIImage(systemName: "eraser.fill"))
+    public func setUpCell(movieId: Int) {
+        viewModel = PosterCollectionViewModel(movieId: movieId)
+        viewModel?.fetchMovieDetail()
+        viewModel?.setUpDelegate(delegate: self)
     }
     
+}
+
+extension PosterCollectionViewCell: PosterCollectionViewModelDelegate {
+    func suss() {
+        self.movieNameLabel.text = viewModel?.getMovieDetailName
+        guard let image = URL(string: Api.posterPath + (viewModel?.getMovieDetailPoster ?? "")) else {return}
+        movieImageView.loadImageFromURL(image, placeholder: nil, errorImage: UIImage(systemName: "eraser.fill"))
+    }
 }

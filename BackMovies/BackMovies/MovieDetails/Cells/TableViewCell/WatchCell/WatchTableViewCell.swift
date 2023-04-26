@@ -30,8 +30,8 @@ class WatchTableViewCell: UITableViewCell {
         configureCollection()
     }
     
-    public func setUpCell(movie: Poster) {
-        viewModel.setUpViewModel(movie: movie)
+    public func setUpCell(movieDetail: MovieDetail) {
+        viewModel.setUpViewModel(movieDetail: movieDetail)
     }
     
     private func setUpView() {

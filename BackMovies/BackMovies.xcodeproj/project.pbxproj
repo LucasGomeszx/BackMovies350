@@ -65,6 +65,8 @@
 		6482AB2529D2164A00BC1FDB /* ActorMoviesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6482AB2329D2164A00BC1FDB /* ActorMoviesTableViewCell.xib */; };
 		648F919D29EDBB7E0052E375 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F919C29EDBB7E0052E375 /* UIImageView+Extension.swift */; };
 		648F91A329EDBBBD0052E375 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F91A229EDBBBD0052E375 /* ImageCache.swift */; };
+		649EF43629F99ACF002D0475 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EF43529F99ACF002D0475 /* MovieDetail.swift */; };
+		649EF43929F9A116002D0475 /* PosterCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EF43829F9A116002D0475 /* PosterCollectionViewModel.swift */; };
 		64A9191D29F747A300FAE641 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9191C29F747A300FAE641 /* ActorModel.swift */; };
 		64A9192029F75A1600FAE641 /* ActorTopCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9191F29F75A1600FAE641 /* ActorTopCellViewModel.swift */; };
 		64A9192329F7638B00FAE641 /* ActorInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9192229F7638B00FAE641 /* ActorInfoViewModel.swift */; };
@@ -157,6 +159,8 @@
 		6482AB2329D2164A00BC1FDB /* ActorMoviesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorMoviesTableViewCell.xib; sourceTree = "<group>"; };
 		648F919C29EDBB7E0052E375 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		648F91A229EDBBBD0052E375 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		649EF43529F99ACF002D0475 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		649EF43829F9A116002D0475 /* PosterCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewModel.swift; sourceTree = "<group>"; };
 		64A9191C29F747A300FAE641 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		64A9191F29F75A1600FAE641 /* ActorTopCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTopCellViewModel.swift; sourceTree = "<group>"; };
 		64A9192229F7638B00FAE641 /* ActorInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInfoViewModel.swift; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 		645179AD29C786E9001D7B9D /* PosterCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				649EF43729F9A103002D0475 /* ViewModel */,
 				645179AE29C78F43001D7B9D /* PosterCollectionViewCell.swift */,
 				645179AF29C78F43001D7B9D /* PosterCollectionViewCell.xib */,
 			);
@@ -615,6 +620,14 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		649EF43729F9A103002D0475 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				649EF43829F9A116002D0475 /* PosterCollectionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		64A9191E29F759FF00FAE641 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +797,7 @@
 				6478639729F57FCA00DF2D58 /* Cast.swift */,
 				6478639929F5A21B00DF2D58 /* SimilarMovies.swift */,
 				64A9191C29F747A300FAE641 /* ActorModel.swift */,
+				649EF43529F99ACF002D0475 /* MovieDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1108,6 +1122,7 @@
 				6482AB1829D2020600BC1FDB /* ActorInfoTableViewCell.swift in Sources */,
 				64E70E6229BA6F0400F14BFC /* TabBarViewController.swift in Sources */,
 				64CEAAFD29E08342006DCBD2 /* NetworkHandler.swift in Sources */,
+				649EF43629F99ACF002D0475 /* MovieDetail.swift in Sources */,
 				6478638729F2D0DD00DF2D58 /* TrailerCellViewModel.swift in Sources */,
 				644BD75C29D0B0580036008F /* BodyCollectionViewCell.swift in Sources */,
 				6478639829F57FCA00DF2D58 /* Cast.swift in Sources */,
@@ -1117,6 +1132,7 @@
 				6482AB1329D1F97900BC1FDB /* ActorTopTableViewCell.swift in Sources */,
 				648F91A329EDBBBD0052E375 /* ImageCache.swift in Sources */,
 				648F919D29EDBB7E0052E375 /* UIImageView+Extension.swift in Sources */,
+				649EF43929F9A116002D0475 /* PosterCollectionViewModel.swift in Sources */,
 				6478638B29F2D12200DF2D58 /* ActorCellViewModel.swift in Sources */,
 				6469AAAD29F95D3A0071E414 /* RecoverViewModel.swift in Sources */,
 				64B17B8729BBA28B003DC667 /* SearchSelectedViewController.swift in Sources */,
