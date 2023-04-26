@@ -11,7 +11,7 @@
         <!--Register View Controller-->
         <scene sceneID="JzF-WJ-K0j">
             <objects>
-                <viewController id="kbq-wM-jUS" customClass="RegisterViewController" customModule="BackMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="kbq-wM-jUS" customClass="RegisterViewController" customModule="BackMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tzn-1w-hAz">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

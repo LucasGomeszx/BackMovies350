@@ -9,7 +9,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="ccg-uP-MfS">
             <objects>
-                <tabBarController id="hJ0-34-q1k" customClass="TabBarViewController" customModule="BackMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="hJ0-34-q1k" customClass="TabBarViewController" customModule="BackMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZN0-DU-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

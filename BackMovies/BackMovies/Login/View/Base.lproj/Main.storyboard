@@ -58,12 +58,6 @@
                                     <constraint firstAttribute="height" constant="175" id="zE9-97-Cr7"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="V6a-9v-rHx">
-                                <rect key="frame" x="26" y="476" width="378" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="gT9-gm-n4G"/>
-                                </constraints>
-                            </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4h-HP-tPa">
                                 <rect key="frame" x="64" y="807.66666666666663" width="302" height="34.333333333333371"/>
                                 <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -71,7 +65,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cadastrar"/>
                                 <connections>
-                                    <segue destination="5VB-Zf-q5n" kind="show" id="D1D-sK-wqo"/>
+                                    <action selector="tappedRegisterButton:" destination="zyH-8A-OZY" eventType="touchUpInside" id="ktH-Qh-Veg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl8-RC-UIX">
@@ -81,7 +75,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Conectar"/>
                                 <connections>
-                                    <segue destination="4Uu-mK-XpF" kind="show" id="hSu-Cm-WHS"/>
+                                    <action selector="tappedLoginButton:" destination="zyH-8A-OZY" eventType="touchUpInside" id="31E-lh-q7i"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1Z-cj-JRY">
@@ -97,7 +91,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Esqueceu sua senha ?"/>
                                 <connections>
-                                    <segue destination="KBc-Fz-1Ev" kind="show" id="hyj-05-PGZ"/>
+                                    <action selector="tappedRecoverButton:" destination="zyH-8A-OZY" eventType="touchUpInside" id="o1u-9h-KLS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ0-2h-Ldd">
@@ -121,7 +115,6 @@
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="RUD-TX-Ope" secondAttribute="trailing" constant="26" id="CjM-L5-Y1N"/>
                             <constraint firstItem="dl8-RC-UIX" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="Ej1-sR-BXu"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="xJ0-2h-Ldd" secondAttribute="trailing" constant="64" id="Fzx-zy-dm6"/>
-                            <constraint firstItem="V6a-9v-rHx" firstAttribute="top" secondItem="RUD-TX-Ope" secondAttribute="bottom" constant="42" id="GtM-qp-nvj"/>
                             <constraint firstItem="T9O-Vi-6pX" firstAttribute="top" secondItem="kqU-un-Pgs" secondAttribute="top" constant="40" id="M4D-ep-MZh"/>
                             <constraint firstItem="bWv-CZ-OLB" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" id="Mqg-Be-vGK"/>
                             <constraint firstItem="RUD-TX-Ope" firstAttribute="top" secondItem="T9O-Vi-6pX" secondAttribute="bottom" constant="24" id="NO6-PD-LLx"/>
@@ -129,12 +122,10 @@
                             <constraint firstAttribute="bottom" secondItem="bWv-CZ-OLB" secondAttribute="bottom" id="Ndl-Xp-UPL"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="bottom" secondItem="t4h-HP-tPa" secondAttribute="bottom" constant="56" id="O1A-D5-eHQ"/>
                             <constraint firstItem="E1Z-cj-JRY" firstAttribute="top" secondItem="xJ0-2h-Ldd" secondAttribute="bottom" constant="16" id="O9B-AZ-YAF"/>
-                            <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="V6a-9v-rHx" secondAttribute="trailing" constant="26" id="OAQ-HK-N2N"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="bottom" secondItem="uUk-OG-p4a" secondAttribute="bottom" constant="14" id="P7y-YA-V1e"/>
                             <constraint firstItem="dl8-RC-UIX" firstAttribute="top" secondItem="E1Z-cj-JRY" secondAttribute="bottom" constant="16" id="iPA-p4-I69"/>
                             <constraint firstItem="T9O-Vi-6pX" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="45" id="ie0-hM-vbI"/>
                             <constraint firstItem="uUk-OG-p4a" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="91" id="ilr-0Y-sCI"/>
-                            <constraint firstItem="V6a-9v-rHx" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="26" id="kec-vE-4X6"/>
                             <constraint firstItem="t4h-HP-tPa" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="r16-Xs-eQj"/>
                             <constraint firstItem="xJ0-2h-Ldd" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="tX1-aI-dxL"/>
                             <constraint firstItem="RUD-TX-Ope" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="26" id="xO2-DF-0C4"/>
@@ -147,42 +138,17 @@
                     <navigationItem key="navigationItem" id="BRe-F1-M2m"/>
                     <connections>
                         <outlet property="emailTextField" destination="jFC-w0-FMF" id="p2j-p7-yfR"/>
-                        <outlet property="senhaTextField" destination="PKh-Qt-SYk" id="YVq-cy-ZA6"/>
+                        <outlet property="loginApple" destination="xJ0-2h-Ldd" id="Th2-cT-Sw0"/>
+                        <outlet property="loginButton" destination="dl8-RC-UIX" id="ZYI-Q3-7yj"/>
+                        <outlet property="loginGoolge" destination="E1Z-cj-JRY" id="TAN-Re-pA1"/>
+                        <outlet property="passwordTextField" destination="PKh-Qt-SYk" id="iCq-hF-Hke"/>
+                        <outlet property="recoverButton" destination="uUk-OG-p4a" id="xLG-Fe-x9F"/>
+                        <outlet property="registerButton" destination="t4h-HP-tPa" id="dep-5w-vqk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBI-ha-6jk" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1568.3720930232557" y="71.459227467811161"/>
-        </scene>
-        <!--TabBarView-->
-        <scene sceneID="msb-Zd-bsI">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TabBarView" id="4Uu-mK-XpF" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="jTg-Ng-DkZ"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uah-oU-nCQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2267.4418604651164" y="-25.107296137339059"/>
-        </scene>
-        <!--RegisterView-->
-        <scene sceneID="jJ0-Qt-zpm">
-            <objects>
-                <viewControllerPlaceholder storyboardName="RegisterView" id="5VB-Zf-q5n" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="dRP-ei-ua1"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4bJ-di-IXc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2267" y="43"/>
-        </scene>
-        <!--RecoverView-->
-        <scene sceneID="zFK-M2-xcb">
-            <objects>
-                <viewControllerPlaceholder storyboardName="RecoverView" id="KBc-Fz-1Ev" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="crG-D5-TNh"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KJs-Sf-hQ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2263" y="127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QCY-hC-j1t">
