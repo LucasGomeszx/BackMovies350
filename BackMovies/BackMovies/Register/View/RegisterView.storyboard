@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kbq-wM-jUS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kbq-wM-jUS">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -91,6 +91,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cadastrar"/>
+                                <connections>
+                                    <action selector="tappedRegisterButton:" destination="kbq-wM-jUS" eventType="touchUpInside" id="BOJ-RB-IoR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5N-ML-JCe">
                                 <rect key="frame" x="16.000000000000004" y="75" width="49.333333333333343" height="35"/>
@@ -125,6 +128,12 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="p5N-ML-JCe" id="7D7-su-ho3"/>
+                        <outlet property="cpfTextField" destination="8O8-5Q-rxc" id="HpK-G1-YW5"/>
+                        <outlet property="emailTextField" destination="MaF-UA-s0D" id="PJg-LM-WP6"/>
+                        <outlet property="nameTextField" destination="Iol-eC-vMm" id="V6A-BO-mYJ"/>
+                        <outlet property="passwordTextField" destination="a0b-0V-KZQ" id="AqU-zP-ySi"/>
+                        <outlet property="registerButton" destination="GqL-9R-1fk" id="39Z-so-txW"/>
+                        <outlet property="repeatPasswordTextField" destination="LQL-gK-s7t" id="idc-fu-mwl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLa-Rg-Qg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
