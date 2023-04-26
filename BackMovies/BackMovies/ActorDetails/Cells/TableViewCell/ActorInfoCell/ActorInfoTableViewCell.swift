@@ -26,6 +26,8 @@ class ActorInfoTableViewCell: UITableViewCell {
     
     static let identifier: String = "ActorInfoTableViewCell"
     
+    var viewModel: ActorInfoViewModel?
+    
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -36,6 +38,14 @@ class ActorInfoTableViewCell: UITableViewCell {
         configureCollectionView()
     }
     
+    public func setUpCell(actor: ActorModel) {
+        viewModel = ActorInfoViewModel(actorDetail: actor)
+        knownInfoLabel.text = viewModel?.getActorWork
+        genderInfoLabel.text = viewModel?.getActorGender
+        birthInfoLabel.text = viewModel?.getActorBirthday
+        countryInfoLabel.text = viewModel?.getActorPlaceOfBirth
+    }
+    
     private func setUpView() {
         mainView.backgroundColor = .clear
         topLineView.backgroundColor = UIColor(named: "LineGray")
@@ -43,19 +53,15 @@ class ActorInfoTableViewCell: UITableViewCell {
         actorDetailLabel.textColor = .white
         knownLabel.text = "Conhecido(a) por :"
         knownLabel.textColor = .white
-        knownInfoLabel.text = "Atuação"
         knownInfoLabel.textColor = UIColor(named: "TextColor")
         genderLabel.text = "Gênero :"
         genderLabel.textColor = .white
-        genderInfoLabel.text = "Masculino"
         genderInfoLabel.textColor = UIColor(named: "TextColor")
         birthLabel.text = "Nascimento :"
         birthLabel.textColor = .white
-        birthInfoLabel.text = "1969-11-04 (53 de Idade)"
         birthInfoLabel.textColor = UIColor(named: "TextColor")
         countryLabel.text = "Local de nascimento :"
         countryLabel.textColor = .white
-        countryInfoLabel.text = "Uvalde, Texas, USA"
         countryInfoLabel.textColor = UIColor(named: "TextColor")
         socialMediaLabel.text = "Redes sociais"
         socialMediaLabel.textColor = .white
@@ -79,7 +85,7 @@ class ActorInfoTableViewCell: UITableViewCell {
 extension ActorInfoTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return viewModel?.getSociaMediaCount ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,7 +94,7 @@ extension ActorInfoTableViewCell: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 40, height: 40)
+        return viewModel?.getSocialMediaCellSize ?? CGSize(width: 40, height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

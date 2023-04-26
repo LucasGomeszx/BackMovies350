@@ -78,6 +78,7 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return cell ?? UITableViewCell()
         case .ActorInfoCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorInfoTableViewCell.identifier, for: indexPath) as? ActorInfoTableViewCell
+            cell?.setUpCell(actor: viewModel.getActorDetail)
             return cell ?? UITableViewCell()
         case .ActorMoviesCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorMoviesTableViewCell.identifier, for: indexPath) as? ActorMoviesTableViewCell
@@ -111,11 +112,12 @@ extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
 }
 
 extension ActorDetailViewController: ActorDetailsViewModelDelegate {
-    func sim() {
+    
+    func didFetchActor() {
         actorTableView.reloadData()
     }
     
-    func nao() {
+    func didFailToFetchActor() {
         
     }
     

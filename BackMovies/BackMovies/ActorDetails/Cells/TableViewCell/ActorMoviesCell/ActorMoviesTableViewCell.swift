@@ -20,6 +20,7 @@ class ActorMoviesTableViewCell: UITableViewCell {
     static let identifier: String = "ActorMoviesTableViewCell"
     
     weak var delegate: ActorMoviesTableViewCellDelegate?
+    var viewModel: ActorMoviesViewModel = ActorMoviesViewModel()
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -51,10 +52,11 @@ class ActorMoviesTableViewCell: UITableViewCell {
 }
 
 //MARK: - UICollectionView Delegate, DataSource
+
 extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        viewModel.getActorMoviesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,7 +69,7 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 135, height: 200)
+        viewModel.getActorMoviesCellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

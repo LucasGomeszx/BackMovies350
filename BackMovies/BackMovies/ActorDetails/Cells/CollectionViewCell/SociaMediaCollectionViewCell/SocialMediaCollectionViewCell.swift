@@ -16,10 +16,12 @@ class SocialMediaCollectionViewCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
+    
+    var viewModel: SocialMediaViewModel = SocialMediaViewModel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        socialMediaImageView.image = UIImage(named: viewModel.getSocialMediaImage)
     }
 
 }

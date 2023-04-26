@@ -8,8 +8,8 @@
 import Foundation
 
 protocol ActorDetailsViewModelDelegate: AnyObject {
-    func sim()
-    func nao()
+    func didFetchActor()
+    func didFailToFetchActor()
 }
 
 class ActorDetailsViewModel {
@@ -32,7 +32,7 @@ class ActorDetailsViewModel {
             case .success(let success):
                 DispatchQueue.main.async {
                     self.actorModel = success
-                    self.delegate?.sim()
+                    self.delegate?.didFetchActor()
                 }
             case .failure(let failure):
                 DispatchQueue.main.async {
@@ -64,7 +64,7 @@ class ActorDetailsViewModel {
     }
     
     var getActorMoviesCell: CGFloat {
-        260
+        340
     }
     
 }
