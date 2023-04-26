@@ -57,6 +57,82 @@ class RegisterViewController: UIViewController {
         Alert.showAlert(on: self, withTitle: "Registro", message: "Usuario cadastrado!!", actions: nil)
     }
     
+    private func validateNameTextField(_ textField: UITextField) {
+        guard let name = textField.text, !name.isEmpty else {
+            return
+        }
+        
+        if viewModel.isValidName(name: name) {
+            textField.layer.borderWidth = 0
+            viewModel.name = name
+        } else {
+            textField.layer.borderWidth = 2
+            textField.layer.borderColor = UIColor.red.cgColor
+        }
+    }
+
+    private func validateEmailTextField(_ textField: UITextField) {
+        guard let email = textField.text, !email.isEmpty else {
+            return
+        }
+        
+        if viewModel.isValidEmail(email: email) {
+            textField.layer.borderWidth = 0
+            viewModel.email = email
+        } else {
+            textField.layer.borderWidth = 2
+            textField.layer.borderColor = UIColor.red.cgColor
+            Alert.showAlert(on: self, withTitle: "Error", message: "Email invalido", actions: nil)
+        }
+    }
+
+    private func validateCPFField(_ textField: UITextField) {
+        guard let cpf = textField.text, !cpf.isEmpty else {
+            return
+        }
+        
+        if viewModel.isValidCPF(cpf: cpf) {
+            textField.layer.borderWidth = 0
+            viewModel.cpf = cpf
+        } else {
+            textField.layer.borderWidth = 2
+            textField.layer.borderColor = UIColor.red.cgColor
+        }
+    }
+
+    private func validatePasswordField(_ textField: UITextField) {
+        guard let password = textField.text, !password.isEmpty else {
+            return
+        }
+        
+        if viewModel.isValidPassword(password: password) {
+            textField.layer.borderWidth = 0
+            viewModel.password = password
+        } else {
+            textField.layer.borderWidth = 2
+            textField.layer.borderColor = UIColor.red.cgColor
+            Alert.showAlert(on: self, withTitle: "Error", message: "Senhas deve conter no minimo 6 caracteres", actions: nil)
+        }
+    }
+
+    private func validateRepeatedPasswordField(_ textField: UITextField) {
+        guard let repeatPassword = textField.text, !repeatPassword.isEmpty else {
+            return
+        }
+        
+        if repeatPassword == viewModel.password {
+            textField.layer.borderWidth = 0
+            passwordTextField.layer.borderWidth = 0
+            viewModel.repeatedPassword = repeatPassword
+        } else {
+            textField.layer.borderWidth = 2
+            textField.layer.borderColor = UIColor.red.cgColor
+            passwordTextField.layer.borderWidth = 2
+            passwordTextField.layer.borderColor = UIColor.red.cgColor
+            Alert.showAlert(on: self, withTitle: "Error", message: "Senhas diferentes", actions: nil)
+        }
+    }
+    
 }
 
 extension RegisterViewController: UITextFieldDelegate {
@@ -64,61 +140,15 @@ extension RegisterViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case nameTextField:
-            if let name = textField.text, !name.isEmpty {
-                if !viewModel.isValidName(name: name) {
-                    textField.layer.borderWidth = 2
-                    textField.layer.borderColor = UIColor.red.cgColor
-                } else {
-                    textField.layer.borderWidth = 0
-                    viewModel.name = name
-                }
-            }
+            validateNameTextField(textField)
         case emailTextField:
-            if let email = textField.text, !email.isEmpty {
-                if !viewModel.isValidEmail(email: email) {
-                    textField.layer.borderWidth = 2
-                    textField.layer.borderColor = UIColor.red.cgColor
-                    Alert.showAlert(on: self, withTitle: "Error", message: "Email invalido", actions: nil)
-                } else {
-                    textField.layer.borderWidth = 0
-                    viewModel.email = email
-                }
-            }
+            validateEmailTextField(textField)
         case cpfTextField:
-            if let cpf = textField.text, !cpf.isEmpty {
-                if !viewModel.isValidCPF(cpf: cpf) {
-                    textField.layer.borderWidth = 2
-                    textField.layer.borderColor = UIColor.red.cgColor
-                } else {
-                    textField.layer.borderWidth = 0
-                    viewModel.cpf = cpf
-                }
-            }
+            validateCPFField(textField)
         case passwordTextField:
-            if let password = textField.text, !password.isEmpty {
-                if !viewModel.isValidPassword(password: password) {
-                    textField.layer.borderWidth = 2
-                    textField.layer.borderColor = UIColor.red.cgColor
-                    Alert.showAlert(on: self, withTitle: "Error", message: "Senhas deve conter no minimo 6 caracteres", actions: nil)
-                } else {
-                    textField.layer.borderWidth = 0
-                    viewModel.password = password
-                }
-            }
+            validatePasswordField(textField)
         case repeatPasswordTextField:
-            if let repeatPassword = textField.text, !repeatPassword.isEmpty {
-                if repeatPassword != viewModel.password {
-                    textField.layer.borderWidth = 2
-                    textField.layer.borderColor = UIColor.red.cgColor
-                    passwordTextField.layer.borderWidth = 2
-                    passwordTextField.layer.borderColor = UIColor.red.cgColor
-                    Alert.showAlert(on: self, withTitle: "Error", message: "Senhas diferentes", actions: nil)
-                } else {
-                    textField.layer.borderWidth = 0
-                    passwordTextField.layer.borderWidth = 0
-                    viewModel.repeatedPassword = repeatPassword
-                }
-            }
+            validateRepeatedPasswordField(textField)
         default:
             break
         }
