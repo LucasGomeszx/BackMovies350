@@ -7,20 +7,27 @@
 
 import UIKit
 
+enum SearchTableViewSection: Int {
+    case head
+    case body
+}
+
 class SearchViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchTableView: UITableView!
     
+    var viewModel: SearchViewModel = SearchViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         configureNavigation()
         configureTableView()
+        viewModel.setUpDelegate(delegate: self)
+        viewModel.fetchGenres()
     }
-    
-    let list: [String] = ["Ação","Aventura","Cinema de arte","Chanchada","Comédia","Comédia de ação","Comédia de terror","Comédia dramática","Comédia","romântica","Dança","Documentário", "Drama"]
     
     private func setUpView() {
         mainView.backgroundColor = .black
@@ -42,29 +49,24 @@ class SearchViewController: UIViewController {
     private func configureNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
-
-    private func navMovieDetail() {
-        let vc: SearchSelectedViewController? = UIStoryboard(name: "SearchSelectedView", bundle: nil).instantiateViewController(withIdentifier: "SearchSelectedView") as? SearchSelectedViewController
-        self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
-    }
     
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.getTableViewCellCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row{
-        case 0:
+        switch SearchTableViewSection(rawValue: indexPath.row){
+        case .head:
             let cell = tableView.dequeueReusableCell(withIdentifier: HeadTableViewCell.identifier, for: indexPath) as? HeadTableViewCell
             cell?.delegate = self
             return cell ?? UITableViewCell()
-        case 1:
+        case .body:
             let cell = tableView.dequeueReusableCell(withIdentifier: BodyTableViewCell.identifier, for: indexPath) as? BodyTableViewCell
             cell?.delegate = self
-            cell?.setUpCell(nome: list)
+            cell?.setUpCell(genresList: viewModel.getGenresList)
             return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
@@ -72,29 +74,46 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return 220
+        switch SearchTableViewSection(rawValue: indexPath.row){
+        case .head:
+            return viewModel.getHeadCellSize
         default:
-            return 830
+            return viewModel.getBodyCellSize
         }
     }
 }
 
-extension SearchViewController: BodyTableViewCellDelegate {
-    func navSearchSelected() {
-        navMovieDetail()
+//MARK: - SearchViewModelDelegate
+
+extension SearchViewController: SearchViewModelDelegate {
+    func suss() {
+        searchTableView.reloadData()
     }
 }
 
+//MARK: - BodyTableViewCellDelegate
+
+extension SearchViewController: BodyTableViewCellDelegate {
+    func navSearchSelected(genres: Genre) {
+        let vc: SearchSelectedViewController? = UIStoryboard(name: "SearchSelectedView", bundle: nil).instantiateViewController(identifier: "SearchSelectedView") { coder -> SearchSelectedViewController? in
+            return SearchSelectedViewController(coder: coder, code: 1, genres: genres)
+        }
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+    }
+}
+
+//MARK: - HeadTableViewCellDelegate
+
 extension SearchViewController: HeadTableViewCellDelegate {
     func navMovieButton() {
-        navMovieDetail()
+        let vc: SearchSelectedViewController? = UIStoryboard(name: "SearchSelectedView", bundle: nil).instantiateViewController(identifier: "SearchSelectedView") { coder -> SearchSelectedViewController? in
+            return SearchSelectedViewController(coder: coder, code: 2, genres: nil)
+        }
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
     func navActorButton() {
-        navMovieDetail()
+        
     }
-    
     
 }

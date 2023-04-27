@@ -20,13 +20,25 @@ class SearchSelectedViewController: UIViewController {
     @IBOutlet weak var movieSearch: UISearchBar!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
-    weak var delegate: SearchSelectedViewControllerDelegate?
+    private weak var delegate: SearchSelectedViewControllerDelegate?
+    private var viewModel: SearchSelectedViewModel
+    
+    init?(coder: NSCoder, code: Int, genres: Genre?) {
+        viewModel = SearchSelectedViewModel(code: code, genres: genres)
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
         configCollectionView()
         configureView()
+        viewModel.setUpDelegate(delegate: self)
+        viewModel.fetchMovies()
     }
     
     private func configCollectionView() {
@@ -63,25 +75,36 @@ class SearchSelectedViewController: UIViewController {
 extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return viewModel.getMoviesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
+        cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(withIdentifier: "MoviesDetailsView") as? MovieDetailsViewController
-        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
+        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+            return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
+        }
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 135, height: 200)
+        return viewModel.getMovieCellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
+    }
+    
+}
+
+extension SearchSelectedViewController: SearchSelectedViewModelDelegate {
+    func suss() {
+        moviesCollectionView.reloadData()
+        titleLabel.text = viewModel.getMainTitleLabel()
     }
     
 }

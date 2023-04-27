@@ -30,8 +30,8 @@ class BodyCollectionViewCell: UICollectionViewCell {
         nameLabel.textColor = .white
     }
     
-    public func setUpCell(nome: String) {
-        nameLabel.text = nome
+    public func setUpCell(genres: Genre) {
+        nameLabel.text = genres.name
     }
 
 }

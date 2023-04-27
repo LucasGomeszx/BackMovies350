@@ -8,7 +8,7 @@
 import UIKit
 
 protocol BodyTableViewCellDelegate: NSObject {
-    func navSearchSelected()
+    func navSearchSelected(genres: Genre)
 }
 
 class BodyTableViewCell: UITableViewCell {
@@ -16,10 +16,9 @@ class BodyTableViewCell: UITableViewCell {
     @IBOutlet weak var searchCollectionView: UICollectionView!
     
     static let identifier: String = "BodyTableViewCell"
-    
+
     weak var delegate: BodyTableViewCellDelegate?
-    
-    var nome: [String] = []
+    private var viewModel: BodyViewModel = BodyViewModel()
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -30,8 +29,9 @@ class BodyTableViewCell: UITableViewCell {
         setupCollectionView()
     }
     
-    public func setUpCell(nome: [String]) {
-        self.nome = nome
+    public func setUpCell(genresList: APIGenres) {
+        viewModel.setGenresList(genreList: genresList)
+        searchCollectionView.reloadData()
     }
 
     private func setupCollectionView() {
@@ -53,21 +53,21 @@ class BodyTableViewCell: UITableViewCell {
 extension BodyTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return viewModel.getGenresListCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BodyCollectionViewCell.identifier, for: indexPath) as? BodyCollectionViewCell
-        cell?.setUpCell(nome: nome[indexPath.row])
+        cell?.setUpCell(genres: viewModel.getGenres(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navSearchSelected()
+        delegate?.navSearchSelected(genres: viewModel.getGenres(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 125)
+        return viewModel.getBodyCollectionCellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

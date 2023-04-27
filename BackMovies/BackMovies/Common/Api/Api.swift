@@ -35,4 +35,14 @@ struct Api {
         "https://api.themoviedb.org/3/person/\(id)/credits?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR"
     }
     
+    static let apiGenres: String = "https://api.themoviedb.org/3/genre/movie/list?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR"
+    
+    static func genresMovies(id: Int) -> String {
+        "https://api.themoviedb.org/3/discover/movie?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR&sort_by=popularity.desc&include_adult=false&page=1&with_genres=\(id)"
+    }
+    
+    static func popularMovies() -> String {
+        "https://api.themoviedb.org/3/movie/popular?api_key=a418c1d2207524b9f775ba6cb3c50ad6&language=pt-BR&page=1"
+    }
+
 }
