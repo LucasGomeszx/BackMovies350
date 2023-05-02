@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class RegisterViewController: UIViewController {
     
@@ -52,7 +51,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func tappedRegisterButton(_ sender: Any) {
         if viewModel.isFormValid() && nameTextField.hasText && emailTextField.hasText && passwordTextField.hasText && repeatPasswordTextField.hasText {
-            Alert.showAlert(on: self, withTitle: "Registro", message: "Usuario cadastrado!!", actions: nil)
+            viewModel.registerUser()
         }else {
             Alert.showAlert(on: self, withTitle: "Registro", message: "Preencha todos os campos", actions: nil)
         }

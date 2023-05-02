@@ -5,14 +5,21 @@
 //  Created by Lucas Gomesx on 25/04/23.
 //
 
+protocol RegisterViewModelDelegate: AnyObject {
+    func didCreateUserSuccess()
+    func didCreateUserFailure()
+}
+
 import Foundation
+import Firebase
 
 class RegisterViewModel {
     
-    var name: String?
-    var email: String?
-    var password: String?
-    var repeatedPassword: String?
+    private var name: String?
+    private var email: String?
+    private var password: String?
+    private var repeatedPassword: String?
+    private weak var delegate: RegisterViewModelDelegate?
     
     func isFormValid() -> Bool {
         guard let name = name,
@@ -23,6 +30,18 @@ class RegisterViewModel {
             return true
         }else {
             return false
+        }
+    }
+    
+    public func registerUser() {
+        guard let email = email else {return}
+        guard let password = password else {return}
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if error == nil {
+                self.delegate?.didCreateUserSuccess()
+            }else {
+                self.delegate?.didCreateUserFailure()
+            }
         }
     }
     
@@ -46,11 +65,7 @@ class RegisterViewModel {
     
     func isValidaRepeatPassword(repeatPassword: String) -> Bool {
         self.repeatedPassword = repeatPassword
-        if repeatPassword == password {
-            return true
-        }else {
-            return false
-        }
+        return repeatPassword == password
     }
     
 }
