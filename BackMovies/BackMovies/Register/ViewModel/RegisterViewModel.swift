@@ -11,17 +11,15 @@ class RegisterViewModel {
     
     var name: String?
     var email: String?
-    var cpf: String?
     var password: String?
     var repeatedPassword: String?
     
     func isFormValid() -> Bool {
         guard let name = name,
               let email = email,
-              let cpf = cpf,
               let password = password,
               let repeatedPassword = repeatedPassword else {return false}
-        if isValidName(name: name) && isValidCPF(cpf: cpf) && isValidEmail(email: email) && isValidPassword(password: password) && repeatedPassword == password {
+        if isValidName(name: name) && isValidEmail(email: email) && isValidPassword(password: password) && repeatedPassword == password {
             return true
         }else {
             return false
@@ -32,11 +30,6 @@ class RegisterViewModel {
         self.name = name
         let nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
         return NSPredicate(format: "SELF MATCHES %@", nameRegex).evaluate(with: name)
-    }
-    
-    func isValidCPF(cpf: String) -> Bool {
-        self.cpf = cpf
-        return true
     }
     
     func isValidEmail(email: String) -> Bool {

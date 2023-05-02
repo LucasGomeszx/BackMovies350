@@ -13,7 +13,6 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var cpfTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
@@ -30,7 +29,6 @@ class RegisterViewController: UIViewController {
     private func setUpTextFieldDelegate() {
         nameTextField.delegate = self
         emailTextField.delegate = self
-        cpfTextField.delegate = self
         passwordTextField.delegate = self
         repeatPasswordTextField.delegate = self
     }
@@ -42,7 +40,6 @@ class RegisterViewController: UIViewController {
     func setupView() {
         backButton.tintColor = .white
         emailTextField.keyboardType = .emailAddress
-        cpfTextField.keyboardType = .numberPad
         passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
     }
@@ -54,7 +51,7 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func tappedRegisterButton(_ sender: Any) {
-        if viewModel.isFormValid() && nameTextField.hasText && emailTextField.hasText && cpfTextField.hasText && passwordTextField.hasText && repeatPasswordTextField.hasText {
+        if viewModel.isFormValid() && nameTextField.hasText && emailTextField.hasText && passwordTextField.hasText && repeatPasswordTextField.hasText {
             Alert.showAlert(on: self, withTitle: "Registro", message: "Usuario cadastrado!!", actions: nil)
         }else {
             Alert.showAlert(on: self, withTitle: "Registro", message: "Preencha todos os campos", actions: nil)
@@ -85,19 +82,6 @@ class RegisterViewController: UIViewController {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
             Alert.showAlert(on: self, withTitle: "Error", message: "Email invalido", actions: nil)
-        }
-    }
-
-    private func validateCPFField(_ textField: UITextField) {
-        guard let cpf = textField.text, !cpf.isEmpty else {
-            return
-        }
-        
-        if viewModel.isValidCPF(cpf: cpf) {
-            textField.layer.borderWidth = 0
-        } else {
-            textField.layer.borderWidth = 2
-            textField.layer.borderColor = UIColor.red.cgColor
         }
     }
 
@@ -142,8 +126,6 @@ extension RegisterViewController: UITextFieldDelegate {
             validateNameTextField(textField)
         case emailTextField:
             validateEmailTextField(textField)
-        case cpfTextField:
-            validateCPFField(textField)
         case passwordTextField:
             validatePasswordField(textField)
         case repeatPasswordTextField:
