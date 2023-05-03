@@ -5,27 +5,55 @@
 //  Created by Lucas Gomesx on 09/03/23.
 //
 
+import Foundation
 import UIKit
+import Lottie
+
+enum RegisterStrings: String {
+    case nameLabel = "Nome"
+    case emailLabel = "E-mail"
+    case password = "Senha"
+    case repeatPassword = "Repita a senha"
+    case namePlaceholder = "Digite seu nome:"
+    case emailPlaceholder = "Digite seu email:"
+    case passwordPlaceholder = "Digite sua senha:"
+    case repeatPasswordPlaceholder  = "Repita a senha:"
+}
 
 class RegisterViewController: UIViewController {
+
+    // MARK: - IBOutlets
     
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nameLebel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var repeatPasswordLabel: UILabel!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var lottieBackgroundView: UIView!
+    
+    // MARK: - Properties
     
     var viewModel: RegisterViewModel = RegisterViewModel()
+    let lottieView: LottieAnimationView = LottieAnimationView(name: "registerLoad")
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
         setupView()
-        setUpTextFieldDelegate()
+        setupTextFieldDelegate()
+        viewModel.setUpDelegate(delegate: self)
     }
     
-    private func setUpTextFieldDelegate() {
+    // MARK: - Setup
+    
+    private func setupTextFieldDelegate() {
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -37,25 +65,58 @@ class RegisterViewController: UIViewController {
     }
     
     func setupView() {
-        backButton.tintColor = .white
+        nameLebel.text = RegisterStrings.nameLabel.rawValue
+        emailLabel.text = RegisterStrings.emailLabel.rawValue
+        passwordLabel.text = RegisterStrings.password.rawValue
+        repeatPasswordLabel.text = RegisterStrings.repeatPassword.rawValue
+        
+        nameTextField.setupDefaultTextField(placeholder: RegisterStrings.namePlaceholder.rawValue)
+        emailTextField.setupDefaultTextField(placeholder: RegisterStrings.emailPlaceholder.rawValue)
+        passwordTextField.setupDefaultTextField(placeholder: RegisterStrings.passwordPlaceholder.rawValue)
+        repeatPasswordTextField.setupDefaultTextField(placeholder: RegisterStrings.repeatPasswordPlaceholder.rawValue)
+        
+        nameTextField.autocapitalizationType = .words
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
+        
+        registerButton.backgroundColor = .buttonColor
+        registerButton.layer.cornerRadius = 20
+        registerButton.clipsToBounds = true
+        
+        lottieBackgroundView.backgroundColor = .lottieBack
+        lottieView.contentMode = .scaleAspectFit
+        lottieView.translatesAutoresizingMaskIntoConstraints = false
+        lottieBackgroundView.isHidden = true
+        
+        backButton.tintColor = .white
     }
     
+    func setupLottieConstraints() {
+        lottieBackgroundView.addSubview(lottieView)
+        NSLayoutConstraint.activate([
+            lottieView.widthAnchor.constraint(equalToConstant: 100),
+            lottieView.heightAnchor.constraint(equalToConstant: 100),
+            lottieView.centerXAnchor.constraint(equalTo: lottieBackgroundView.centerXAnchor),
+            lottieView.centerYAnchor.constraint(equalTo: lottieBackgroundView.centerYAnchor)
+        ])
+    }
+    
+    // MARK: - IBActions
     
     @IBAction func tappedBackButton(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
     
-    
     @IBAction func tappedRegisterButton(_ sender: Any) {
         if viewModel.isFormValid() && nameTextField.hasText && emailTextField.hasText && passwordTextField.hasText && repeatPasswordTextField.hasText {
             viewModel.registerUser()
-        }else {
+        } else {
             Alert.showAlert(on: self, withTitle: "Registro", message: "Preencha todos os campos", actions: nil)
         }
     }
+    
+    // MARK: - Private Methods
     
     private func validateNameTextField(_ textField: UITextField) {
         guard let name = textField.text, !name.isEmpty else {
@@ -117,21 +178,32 @@ class RegisterViewController: UIViewController {
     
 }
 
+// MARK: - UITextFieldDelegate
+
 extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case nameTextField:
+            textField.layer.borderWidth = 0
             validateNameTextField(textField)
         case emailTextField:
+            textField.layer.borderWidth = 0
             validateEmailTextField(textField)
         case passwordTextField:
+            textField.layer.borderWidth = 0
             validatePasswordField(textField)
         case repeatPasswordTextField:
+            textField.layer.borderWidth = 0
             validateRepeatedPasswordField(textField)
         default:
             break
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = CGColor(red: 116/255, green: 59/255, blue: 157/255, alpha: 1)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -139,4 +211,33 @@ extension RegisterViewController: UITextFieldDelegate {
         return true
     }
     
+}
+
+// MARK: - RegisterViewModelDelegate
+
+extension RegisterViewController: RegisterViewModelDelegate {
+    func didCreateUserSuccess() {
+        nameTextField.text = ""
+        emailTextField.text = ""
+        passwordTextField.text = ""
+        repeatPasswordTextField.text = ""
+        Alert.showAlert(on: self, withTitle: "Registro!", message: "Usuario cadastrado.", actions: nil)
+    }
+    
+    func didCreateUserFailure(error: String) {
+        Alert.showAlert(on: self, withTitle: "Error", message: error, actions: nil)
+    }
+    
+    func setLottieView() {
+        setupLottieConstraints()
+        lottieView.loopMode = .loop
+        lottieView.play()
+        lottieBackgroundView.isHidden = false
+    }
+    
+    func removeLottieView() {
+        lottieView.stop()
+        lottieBackgroundView.isHidden = true
+    }
+
 }

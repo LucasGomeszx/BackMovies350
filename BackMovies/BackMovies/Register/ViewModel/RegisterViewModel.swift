@@ -7,7 +7,9 @@
 
 protocol RegisterViewModelDelegate: AnyObject {
     func didCreateUserSuccess()
-    func didCreateUserFailure()
+    func didCreateUserFailure(error: String)
+    func setLottieView()
+    func removeLottieView()
 }
 
 import Foundation
@@ -33,16 +35,23 @@ class RegisterViewModel {
         }
     }
     
-    public func registerUser() {
+    func registerUser() {
         guard let email = email else {return}
         guard let password = password else {return}
+        self.delegate?.setLottieView()
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if error == nil {
+                self.delegate?.removeLottieView()
                 self.delegate?.didCreateUserSuccess()
             }else {
-                self.delegate?.didCreateUserFailure()
+                self.delegate?.removeLottieView()
+                self.delegate?.didCreateUserFailure(error: error?.localizedDescription ?? "")
             }
         }
+    }
+    
+    func setUpDelegate(delegate: RegisterViewModelDelegate) {
+        self.delegate = delegate
     }
     
     func isValidName(name: String) -> Bool {

@@ -27,7 +27,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-tj-EVx">
-                                <rect key="frame" x="26" y="143" width="338" height="344"/>
+                                <rect key="frame" x="26" y="143" width="338" height="384"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyn-Cb-sKk">
                                         <rect key="frame" x="0.0" y="0.0" width="338" height="24"/>
@@ -36,48 +36,63 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite seu nome" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iol-eC-vMm">
-                                        <rect key="frame" x="0.0" y="40" width="338" height="34"/>
+                                        <rect key="frame" x="0.0" y="40" width="338" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="WTq-j8-ah5"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsY-cy-tVN">
-                                        <rect key="frame" x="0.0" y="90" width="338" height="24"/>
+                                        <rect key="frame" x="0.0" y="100" width="338" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite seu e-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MaF-UA-s0D">
-                                        <rect key="frame" x="0.0" y="130" width="338" height="34"/>
+                                        <rect key="frame" x="0.0" y="140" width="338" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Spx-ZH-kyD"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwL-uo-uvQ">
-                                        <rect key="frame" x="0.0" y="180" width="338" height="24"/>
+                                        <rect key="frame" x="0.0" y="200" width="338" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite sua senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0b-0V-KZQ">
-                                        <rect key="frame" x="0.0" y="220" width="338" height="34"/>
+                                        <rect key="frame" x="0.0" y="240" width="338" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="qBp-P3-hQM"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repita senha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxo-z7-mkH">
-                                        <rect key="frame" x="0.0" y="270" width="338" height="24"/>
+                                        <rect key="frame" x="0.0" y="300" width="338" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repita sua senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LQL-gK-s7t">
-                                        <rect key="frame" x="0.0" y="310" width="338" height="34"/>
+                                        <rect key="frame" x="0.0" y="340" width="338" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="e90-cw-kzT"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GqL-9R-1fk">
-                                <rect key="frame" x="64" y="727.33333333333337" width="262" height="34.333333333333371"/>
+                                <rect key="frame" x="64" y="717.66666666666663" width="262" height="44"/>
                                 <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="35n-Ai-fDm"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cadastrar"/>
@@ -96,17 +111,25 @@
                                     <action selector="tappedBackButton:" destination="kbq-wM-jUS" eventType="touchUpInside" id="ZT0-ro-nw8"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VaB-F3-SOO">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7aQ-Xf-MXO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7aQ-Xf-MXO" firstAttribute="trailing" secondItem="GqL-9R-1fk" secondAttribute="trailing" constant="64" id="1as-Y6-NdW"/>
                             <constraint firstItem="p5N-ML-JCe" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" constant="16" id="5TH-Uu-2cT"/>
+                            <constraint firstItem="VaB-F3-SOO" firstAttribute="top" secondItem="Tzn-1w-hAz" secondAttribute="top" id="5XY-Z3-J4M"/>
                             <constraint firstItem="YrB-tj-EVx" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" constant="26" id="61t-IT-rCR"/>
+                            <constraint firstItem="VaB-F3-SOO" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" id="70p-S3-zWC"/>
                             <constraint firstItem="7ln-LL-jEf" firstAttribute="centerX" secondItem="Tzn-1w-hAz" secondAttribute="centerX" id="Hd6-5h-Fb3"/>
                             <constraint firstItem="p5N-ML-JCe" firstAttribute="top" secondItem="7aQ-Xf-MXO" secondAttribute="top" constant="28" id="IkC-nj-b8C"/>
                             <constraint firstAttribute="trailing" secondItem="BOg-Uz-uov" secondAttribute="trailing" id="JO4-ki-7th"/>
                             <constraint firstItem="YrB-tj-EVx" firstAttribute="top" secondItem="7ln-LL-jEf" secondAttribute="bottom" constant="34.329999999999998" id="LBX-Ym-hZE"/>
+                            <constraint firstItem="VaB-F3-SOO" firstAttribute="trailing" secondItem="7aQ-Xf-MXO" secondAttribute="trailing" id="OF7-qe-2K4"/>
+                            <constraint firstAttribute="bottom" secondItem="VaB-F3-SOO" secondAttribute="bottom" id="Rhg-S9-8av"/>
                             <constraint firstItem="BOg-Uz-uov" firstAttribute="leading" secondItem="Tzn-1w-hAz" secondAttribute="leading" id="WG3-wJ-5FN"/>
                             <constraint firstItem="BOg-Uz-uov" firstAttribute="top" secondItem="Tzn-1w-hAz" secondAttribute="top" id="fZ6-w5-I0K"/>
                             <constraint firstItem="GqL-9R-1fk" firstAttribute="leading" secondItem="7aQ-Xf-MXO" secondAttribute="leading" constant="64" id="hio-aG-d3l"/>
@@ -118,16 +141,21 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="p5N-ML-JCe" id="7D7-su-ho3"/>
+                        <outlet property="emailLabel" destination="TsY-cy-tVN" id="0y5-2n-j8C"/>
                         <outlet property="emailTextField" destination="MaF-UA-s0D" id="PJg-LM-WP6"/>
+                        <outlet property="lottieBackgroundView" destination="VaB-F3-SOO" id="ROT-Y7-Y5r"/>
+                        <outlet property="nameLebel" destination="Qyn-Cb-sKk" id="AlH-Is-ySy"/>
                         <outlet property="nameTextField" destination="Iol-eC-vMm" id="V6A-BO-mYJ"/>
+                        <outlet property="passwordLabel" destination="PwL-uo-uvQ" id="hPD-lD-y0W"/>
                         <outlet property="passwordTextField" destination="a0b-0V-KZQ" id="AqU-zP-ySi"/>
                         <outlet property="registerButton" destination="GqL-9R-1fk" id="39Z-so-txW"/>
+                        <outlet property="repeatPasswordLabel" destination="Oxo-z7-mkH" id="7Sv-wU-fAd"/>
                         <outlet property="repeatPasswordTextField" destination="LQL-gK-s7t" id="idc-fu-mwl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLa-Rg-Qg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="246" y="-121"/>
+            <point key="canvasLocation" x="244.61538461538461" y="-121.56398104265402"/>
         </scene>
     </scenes>
     <resources>
