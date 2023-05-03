@@ -16,6 +16,7 @@ extension UITextField {
         self.layer.cornerRadius = 5
         self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: atributoCor)
         self.backgroundColor = .backGray
+        self.textColor = .white
     }
     
 }

@@ -18,13 +18,21 @@ enum RegisterStrings: String {
     case emailPlaceholder = "Digite seu email:"
     case passwordPlaceholder = "Digite sua senha:"
     case repeatPasswordPlaceholder  = "Repita a senha:"
+    case lottieAnimation = "registerLoad"
+    case errorAlert = "Error"
+    case registerAlert = "Registro!"
+    case registerFieldsError = "Preencha todos os campos"
+    case emailError = "Email invalido"
+    case passwordError = "Senhas deve conter no minimo 6 caracteres"
+    case repeatPasswordError = "Senhas não compativeis"
+    case registerUser = "Usuário cadastrado."
 }
 
 class RegisterViewController: UIViewController {
 
     // MARK: - IBOutlets
     
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var nameLebel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailLabel: UILabel!
@@ -39,7 +47,7 @@ class RegisterViewController: UIViewController {
     // MARK: - Properties
     
     var viewModel: RegisterViewModel = RegisterViewModel()
-    let lottieView: LottieAnimationView = LottieAnimationView(name: "registerLoad")
+    let lottieView: LottieAnimationView = LottieAnimationView(name: RegisterStrings.lottieAnimation.rawValue)
     
     // MARK: - View Lifecycle
     
@@ -89,7 +97,10 @@ class RegisterViewController: UIViewController {
         lottieView.translatesAutoresizingMaskIntoConstraints = false
         lottieBackgroundView.isHidden = true
         
-        backButton.tintColor = .white
+        backImageView.tintColor = .white
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedBackButton))
+        backImageView.addGestureRecognizer(tapGesture)
+        backImageView.isUserInteractionEnabled = true
     }
     
     func setupLottieConstraints() {
@@ -102,18 +113,19 @@ class RegisterViewController: UIViewController {
         ])
     }
     
-    // MARK: - IBActions
+    // MARK: - Actions
     
-    @IBAction func tappedBackButton(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
-    }
     
     @IBAction func tappedRegisterButton(_ sender: Any) {
         if viewModel.isFormValid() && nameTextField.hasText && emailTextField.hasText && passwordTextField.hasText && repeatPasswordTextField.hasText {
             viewModel.registerUser()
         } else {
-            Alert.showAlert(on: self, withTitle: "Registro", message: "Preencha todos os campos", actions: nil)
+            Alert.showAlert(on: self, withTitle: RegisterStrings.errorAlert.rawValue, message: RegisterStrings.registerFieldsError.rawValue, actions: nil)
         }
+    }
+    
+    @objc func tappedBackButton() {
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Private Methods
@@ -141,7 +153,7 @@ class RegisterViewController: UIViewController {
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
-            Alert.showAlert(on: self, withTitle: "Error", message: "Email invalido", actions: nil)
+            Alert.showAlert(on: self, withTitle: RegisterStrings.errorAlert.rawValue, message: RegisterStrings.emailError.rawValue, actions: nil)
         }
     }
 
@@ -155,7 +167,7 @@ class RegisterViewController: UIViewController {
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
-            Alert.showAlert(on: self, withTitle: "Error", message: "Senhas deve conter no minimo 6 caracteres", actions: nil)
+            Alert.showAlert(on: self, withTitle: RegisterStrings.errorAlert.rawValue, message: RegisterStrings.passwordError.rawValue, actions: nil)
         }
     }
 
@@ -172,7 +184,7 @@ class RegisterViewController: UIViewController {
             textField.layer.borderColor = UIColor.red.cgColor
             passwordTextField.layer.borderWidth = 2
             passwordTextField.layer.borderColor = UIColor.red.cgColor
-            Alert.showAlert(on: self, withTitle: "Error", message: "Senhas diferentes", actions: nil)
+            Alert.showAlert(on: self, withTitle: RegisterStrings.errorAlert.rawValue, message: RegisterStrings.repeatPasswordError.rawValue, actions: nil)
         }
     }
     
@@ -221,11 +233,11 @@ extension RegisterViewController: RegisterViewModelDelegate {
         emailTextField.text = ""
         passwordTextField.text = ""
         repeatPasswordTextField.text = ""
-        Alert.showAlert(on: self, withTitle: "Registro!", message: "Usuario cadastrado.", actions: nil)
+        Alert.showAlert(on: self, withTitle: RegisterStrings.registerAlert.rawValue, message: RegisterStrings.registerUser.rawValue, actions: nil)
     }
     
     func didCreateUserFailure(error: String) {
-        Alert.showAlert(on: self, withTitle: "Error", message: error, actions: nil)
+        Alert.showAlert(on: self, withTitle: RegisterStrings.errorAlert.rawValue, message: error, actions: nil)
     }
     
     func setLottieView() {
