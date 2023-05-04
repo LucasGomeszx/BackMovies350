@@ -8,53 +8,59 @@
 import UIKit
 
 enum RecoverStrings: String {
+    case loginProblemLabel = "Problemas para entrar?"
+    case recoverLabel = "Insira seu email e enviaremos um link para redefinir sua senha."
     case emailPlaceholder = "Digite seu email:"
+    case registerAlert = "Registro"
+    case errorAlert = "Erro"
+    case sendEmailAlert = "Link enviado"
+    case invalidInputAlert = "Preencha todos os campos corretamente"
+    case invalidEmailAlert = "Email inválido"
 }
 
 class RecoverViewController: UIViewController {
-    
+
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var loginProblemLabel: UILabel!
     @IBOutlet weak var recoverLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var recoverButton: UIButton!
     
+    // MARK: - Properties
+    
+    private var viewModel: RecoverViewModel = RecoverViewModel()
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
         setupView()
         setUpTextFieldDelegate()
+        viewModel.setupDelegate(delegate: self)
     }
     
-    var viewModel: RecoverViewModel = RecoverViewModel()
+    // MARK: - Private methods
     
     private func setUpTextFieldDelegate() {
         emailTextField.delegate = self
     }
     
-    func configureNavigation() {
+    private func configureNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
     
-    func setupView() {
+    private func setupView() {
+        loginProblemLabel.text = RecoverStrings.loginProblemLabel.rawValue
+        recoverLabel.text = RecoverStrings.recoverLabel.rawValue
         backImageView.tintColor = .white
         emailTextField.setupDefaultTextField(placeholder: RecoverStrings.emailPlaceholder.rawValue)
         emailTextField.keyboardType = .emailAddress
         recoverButton.layer.cornerRadius = 20
         recoverButton.clipsToBounds = true
-    }
-    
-    
-    @IBAction func tappedBackButton(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
-    @IBAction func tappedRecoverButton(_ sender: Any) {
-        if viewModel.isFormValid() && emailTextField.hasText {
-            Alert.showAlert(on: self, withTitle: "Registro", message: "Senha alterada!!", actions: nil)
-        }else {
-            Alert.showAlert(on: self, withTitle: "Registro", message: "Preencha todos os campos corretamente", actions: nil)
-        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleBackImageViewTap))
+        backImageView.addGestureRecognizer(tapGesture)
+        backImageView.isUserInteractionEnabled = true
     }
     
     private func validateEmailTextField(_ textField: UITextField) {
@@ -67,25 +73,61 @@ class RecoverViewController: UIViewController {
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
-            Alert.showAlert(on: self, withTitle: "Error", message: "Email invalido", actions: nil)
+            Alert.showAlert(on: self, withTitle: RecoverStrings.errorAlert.rawValue, message: RecoverStrings.invalidEmailAlert.rawValue, actions: nil)
         }
     }
     
+    // MARK: - Actions
+    
+    @IBAction func handleRecoverButtonTap(_ sender: Any) {
+        if viewModel.isFormValid() && emailTextField.hasText {
+            viewModel.sendPasswordReset()
+        } else {
+            Alert.showAlert(on: self, withTitle: RecoverStrings.registerAlert.rawValue, message: RecoverStrings.invalidInputAlert.rawValue, actions: nil)
+        }
+    }
+    
+    @objc private func handleBackImageViewTap() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
+
+// MARK: - UITextFieldDelegate
 
 extension RecoverViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case emailTextField:
+            textField.layer.borderWidth = 0
             validateEmailTextField(textField)
         default:
             break
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = CGColor(red: 116/255, green: 59/255, blue: 157/255, alpha: 1)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+}
+
+// MARK: - RecoverViewModelDelegate
+
+extension RecoverViewController: RecoverViewModelDelegate {
+    func didSendEmailSucess() {
+        Alert.showAlert(on: self, withTitle: RecoverStrings.registerAlert.rawValue, message: RecoverStrings.sendEmailAlert.rawValue, actions: nil)
+    }
+    
+    func didSendEmailFailure(error: String) {
+        Alert.showAlert(on: self, withTitle: RegisterStrings.errorAlert.rawValue, message: error, actions: nil)
+    }
+    
 }

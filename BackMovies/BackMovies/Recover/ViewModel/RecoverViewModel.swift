@@ -6,10 +6,33 @@
 //
 
 import Foundation
+import Firebase
+
+protocol RecoverViewModelDelegate: AnyObject {
+    func didSendEmailSucess()
+    func didSendEmailFailure(error: String)
+}
 
 class RecoverViewModel {
     
-    var email: String?
+    private var email: String?
+    private var auth: Auth = Auth.auth()
+    private var delegate: RecoverViewModelDelegate?
+    
+    func setupDelegate(delegate: RecoverViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
+    func sendPasswordReset() {
+        guard let email = email else {return}
+        auth.sendPasswordReset(withEmail: email) { error in
+          if error != nil {
+              self.delegate?.didSendEmailFailure(error: error?.localizedDescription ?? "")
+          } else {
+              self.delegate?.didSendEmailSucess()
+          }
+        }
+    }
     
     func isFormValid() -> Bool {
         guard let email = email else {return false}
