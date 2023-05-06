@@ -6,12 +6,20 @@
 //
 
 import UIKit
-import Firebase
-import GoogleSignIn
 
 enum LoginStrings: String {
     case emailPlaceholder = "Digite seu email:"
     case passwordPlaceholder = "Digite sua senha:"
+    case registerView = "RegisterView"
+    case registerViewController = "RegisterViewController"
+    case recoverView = "RecoverView"
+    case recoverViewController = "RecoverViewController"
+    case tabBarView = "TabBarView"
+    case tabBarViewController = "TabBarViewController"
+    case alertError = "Error"
+    case alertEmailPasswordError = "Email ou senha invalidos."
+    case alertEmailError = "Email invalido"
+    case alertPasswordError = "Senhas deve conter no minimo 6 caracteres"
 }
 
 class LoginViewController: UIViewController {
@@ -19,7 +27,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginApple: UIButton!
-    @IBOutlet weak var loginGoolge: GIDSignInButton!
+    @IBOutlet weak var loginGoolge: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var recoverLabel: UILabel!
@@ -54,57 +62,34 @@ class LoginViewController: UIViewController {
     
     //MARK: - Navegacoes.
     
-    @IBAction func tappedLoginButton(_ sender: Any) {
-        if viewModel.isFormValid() && emailTextField.hasText && passwordTextField.hasText {
-            viewModel.loginBackMovies()
-        }else {
-            Alert.showAlert(on: self, withTitle: "Registro", message: "Email ou senha invalidos.", actions: nil)
-        }
-    }
-    
-    @IBAction func tappedGoogleButton(_ sender: Any) {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
-        // Create Google Sign In configuration object.
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-
-        // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
-          guard error == nil else {
-            return
-          }
-
-          guard let user = result?.user,
-            let idToken = user.idToken?.tokenString
-          else {
-            return
-          }
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: user.accessToken.tokenString)
-
-            Auth.auth().signIn(with: credential) { result, error in
-                if error != nil {
-                    print("nao logar")
-                }else {
-                    self.naviHomeScreen()
-                }
-            }
-        }
-    }
-    
     @IBAction func tappedRegisterButton(_ sender: Any) {
-        let vc: RegisterViewController? = UIStoryboard(name: "RegisterView", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController
+        let vc: RegisterViewController? = UIStoryboard(name: LoginStrings.registerView.rawValue, bundle: nil).instantiateViewController(withIdentifier: LoginStrings.registerViewController.rawValue) as? RegisterViewController
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
     @objc func tappedRecoverButton() {
-        let vc: RecoverViewController? = UIStoryboard(name: "RecoverView", bundle: nil).instantiateViewController(withIdentifier: "RecoverViewController") as? RecoverViewController
+        let vc: RecoverViewController? = UIStoryboard(name: LoginStrings.recoverView.rawValue, bundle: nil).instantiateViewController(withIdentifier: LoginStrings.recoverViewController.rawValue) as? RecoverViewController
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+    }
+    
+    private func naviHomeScreen() {
+        let vc: TabBarViewController? = UIStoryboard(name: LoginStrings.tabBarView.rawValue, bundle: nil).instantiateViewController(withIdentifier: LoginStrings.tabBarViewController.rawValue) as? TabBarViewController
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
     //MARK: - Validacoes.
+    
+    @IBAction func tappedLoginButton(_ sender: Any) {
+        if viewModel.isFormValid() && emailTextField.hasText && passwordTextField.hasText {
+            viewModel.loginBackMovies()
+        }else {
+            Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: LoginStrings.alertEmailPasswordError.rawValue, actions: nil)
+        }
+    }
+    
+    @IBAction func tappedGoogleButton(_ sender: Any) {
+        viewModel.loginGoogle(vc: self)
+    }
     
     private func validateEmailTextField(_ textField: UITextField) {
         guard let email = textField.text, !email.isEmpty else {
@@ -116,7 +101,7 @@ class LoginViewController: UIViewController {
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
-            Alert.showAlert(on: self, withTitle: "Error", message: "Email invalido", actions: nil)
+            Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: LoginStrings.alertEmailError.rawValue, actions: nil)
         }
     }
     
@@ -130,13 +115,8 @@ class LoginViewController: UIViewController {
         } else {
             textField.layer.borderWidth = 2
             textField.layer.borderColor = UIColor.red.cgColor
-            Alert.showAlert(on: self, withTitle: "Error", message: "Senhas deve conter no minimo 6 caracteres", actions: nil)
+            Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: LoginStrings.alertPasswordError.rawValue, actions: nil)
         }
-    }
-    
-    private func naviHomeScreen() {
-        let vc: TabBarViewController? = UIStoryboard(name: "TabBarView", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as? TabBarViewController
-        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
 }
@@ -165,12 +145,23 @@ extension LoginViewController: UITextFieldDelegate {
     
 }
 
+//MARK: - LoginViewModelDelegate
+
 extension LoginViewController: LoginViewModelDelegate {
     func didsignInSucess() {
         naviHomeScreen()
     }
     
     func didsignInFailure(error: String) {
-        Alert.showAlert(on: self, withTitle: "Error", message: error, actions: nil)
+        Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error, actions: nil)
     }
+    
+    func didSignInGoogleSucess() {
+        naviHomeScreen()
+    }
+    
+    func didSignInGoogleFailure(error: String) {
+        Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error, actions: nil)
+    }
+    
 }
