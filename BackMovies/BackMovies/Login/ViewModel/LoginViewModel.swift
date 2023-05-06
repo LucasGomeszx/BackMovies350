@@ -6,11 +6,36 @@
 //
 
 import Foundation
+import Firebase
+
+protocol LoginViewModelDelegate: AnyObject {
+    func didsignInSucess()
+    func didsignInFailure(error: String)
+}
 
 class LoginViewModel {
     
     private var email: String?
     private var password: String?
+    private var delegate: LoginViewModelDelegate?
+    
+    func setupDelegate(delegate: LoginViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
+    
+    
+    func loginBackMovies() {
+        guard let email = email,
+              let password = password else {return}
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if error != nil {
+                self.delegate?.didsignInFailure(error: error?.localizedDescription ?? "")
+            }else {
+                self.delegate?.didsignInSucess()
+            }
+        }
+    }
     
     func isFormValid() -> Bool {
         guard let email = email,

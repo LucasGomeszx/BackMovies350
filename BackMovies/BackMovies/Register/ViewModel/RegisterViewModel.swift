@@ -5,15 +5,15 @@
 //  Created by Lucas Gomesx on 25/04/23.
 //
 
+import Foundation
+import Firebase
+
 protocol RegisterViewModelDelegate: AnyObject {
     func didCreateUserSuccess()
     func didCreateUserFailure(error: String)
     func setLottieView()
     func removeLottieView()
 }
-
-import Foundation
-import Firebase
 
 class RegisterViewModel {
     

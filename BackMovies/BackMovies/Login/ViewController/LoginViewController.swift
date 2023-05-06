@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum LoginStrings: String {
+    case emailPlaceholder = "Digite seu email:"
+    case passwordPlaceholder = "Digite sua senha:"
+}
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -15,21 +20,33 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginGoolge: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet weak var recoverButton: UIButton!
+    @IBOutlet weak var recoverLabel: UILabel!
     
     var viewModel: LoginViewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        setupTextFieldDelegate()
+        viewModel.setupDelegate(delegate: self)
     }
     
     func setUpView() {
-        emailTextField.placeholder = "Digite seu email:"
+        emailTextField.setupDefaultTextField(placeholder: LoginStrings.emailPlaceholder.rawValue)
         emailTextField.keyboardType = .emailAddress
-        emailTextField.delegate = self
-        passwordTextField.placeholder = "Digite sua senha:"
+        passwordTextField.setupDefaultTextField(placeholder: LoginStrings.passwordPlaceholder.rawValue)
         passwordTextField.isSecureTextEntry = true
+        loginButton.layer.cornerRadius = 20
+        registerButton.layer.cornerRadius = 20
+        loginApple.layer.cornerRadius = 20
+        loginGoolge.layer.cornerRadius = 20
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedRecoverButton))
+        recoverLabel.addGestureRecognizer(tapGesture)
+        recoverLabel.isUserInteractionEnabled = true
+    }
+    
+    func setupTextFieldDelegate() {
+        emailTextField.delegate = self
         passwordTextField.delegate = self
     }
     
@@ -37,8 +54,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func tappedLoginButton(_ sender: Any) {
         if viewModel.isFormValid() && emailTextField.hasText && passwordTextField.hasText {
-            let vc: TabBarViewController? = UIStoryboard(name: "TabBarView", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as? TabBarViewController
-            navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+            viewModel.loginBackMovies()
         }else {
             Alert.showAlert(on: self, withTitle: "Registro", message: "Email ou senha invalidos.", actions: nil)
         }
@@ -49,7 +65,7 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
-    @IBAction func tappedRecoverButton(_ sender: Any) {
+    @objc func tappedRecoverButton() {
         let vc: RecoverViewController? = UIStoryboard(name: "RecoverView", bundle: nil).instantiateViewController(withIdentifier: "RecoverViewController") as? RecoverViewController
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
@@ -93,8 +109,10 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case emailTextField:
+            textField.layer.borderWidth = 0
             validateEmailTextField(textField)
         case passwordTextField:
+            textField.layer.borderWidth = 0
             validatePasswordField(textField)
         default:
             break
@@ -106,4 +124,15 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
+}
+
+extension LoginViewController: LoginViewModelDelegate {
+    func didsignInSucess() {
+        let vc: TabBarViewController? = UIStoryboard(name: "TabBarView", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as? TabBarViewController
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+    }
+    
+    func didsignInFailure(error: String) {
+        Alert.showAlert(on: self, withTitle: "Error", message: error, actions: nil)
+    }
 }
