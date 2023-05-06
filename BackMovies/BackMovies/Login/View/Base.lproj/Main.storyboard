@@ -86,6 +86,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="googleIcon" imagePlacement="leading" title="          Logar com Google"/>
+                                <connections>
+                                    <action selector="tappedGoogleButton:" destination="zyH-8A-OZY" eventType="touchUpInside" id="qbc-jU-gZ3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4h-HP-tPa">
                                 <rect key="frame" x="64" y="497" width="302" height="44"/>

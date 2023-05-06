@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 enum LoginStrings: String {
     case emailPlaceholder = "Digite seu email:"
@@ -17,7 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginApple: UIButton!
-    @IBOutlet weak var loginGoolge: UIButton!
+    @IBOutlet weak var loginGoolge: GIDSignInButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var recoverLabel: UILabel!
@@ -57,6 +59,38 @@ class LoginViewController: UIViewController {
             viewModel.loginBackMovies()
         }else {
             Alert.showAlert(on: self, withTitle: "Registro", message: "Email ou senha invalidos.", actions: nil)
+        }
+    }
+    
+    @IBAction func tappedGoogleButton(_ sender: Any) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+          guard error == nil else {
+            return
+          }
+
+          guard let user = result?.user,
+            let idToken = user.idToken?.tokenString
+          else {
+            return
+          }
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+
+            Auth.auth().signIn(with: credential) { result, error in
+                if error != nil {
+                    print("nao logar")
+                }else {
+                    self.naviHomeScreen()
+                }
+            }
         }
     }
     
@@ -100,6 +134,11 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func naviHomeScreen() {
+        let vc: TabBarViewController? = UIStoryboard(name: "TabBarView", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as? TabBarViewController
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+    }
+    
 }
 
 //MARK: - UITextFieldDelegate
@@ -128,8 +167,7 @@ extension LoginViewController: UITextFieldDelegate {
 
 extension LoginViewController: LoginViewModelDelegate {
     func didsignInSucess() {
-        let vc: TabBarViewController? = UIStoryboard(name: "TabBarView", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as? TabBarViewController
-        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+        naviHomeScreen()
     }
     
     func didsignInFailure(error: String) {

@@ -23,8 +23,6 @@ class LoginViewModel {
         self.delegate = delegate
     }
     
-    
-    
     func loginBackMovies() {
         guard let email = email,
               let password = password else {return}
