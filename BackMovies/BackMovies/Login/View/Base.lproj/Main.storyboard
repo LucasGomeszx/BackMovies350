@@ -118,6 +118,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="appleIcon" imagePlacement="leading" title="        Logar com Apple"/>
+                                <connections>
+                                    <action selector="tappedAppleButton:" destination="zyH-8A-OZY" eventType="touchUpInside" id="5zt-SQ-fIB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kqU-un-Pgs"/>
