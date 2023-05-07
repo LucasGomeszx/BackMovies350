@@ -47,6 +47,6 @@ extension PosterCollectionViewCell: PosterCollectionViewModelDelegate {
     func suss() {
         self.movieNameLabel.text = viewModel?.getMovieDetailName
         guard let image = URL(string: Api.posterPath + (viewModel?.getMovieDetailPoster ?? "")) else {return}
-        movieImageView.loadImageFromURL(image, placeholder: nil, errorImage: UIImage(systemName: "eraser.fill"))
+        movieImageView.loadImageFromURL(image)
     }
 }

@@ -15,7 +15,7 @@ class SearchViewModel {
     
     private var genresList: APIGenres?
     private var service: Service = Service()
-    private var delegate: SearchViewModelDelegate?
+    private weak var delegate: SearchViewModelDelegate?
     
     public func setUpDelegate(delegate: SearchViewModelDelegate) {
         self.delegate = delegate

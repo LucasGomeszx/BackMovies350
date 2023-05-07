@@ -16,7 +16,7 @@ class MovieDetailViewModel {
     private var movieId: Int
     private var service: Service = Service()
     private var movieDetail: MovieDetail?
-    private var delegate: MovieDetailViewModelDelegate?
+    private weak var delegate: MovieDetailViewModelDelegate?
     
     init(movieId: Int){
         self.movieId  = movieId

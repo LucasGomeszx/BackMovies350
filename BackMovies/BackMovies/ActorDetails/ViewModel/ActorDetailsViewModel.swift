@@ -22,7 +22,7 @@ class ActorDetailsViewModel {
         self.actorId = actorId
     }
     
-    private var delegate: ActorDetailsViewModelDelegate?
+    private weak var delegate: ActorDetailsViewModelDelegate?
 
     public func fetchActor() {
         
