@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol PosterCollectionViewModelDelegate: AnyObject {
-    func suss()
+    func didFetchMovieDetailSuccess()
 }
 
 class PosterCollectionViewModel {
@@ -35,18 +36,13 @@ class PosterCollectionViewModel {
     }
     
     func fetchMovieDetail() {
-        let net = NetworkRequest(endpointURL: Api.movieDetail(id: movieId))
-        service.request(net) { (result: Result<MovieDetail, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.movieDetail = success
-                    self.delegate?.suss()
-                }
-            case .failure(let failure):
-                DispatchQueue.main.async {
-                    print(failure.localizedDescription)
-                }
+        AF.request(Api.movieDetail(id: movieId), method: .get).validate().responseDecodable(of: MovieDetail.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.movieDetail = result
+                self.delegate?.didFetchMovieDetailSuccess()
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

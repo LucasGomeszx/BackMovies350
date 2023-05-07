@@ -9,24 +9,31 @@ import UIKit
 
 class PosterCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var movieImageView: UIImageView!
     
-    static let identifier: String = "PosterCollectionViewCell"
+    // MARK: - Properties
     
+    static let identifier: String = String(describing: PosterCollectionViewCell.self)
     private var viewModel: PosterCollectionViewModel?
+    
+    // MARK: - Nib
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-
+    
+    // MARK: - Lifecycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpView()
     }
-
-    //MARK: - SetUps
+    
+    // MARK: - Setups
     
     private func setUpView() {
         mainView.backgroundColor = .black
@@ -35,18 +42,21 @@ class PosterCollectionViewCell: UICollectionViewCell {
         movieNameLabel.textColor = .white
     }
     
+    // MARK: - Public Methods
+    
     public func setUpCell(movieId: Int) {
         viewModel = PosterCollectionViewModel(movieId: movieId)
         viewModel?.fetchMovieDetail()
         viewModel?.setUpDelegate(delegate: self)
     }
-    
 }
 
+// MARK: - PosterCollectionViewModelDelegate
+
 extension PosterCollectionViewCell: PosterCollectionViewModelDelegate {
-    func suss() {
+    func didFetchMovieDetailSuccess() {
         self.movieNameLabel.text = viewModel?.getMovieDetailName
-        guard let image = URL(string: Api.posterPath + (viewModel?.getMovieDetailPoster ?? "")) else {return}
+        guard let image = URL(string: Api.posterPath + (viewModel?.getMovieDetailPoster ?? "")) else { return }
         movieImageView.loadImageFromURL(image)
     }
 }

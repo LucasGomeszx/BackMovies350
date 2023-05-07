@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum PosterStrings: String {
+    case alertError = "Error"
+    case moviesDetailsView = "MoviesDetailsView"
+}
+
 class PosterViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -15,17 +20,14 @@ class PosterViewController: UIViewController {
     
     //MARK: - LifeCycle
     
-    var viewModel: PosterViewModel = PosterViewModel()
+    private var viewModel: PosterViewModel = PosterViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.setDelegate(delegate: self)
-        configCollectionView()
         configureNavigation()
         setUpView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        configCollectionView()
+        viewModel.setDelegate(delegate: self)
         viewModel.fetchMovies()
     }
     
@@ -34,7 +36,7 @@ class PosterViewController: UIViewController {
     private func setUpView() {
         mainView.backgroundColor = .black
         titleLabel.textColor = .white
-        posterCollectionView.backgroundColor = UIColor(named: "BackGray")
+        posterCollectionView.backgroundColor = .backGray
         posterCollectionView.layer.cornerRadius = 15
     }
     
@@ -70,7 +72,7 @@ extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+        let vc: MovieDetailsViewController? = UIStoryboard(name: PosterStrings.moviesDetailsView.rawValue, bundle: nil).instantiateViewController(identifier: PosterStrings.moviesDetailsView.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
@@ -94,7 +96,7 @@ extension PosterViewController: PosterViewModelDelegate {
     }
     
     func didFailToFetchMovies(with error: String) {
-        Alert.showAlert(on: self, withTitle: "Error", message: error, actions: nil)
+        Alert.showAlert(on: self, withTitle: PosterStrings.alertError.rawValue, message: error, actions: nil)
     }
     
 }

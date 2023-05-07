@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol PosterViewModelDelegate: AnyObject {
     func didFetchMovies()
@@ -14,7 +15,7 @@ protocol PosterViewModelDelegate: AnyObject {
 
 class PosterViewModel {
     
-    weak var delegate: PosterViewModelDelegate?
+    private weak var delegate: PosterViewModelDelegate?
     private let service: Service = Service()
     private var posterList: Movies?
     
@@ -43,20 +44,13 @@ class PosterViewModel {
     //MARK: - FetchMovies
     
     public func fetchMovies() {
-        let net = NetworkRequest(endpointURL: Api.posterUrl())
-        
-        service.request(net) { (result: Result<Movies, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.posterList = success
-                    self.delegate?.didFetchMovies()
-                }
+        AF.request(Api.posterUrl(), method: .get).validate().responseDecodable(of: Movies.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.posterList = result
+                self.delegate?.didFetchMovies()
             case .failure(let error):
-                DispatchQueue.main.async {
-                    print(error.localizedDescription)
-                    self.delegate?.didFailToFetchMovies(with: error.localizedDescription)
-                }
+                self.delegate?.didFailToFetchMovies(with: error.localizedDescription)
             }
         }
     }
