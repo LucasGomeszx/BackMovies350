@@ -7,40 +7,49 @@
 
 import UIKit
 
+enum TabBarStrings: String {
+    case posterTitle = "Filmes em cartaz"
+    case posterIcon = "cinema25"
+    case searchTitle = "Busca"
+    case searchIcon = "magnifyingglass"
+    case favoriteTitle = "Favoritos"
+    case favoriteIcon = "heart"
+    case profileTitle = "Perfil"
+    case profileIcon = "person.circle"
+}
+
 class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configItems()
         configTabBar()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         configureNavigation()
     }
     
     private func configItems() {
         guard let items = tabBar.items else {return}
-        items[0].title = "Filmes em cartaz"
-        items[1].title = "Busca"
-        items[2].title = "Favoritos"
-        items[3].title = "Perfil"
+        items[0].title = TabBarStrings.posterTitle.rawValue
+        items[1].title = TabBarStrings.searchTitle.rawValue
+        items[2].title = TabBarStrings.favoriteTitle.rawValue
+        items[3].title = TabBarStrings.profileTitle.rawValue
         
-        items[0].image = UIImage(systemName:"list.dash")
-        items[1].image = UIImage(systemName:"magnifyingglass")
-        items[2].image = UIImage(systemName:"heart")
-        items[3].image = UIImage(systemName:"person.circle")
+        items[0].image = UIImage(named: TabBarStrings.posterIcon.rawValue)
+        items[1].image = UIImage(systemName: TabBarStrings.searchIcon.rawValue)
+        items[2].image = UIImage(systemName: TabBarStrings.favoriteIcon.rawValue)
+        items[3].image = UIImage(systemName: TabBarStrings.profileIcon.rawValue)
     }
     
     private func configTabBar(){
         tabBar.layer.borderWidth = 0.3
         tabBar.layer.borderColor = UIColor.black.cgColor
-        tabBar.backgroundColor = UIColor(displayP3Red: 255, green: 255, blue: 255, alpha: 0.7)
+        tabBar.backgroundColor = .lineGray
 
     }
     
     func configureNavigation(){
         navigationController?.navigationBar.isHidden = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
 
 }
