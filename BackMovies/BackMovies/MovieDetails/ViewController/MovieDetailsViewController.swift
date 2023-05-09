@@ -16,6 +16,12 @@ enum TableViewSection: Int {
     case mapCell
 }
 
+enum MovieDetailString: String {
+    case titleLabel = "Detalhes"
+    case actorDetailView = "ActorDetailView"
+    case movieDatailView = "MoviesDetailsView"
+}
+
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
@@ -43,10 +49,10 @@ class MovieDetailsViewController: UIViewController {
     
     private func setUpView() {
         mainView.backgroundColor = .black
-        titleLabel.text = "Detalhes"
+        titleLabel.text = MovieDetailString.titleLabel.rawValue
         titleLabel.textColor = .white
         detailTableView.layer.cornerRadius = 15
-        detailTableView.backgroundColor = UIColor(named: "BackGray")
+        detailTableView.backgroundColor = .backGray
     }
     
     private func setUpTableView() {
@@ -133,7 +139,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
 
 extension MovieDetailsViewController: ActorTableViewCellDelegate {
     func navActorDetail(actorId: Int) {
-        let vc: ActorDetailViewController? = UIStoryboard(name: "ActorDetailView", bundle: nil).instantiateViewController(identifier: "ActorDetailView") { coder -> ActorDetailViewController? in
+        let vc: ActorDetailViewController? = UIStoryboard(name: MovieDetailString.actorDetailView.rawValue, bundle: nil).instantiateViewController(identifier: MovieDetailString.actorDetailView.rawValue) { coder -> ActorDetailViewController? in
             return ActorDetailViewController(coder: coder, actorId: actorId)
         }
         navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
@@ -144,7 +150,7 @@ extension MovieDetailsViewController: ActorTableViewCellDelegate {
 
 extension MovieDetailsViewController: RetatedTableViewCellDelegate {
     func navRelatedMovies(movieId: Int) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+        let vc: MovieDetailsViewController? = UIStoryboard(name: MovieDetailString.movieDatailView.rawValue, bundle: nil).instantiateViewController(identifier: MovieDetailString.movieDatailView.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: movieId)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
