@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class PosterCollectionViewCell: UICollectionViewCell {
     
@@ -19,6 +20,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = String(describing: PosterCollectionViewCell.self)
     private var viewModel: PosterCollectionViewModel?
+    private let lottieAnimation: LottieAnimationView = LottieAnimationView(name: "imageLoad")
     
     // MARK: - Nib
     
@@ -49,6 +51,25 @@ class PosterCollectionViewCell: UICollectionViewCell {
         viewModel?.fetchMovieDetail()
         viewModel?.setUpDelegate(delegate: self)
     }
+    
+    //MARK: - Private Methods
+    private func setupLottieView() {
+        lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
+        movieImageView.addSubview(lottieAnimation)
+        NSLayoutConstraint.activate([
+            lottieAnimation.widthAnchor.constraint(equalToConstant: 75),
+            lottieAnimation.heightAnchor.constraint(equalToConstant: 75),
+            lottieAnimation.centerXAnchor.constraint(equalTo: movieImageView.centerXAnchor),
+            lottieAnimation.centerYAnchor.constraint(equalTo: movieImageView.centerYAnchor)
+        ])
+        lottieAnimation.loopMode = .loop
+        lottieAnimation.play()
+    }
+    
+    private func stopLottieView() {
+        lottieAnimation.stop()
+        lottieAnimation.removeFromSuperview()
+    }
 }
 
 // MARK: - PosterCollectionViewModelDelegate
@@ -56,7 +77,16 @@ class PosterCollectionViewCell: UICollectionViewCell {
 extension PosterCollectionViewCell: PosterCollectionViewModelDelegate {
     func didFetchMovieDetailSuccess() {
         self.movieNameLabel.text = viewModel?.getMovieDetailName
+        setupLottieView()
         guard let image = URL(string: Api.posterPath + (viewModel?.getMovieDetailPoster ?? "")) else { return }
-        movieImageView.loadImageFromURL(image)
+        movieImageView.loadImageFromURL(image, errorImage: UIImage(named: "emptyImage")) { resulti in
+            switch resulti {
+            case .success(let image):
+                self.stopLottieView()
+                self.movieImageView.image = image
+            case .failure(_):
+                self.stopLottieView()
+            }
+        }
     }
 }

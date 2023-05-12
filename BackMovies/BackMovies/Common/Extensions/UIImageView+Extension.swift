@@ -9,46 +9,36 @@ import Foundation
 import UIKit
 import Lottie
 
-extension UIImageView {
+import Foundation
+import UIKit
 
-    func loadImageFromURL(_ url: URL,
-                          completionHandler: ((Result<UIImage, Error>) -> Void)? = nil) {
-        
-        let animationView = LottieAnimationView(name: "imageLoad")
-        animationView.frame = bounds
-        animationView.contentMode = .scaleAspectFit
-        addSubview(animationView)
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            animationView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            animationView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            animationView.heightAnchor.constraint(equalToConstant: 75),
-            animationView.widthAnchor.constraint(equalToConstant: 75),
-        ])
-        animationView.loopMode = .loop
-        animationView.play()
+extension UIImageView {
+    /**
+     loadImageFromURL é um método para carregar uma imagem de uma URL com cache e um placeholder opcional.
+     - Parameters:
+        - url: A URL da imagem a ser carregada.
+        - placeholder: A imagem a ser exibida enquanto a imagem está sendo carregada. Padrão é nil.
+        - errorImage: A imagem a ser exibida se ocorrer um erro ao carregar a imagem. Padrão é nil.
+        - completionHandler: O bloco de conclusão a ser executado quando a imagem for carregada com sucesso ou se ocorrer um erro.
+     */
+    func loadImageFromURL(_ url: URL, placeholder: UIImage? = nil, errorImage: UIImage? = nil, completionHandler: ((Result<UIImage, Error>) -> Void)? = nil) {
+        self.image = placeholder
         
         if let cachedImage = ImageCache.shared.getImage(forKey: url.absoluteString) {
-            animationView.stop()
-            animationView.removeFromSuperview()
-            image = cachedImage
+            self.image = cachedImage
             completionHandler?(.success(cachedImage))
             return
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
-                animationView.stop()
-                animationView.removeFromSuperview()
-                guard error == nil,
-                      let data = data,
-                      let image = UIImage(data: data) else {
-                    self.image = UIImage(named: "emptyImage")
+                guard error == nil, let data = data, let image = UIImage(data: data) else {
+                    self.image = errorImage
                     completionHandler?(.failure(error ?? ImageLoadingError.unknownError))
                     return
                 }
                 ImageCache.shared.setImage(image: image, forKey: url.absoluteString)
-                self.image = image
+//                self.image = image
                 completionHandler?(.success(image))
             }
         }.resume()
