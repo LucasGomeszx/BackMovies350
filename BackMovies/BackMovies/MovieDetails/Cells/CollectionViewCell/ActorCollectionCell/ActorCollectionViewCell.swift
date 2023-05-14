@@ -8,6 +8,11 @@
 import UIKit
 import Lottie
 
+enum ActorCollectionStrings: String {
+    case imageLoad = "imageLoad"
+    case errorImage = "emptyImage"
+}
+
 class ActorCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -15,9 +20,9 @@ class ActorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var actorNameLabel: UILabel!
     @IBOutlet weak var personLabel: UILabel!
     
-    static let identifier: String = "ActorCollectionViewCell"
+    static let identifier: String = String(describing: ActorCollectionViewCell.self)
     var viewModel: ActorCollectionViewCellViewModel?
-    var lottieAnimation: LottieAnimationView = LottieAnimationView(name: "imageLoad")
+    var lottieAnimation: LottieAnimationView = LottieAnimationView(name: ActorCollectionStrings.imageLoad.rawValue)
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -50,8 +55,8 @@ class ActorCollectionViewCell: UICollectionViewCell {
         lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
         actorImage.addSubview(lottieAnimation)
         NSLayoutConstraint.activate([
-            lottieAnimation.widthAnchor.constraint(equalToConstant: 75),
-            lottieAnimation.heightAnchor.constraint(equalToConstant: 75),
+            lottieAnimation.widthAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.heightAnchor.constraint(equalToConstant: 65),
             lottieAnimation.centerXAnchor.constraint(equalTo: actorImage.centerXAnchor),
             lottieAnimation.centerYAnchor.constraint(equalTo: actorImage.centerYAnchor)
         ])
@@ -70,7 +75,7 @@ class ActorCollectionViewCell: UICollectionViewCell {
         mainView.clipsToBounds = true
         actorImage.contentMode = .scaleAspectFill
         actorNameLabel.textColor = .white
-        personLabel.textColor = UIColor(named: "TextColor")
+        personLabel.textColor = .textColor
     }
 
 }

@@ -33,7 +33,7 @@ extension UIImageView {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 guard error == nil, let data = data, let image = UIImage(data: data) else {
-                    self.image = errorImage
+                    self.image = UIImage(named: "emptyImage")
                     completionHandler?(.failure(error ?? ImageLoadingError.unknownError))
                     return
                 }

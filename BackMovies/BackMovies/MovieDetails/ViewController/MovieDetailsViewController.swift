@@ -20,6 +20,7 @@ enum MovieDetailString: String {
     case titleLabel = "Detalhes"
     case actorDetailView = "ActorDetailView"
     case movieDatailView = "MoviesDetailsView"
+    case alertError = "Error"
 }
 
 class MovieDetailsViewController: UIViewController {
@@ -157,10 +158,16 @@ extension MovieDetailsViewController: RetatedTableViewCellDelegate {
     }
 }
 
-//MARK - ViewModelDelegate
+//MARK: - ViewModelDelegate
 
 extension MovieDetailsViewController: MovieDetailViewModelDelegate {
-    func suss() {
+    func fetchMovieDetailSuccess() {
         detailTableView.reloadData()
     }
+    
+    func fetchMovieDetailFailure(error: String) {
+        Alert.showAlert(on: self, withTitle: MovieDetailString.alertError.rawValue, message: error, actions: nil)
+    }
+    
+    
 }

@@ -9,7 +9,8 @@ import Foundation
 import Alamofire
 
 protocol MovieDetailViewModelDelegate: AnyObject {
-    func suss()
+    func fetchMovieDetailSuccess()
+    func fetchMovieDetailFailure(error: String)
 }
 
 class MovieDetailViewModel {
@@ -32,9 +33,9 @@ class MovieDetailViewModel {
             switch response.result {
             case.success(let result):
                 self.movieDetail = result
-                self.delegate?.suss()
+                self.delegate?.fetchMovieDetailSuccess()
             case .failure(let error):
-                print(error.localizedDescription)
+                self.delegate?.fetchMovieDetailFailure(error: error.localizedDescription)
             }
         }
     }
