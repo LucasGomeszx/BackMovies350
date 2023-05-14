@@ -24,7 +24,15 @@ class MovieTopCellViewModel {
     }
     
     var voteAvg: String {
-        return String(movieDetail.voteAverage ?? 0)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 1
+        
+        if let voteAverage = movieDetail.voteAverage {
+            return formatter.string(from: NSNumber(value: voteAverage)) ?? "0.0"
+        } else {
+            return "0.0"
+        }
     }
     
 }

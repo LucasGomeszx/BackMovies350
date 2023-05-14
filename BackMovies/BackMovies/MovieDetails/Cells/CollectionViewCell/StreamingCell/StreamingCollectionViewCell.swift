@@ -11,7 +11,8 @@ class StreamingCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var logoImage: UIImageView!
     
-    static let identifier: String = "StreamingCollectionViewCell"
+    static let identifier: String = String(describing: StreamingCollectionViewCell.self)
+    
     var viewModel: StreamingCellViewModel = StreamingCellViewModel()
     
     static func nib() -> UINib {
