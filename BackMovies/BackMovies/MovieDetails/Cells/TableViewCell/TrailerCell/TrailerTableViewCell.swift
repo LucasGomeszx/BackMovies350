@@ -7,6 +7,10 @@
 
 import UIKit
 
+//enum TrailerCellString: String {
+//    case 
+//}
+
 class TrailerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -36,12 +40,12 @@ class TrailerTableViewCell: UITableViewCell {
     
     private func setUpView() {
         mainView.backgroundColor = .clear
-        lineView.backgroundColor = UIColor(named: "LineGray")
+        lineView.backgroundColor = .lineGray
         trailerLabel.text = "Treiler:"
-        trailerLabel.textColor = UIColor(named: "TextColor")
+        trailerLabel.textColor = .textColor
         sinopseLabel.text = "Sinopse"
-        sinopseLabel.textColor = UIColor(named: "TextColor")
-        sinopseContencLabel.textColor = UIColor(named: "TextColor")
+        sinopseLabel.textColor = .textColor
+        sinopseContencLabel.textColor = .textColor
     }
 
 }

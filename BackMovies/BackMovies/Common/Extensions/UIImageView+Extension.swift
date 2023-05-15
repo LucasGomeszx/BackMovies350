@@ -7,10 +7,6 @@
 
 import Foundation
 import UIKit
-import Lottie
-
-import Foundation
-import UIKit
 
 extension UIImageView {
     /**
@@ -25,7 +21,7 @@ extension UIImageView {
         self.image = placeholder
         
         if let cachedImage = ImageCache.shared.getImage(forKey: url.absoluteString) {
-            self.image = cachedImage
+//            self.image = cachedImage
             completionHandler?(.success(cachedImage))
             return
         }

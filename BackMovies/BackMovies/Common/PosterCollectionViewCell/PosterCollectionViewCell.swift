@@ -77,9 +77,10 @@ class PosterCollectionViewCell: UICollectionViewCell {
 extension PosterCollectionViewCell: PosterCollectionViewModelDelegate {
     func didFetchMovieDetailSuccess() {
         self.movieNameLabel.text = viewModel?.getMovieDetailName
+        
         setupLottieView()
         guard let image = URL(string: Api.posterPath + (viewModel?.getMovieDetailPoster ?? "")) else { return }
-        movieImageView.loadImageFromURL(image, errorImage: UIImage(named: "emptyImage")) { resulti in
+        movieImageView.loadImageFromURL(image) { resulti in
             switch resulti {
             case .success(let image):
                 self.stopLottieView()
@@ -88,5 +89,6 @@ extension PosterCollectionViewCell: PosterCollectionViewModelDelegate {
                 self.stopLottieView()
             }
         }
+        
     }
 }

@@ -48,8 +48,11 @@ class MovieDetailViewModel {
         640
     }
     
-    var getTrailerCellSize: CGFloat {
-        CGFloat((((movieDetail?.overview?.count ?? 10) / 2)) + 310)
+    func getTrailerCellSize(width: CGFloat) -> CGFloat {
+        let text = movieDetail?.overview ?? ""
+        let font = UIFont.systemFont(ofSize: 14)
+        let estimateHeight = text.heightWithConstrainedWidth(width: width, font: font)
+        return estimateHeight + 330
     }
     
     var getWatchCellSize: CGFloat {

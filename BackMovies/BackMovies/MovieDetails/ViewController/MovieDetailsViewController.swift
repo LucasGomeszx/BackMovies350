@@ -43,7 +43,6 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        setUpTableView()
         viewModel.setUpDelegate(delegate: self)
         viewModel.fetchMovieDetail()
     }
@@ -120,7 +119,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case .movieTopCell:
             return viewModel.getMovieTopCellSize
         case .trailerCell:
-            return viewModel.getTrailerCellSize
+            return viewModel.getTrailerCellSize(width: tableView.frame.size.width - 32)
         case .watchCell:
             return viewModel.getWatchCellSize
         case .actorsCell:
@@ -162,7 +161,7 @@ extension MovieDetailsViewController: RetatedTableViewCellDelegate {
 
 extension MovieDetailsViewController: MovieDetailViewModelDelegate {
     func fetchMovieDetailSuccess() {
-        detailTableView.reloadData()
+        setUpTableView()
     }
     
     func fetchMovieDetailFailure(error: String) {

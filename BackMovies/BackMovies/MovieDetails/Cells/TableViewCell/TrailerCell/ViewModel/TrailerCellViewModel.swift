@@ -16,7 +16,13 @@ class TrailerCellViewModel {
     }
     
     var getOverview: String {
-        movieDetail.overview ?? ""
+        guard let over = movieDetail.overview else {return "Sinopse indisponivel"}
+        
+        if over == "" {
+            return "Sinopse indisponivel"
+        } else {
+            return over
+        }
     }
     
 }
