@@ -6,17 +6,19 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
-//enum TrailerCellString: String {
-//    case 
-//}
+enum TrailerCellStrings: String {
+    case treiler = "Treiler"
+    case overview = "Sinopse"
+}
 
 class TrailerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var trailerLabel: UILabel!
-    @IBOutlet weak var trailerImageView: UIImageView!
+    @IBOutlet weak var videoView: YTPlayerView!
     @IBOutlet weak var sinopseLabel: UILabel!
     @IBOutlet weak var sinopseContencLabel: UILabel!
     
@@ -35,17 +37,25 @@ class TrailerTableViewCell: UITableViewCell {
     
     public func setUpCell(movieDetail: MovieDetail) {
         viewModel = TrailerCellViewModel(movieDetail: movieDetail)
+        viewModel?.setupDelegate(delegate: self)
+        viewModel?.fetchMovieVideo()
         sinopseContencLabel.text = viewModel?.getOverview
     }
     
     private func setUpView() {
         mainView.backgroundColor = .clear
         lineView.backgroundColor = .lineGray
-        trailerLabel.text = "Treiler:"
+        trailerLabel.text = TrailerCellStrings.treiler.rawValue
         trailerLabel.textColor = .textColor
-        sinopseLabel.text = "Sinopse"
+        sinopseLabel.text = TrailerCellStrings.overview.rawValue
         sinopseLabel.textColor = .textColor
         sinopseContencLabel.textColor = .textColor
     }
 
+}
+
+extension TrailerTableViewCell: TrailerCellViewModelProtocol {
+    func didFetchMovieVideoSucess() {
+        videoView.load(withVideoId: viewModel?.getMovieVideoKey ?? "")
+    }
 }

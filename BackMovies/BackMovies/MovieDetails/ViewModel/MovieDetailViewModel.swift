@@ -52,7 +52,7 @@ class MovieDetailViewModel {
         let text = movieDetail?.overview ?? ""
         let font = UIFont.systemFont(ofSize: 14)
         let estimateHeight = text.heightWithConstrainedWidth(width: width, font: font)
-        return estimateHeight + 330
+        return estimateHeight + 380
     }
     
     var getWatchCellSize: CGFloat {
