@@ -26,6 +26,7 @@ enum MovieDetailString: String {
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailTableView: UITableView!
     
@@ -48,6 +49,10 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func setUpView() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedBackButton))
+        backImageView.addGestureRecognizer(gesture)
+        backImageView.isUserInteractionEnabled = true
+        backImageView.tintColor = .white
         mainView.backgroundColor = .black
         titleLabel.text = MovieDetailString.titleLabel.rawValue
         titleLabel.textColor = .white
@@ -68,7 +73,8 @@ class MovieDetailsViewController: UIViewController {
         detailTableView.register(MapTableViewCell.nib(), forCellReuseIdentifier: MapTableViewCell.identifier)
     }
     
-    @IBAction func tappedBackButton(_ sender: Any) {
+    @objc
+    func tappedBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -167,6 +173,5 @@ extension MovieDetailsViewController: MovieDetailViewModelDelegate {
     func fetchMovieDetailFailure(error: String) {
         Alert.showAlert(on: self, withTitle: MovieDetailString.alertError.rawValue, message: error, actions: nil)
     }
-    
     
 }

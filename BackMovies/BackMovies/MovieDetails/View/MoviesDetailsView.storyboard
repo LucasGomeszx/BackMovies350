@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,41 +18,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlC-Yc-dxr">
-                                <rect key="frame" x="159.33333333333334" y="71" width="71.666666666666657" height="33.666666666666657"/>
+                                <rect key="frame" x="159.33333333333334" y="71" width="71.666666666666657" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKN-ph-Nk7">
-                                <rect key="frame" x="16.000000000000004" y="71" width="49.333333333333343" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="ums-hR-xxs"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system" title=""/>
-                                <connections>
-                                    <action selector="tappedBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5Hd-6w-hyb"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tdD-Ce-ZaL">
-                                <rect key="frame" x="8" y="120.66666666666669" width="374" height="681.33333333333326"/>
+                                <rect key="frame" x="8" y="121" width="374" height="681"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="e1S-7m-B4U">
+                                <rect key="frame" x="26" y="76" width="30" height="24.333333333333329"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="XpE-fq-4Gz"/>
+                                    <constraint firstAttribute="height" constant="30" id="vdb-fk-XqM"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XlC-Yc-dxr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="4DS-z5-GqJ"/>
-                            <constraint firstItem="MKN-ph-Nk7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="L23-AQ-Fso"/>
+                            <constraint firstItem="e1S-7m-B4U" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="26" id="Fvs-92-DkY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="tdD-Ce-ZaL" secondAttribute="bottom" constant="8" id="Znf-ic-1U0"/>
                             <constraint firstItem="tdD-Ce-ZaL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="dAb-fk-McD"/>
+                            <constraint firstItem="e1S-7m-B4U" firstAttribute="centerY" secondItem="XlC-Yc-dxr" secondAttribute="centerY" id="mBw-k1-dVr"/>
                             <constraint firstItem="XlC-Yc-dxr" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ndb-Q4-FfO"/>
                             <constraint firstItem="tdD-Ce-ZaL" firstAttribute="top" secondItem="XlC-Yc-dxr" secondAttribute="bottom" constant="16" id="p3S-v9-DEe"/>
-                            <constraint firstItem="MKN-ph-Nk7" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="pG4-3e-lbq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="tdD-Ce-ZaL" secondAttribute="trailing" constant="8" id="rWe-c4-mTv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backImageView" destination="e1S-7m-B4U" id="Fsk-UC-dtM"/>
                         <outlet property="detailTableView" destination="tdD-Ce-ZaL" id="1xO-mF-QDI"/>
                         <outlet property="mainView" destination="5EZ-qb-Rvc" id="HSY-QD-JNG"/>
                         <outlet property="titleLabel" destination="XlC-Yc-dxr" id="AH2-2f-id0"/>
