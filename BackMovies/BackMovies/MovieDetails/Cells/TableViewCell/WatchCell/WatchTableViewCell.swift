@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum WatchCellStrings: String {
+    case whereWatch = "Onde assistir ?"
+    case movieVideos = "Que tal videos sobre o filme ?"
+    case youtubeImage = "youtube"
+}
+
 class WatchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -36,13 +42,13 @@ class WatchTableViewCell: UITableViewCell {
     
     private func setUpView() {
         mainView.backgroundColor = .clear
-        collectionViewLabel.text = "Onde assistir ?"
+        collectionViewLabel.text = WatchCellStrings.whereWatch.rawValue
         collectionViewLabel.textColor = .white
         watchCollectionView.backgroundColor = .clear
-        youtubeLabel.text = "Que tal videos sobre o filme ?"
+        youtubeLabel.text = WatchCellStrings.movieVideos.rawValue
         youtubeLabel.textColor = .white
-        youtubeImage.image = UIImage(named: "youtube")
-        lineView.backgroundColor = UIColor(named: "LineGray")
+        youtubeImage.image = UIImage(named: WatchCellStrings.youtubeImage.rawValue)
+        lineView.backgroundColor = .lineGray
     }
     
     private func configureCollection() {
@@ -57,6 +63,7 @@ class WatchTableViewCell: UITableViewCell {
 
 }
 
+    //MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 
 extension WatchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
