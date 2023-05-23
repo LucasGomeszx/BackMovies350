@@ -9,6 +9,7 @@ import UIKit
 
 protocol ActorTableViewCellDelegate: NSObject {
     func navActorDetail(actorId: Int)
+    func didFetchActorError()
 }
 
 class ActorTableViewCell: UITableViewCell {
@@ -93,8 +94,8 @@ extension ActorTableViewCell : ActorCellViewModelDelegate {
         actorCollectionView.reloadData()
     }
     
-    func didFailToFetchMovies(with error: String) {
-        print(error)
+    func didFailToFetchMovies(error: String) {
+        delegate?.didFetchActorError()
     }
     
 }
