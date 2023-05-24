@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum MapStrings: String {
+    case mapLabel = "Que tal um cineminha?"
+}
+
 class MapTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -25,7 +29,7 @@ class MapTableViewCell: UITableViewCell {
     
     private func setUpView() {
         mainView.backgroundColor = .clear
-        mapLabel.text = "Que tal um cineminha ?"
+        mapLabel.text = MapStrings.mapLabel.rawValue
         mapLabel.textColor = .white
     }
 

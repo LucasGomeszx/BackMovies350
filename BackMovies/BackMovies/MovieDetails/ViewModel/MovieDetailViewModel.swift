@@ -16,7 +16,6 @@ protocol MovieDetailViewModelDelegate: AnyObject {
 class MovieDetailViewModel {
     
     private var movieId: Int
-    private var service: Service = Service()
     private var movieDetail: MovieDetail?
     private weak var delegate: MovieDetailViewModelDelegate?
     
