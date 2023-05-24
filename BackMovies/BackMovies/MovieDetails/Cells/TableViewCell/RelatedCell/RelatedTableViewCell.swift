@@ -7,20 +7,25 @@
 
 import UIKit
 
-protocol RetatedTableViewCellDelegate: AnyObject {
+protocol RelatedTableViewCellDelegate: AnyObject {
     func navRelatedMovies(movieId: Int)
+    func didFailToFetchSimilarMovies()
 }
 
-class RetatedTableViewCell: UITableViewCell {
+enum RelatedStrings: String {
+    case relatedLabel = "Filmes Relacionados :"
+}
+
+class RelatedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var relatedLabel: UILabel!
     @IBOutlet weak var relatedCollectionView: UICollectionView!
     
-    static let identifier: String = String(describing: RetatedTableViewCell.self)
+    static let identifier: String = String(describing: RelatedTableViewCell.self)
     
     let viewModel: RelatedCellViewModel = RelatedCellViewModel()
-    weak var delegate: RetatedTableViewCellDelegate?
+    weak var delegate: RelatedTableViewCellDelegate?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -40,7 +45,7 @@ class RetatedTableViewCell: UITableViewCell {
     
     private func setUpView() {
         mainView.backgroundColor = .clear
-        relatedLabel.text = "Filmes Relacionados :"
+        relatedLabel.text = RelatedStrings.relatedLabel.rawValue
         relatedLabel.textColor = .white
         relatedCollectionView.backgroundColor = .clear
     }
@@ -58,7 +63,7 @@ class RetatedTableViewCell: UITableViewCell {
 }
 
 //MARK: - UICollectionView Delegate, DataSource
-extension RetatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension RelatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.getSimilarMoviesCount
@@ -84,13 +89,13 @@ extension RetatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
 }
 
-extension RetatedTableViewCell: RelatedCellViewModelDelegate {
-    func didFetchMovies() {
+extension RelatedTableViewCell: RelatedCellViewModelDelegate {
+    func didFetchSimilarMovies() {
         relatedCollectionView.reloadData()
     }
     
-    func didFailToFetchMovies(with error: String) {
-        print(error)
+    func didFailToFetchSimilarMovies() {
+        delegate?.didFailToFetchSimilarMovies()
     }
     
 }

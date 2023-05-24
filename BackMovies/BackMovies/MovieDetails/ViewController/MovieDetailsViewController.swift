@@ -22,6 +22,7 @@ enum MovieDetailString: String {
     case movieDatailView = "MoviesDetailsView"
     case alertError = "Error"
     case actorError = "Nao foi possivel carregar o elenco."
+    case similarMoviesError = "Nao foi possivel carregar filmes similares."
 }
 
 class MovieDetailsViewController: UIViewController {
@@ -70,7 +71,7 @@ class MovieDetailsViewController: UIViewController {
         detailTableView.register(TrailerTableViewCell.nib(), forCellReuseIdentifier: TrailerTableViewCell.identifier)
         detailTableView.register(WatchTableViewCell.nib(), forCellReuseIdentifier: WatchTableViewCell.identifier)
         detailTableView.register(ActorTableViewCell.nib(), forCellReuseIdentifier: ActorTableViewCell.identifier)
-        detailTableView.register(RetatedTableViewCell.nib(), forCellReuseIdentifier: RetatedTableViewCell.identifier)
+        detailTableView.register(RelatedTableViewCell.nib(), forCellReuseIdentifier: RelatedTableViewCell.identifier)
         detailTableView.register(MapTableViewCell.nib(), forCellReuseIdentifier: MapTableViewCell.identifier)
     }
     
@@ -108,7 +109,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             cell?.setUpCell(id: viewModel.getMovieId)
             return cell ?? UITableViewCell()
         case .relatedCell:
-            let cell = tableView.dequeueReusableCell(withIdentifier: RetatedTableViewCell.identifier, for: indexPath) as? RetatedTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: RelatedTableViewCell.identifier, for: indexPath) as? RelatedTableViewCell
             cell?.delegate = self
             cell?.setUpCell(id: viewModel.getMovieId)
             return cell ?? UITableViewCell()
@@ -159,13 +160,18 @@ extension MovieDetailsViewController: ActorTableViewCellDelegate {
 
 //MARK: - ActorTableViewCellDelegate
 
-extension MovieDetailsViewController: RetatedTableViewCellDelegate {
+extension MovieDetailsViewController: RelatedTableViewCellDelegate {
     func navRelatedMovies(movieId: Int) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: MovieDetailString.movieDatailView.rawValue, bundle: nil).instantiateViewController(identifier: MovieDetailString.movieDatailView.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: movieId)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
+    
+    func didFailToFetchSimilarMovies() {
+        Alert.showAlert(on: self, withTitle: MovieDetailString.alertError.rawValue, message: MovieDetailString.similarMoviesError.rawValue, actions: nil)
+    }
+    
 }
 
 //MARK: - ViewModelDelegate

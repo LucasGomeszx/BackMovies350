@@ -6,15 +6,15 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol RelatedCellViewModelDelegate: AnyObject {
-    func didFetchMovies()
-    func didFailToFetchMovies(with error: String)
+    func didFetchSimilarMovies()
+    func didFailToFetchSimilarMovies()
 }
 
 class RelatedCellViewModel {
     
-    private let service: Service = Service()
     private var movieId: Int?
     private var similarMovies: SimilarMovies?
     
@@ -29,7 +29,7 @@ class RelatedCellViewModel {
     }
     
     var getSimilarMovieCellSize: CGSize {
-        CGSize(width: 140, height: 260)
+        CGSize(width: 140, height: 275)
     }
     
     public func getSimilarMovieId(index: Int) -> Int {
@@ -41,18 +41,13 @@ class RelatedCellViewModel {
     }
     
     public func fetchSimilar() {
-        let url = NetworkRequest(endpointURL: Api.similarMovies(id: movieId ?? 0))
-        service.request(url) { (result: Result<SimilarMovies, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.similarMovies = success
-                    self.delegate?.didFetchMovies()
-                }
-            case .failure(let failure):
-                DispatchQueue.main.async {
-                    self.delegate?.didFailToFetchMovies(with: failure.localizedDescription)
-                }
+        AF.request(Api.similarMovies(id: movieId ?? 0), method: .get).validate().responseDecodable(of: SimilarMovies.self) { response in
+            switch response.result {
+            case.success(let result):
+                self.similarMovies = result
+                self.delegate?.didFetchSimilarMovies()
+            case .failure(_):
+                self.delegate?.didFailToFetchSimilarMovies()
             }
         }
     }
