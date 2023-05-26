@@ -48,7 +48,7 @@ class ActorInfoTableViewCell: UITableViewCell {
     
     private func setUpView() {
         mainView.backgroundColor = .clear
-        topLineView.backgroundColor = UIColor(named: "LineGray")
+        topLineView.backgroundColor = .lineGray
         actorDetailLabel.text = "Informações pessoais :"
         actorDetailLabel.textColor = .white
         knownLabel.text = "Conhecido(a) por :"

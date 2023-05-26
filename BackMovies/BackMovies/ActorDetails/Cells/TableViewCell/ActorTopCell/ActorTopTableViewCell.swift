@@ -12,7 +12,7 @@ enum ActorTopStrings: String {
 }
 
 class ActorTopTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var actorImage: UIImageView!
     @IBOutlet weak var actorNameLabel: UILabel!
@@ -26,7 +26,7 @@ class ActorTopTableViewCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpView()
@@ -55,7 +55,8 @@ class ActorTopTableViewCell: UITableViewCell {
         actorNameLabel.textColor = .white
         bioLabel.text = ActorTopStrings.bioLabel.rawValue
         bioLabel.textColor = .textColor
+        bioContentLabel.font = UIFont.systemFont(ofSize: 14)
         bioContentLabel.textColor = .textColor
     }
-
+    
 }

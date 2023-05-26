@@ -98,7 +98,7 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch ActorDetailSection(rawValue: indexPath.row) {
         case .ActorTopCell:
-            return viewModel.getActorTopCell
+            return viewModel.getActorTopCell(width: tableView.frame.size.width - 32)
         case .ActorInfoCell:
             return viewModel.getActorInfoCell
         case .ActorMoviesCell:

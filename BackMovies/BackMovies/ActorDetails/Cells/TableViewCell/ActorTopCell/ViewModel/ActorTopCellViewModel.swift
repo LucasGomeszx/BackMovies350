@@ -24,7 +24,13 @@ class ActorTopCellViewModel {
     }
     
     var getActorBio: String {
-        return actorDetail.biography ?? ""
+        guard let bio = actorDetail.biography else {return "Biografia indisponivel"}
+        
+        if bio == "" {
+            return "Biografia indisponivel"
+        } else {
+            return bio
+        }
     }
     
 }
