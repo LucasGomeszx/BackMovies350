@@ -13,6 +13,13 @@ enum ActorDetailSection: Int {
     case ActorMoviesCell
 }
 
+enum ActorDetailStrings: String {
+    case actorLabel = "Detalhes"
+    case movieDetail = "MoviesDetailsView"
+    case alertError = "Error"
+    case alertActorError = "Nao foi possivel carregar detalhes do ator."
+}
+
 class ActorDetailViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
@@ -40,9 +47,9 @@ class ActorDetailViewController: UIViewController {
     
     private func setUpView() {
         mainView.backgroundColor = .black
-        actorTitleLabel.text = "Detalhes"
+        actorTitleLabel.text = ActorDetailStrings.actorLabel.rawValue
         actorTitleLabel.textColor = .white
-        actorTableView.backgroundColor = UIColor(named: "BackGray")
+        actorTableView.backgroundColor = .backGray
         actorTableView.layer.cornerRadius = 15
     }
     
@@ -55,7 +62,6 @@ class ActorDetailViewController: UIViewController {
         actorTableView.register(ActorInfoTableViewCell.nib(), forCellReuseIdentifier: ActorInfoTableViewCell.identifier)
         actorTableView.register(ActorMoviesTableViewCell.nib(), forCellReuseIdentifier: ActorMoviesTableViewCell.identifier)
     }
-    
     
     @IBAction func tappedBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -105,23 +111,25 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
 }
 
+//MARK: - ActorMoviesTableViewCellDelegate
+
 extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
     func navActorMovies(movieId: Int) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+        let vc: MovieDetailsViewController? = UIStoryboard(name: ActorDetailStrings.movieDetail.rawValue, bundle: nil).instantiateViewController(identifier: ActorDetailStrings.movieDetail.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: movieId)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
 }
 
+//MARK: - ActorDetailsViewModelDelegate
+
 extension ActorDetailViewController: ActorDetailsViewModelDelegate {
-    
     func didFetchActor() {
         actorTableView.reloadData()
     }
     
     func didFailToFetchActor() {
-        
+        Alert.showAlert(on: self, withTitle: ActorDetailStrings.alertError.rawValue, message: ActorDetailStrings.alertActorError.rawValue, actions: nil)
     }
-    
 }
