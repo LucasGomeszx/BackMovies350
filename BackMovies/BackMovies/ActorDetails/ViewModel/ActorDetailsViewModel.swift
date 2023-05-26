@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol ActorDetailsViewModelDelegate: AnyObject {
     func didFetchActor()
@@ -16,31 +17,22 @@ class ActorDetailsViewModel {
     
     private var actorId: Int
     private var actorModel: ActorModel?
-    private let service: Service = Service()
+    private weak var delegate: ActorDetailsViewModelDelegate?
     
     init(actorId: Int) {
         self.actorId = actorId
     }
-    
-    private weak var delegate: ActorDetailsViewModelDelegate?
 
     public func fetchActor() {
-        
-        let url = NetworkRequest(endpointURL: Api.actorDetail(id: actorId))
-        service.request(url) { (result :Result<ActorModel, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.actorModel = success
-                    self.delegate?.didFetchActor()
-                }
-            case .failure(let failure):
-                DispatchQueue.main.async {
-                    print(failure.localizedDescription)
-                }
+        AF.request(Api.actorDetail(id: actorId), method: .get).validate().responseDecodable(of: ActorModel.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.actorModel = result
+                self.delegate?.didFetchActor()
+            case .failure(_):
+                self.delegate?.didFailToFetchActor()
             }
         }
-        
     }
     
     public func setUpDelegate(delegate: ActorDetailsViewModelDelegate) {
