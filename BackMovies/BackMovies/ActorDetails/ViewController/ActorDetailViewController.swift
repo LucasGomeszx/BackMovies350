@@ -40,7 +40,6 @@ class ActorDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        configureTableView()
         viewModel.setUpDelegate(delegate: self)
         viewModel.fetchActor()
     }
@@ -126,7 +125,7 @@ extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
 
 extension ActorDetailViewController: ActorDetailsViewModelDelegate {
     func didFetchActor() {
-        actorTableView.reloadData()
+        configureTableView()
     }
     
     func didFailToFetchActor() {

@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum ActorTopStrings: String {
+    case bioLabel = "Biografia:"
+}
+
 class ActorTopTableViewCell: UITableViewCell {
 
     @IBOutlet weak var mainView: UIView!
@@ -15,7 +19,7 @@ class ActorTopTableViewCell: UITableViewCell {
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var bioContentLabel: UILabel!
     
-    static let identifier: String = "ActorTopTableViewCell"
+    static let identifier: String = String(describing: ActorTopTableViewCell.self)
     
     private var viewModel: ActorTopCellViewModel?
     
@@ -31,7 +35,14 @@ class ActorTopTableViewCell: UITableViewCell {
     public func setUpCell(actor: ActorModel) {
         viewModel = ActorTopCellViewModel(actorDetail: actor)
         guard let url = URL(string: Api.posterPath + (viewModel?.getAtorImage ?? "")) else {return}
-        actorImage.loadImageFromURL(url)
+        actorImage.loadImageFromURL(url) { result in
+            switch result {
+            case .success(let image):
+                self.actorImage.image = image
+            case .failure(_):
+                break
+            }
+        }
         actorNameLabel.text = viewModel?.getActorName
         bioContentLabel.text = viewModel?.getActorBio
     }
@@ -42,9 +53,9 @@ class ActorTopTableViewCell: UITableViewCell {
         actorImage.clipsToBounds = true
         actorNameLabel.textAlignment = .center
         actorNameLabel.textColor = .white
-        bioLabel.text = "Biografia: "
-        bioLabel.textColor = UIColor(named: "TextColor")
-        bioContentLabel.textColor = UIColor(named: "TextColor")
+        bioLabel.text = ActorTopStrings.bioLabel.rawValue
+        bioLabel.textColor = .textColor
+        bioContentLabel.textColor = .textColor
     }
 
 }
