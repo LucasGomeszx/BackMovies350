@@ -7,6 +7,15 @@
 
 import UIKit
 
+enum ActorInfoStrings: String {
+    case actorDetailLabel = "Informações pessoais :"
+    case knownLabel = "Conhecido(a) por :"
+    case genderLabel = "Gênero :"
+    case birthLabel = "Nascimento :"
+    case countryLabel = "Local de nascimento :"
+    case socialMediaLabel = "Redes sociais"
+}
+
 class ActorInfoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -24,7 +33,7 @@ class ActorInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var socialMediaCollectionView: UICollectionView!
     @IBOutlet weak var bottonLineView: UIView!
     
-    static let identifier: String = "ActorInfoTableViewCell"
+    static let identifier: String = String(describing: ActorInfoTableViewCell.self)
     
     var viewModel: ActorInfoViewModel?
     
@@ -49,24 +58,24 @@ class ActorInfoTableViewCell: UITableViewCell {
     private func setUpView() {
         mainView.backgroundColor = .clear
         topLineView.backgroundColor = .lineGray
-        actorDetailLabel.text = "Informações pessoais :"
+        actorDetailLabel.text = ActorInfoStrings.actorDetailLabel.rawValue
         actorDetailLabel.textColor = .white
-        knownLabel.text = "Conhecido(a) por :"
+        knownLabel.text = ActorInfoStrings.knownLabel.rawValue
         knownLabel.textColor = .white
-        knownInfoLabel.textColor = UIColor(named: "TextColor")
-        genderLabel.text = "Gênero :"
+        knownInfoLabel.textColor = .textColor
+        genderLabel.text = ActorInfoStrings.genderLabel.rawValue
         genderLabel.textColor = .white
-        genderInfoLabel.textColor = UIColor(named: "TextColor")
-        birthLabel.text = "Nascimento :"
+        genderInfoLabel.textColor = .textColor
+        birthLabel.text = ActorInfoStrings.birthLabel.rawValue
         birthLabel.textColor = .white
-        birthInfoLabel.textColor = UIColor(named: "TextColor")
-        countryLabel.text = "Local de nascimento :"
+        birthInfoLabel.textColor = .textColor
+        countryLabel.text = ActorInfoStrings.countryLabel.rawValue
         countryLabel.textColor = .white
-        countryInfoLabel.textColor = UIColor(named: "TextColor")
-        socialMediaLabel.text = "Redes sociais"
+        countryInfoLabel.textColor = .textColor
+        socialMediaLabel.text = ActorInfoStrings.socialMediaLabel.rawValue
         socialMediaLabel.textColor = .white
         socialMediaCollectionView.backgroundColor = .clear
-        bottonLineView.backgroundColor = UIColor(named: "LineGray")
+        bottonLineView.backgroundColor = .lineGray
     }
     
     private func configureCollectionView() {

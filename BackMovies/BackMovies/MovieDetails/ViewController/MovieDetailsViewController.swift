@@ -75,8 +75,7 @@ class MovieDetailsViewController: UIViewController {
         detailTableView.register(MapTableViewCell.nib(), forCellReuseIdentifier: MapTableViewCell.identifier)
     }
     
-    @objc
-    func tappedBackButton() {
+    @objc func tappedBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
