@@ -53,10 +53,9 @@ class ActorDetailsViewModel {
     
     func getActorTopCell(width: CGFloat) -> CGFloat {
         let text = actorModel?.biography ?? ""
-        let font = UIFont.systemFont(ofSize: 15)
+        let font = UIFont.systemFont(ofSize: 14)
         let estimateHeight = text.heightWithConstrainedWidth(width: width, font: font)
-        debugPrint(estimateHeight)
-        return estimateHeight + 670
+        return estimateHeight + 640
     }
     
     var getActorInfoCell: CGFloat {

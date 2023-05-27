@@ -32,6 +32,10 @@ class ActorTopTableViewCell: UITableViewCell {
         setUpView()
     }
     
+    public var labelSize2: CGFloat {
+        bioContentLabel.frame.width
+    }
+    
     public func setUpCell(actor: ActorModel) {
         viewModel = ActorTopCellViewModel(actorDetail: actor)
         guard let url = URL(string: Api.posterPath + (viewModel?.getAtorImage ?? "")) else {return}

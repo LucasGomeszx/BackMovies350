@@ -25,6 +25,7 @@ class ActorDetailViewController: UIViewController {
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var actorTitleLabel: UILabel!
     @IBOutlet weak var actorTableView: UITableView!
+    @IBOutlet weak var backButton: UIImageView!
     
     var viewModel: ActorDetailsViewModel
     
@@ -50,6 +51,10 @@ class ActorDetailViewController: UIViewController {
         actorTitleLabel.textColor = .white
         actorTableView.backgroundColor = .backGray
         actorTableView.layer.cornerRadius = 15
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedBackButton))
+        backButton.tintColor = .white
+        backButton.addGestureRecognizer(gesture)
+        backButton.isUserInteractionEnabled = true
     }
     
     private func configureTableView() {
@@ -62,7 +67,7 @@ class ActorDetailViewController: UIViewController {
         actorTableView.register(ActorMoviesTableViewCell.nib(), forCellReuseIdentifier: ActorMoviesTableViewCell.identifier)
     }
     
-    @IBAction func tappedBackButton(_ sender: Any) {
+    @objc func tappedBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
