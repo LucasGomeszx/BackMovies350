@@ -18,6 +18,7 @@ enum ActorDetailStrings: String {
     case movieDetail = "MoviesDetailsView"
     case alertError = "Error"
     case alertActorError = "Nao foi possivel carregar detalhes do ator."
+    case actorMovieError = "Nao foi possivel carregar filmes do ator."
 }
 
 class ActorDetailViewController: UIViewController {
@@ -123,6 +124,10 @@ extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
             return MovieDetailsViewController(coder: coder, movieId: movieId)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+    }
+    
+    func didFetchActorMoviesFailure() {
+        Alert.showAlert(on: self, withTitle: ActorDetailStrings.alertError.rawValue, message: ActorDetailStrings.actorMovieError.rawValue, actions: nil)
     }
 }
 

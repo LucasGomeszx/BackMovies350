@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol ActorMoviesViewModelDelegate: AnyObject {
-    func suss()
+    func didFetchActorMoviesSucess()
+    func didFetchActorMoviesFailure()
 }
 
 class ActorMoviesViewModel {
@@ -39,18 +41,13 @@ class ActorMoviesViewModel {
     }
     
     public func fetchActorMovies() {
-        let net = NetworkRequest(endpointURL: Api.actorMovies(id: actorId ?? 0))
-        service.request(net) { (result: Result<ActorMovies, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.actorMovies = success
-                    self.delegate?.suss()
-                }
-            case .failure(let failure):
-                DispatchQueue.main.async {
-                    print(failure.localizedDescription)
-                }
+        AF.request(Api.actorMovies(id: actorId ?? 0), method: .get).validate().responseDecodable(of: ActorMovies.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.actorMovies = result
+                self.delegate?.didFetchActorMoviesSucess()
+            case .failure(_):
+                self.delegate?.didFetchActorMoviesFailure()
             }
         }
     }

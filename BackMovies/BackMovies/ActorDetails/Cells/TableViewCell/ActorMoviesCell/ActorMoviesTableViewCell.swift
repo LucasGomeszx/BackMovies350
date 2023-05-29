@@ -9,6 +9,11 @@ import UIKit
 
 protocol ActorMoviesTableViewCellDelegate: AnyObject {
     func navActorMovies(movieId: Int)
+    func didFetchActorMoviesFailure()
+}
+
+enum ActorMoviesSrrings: String {
+    case actorMovieTitle = "Conhecido(a) por :"
 }
 
 class ActorMoviesTableViewCell: UITableViewCell {
@@ -17,7 +22,7 @@ class ActorMoviesTableViewCell: UITableViewCell {
     @IBOutlet weak var actorMoviesTitle: UILabel!
     @IBOutlet weak var actorMoviesCollectionView: UICollectionView!
     
-    static let identifier: String = "ActorMoviesTableViewCell"
+    static let identifier: String = String(describing: ActorMoviesTableViewCell.self)
     
     weak var delegate: ActorMoviesTableViewCellDelegate?
     var viewModel: ActorMoviesViewModel = ActorMoviesViewModel()
@@ -40,7 +45,7 @@ class ActorMoviesTableViewCell: UITableViewCell {
     
     private func setUpView() {
         mainView.backgroundColor = .clear
-        actorMoviesTitle.text = "Conhecido(a) por :"
+        actorMoviesTitle.text = ActorMoviesSrrings.actorMovieTitle.rawValue
         actorMoviesTitle.textColor = .white
         actorMoviesCollectionView.backgroundColor = .clear
     }
@@ -85,8 +90,15 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
     
 }
 
+//MARK: - ActorMoviesTableViewCell
+
 extension ActorMoviesTableViewCell: ActorMoviesViewModelDelegate {
-    func suss() {
+    func didFetchActorMoviesSucess() {
         actorMoviesCollectionView.reloadData()
     }
+    
+    func didFetchActorMoviesFailure() {
+        
+    }
+
 }
