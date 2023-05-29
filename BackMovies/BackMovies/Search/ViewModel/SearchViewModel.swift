@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol SearchViewModelDelegate: AnyObject {
-    func suss()
+    func didFetchGenresSucess()
+    func didFetchGenresFailure()
 }
 
 class SearchViewModel {
     
     private var genresList: APIGenres?
-    private var service: Service = Service()
     private weak var delegate: SearchViewModelDelegate?
     
     public func setUpDelegate(delegate: SearchViewModelDelegate) {
@@ -22,21 +23,17 @@ class SearchViewModel {
     }
     
     public func fetchGenres() {
-        let net = NetworkRequest(endpointURL: Api.apiGenres)
-        service.request(net) { (result: Result<APIGenres, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.genresList = success
-                    self.delegate?.suss()
-                }
-            case .failure(let failure):
-                DispatchQueue.main.async {
-                    print(failure.localizedDescription)
-                }
+        AF.request(Api.apiGenres, method: .get).validate().responseDecodable(of: APIGenres.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.genresList = result
+                self.delegate?.didFetchGenresSucess()
+            case .failure(_):
+                self.delegate?.didFetchGenresFailure()
             }
         }
     }
+    
     var getGenresList: APIGenres {
         genresList ?? APIGenres()
     }

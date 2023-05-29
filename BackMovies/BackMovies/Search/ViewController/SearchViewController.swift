@@ -12,6 +12,13 @@ enum SearchTableViewSection: Int {
     case body
 }
 
+enum SearchStrings: String {
+    case titleLabel = "Busca"
+    case searchSelected = "SearchSelectedView"
+    case alertError = "Error"
+    case genresError = "Nao foi possivel carregar os Gêneros"
+}
+
 class SearchViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
@@ -32,8 +39,8 @@ class SearchViewController: UIViewController {
     private func setUpView() {
         mainView.backgroundColor = .black
         titleLabel.textColor = .white
-        titleLabel.text = "Busca"
-        searchTableView.backgroundColor = UIColor(named: "BackGray")
+        titleLabel.text = SearchStrings.titleLabel.rawValue
+        searchTableView.backgroundColor = .backGray
         searchTableView.layer.cornerRadius = 15
     }
     
@@ -51,6 +58,8 @@ class SearchViewController: UIViewController {
     }
     
 }
+
+//MARK: - UITableViewDelegate,UITableViewDataSource
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,8 +95,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - SearchViewModelDelegate
 
 extension SearchViewController: SearchViewModelDelegate {
-    func suss() {
+    func didFetchGenresSucess() {
         searchTableView.reloadData()
+    }
+    
+    func didFetchGenresFailure() {
+        Alert.showAlert(on: self, withTitle: SearchStrings.alertError.rawValue, message: SearchStrings.genresError.rawValue, actions: nil)
     }
 }
 
@@ -95,7 +108,7 @@ extension SearchViewController: SearchViewModelDelegate {
 
 extension SearchViewController: BodyTableViewCellDelegate {
     func navSearchSelected(genres: Genre) {
-        let vc: SearchSelectedViewController? = UIStoryboard(name: "SearchSelectedView", bundle: nil).instantiateViewController(identifier: "SearchSelectedView") { coder -> SearchSelectedViewController? in
+        let vc: SearchSelectedViewController? = UIStoryboard(name: SearchStrings.searchSelected.rawValue, bundle: nil).instantiateViewController(identifier: SearchStrings.searchSelected.rawValue) { coder -> SearchSelectedViewController? in
             return SearchSelectedViewController(coder: coder, code: 1, genres: genres)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
@@ -106,7 +119,7 @@ extension SearchViewController: BodyTableViewCellDelegate {
 
 extension SearchViewController: HeadTableViewCellDelegate {
     func navMovieButton() {
-        let vc: SearchSelectedViewController? = UIStoryboard(name: "SearchSelectedView", bundle: nil).instantiateViewController(identifier: "SearchSelectedView") { coder -> SearchSelectedViewController? in
+        let vc: SearchSelectedViewController? = UIStoryboard(name: SearchStrings.searchSelected.rawValue, bundle: nil).instantiateViewController(identifier: SearchStrings.searchSelected.rawValue) { coder -> SearchSelectedViewController? in
             return SearchSelectedViewController(coder: coder, code: 2, genres: nil)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
