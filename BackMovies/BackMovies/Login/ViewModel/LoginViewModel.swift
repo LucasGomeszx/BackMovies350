@@ -11,6 +11,8 @@ import Firebase
 protocol LoginViewModelDelegate: AnyObject {
     func didSignInSuccess()
     func didSignInFailure(error: String)
+    func startLottieView()
+    func stopLottieView()
 }
 
 class LoginViewModel {
@@ -24,12 +26,15 @@ class LoginViewModel {
     }
     
     func loginBackMovies() {
+        delegate?.startLottieView()
         guard let email = email,
               let password = password else {return}
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if error != nil {
+                self.delegate?.stopLottieView()
                 self.delegate?.didSignInFailure(error: error?.localizedDescription ?? "")
             }else {
+                self.delegate?.stopLottieView()
                 self.delegate?.didSignInSuccess()
             }
         }

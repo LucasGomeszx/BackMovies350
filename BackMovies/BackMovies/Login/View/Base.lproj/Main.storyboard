@@ -109,12 +109,17 @@
                                     <action selector="tappedGoogleButton:" destination="zyH-8A-OZY" eventType="touchUpInside" id="qbc-jU-gZ3"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwS-Ie-HZl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kqU-un-Pgs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bWv-CZ-OLB" firstAttribute="top" secondItem="rO3-FE-UT6" secondAttribute="top" id="1Ow-ld-xZD"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="T9O-Vi-6pX" secondAttribute="trailing" constant="45" id="4Jx-rL-G1y"/>
+                            <constraint firstItem="cwS-Ie-HZl" firstAttribute="trailing" secondItem="kqU-un-Pgs" secondAttribute="trailing" id="720-Dp-PZq"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="RUD-TX-Ope" secondAttribute="trailing" constant="26" id="CjM-L5-Y1N"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="bcw-lM-lx0" secondAttribute="trailing" constant="64" id="E5s-FT-OT0"/>
                             <constraint firstItem="bcw-lM-lx0" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="FeL-rq-muv"/>
@@ -126,12 +131,15 @@
                             <constraint firstItem="bWv-CZ-OLB" firstAttribute="trailing" secondItem="kqU-un-Pgs" secondAttribute="trailing" id="NYD-U2-pSy"/>
                             <constraint firstAttribute="bottom" secondItem="bWv-CZ-OLB" secondAttribute="bottom" id="Ndl-Xp-UPL"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="E1Z-cj-JRY" secondAttribute="trailing" constant="64" id="SuV-Lu-umC"/>
+                            <constraint firstItem="cwS-Ie-HZl" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" id="UoF-rY-8Tw"/>
                             <constraint firstItem="t4h-HP-tPa" firstAttribute="top" secondItem="dl8-RC-UIX" secondAttribute="bottom" constant="8" id="Zha-Ew-R8h"/>
+                            <constraint firstAttribute="bottom" secondItem="cwS-Ie-HZl" secondAttribute="bottom" id="ZmT-dd-77D"/>
                             <constraint firstItem="E1Z-cj-JRY" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="64" id="g9b-WV-TI2"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="t4h-HP-tPa" secondAttribute="trailing" constant="64" id="hbA-Bp-p8W"/>
                             <constraint firstItem="T9O-Vi-6pX" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="45" id="ie0-hM-vbI"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="trailing" secondItem="dl8-RC-UIX" secondAttribute="trailing" constant="64" id="nex-IO-Ob7"/>
                             <constraint firstItem="kqU-un-Pgs" firstAttribute="bottom" secondItem="E1Z-cj-JRY" secondAttribute="bottom" constant="16" id="qAd-wD-0Ki"/>
+                            <constraint firstItem="cwS-Ie-HZl" firstAttribute="top" secondItem="rO3-FE-UT6" secondAttribute="top" id="qk2-sk-APn"/>
                             <constraint firstItem="dl8-RC-UIX" firstAttribute="top" secondItem="RUD-TX-Ope" secondAttribute="bottom" constant="50" id="tcb-9l-Xaq"/>
                             <constraint firstItem="RUD-TX-Ope" firstAttribute="leading" secondItem="kqU-un-Pgs" secondAttribute="leading" constant="26" id="xO2-DF-0C4"/>
                             <constraint firstItem="bcw-lM-lx0" firstAttribute="top" secondItem="t4h-HP-tPa" secondAttribute="bottom" constant="8" id="z88-79-E53"/>
@@ -142,6 +150,7 @@
                         <outlet property="emailTextField" destination="jFC-w0-FMF" id="p2j-p7-yfR"/>
                         <outlet property="loginButton" destination="dl8-RC-UIX" id="ZYI-Q3-7yj"/>
                         <outlet property="loginGoolge" destination="E1Z-cj-JRY" id="TAN-Re-pA1"/>
+                        <outlet property="lottieBackView" destination="cwS-Ie-HZl" id="yg9-DI-lGR"/>
                         <outlet property="passwordTextField" destination="PKh-Qt-SYk" id="iCq-hF-Hke"/>
                         <outlet property="recoverLabel" destination="bcw-lM-lx0" id="4VX-W9-Sj6"/>
                         <outlet property="registerButton" destination="t4h-HP-tPa" id="dep-5w-vqk"/>
@@ -149,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBI-ha-6jk" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1568.3720930232557" y="71.459227467811161"/>
+            <point key="canvasLocation" x="1568.1159420289857" y="70.982142857142847"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QCY-hC-j1t">

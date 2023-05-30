@@ -23,6 +23,7 @@ enum LoginStrings: String {
     case alertEmailPasswordError = "Email ou senha invalidos."
     case alertEmailError = "Email invalido"
     case alertPasswordError = "Senhas deve conter no minimo 6 caracteres"
+    case lottieAnimation = "registerLoad"
 }
 
 class LoginViewController: UIViewController {
@@ -33,6 +34,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var recoverLabel: UILabel!
+    @IBOutlet weak var lottieBackView: UIView!
+    
+    let lottieView: LottieAnimationView = LottieAnimationView(name: LoginStrings.lottieAnimation.rawValue)
     
     var viewModel: LoginViewModel = LoginViewModel()
     
@@ -44,6 +48,9 @@ class LoginViewController: UIViewController {
     }
     
     func setUpView() {
+        lottieBackView.isHidden = true
+        lottieBackView.backgroundColor = .lottieBack
+        lottieView.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.setupDefaultTextField(placeholder: LoginStrings.emailPlaceholder.rawValue)
         emailTextField.keyboardType = .emailAddress
         passwordTextField.setupDefaultTextField(placeholder: LoginStrings.passwordPlaceholder.rawValue)
@@ -59,6 +66,25 @@ class LoginViewController: UIViewController {
     func setupTextFieldDelegate() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
+    }
+    
+    private func startLottieAnimation() {
+        lottieBackView.addSubview(lottieView)
+        NSLayoutConstraint.activate([
+            lottieView.widthAnchor.constraint(equalToConstant: 65),
+            lottieView.heightAnchor.constraint(equalToConstant: 65),
+            lottieView.centerXAnchor.constraint(equalTo: lottieBackView.centerXAnchor),
+            lottieView.centerYAnchor.constraint(equalTo: lottieBackView.centerYAnchor)
+        ])
+        lottieView.loopMode = .loop
+        lottieView.play()
+        lottieBackView.isHidden = false
+    }
+    
+    private func stopLottieAnimation() {
+        lottieView.stop()
+        lottieView.removeFromSuperview()
+        lottieBackView.isHidden = true
     }
     
     //MARK: - Navegacoes.
@@ -95,6 +121,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func tappedGoogleButton(_ sender: Any) {
+        self.startLottieAnimation()
+        
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
         // Create Google Sign In configuration object.
@@ -104,6 +132,7 @@ class LoginViewController: UIViewController {
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
             guard error == nil else {
+                self.stopLottieAnimation()
                 return
             }
             
@@ -118,8 +147,10 @@ class LoginViewController: UIViewController {
             
             Auth.auth().signIn(with: credential) { result, error in
                 if error != nil {
+                    self.stopLottieAnimation()
                     Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error?.localizedDescription, actions: nil)
                 }else {
+                    self.stopLottieAnimation()
                     self.naviHomeScreen()
                 }
             }
@@ -194,5 +225,13 @@ extension LoginViewController: LoginViewModelDelegate {
     
     func didSignInFailure(error: String) {
         Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error, actions: nil)
+    }
+    
+    func startLottieView() {
+        startLottieAnimation()
+    }
+    
+    func stopLottieView() {
+        stopLottieAnimation()
     }
 }
