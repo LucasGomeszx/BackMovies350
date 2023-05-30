@@ -20,7 +20,7 @@ enum SearchSelectedStrings: String {
 class SearchSelectedViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
-    @IBOutlet weak var backTappedButton: UIButton!
+    @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var movieSearch: UISearchBar!
@@ -59,6 +59,10 @@ class SearchSelectedViewController: UIViewController {
 
     private func configureView() {
         mainView.backgroundColor = .black
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(backTappedButton))
+        backImage.tintColor = .white
+        backImage.addGestureRecognizer(gesture)
+        backImage.isUserInteractionEnabled = true
         contentView.backgroundColor = .backGray
         contentView.layer.cornerRadius = 15
         titleLabel.textColor = .white
@@ -71,7 +75,7 @@ class SearchSelectedViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    @IBAction func backTappedButton(_ sender: Any) {
+    @objc func backTappedButton() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -114,6 +118,6 @@ extension SearchSelectedViewController: SearchSelectedViewModelDelegate {
     }
     
     func didFetchMoviesFailure() {
-        Alert.showAlert(on: self, withTitle: "", message: "", actions: nil)
+        Alert.showAlert(on: self, withTitle: SearchSelectedStrings.alertError.rawValue, message: SearchSelectedStrings.moviesError.rawValue, actions: nil)
     }
 }
