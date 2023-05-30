@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum FavoriteStrings: String {
+    case moviesDetail = "MoviesDetailsView"
+    case alertError = "Error"
+    case moviesError = "Não foi possível carregar os filmes."
+}
+
 class FavoriteViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
@@ -37,7 +43,7 @@ class FavoriteViewController: UIViewController {
     private func configureView() {
         mainView.backgroundColor = .black
         titleLabel.textColor = .white
-        favoriteCollectionView.backgroundColor = UIColor(named: "BackGray")
+        favoriteCollectionView.backgroundColor = .backGray
         favoriteCollectionView.layer.cornerRadius = 15
     }
     
@@ -48,6 +54,7 @@ class FavoriteViewController: UIViewController {
 }
 
 //MARK: - UICollectionView Delegate, DataSource
+
 extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -61,7 +68,7 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+        let vc: MovieDetailsViewController? = UIStoryboard(name: FavoriteStrings.moviesDetail.rawValue, bundle: nil).instantiateViewController(identifier: FavoriteStrings.moviesDetail.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
@@ -80,7 +87,11 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
 //MARK: - FavoriteViewModelDelegate
 
 extension FavoriteViewController: FavoriteViewModelDelegate {
-    func suss() {
+    func didFetchMoviesSuccess() {
         favoriteCollectionView.reloadData()
+    }
+    
+    func didFetchMoviesFailure() {
+        Alert.showAlert(on: self, withTitle: FavoriteStrings.alertError.rawValue, message: FavoriteStrings.moviesError.rawValue, actions: nil)
     }
 }

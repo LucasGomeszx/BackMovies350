@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol FavoriteViewModelDelegate: AnyObject {
-    func suss()
+    func didFetchMoviesSuccess()
+    func didFetchMoviesFailure()
 }
 
 class FavoriteViewModel {
     
     private var movieList: Movies?
-    private var service: Service = Service()
     private weak var delegate: FavoriteViewModelDelegate?
     
     var getMoviesCount: Int {
@@ -34,18 +35,13 @@ class FavoriteViewModel {
     }
     
     public func fetchMovies() {
-        let net = NetworkRequest(endpointURL: Api.popularMovies())
-        service.request(net) { (result: Result<Movies, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.movieList = success
-                    self.delegate?.suss()
-                }
-            case .failure(let failure):
-                DispatchQueue.main.async {
-                    print(failure.localizedDescription)
-                }
+        AF.request(Api.popularMovies(), method: .get).validate().responseDecodable(of: Movies.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.movieList = result
+                self.delegate?.didFetchMoviesSuccess()
+            case.failure(_):
+                self.delegate?.didFetchMoviesFailure()
             }
         }
     }
