@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
+import Lottie
 
 enum LoginStrings: String {
     case emailPlaceholder = "Digite seu email:"
@@ -92,7 +95,35 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func tappedGoogleButton(_ sender: Any) {
-        viewModel.loginGoogle(vc: self)
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+            guard error == nil else {
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString
+            else {
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: user.accessToken.tokenString)
+            
+            Auth.auth().signIn(with: credential) { result, error in
+                if error != nil {
+                    Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error?.localizedDescription, actions: nil)
+                }else {
+                    self.naviHomeScreen()
+                }
+            }
+        }
     }
     
     private func validateEmailTextField(_ textField: UITextField) {
@@ -157,20 +188,11 @@ extension LoginViewController: UITextFieldDelegate {
 //MARK: - LoginViewModelDelegate
 
 extension LoginViewController: LoginViewModelDelegate {
-    func didsignInSucess() {
+    func didSignInSuccess() {
         naviHomeScreen()
     }
     
-    func didsignInFailure(error: String) {
+    func didSignInFailure(error: String) {
         Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error, actions: nil)
     }
-    
-    func didSignInGoogleSucess() {
-        naviHomeScreen()
-    }
-    
-    func didSignInGoogleFailure(error: String) {
-        Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error, actions: nil)
-    }
-    
 }
