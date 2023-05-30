@@ -10,7 +10,6 @@ import Foundation
 class BodyViewModel {
     
     private var genresList: APIGenres?
-    private var service: Service = Service()
     
     var getGenresListCount: Int {
         genresList?.genres?.count ?? 0
