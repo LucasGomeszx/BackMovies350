@@ -12,7 +12,7 @@ class BodyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    static let identifier: String = "BodyCollectionViewCell"
+    static let identifier: String = String(describing: BodyCollectionViewCell.self)
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)

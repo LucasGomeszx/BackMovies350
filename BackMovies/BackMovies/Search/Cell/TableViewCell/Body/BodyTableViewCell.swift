@@ -15,7 +15,7 @@ class BodyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var searchCollectionView: UICollectionView!
     
-    static let identifier: String = "BodyTableViewCell"
+    static let identifier: String = String(describing: BodyTableViewCell.self)
 
     weak var delegate: BodyTableViewCellDelegate?
     private var viewModel: BodyViewModel = BodyViewModel()
