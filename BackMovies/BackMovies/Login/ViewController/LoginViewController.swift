@@ -26,7 +26,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginApple: UIButton!
     @IBOutlet weak var loginGoolge: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
@@ -48,7 +47,6 @@ class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         loginButton.layer.cornerRadius = 20
         registerButton.layer.cornerRadius = 20
-        loginApple.layer.cornerRadius = 20
         loginGoolge.layer.cornerRadius = 20
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedRecoverButton))
         recoverLabel.addGestureRecognizer(tapGesture)
