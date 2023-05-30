@@ -11,6 +11,12 @@ protocol SearchSelectedViewControllerDelegate: NSObject {
     func navMovieDetail()
 }
 
+enum SearchSelectedStrings: String {
+    case moviesDetail = "MoviesDetailsView"
+    case alertError = "Error"
+    case moviesError = "Nao foi possível carregar os filmes."
+}
+
 class SearchSelectedViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
@@ -53,11 +59,11 @@ class SearchSelectedViewController: UIViewController {
 
     private func configureView() {
         mainView.backgroundColor = .black
-        contentView.backgroundColor = UIColor(named: "BackGray")
+        contentView.backgroundColor = .backGray
         contentView.layer.cornerRadius = 15
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        movieSearch.barTintColor = UIColor(named: "BackGray")
+        movieSearch.barTintColor = .backGray
         moviesCollectionView.backgroundColor = .clear
     }
     
@@ -85,7 +91,7 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: "MoviesDetailsView", bundle: nil).instantiateViewController(identifier: "MoviesDetailsView") { coder -> MovieDetailsViewController? in
+        let vc: MovieDetailsViewController? = UIStoryboard(name: SearchSelectedStrings.moviesDetail.rawValue, bundle: nil).instantiateViewController(identifier: SearchSelectedStrings.moviesDetail.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
@@ -102,9 +108,12 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
 }
 
 extension SearchSelectedViewController: SearchSelectedViewModelDelegate {
-    func suss() {
+    func didFetchMoviesSuccess() {
         moviesCollectionView.reloadData()
         titleLabel.text = viewModel.getMainTitleLabel()
     }
     
+    func didFetchMoviesFailure() {
+        Alert.showAlert(on: self, withTitle: "", message: "", actions: nil)
+    }
 }

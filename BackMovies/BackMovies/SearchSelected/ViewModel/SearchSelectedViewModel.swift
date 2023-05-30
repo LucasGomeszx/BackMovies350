@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol SearchSelectedViewModelDelegate: AnyObject {
-    func suss()
+    func didFetchMoviesSuccess()
+    func didFetchMoviesFailure()
 }
 
 class SearchSelectedViewModel {
     
-    private var service: Service = Service()
     private var genresMovies: Genre?
     private var popularMovies: String?
     private var movieList: Movies?
@@ -63,28 +64,24 @@ class SearchSelectedViewModel {
     public func fetchMovies() {
         switch code {
         case 1:
-            let net = NetworkRequest(endpointURL: Api.genresMovies(id: genresMovies?.id ?? 0))
+           guard let net = URL(string: Api.genresMovies(id: genresMovies?.id ?? 0)) else { return }
             service(link: net)
         case 2:
-            let net = NetworkRequest(endpointURL: popularMovies ?? "")
+            guard let net = URL(string: popularMovies ?? "") else { return }
             service(link: net)
         default:
             break
         }
     }
     
-    private func service(link: NetworkRequest) {
-        service.request(link) { (result: Result<Movies, NetworkError>) in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    self.movieList = success
-                    self.delegate?.suss()
-                }
-            case .failure(let failure):
-                DispatchQueue.main.async {
-                    print(failure.localizedDescription)
-                }
+    private func service(link: URL) {
+        AF.request(link, method: .get).validate().responseDecodable(of: Movies.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.movieList = result
+                self.delegate?.didFetchMoviesSuccess()
+            case .failure(_):
+                self.delegate?.didFetchMoviesFailure()
             }
         }
     }
