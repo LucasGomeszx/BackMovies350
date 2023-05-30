@@ -78,9 +78,15 @@ class LoginViewController: UIViewController {
     //MARK: - Validacoes.
     
     @IBAction func tappedLoginButton(_ sender: Any) {
-        if viewModel.isFormValid() && emailTextField.hasText && passwordTextField.hasText {
-            viewModel.loginBackMovies()
-        }else {
+        if emailTextField.hasText && passwordTextField.hasText {
+            guard let email = emailTextField.text else {return}
+            guard let password = passwordTextField.text else {return}
+            if viewModel.isValidEmail(email: email) && viewModel.isValidPassword(password: password) {
+                viewModel.loginBackMovies()
+            }else {
+                Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: LoginStrings.alertEmailPasswordError.rawValue, actions: nil)
+            }
+        } else {
             Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: LoginStrings.alertEmailPasswordError.rawValue, actions: nil)
         }
     }
