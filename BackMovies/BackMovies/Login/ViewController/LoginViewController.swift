@@ -111,6 +111,8 @@ class LoginViewController: UIViewController {
             guard let email = emailTextField.text else {return}
             guard let password = passwordTextField.text else {return}
             if viewModel.isValidEmail(email: email) && viewModel.isValidPassword(password: password) {
+                emailTextField.text = ""
+                passwordTextField.text = ""
                 viewModel.loginBackMovies()
             }else {
                 Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: LoginStrings.alertEmailPasswordError.rawValue, actions: nil)
