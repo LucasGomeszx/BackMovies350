@@ -43,6 +43,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        configureNavigation()
         setupTextFieldDelegate()
         viewModel.setupDelegate(delegate: self)
     }
@@ -59,6 +60,7 @@ class LoginViewController: UIViewController {
         registerButton.layer.cornerRadius = 20
         loginGoolge.layer.cornerRadius = 20
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedRecoverButton))
+        recoverLabel.textColor = .white
         recoverLabel.addGestureRecognizer(tapGesture)
         recoverLabel.isUserInteractionEnabled = true
     }
@@ -66,6 +68,10 @@ class LoginViewController: UIViewController {
     func setupTextFieldDelegate() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
+    }
+    
+    func configureNavigation() {
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func startLottieAnimation() {
