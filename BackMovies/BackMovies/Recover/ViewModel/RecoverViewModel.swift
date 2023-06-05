@@ -11,6 +11,8 @@ import Firebase
 protocol RecoverViewModelDelegate: AnyObject {
     func didSendEmailSucess()
     func didSendEmailFailure(error: String)
+    func startLottieView()
+    func stopLottieView()
 }
 
 class RecoverViewModel {
@@ -24,11 +26,14 @@ class RecoverViewModel {
     }
     
     func sendPasswordReset() {
+        delegate?.startLottieView()
         guard let email = email else {return}
         auth.sendPasswordReset(withEmail: email) { error in
           if error != nil {
+              self.delegate?.stopLottieView()
               self.delegate?.didSendEmailFailure(error: error?.localizedDescription ?? "")
           } else {
+              self.delegate?.stopLottieView()
               self.delegate?.didSendEmailSucess()
           }
         }

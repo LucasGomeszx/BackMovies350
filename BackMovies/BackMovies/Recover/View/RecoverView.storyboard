@@ -3,7 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -71,6 +71,10 @@
                                     <action selector="handleRecoverButtonTap:" destination="A7t-vS-G4a" eventType="touchUpInside" id="drR-Qt-Buf"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppR-Eb-pfL">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="j5s-wn-c2d"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -80,11 +84,15 @@
                             <constraint firstItem="FQP-Vg-70z" firstAttribute="leading" secondItem="j5s-wn-c2d" secondAttribute="leading" constant="64" id="3lt-eZ-gvm"/>
                             <constraint firstItem="IF8-OP-zok" firstAttribute="top" secondItem="K9K-UC-kSc" secondAttribute="top" id="5ZE-Xp-muX"/>
                             <constraint firstAttribute="trailing" secondItem="IF8-OP-zok" secondAttribute="trailing" id="7ei-aW-DcI"/>
+                            <constraint firstAttribute="bottom" secondItem="ppR-Eb-pfL" secondAttribute="bottom" id="9pH-3m-WB6"/>
                             <constraint firstItem="yy0-gI-vvN" firstAttribute="top" secondItem="j5s-wn-c2d" secondAttribute="top" constant="25" id="D2f-5o-9ny"/>
                             <constraint firstItem="IF8-OP-zok" firstAttribute="leading" secondItem="K9K-UC-kSc" secondAttribute="leading" id="DpX-Pc-7pu"/>
                             <constraint firstItem="16I-73-k8T" firstAttribute="leading" secondItem="j5s-wn-c2d" secondAttribute="leading" constant="26" id="MA8-qh-xyg"/>
                             <constraint firstItem="e7q-Q6-tti" firstAttribute="centerY" secondItem="yy0-gI-vvN" secondAttribute="centerY" id="QQF-Yg-tGp"/>
                             <constraint firstItem="j5s-wn-c2d" firstAttribute="trailing" secondItem="16I-73-k8T" secondAttribute="trailing" constant="26" id="VwN-dL-p5r"/>
+                            <constraint firstItem="ppR-Eb-pfL" firstAttribute="top" secondItem="K9K-UC-kSc" secondAttribute="top" id="Z6I-pn-whB"/>
+                            <constraint firstItem="ppR-Eb-pfL" firstAttribute="trailing" secondItem="j5s-wn-c2d" secondAttribute="trailing" id="aud-4O-sdW"/>
+                            <constraint firstItem="ppR-Eb-pfL" firstAttribute="leading" secondItem="j5s-wn-c2d" secondAttribute="leading" id="dse-nN-Khe"/>
                             <constraint firstItem="j5s-wn-c2d" firstAttribute="bottom" secondItem="FQP-Vg-70z" secondAttribute="bottom" constant="46.5" id="epp-Ko-c3D"/>
                             <constraint firstItem="e7q-Q6-tti" firstAttribute="leading" secondItem="K9K-UC-kSc" secondAttribute="leading" constant="26" id="jyp-rP-oeC"/>
                             <constraint firstItem="j5s-wn-c2d" firstAttribute="trailing" secondItem="FQP-Vg-70z" secondAttribute="trailing" constant="64" id="p8T-9Z-OMy"/>
@@ -95,13 +103,14 @@
                         <outlet property="backImageView" destination="e7q-Q6-tti" id="ls6-hg-fYj"/>
                         <outlet property="emailTextField" destination="MsY-dx-2q9" id="XIa-ew-cGg"/>
                         <outlet property="loginProblemLabel" destination="Od5-hX-QyV" id="w4u-UJ-vSa"/>
+                        <outlet property="lottieBackView" destination="ppR-Eb-pfL" id="Iuu-5E-T42"/>
                         <outlet property="recoverButton" destination="FQP-Vg-70z" id="F6b-JX-ffc"/>
                         <outlet property="recoverLabel" destination="HvM-Dl-pG1" id="fT5-db-G4B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kx-NQ-q4R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1509.5999999999999" y="-4.0479760119940034"/>
+            <point key="canvasLocation" x="1509.2307692307693" y="-4.2654028436018958"/>
         </scene>
     </scenes>
     <resources>

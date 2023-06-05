@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 enum RecoverStrings: String {
     case loginProblemLabel = "Problemas para entrar?"
@@ -25,10 +26,12 @@ class RecoverViewController: UIViewController {
     @IBOutlet weak var recoverLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var recoverButton: UIButton!
+    @IBOutlet weak var lottieBackView: UIView!
     
     // MARK: - Properties
     
     private var viewModel: RecoverViewModel = RecoverViewModel()
+    let lottieView: LottieAnimationView = LottieAnimationView(name: RegisterStrings.lottieAnimation.rawValue)
     
     // MARK: - Lifecycle
     
@@ -61,6 +64,8 @@ class RecoverViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleBackImageViewTap))
         backImageView.addGestureRecognizer(tapGesture)
         backImageView.isUserInteractionEnabled = true
+        lottieBackView.backgroundColor = .lottieBack
+        lottieView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func validateEmailTextField(_ textField: UITextField) {
@@ -75,6 +80,25 @@ class RecoverViewController: UIViewController {
             textField.layer.borderColor = UIColor.red.cgColor
             Alert.showAlert(on: self, withTitle: RecoverStrings.errorAlert.rawValue, message: RecoverStrings.invalidEmailAlert.rawValue, actions: nil)
         }
+    }
+    
+    private func startLottieAnimation() {
+        lottieBackView.addSubview(lottieView)
+        NSLayoutConstraint.activate([
+            lottieView.widthAnchor.constraint(equalToConstant: 65),
+            lottieView.heightAnchor.constraint(equalToConstant: 65),
+            lottieView.centerXAnchor.constraint(equalTo: lottieBackView.centerXAnchor),
+            lottieView.centerYAnchor.constraint(equalTo: lottieBackView.centerYAnchor)
+        ])
+        lottieView.loopMode = .loop
+        lottieView.play()
+        lottieBackView.isHidden = false
+    }
+    
+    private func stopLottieAnimation() {
+        lottieView.stop()
+        lottieView.removeFromSuperview()
+        lottieBackView.isHidden = true
     }
     
     // MARK: - Actions
@@ -123,6 +147,7 @@ extension RecoverViewController: UITextFieldDelegate {
 
 extension RecoverViewController: RecoverViewModelDelegate {
     func didSendEmailSucess() {
+        emailTextField.text = ""
         Alert.showAlert(on: self, withTitle: RecoverStrings.registerAlert.rawValue, message: RecoverStrings.sendEmailAlert.rawValue, actions: nil)
     }
     
@@ -130,4 +155,11 @@ extension RecoverViewController: RecoverViewModelDelegate {
         Alert.showAlert(on: self, withTitle: RegisterStrings.errorAlert.rawValue, message: error, actions: nil)
     }
     
+    func startLottieView() {
+        startLottieAnimation()
+    }
+    
+    func stopLottieView() {
+        stopLottieAnimation()
+    }
 }
