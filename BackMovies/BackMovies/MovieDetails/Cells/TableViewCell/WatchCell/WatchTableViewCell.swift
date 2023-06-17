@@ -38,6 +38,7 @@ class WatchTableViewCell: UITableViewCell {
     
     public func setUpCell(movieDetail: MovieDetail) {
         viewModel.setUpViewModel(movieDetail: movieDetail)
+        viewModel.fetchWatchProviders()
     }
     
     private func setUpView() {
