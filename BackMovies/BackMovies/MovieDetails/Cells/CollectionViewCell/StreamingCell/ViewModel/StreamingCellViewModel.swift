@@ -9,6 +9,10 @@ import Foundation
 
 class StreamingCellViewModel {
     
+    let provider: Flatrate
     
+    init(provider: Flatrate) {
+        self.provider = provider
+    }
     
 }

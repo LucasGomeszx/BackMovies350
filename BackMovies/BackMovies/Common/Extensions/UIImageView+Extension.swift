@@ -21,7 +21,7 @@ extension UIImageView {
         self.image = placeholder
         
         if let cachedImage = ImageCache.shared.getImage(forKey: url.absoluteString) {
-//            self.image = cachedImage
+            self.image = cachedImage
             completionHandler?(.success(cachedImage))
             return
         }
@@ -34,7 +34,7 @@ extension UIImageView {
                     return
                 }
                 ImageCache.shared.setImage(image: image, forKey: url.absoluteString)
-//                self.image = image
+                self.image = image
                 completionHandler?(.success(image))
             }
         }.resume()

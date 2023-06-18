@@ -13,7 +13,7 @@ class StreamingCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = String(describing: StreamingCollectionViewCell.self)
     
-    var viewModel: StreamingCellViewModel = StreamingCellViewModel()
+    private var viewModel: StreamingCellViewModel?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -22,6 +22,12 @@ class StreamingCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    }
+    
+    public func setupCell(provider: Flatrate) {
+        viewModel = StreamingCellViewModel(provider: provider)
+        guard let url = URL(string: Api.posterPath + (provider.logoPath ?? "")) else {return}
+        logoImage.loadImageFromURL(url)
     }
 
 }

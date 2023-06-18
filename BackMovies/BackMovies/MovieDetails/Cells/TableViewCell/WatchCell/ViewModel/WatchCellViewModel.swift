@@ -8,13 +8,20 @@
 import Foundation
 import Alamofire
 
+protocol WatchCellViewModelProtocol: AnyObject {
+    func didFetchProviderSuccess()
+    func didFetchProviderFailure()
+}
+
 class WatchCellViewModel {
     
     private var movieDetail: MovieDetail?
     private var providerList: WatchProviders?
+    private weak var delegate: WatchCellViewModelProtocol?
     
-    public func setUpViewModel(movieDetail: MovieDetail) {
+    public func setUpViewModel(movieDetail: MovieDetail, delegate: WatchCellViewModelProtocol) {
         self.movieDetail = movieDetail
+        self.delegate = delegate
     }
     
     public func fetchWatchProviders() {
@@ -22,15 +29,19 @@ class WatchCellViewModel {
             switch response.result {
             case .success(let result):
                 self.providerList = result
-                print(result)
-            case .failure(let error):
-                print(error)
+                self.delegate?.didFetchProviderSuccess()
+            case .failure(_):
+                self.delegate?.didFetchProviderFailure()
             }
         }
     }
     
+    func getProvider(index: Int) -> Flatrate {
+        providerList?.results?.br?.flatrate?[index] ?? Flatrate()
+    }
+    
     var getProviderCount: Int {
-        5
+        providerList?.results?.br?.flatrate?.count ?? 0
     }
     
     var getSize: CGSize {

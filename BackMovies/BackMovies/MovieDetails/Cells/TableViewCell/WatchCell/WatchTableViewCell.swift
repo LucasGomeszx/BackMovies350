@@ -37,7 +37,7 @@ class WatchTableViewCell: UITableViewCell {
     }
     
     public func setUpCell(movieDetail: MovieDetail) {
-        viewModel.setUpViewModel(movieDetail: movieDetail)
+        viewModel.setUpViewModel(movieDetail: movieDetail, delegate: self)
         viewModel.fetchWatchProviders()
     }
     
@@ -73,6 +73,7 @@ extension WatchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamingCollectionViewCell.identifier, for: indexPath) as? StreamingCollectionViewCell
+        cell?.setupCell(provider: viewModel.getProvider(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
@@ -82,6 +83,17 @@ extension WatchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+    }
+    
+}
+
+extension WatchTableViewCell: WatchCellViewModelProtocol {
+    func didFetchProviderSuccess() {
+        watchCollectionView.reloadData()
+    }
+    
+    func didFetchProviderFailure() {
+        
     }
     
 }
