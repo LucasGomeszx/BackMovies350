@@ -39,6 +39,10 @@ class MovieDetailViewModel {
         }
     }
     
+    var getMovieName: String {
+        movieDetail?.title ?? ""
+    }
+    
     var getTableViewCellCount: Int {
         6
     }
@@ -76,6 +80,17 @@ class MovieDetailViewModel {
     
     var getMovieId: Int {
         movieId
+    }
+    
+    func searchMovieOnYouTube() {
+        let movieName = getMovieName
+        let baseURLString = "https://www.youtube.com/results"
+        let query = movieName.replacingOccurrences(of: " ", with: "+")
+        
+        if let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: "\(baseURLString)?search_query=\(encodedQuery)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
 }

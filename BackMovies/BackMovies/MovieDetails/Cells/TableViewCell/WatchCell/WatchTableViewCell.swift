@@ -9,6 +9,7 @@ import UIKit
 
 protocol WatchCellStringsProtocol: AnyObject {
     func didFetchProviderFailure()
+    func tappedYoutubeImage()
 }
 
 enum WatchCellStrings: String {
@@ -51,9 +52,12 @@ class WatchTableViewCell: UITableViewCell {
         collectionViewLabel.text = WatchCellStrings.whereWatch.rawValue
         collectionViewLabel.textColor = .white
         watchCollectionView.backgroundColor = .clear
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedYoutubeImage))
         youtubeLabel.text = WatchCellStrings.movieVideos.rawValue
         youtubeLabel.textColor = .white
         youtubeImage.image = UIImage(named: WatchCellStrings.youtubeImage.rawValue)
+        youtubeImage.addGestureRecognizer(gesture)
+        youtubeImage.isUserInteractionEnabled = true
         lineView.backgroundColor = .lineGray
     }
     
@@ -66,6 +70,10 @@ class WatchTableViewCell: UITableViewCell {
         }
         watchCollectionView.register(StreamingCollectionViewCell.nib(), forCellWithReuseIdentifier: StreamingCollectionViewCell.identifier)
         watchCollectionView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.identifier)
+    }
+    
+    @objc func tappedYoutubeImage() {
+        delegate?.tappedYoutubeImage()
     }
 
 }
@@ -110,7 +118,7 @@ extension WatchTableViewCell: WatchCellViewModelProtocol {
     }
     
     func didFetchProviderFailure() {
-        
+        delegate?.didFetchProviderFailure()
     }
     
 }

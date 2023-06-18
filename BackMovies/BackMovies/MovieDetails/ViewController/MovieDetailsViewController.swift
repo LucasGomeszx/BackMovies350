@@ -192,4 +192,9 @@ extension MovieDetailsViewController: WatchCellStringsProtocol {
     func didFetchProviderFailure() {
         Alert.showAlert(on: self, withTitle: MovieDetailString.alertError.rawValue, message: MovieDetailString.providerError.rawValue, actions: nil)
     }
+    
+    func tappedYoutubeImage() {
+        viewModel.searchMovieOnYouTube()
+    }
+    
 }
