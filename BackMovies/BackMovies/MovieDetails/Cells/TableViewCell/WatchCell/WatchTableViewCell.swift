@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol WatchCellStringsProtocol: AnyObject {
+    func didFetchProviderFailure()
+}
+
 enum WatchCellStrings: String {
     case whereWatch = "Onde assistir ?"
     case movieVideos = "Que tal videos sobre o filme ?"
@@ -23,7 +27,7 @@ class WatchTableViewCell: UITableViewCell {
     @IBOutlet weak var lineView: UIView!
     
     static let identifier: String = String(describing: WatchTableViewCell.self)
-    
+    private weak var delegate: WatchCellStringsProtocol?
     var viewModel: WatchCellViewModel = WatchCellViewModel()
     
     static func nib() -> UINib {
@@ -36,7 +40,8 @@ class WatchTableViewCell: UITableViewCell {
         configureCollection()
     }
     
-    public func setUpCell(movieDetail: MovieDetail) {
+    public func setUpCell(movieDetail: MovieDetail, delegate: WatchCellStringsProtocol) {
+        self.delegate = delegate
         viewModel.setUpViewModel(movieDetail: movieDetail, delegate: self)
         viewModel.fetchWatchProviders()
     }
@@ -60,6 +65,7 @@ class WatchTableViewCell: UITableViewCell {
             layout.estimatedItemSize = .zero
         }
         watchCollectionView.register(StreamingCollectionViewCell.nib(), forCellWithReuseIdentifier: StreamingCollectionViewCell.identifier)
+        watchCollectionView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.identifier)
     }
 
 }
@@ -72,13 +78,24 @@ extension WatchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamingCollectionViewCell.identifier, for: indexPath) as? StreamingCollectionViewCell
-        cell?.setupCell(provider: viewModel.getProvider(index: indexPath.row))
-        return cell ?? UICollectionViewCell()
+        switch viewModel.isEmpty {
+        case true:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCollectionViewCell.identifier, for: indexPath) as? EmptyCollectionViewCell
+            return cell ?? UICollectionViewCell()
+        case false:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamingCollectionViewCell.identifier, for: indexPath) as? StreamingCollectionViewCell
+            cell?.setupCell(provider: viewModel.getProvider(index: indexPath.row))
+            return cell ?? UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel.getSize
+        switch viewModel.isEmpty {
+        case true:
+            return viewModel.getEmptyCellSize
+        case false:
+            return viewModel.getProviderCellSize
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -55,7 +55,7 @@ class MovieDetailViewModel {
     }
     
     var getWatchCellSize: CGFloat {
-        220
+        250
     }
     
     var getActorCellSize: CGFloat {

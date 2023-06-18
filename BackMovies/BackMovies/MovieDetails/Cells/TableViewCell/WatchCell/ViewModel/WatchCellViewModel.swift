@@ -41,11 +41,27 @@ class WatchCellViewModel {
     }
     
     var getProviderCount: Int {
-        providerList?.results?.br?.flatrate?.count ?? 0
+        if providerList?.results?.br?.flatrate?.count == nil {
+            return 1
+        }else {
+            return providerList?.results?.br?.flatrate?.count ?? 0
+        }
     }
     
-    var getSize: CGSize {
-        CGSize(width: 50, height: 50)
+    var isEmpty: Bool {
+        if providerList?.results?.br?.flatrate?.count == nil {
+            return true
+        }else {
+            return false
+        }
+    }
+    
+    var getProviderCellSize: CGSize {
+        CGSize(width: 70, height: 70)
+    }
+    
+    var getEmptyCellSize: CGSize {
+        CGSize(width: 200, height: 60)
     }
     
 }

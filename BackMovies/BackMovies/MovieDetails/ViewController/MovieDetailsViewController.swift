@@ -22,7 +22,8 @@ enum MovieDetailString: String {
     case movieDatailView = "MoviesDetailsView"
     case alertError = "Error"
     case actorError = "Nao foi possivel carregar o elenco."
-    case similarMoviesError = "Nao foi possivel carregar filmes similares."
+    case providerError = "Não foi possível carregar provedores."
+    case similarMoviesError = "Nao foi possível carregar filmes similares."
 }
 
 class MovieDetailsViewController: UIViewController {
@@ -100,7 +101,8 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return cell ?? UITableViewCell()
         case .watchCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: WatchTableViewCell.identifier, for: indexPath) as? WatchTableViewCell
-            cell?.setUpCell(movieDetail: viewModel.getMovieDetail)
+            cell?.setUpCell(movieDetail: viewModel.getMovieDetail, delegate: self
+            )
             return cell ?? UITableViewCell()
         case .actorsCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTableViewCell.identifier, for: indexPath) as? ActorTableViewCell
@@ -157,7 +159,7 @@ extension MovieDetailsViewController: ActorTableViewCellDelegate {
     }
 }
 
-//MARK: - ActorTableViewCellDelegate
+//MARK: - RelatedTableViewCellDelegate
 
 extension MovieDetailsViewController: RelatedTableViewCellDelegate {
     func navRelatedMovies(movieId: Int) {
@@ -173,7 +175,7 @@ extension MovieDetailsViewController: RelatedTableViewCellDelegate {
     
 }
 
-//MARK: - ViewModelDelegate
+//MARK: - MovieDetailViewModelDelegate
 
 extension MovieDetailsViewController: MovieDetailViewModelDelegate {
     func fetchMovieDetailSuccess() {
@@ -184,4 +186,10 @@ extension MovieDetailsViewController: MovieDetailViewModelDelegate {
         Alert.showAlert(on: self, withTitle: MovieDetailString.alertError.rawValue, message: error, actions: nil)
     }
     
+}
+
+extension MovieDetailsViewController: WatchCellStringsProtocol {
+    func didFetchProviderFailure() {
+        Alert.showAlert(on: self, withTitle: MovieDetailString.alertError.rawValue, message: MovieDetailString.providerError.rawValue, actions: nil)
+    }
 }
