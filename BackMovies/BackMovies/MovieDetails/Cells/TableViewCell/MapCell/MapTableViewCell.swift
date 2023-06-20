@@ -10,6 +10,7 @@ import MapKit
 
 enum MapStrings: String {
     case mapLabel = "Que tal um cineminha?"
+    case mapSearch = "cinema"
 }
 
 class MapTableViewCell: UITableViewCell {
@@ -45,7 +46,7 @@ class MapTableViewCell: UITableViewCell {
     
     private func searchNearbyCinemas(userLocation: CLLocation) {
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = "cinema"
+        request.naturalLanguageQuery = MapStrings.mapSearch.rawValue
         request.region = movieMap.region
         
         let search = MKLocalSearch(request: request)
@@ -72,17 +73,11 @@ extension MapTableViewCell: CLLocationManagerDelegate {
         let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
         movieMap.setRegion(region, animated: false)
         searchNearbyCinemas(userLocation: userLocation)
-        
         locationManager.stopUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Erro ao obter a localização do usuário: \(error.localizedDescription)")
     }
 }
 
 extension MapTableViewCell: MKMapViewDelegate {
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation, let title = annotation.title {
             let placemark = MKPlacemark(coordinate: annotation.coordinate)
