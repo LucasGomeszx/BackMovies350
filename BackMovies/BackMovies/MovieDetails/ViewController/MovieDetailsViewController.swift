@@ -101,8 +101,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return cell ?? UITableViewCell()
         case .watchCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: WatchTableViewCell.identifier, for: indexPath) as? WatchTableViewCell
-            cell?.setUpCell(movieDetail: viewModel.getMovieDetail, delegate: self
-            )
+            cell?.setUpCell(movieDetail: viewModel.getMovieDetail, delegate: self)
             return cell ?? UITableViewCell()
         case .actorsCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTableViewCell.identifier, for: indexPath) as? ActorTableViewCell

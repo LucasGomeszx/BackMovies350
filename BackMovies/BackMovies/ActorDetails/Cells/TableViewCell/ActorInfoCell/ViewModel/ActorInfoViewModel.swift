@@ -11,13 +11,19 @@ class ActorInfoViewModel {
     
     private var actorDetail: ActorModel
     private var socialMedia: [String] = ["Insta", "Face"]
+    private let defauldReturn: String = "indisponível"
     
     init(actorDetail: ActorModel) {
         self.actorDetail = actorDetail
     }
     
     var getActorWork: String {
-        actorDetail.knownForDepartment ?? ""
+        guard let work = actorDetail.knownForDepartment else {return defauldReturn}
+        if work == "" {
+            return defauldReturn
+        }else {
+            return work
+        }
     }
     
     var getActorGender: String {
@@ -29,11 +35,21 @@ class ActorInfoViewModel {
     }
     
     var getActorBirthday: String {
-        actorDetail.birthday ?? ""
+        guard let bir = actorDetail.birthday else {return defauldReturn}
+        if bir == "" {
+            return defauldReturn
+        }else {
+            return bir
+        }
     }
     
     var getActorPlaceOfBirth: String {
-        actorDetail.placeOfBirth ?? ""
+        guard let place = actorDetail.placeOfBirth else {return defauldReturn}
+        if place == "" {
+            return defauldReturn
+        }else {
+            return place
+        }
     }
     
     var getSociaMediaCount: Int {
