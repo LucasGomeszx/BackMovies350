@@ -40,7 +40,7 @@ class ActorInfoTableViewCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpView()
@@ -87,6 +87,7 @@ class ActorInfoTableViewCell: UITableViewCell {
             layout.estimatedItemSize = .zero
         }
         socialMediaCollectionView.register(SocialMediaCollectionViewCell.nib(), forCellWithReuseIdentifier: SocialMediaCollectionViewCell.identifier)
+        socialMediaCollectionView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.identifier)
     }
     
 }
@@ -99,13 +100,26 @@ extension ActorInfoTableViewCell: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SocialMediaCollectionViewCell.identifier, for: indexPath) as? SocialMediaCollectionViewCell
-        cell?.setupCell(socialMedia: viewModel.getSocialMedia(index: indexPath.row))
-        return cell ?? UICollectionViewCell()
+        if viewModel.isNill{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCollectionViewCell.identifier, for: indexPath) as? EmptyCollectionViewCell
+            return cell ?? UICollectionViewCell()
+        }else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SocialMediaCollectionViewCell.identifier, for: indexPath) as? SocialMediaCollectionViewCell
+            cell?.setupCell(socialMedia: viewModel.getSocialMedia(index: indexPath.row))
+            return cell ?? UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.navegationSocialMedia(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel.getSocialMediaCellSize
+        if viewModel.isNill{
+            return viewModel.getEmptyCellSize
+        }else {
+            return viewModel.getSocialMediaCellSize
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

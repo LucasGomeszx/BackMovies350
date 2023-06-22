@@ -11,7 +11,7 @@ class SocialMediaCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var socialMediaImageView: UIImageView!
     
-    static let identifier: String = "SocialMediaCollectionViewCell"
+    static let identifier: String = String(describing: SocialMediaCollectionViewCell.self)
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -21,12 +21,12 @@ class SocialMediaCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
     }
     
     func setupCell(socialMedia: SocialMedia) {
         viewModel = SocialMediaViewModel(socialMedia: socialMedia)
         socialMediaImageView.image = UIImage(named: viewModel?.getSocialMediaImage ?? "")
-        
     }
 
 }

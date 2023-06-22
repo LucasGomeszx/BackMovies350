@@ -60,5 +60,17 @@ struct Api {
     static func youtubeLink() -> String {
         "https://www.youtube.com/results"
     }
+    
+    static var facebookLink: String {
+        "https://www.facebook.com/"
+    }
+    
+    static var instagramLink: String {
+        "https://www.instagram.com/"
+    }
+    
+    static var twitterLink: String {
+        "https://twitter.com/"
+    }
 
 }

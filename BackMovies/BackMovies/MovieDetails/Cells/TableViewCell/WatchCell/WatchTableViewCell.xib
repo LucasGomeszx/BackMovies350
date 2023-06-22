@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1Ie-cD-mWW">
-                                <rect key="frame" x="16" y="53" width="288" height="70"/>
+                                <rect key="frame" x="16" y="45" width="288" height="70"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="UoJ-9p-F8l"/>
@@ -41,20 +41,20 @@
                                 </collectionViewFlowLayout>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjs-Su-VCy">
-                                <rect key="frame" x="16.000000000000004" y="139" width="44.333333333333343" height="21"/>
+                                <rect key="frame" x="16.000000000000004" y="131" width="44.333333333333343" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youtube" translatesAutoresizingMaskIntoConstraints="NO" id="NcT-9s-ekh">
-                                <rect key="frame" x="16" y="176" width="64" height="44"/>
+                                <rect key="frame" x="16" y="168" width="64" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="H0r-Dn-bEQ"/>
                                     <constraint firstAttribute="height" constant="44" id="dMQ-iQ-P5L"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVV-ki-YdL">
-                                <rect key="frame" x="16" y="236" width="288" height="2"/>
+                                <rect key="frame" x="16" y="228" width="288" height="2"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="8oE-Ap-CTj"/>
@@ -68,7 +68,7 @@
                             <constraint firstAttribute="trailing" secondItem="hVV-ki-YdL" secondAttribute="trailing" constant="16" id="BA8-Ny-xgP"/>
                             <constraint firstItem="hVV-ki-YdL" firstAttribute="leading" secondItem="IHa-G1-eyV" secondAttribute="leading" constant="16" id="KhX-TC-i4s"/>
                             <constraint firstItem="pjs-Su-VCy" firstAttribute="leading" secondItem="IHa-G1-eyV" secondAttribute="leading" constant="16" id="LfK-HF-SgC"/>
-                            <constraint firstItem="1Ie-cD-mWW" firstAttribute="top" secondItem="WPd-zK-v6B" secondAttribute="bottom" constant="16" id="QM7-ix-Vte"/>
+                            <constraint firstItem="1Ie-cD-mWW" firstAttribute="top" secondItem="WPd-zK-v6B" secondAttribute="bottom" constant="8" id="QM7-ix-Vte"/>
                             <constraint firstItem="NcT-9s-ekh" firstAttribute="leading" secondItem="IHa-G1-eyV" secondAttribute="leading" constant="16" id="RVh-kL-9S7"/>
                             <constraint firstItem="WPd-zK-v6B" firstAttribute="leading" secondItem="IHa-G1-eyV" secondAttribute="leading" constant="16" id="SLL-X8-gYc"/>
                             <constraint firstItem="WPd-zK-v6B" firstAttribute="top" secondItem="IHa-G1-eyV" secondAttribute="top" constant="16" id="TTb-2R-MrS"/>

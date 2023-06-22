@@ -1025,8 +1025,8 @@
 		64E70E4F29BA50D900F14BFC /* ActorDetails */ = {
 			isa = PBXGroup;
 			children = (
-				6478639B29F5C34300DF2D58 /* ViewModel */,
 				6482AB0F29D1F8EA00BC1FDB /* Cells */,
+				6478639B29F5C34300DF2D58 /* ViewModel */,
 				64B17B6F29BBA144003DC667 /* ViewController */,
 				64B17B6E29BBA140003DC667 /* View */,
 			);

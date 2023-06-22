@@ -85,9 +85,6 @@ class ActorInfoViewModel {
         if let instagram = socialMedia?.instagramID {
             actorSociaMedia.append(SocialMedia(socialMediaType: "instagram", actorSocialMedia: instagram))
         }
-        if let tiktok = socialMedia?.tiktokID {
-            actorSociaMedia.append(SocialMedia(socialMediaType: "tiktok", actorSocialMedia: tiktok))
-        }
         if let twitter = socialMedia?.twitterID {
             actorSociaMedia.append(SocialMedia(socialMediaType: "twitter", actorSocialMedia: twitter))
         }
@@ -103,11 +100,36 @@ class ActorInfoViewModel {
     }
     
     var getSociaMediaCount: Int {
-        return actorSociaMedia.count
+        if actorSociaMedia.count == 0 {
+            return 1
+        }else {
+            return actorSociaMedia.count
+        }
     }
     
     var getSocialMediaCellSize: CGSize {
         CGSize(width: 40, height: 40)
+    }
+    var getEmptyCellSize: CGSize {
+        CGSize(width: 200, height: 40)
+    }
+    
+    func navegationSocialMedia(index: Int) {
+        let socialMedia = actorSociaMedia[index]
+        switch socialMedia.socialMediaType {
+        case "facebook":
+            guard let url = URL(string: Api.facebookLink + (socialMedia.actorSocialMedia ?? "")) else {return}
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        case "instagram":
+            guard let url = URL(string: Api.instagramLink + (socialMedia.actorSocialMedia ?? "")) else {return}
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        case "twitter":
+            guard let url = URL(string: Api.twitterLink + (socialMedia.actorSocialMedia ?? "")) else {return}
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        default:
+            break
+        }
+        
     }
     
 }
