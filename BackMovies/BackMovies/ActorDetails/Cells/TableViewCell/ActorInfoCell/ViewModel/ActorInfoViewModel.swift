@@ -14,12 +14,12 @@ protocol ActorInfoViewModelProtocol: AnyObject {
 
 class ActorInfoViewModel {
     
-    private var actorDetail: ActorModel
+    private var actorDetail: ActorModel?
     private var socialMedia: ActorSocialMedia?
-    private var actorSociaMedia: [String] = []
+    private var actorSociaMedia: [SocialMedia] = []
     private let defauldReturn: String = "indisponível"
     
-    init(actorDetail: ActorModel, delegate: ActorInfoViewModelProtocol) {
+    func setupViewModel(actorDetail: ActorModel, delegate: ActorInfoViewModelProtocol) {
         self.actorDetail = actorDetail
         self.delegate = delegate
     }
@@ -27,7 +27,7 @@ class ActorInfoViewModel {
     private weak var delegate: ActorInfoViewModelProtocol?
     
     public func fetchActorSocialMedia() {
-        AF.request(Api.getActorSocialMedia(actorId: actorDetail.id ?? 0), method: .get).validate().responseDecodable(of:ActorSocialMedia.self) { response in
+        AF.request(Api.getActorSocialMedia(actorId: actorDetail?.id ?? 0), method: .get).validate().responseDecodable(of:ActorSocialMedia.self) { response in
             switch response.result {
             case .success(let result):
                 self.socialMedia = result
@@ -40,7 +40,7 @@ class ActorInfoViewModel {
     }
     
     var getActorWork: String {
-        guard let work = actorDetail.knownForDepartment else {return defauldReturn}
+        guard let work = actorDetail?.knownForDepartment else {return defauldReturn}
         if work == "" {
             return defauldReturn
         }else {
@@ -49,7 +49,7 @@ class ActorInfoViewModel {
     }
     
     var getActorGender: String {
-        if actorDetail.gender == 1 {
+        if actorDetail?.gender == 1 {
             return "Feminino"
         } else {
             return "Masculino"
@@ -57,7 +57,7 @@ class ActorInfoViewModel {
     }
     
     var getActorBirthday: String {
-        guard let bir = actorDetail.birthday else {return defauldReturn}
+        guard let bir = actorDetail?.birthday else {return defauldReturn}
         if bir == "" {
             return defauldReturn
         }else {
@@ -66,7 +66,7 @@ class ActorInfoViewModel {
     }
     
     var getActorPlaceOfBirth: String {
-        guard let place = actorDetail.placeOfBirth else {return defauldReturn}
+        guard let place = actorDetail?.placeOfBirth else {return defauldReturn}
         if place == "" {
             return defauldReturn
         }else {
@@ -74,18 +74,22 @@ class ActorInfoViewModel {
         }
     }
     
+    func getSocialMedia(index: Int) -> SocialMedia {
+        return actorSociaMedia[index]
+    }
+    
     func getSocialMedia() {
         if let facebook = socialMedia?.facebookID {
-            actorSociaMedia.append(facebook)
+            actorSociaMedia.append(SocialMedia(socialMediaType: "facebook", actorSocialMedia: facebook))
         }
         if let instagram = socialMedia?.instagramID {
-            actorSociaMedia.append(instagram)
+            actorSociaMedia.append(SocialMedia(socialMediaType: "instagram", actorSocialMedia: instagram))
         }
         if let tiktok = socialMedia?.tiktokID {
-            actorSociaMedia.append(tiktok)
+            actorSociaMedia.append(SocialMedia(socialMediaType: "tiktok", actorSocialMedia: tiktok))
         }
         if let twitter = socialMedia?.twitterID {
-            actorSociaMedia.append(twitter)
+            actorSociaMedia.append(SocialMedia(socialMediaType: "twitter", actorSocialMedia: twitter))
         }
     }
     

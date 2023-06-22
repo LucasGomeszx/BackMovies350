@@ -9,10 +9,30 @@ import Foundation
 
 class SocialMediaViewModel {
     
-    private var socialMediaImage: String = "twi"
+    private var socialMedia: SocialMedia
+    
+    init(socialMedia: SocialMedia) {
+        self.socialMedia = socialMedia
+    }
     
     var getSocialMediaImage: String {
-        socialMediaImage
+        socialMedia.socialMediaType ?? ""
+    }
+    
+    var getSocialMediaName: String {
+        guard let social = socialMedia.socialMediaType  else {return ""}
+        switch social {
+        case "facebook":
+            return socialMedia.actorSocialMedia ?? ""
+        case "instagram":
+            return socialMedia.actorSocialMedia ?? ""
+        case "tiktok":
+            return socialMedia.actorSocialMedia ?? ""
+        case "twitter":
+            return socialMedia.actorSocialMedia ?? ""
+        default:
+            return ""
+        }
     }
     
 }

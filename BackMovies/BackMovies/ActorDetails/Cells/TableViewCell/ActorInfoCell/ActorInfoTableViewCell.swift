@@ -35,7 +35,7 @@ class ActorInfoTableViewCell: UITableViewCell {
     
     static let identifier: String = String(describing: ActorInfoTableViewCell.self)
     
-    var viewModel: ActorInfoViewModel?
+    var viewModel: ActorInfoViewModel = ActorInfoViewModel()
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -48,12 +48,12 @@ class ActorInfoTableViewCell: UITableViewCell {
     }
     
     public func setUpCell(actor: ActorModel) {
-        viewModel = ActorInfoViewModel(actorDetail: actor, delegate: self)
-        viewModel?.fetchActorSocialMedia()
-        knownInfoLabel.text = viewModel?.getActorWork
-        genderInfoLabel.text = viewModel?.getActorGender
-        birthInfoLabel.text = viewModel?.getActorBirthday
-        countryInfoLabel.text = viewModel?.getActorPlaceOfBirth
+        viewModel.setupViewModel(actorDetail: actor, delegate: self)
+        viewModel.fetchActorSocialMedia()
+        knownInfoLabel.text = viewModel.getActorWork
+        genderInfoLabel.text = viewModel.getActorGender
+        birthInfoLabel.text = viewModel.getActorBirthday
+        countryInfoLabel.text = viewModel.getActorPlaceOfBirth
     }
     
     private func setUpView() {
@@ -95,16 +95,17 @@ class ActorInfoTableViewCell: UITableViewCell {
 extension ActorInfoTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.getSociaMediaCount ?? 0
+        return viewModel.getSociaMediaCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SocialMediaCollectionViewCell.identifier, for: indexPath) as? SocialMediaCollectionViewCell
+        cell?.setupCell(socialMedia: viewModel.getSocialMedia(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel?.getSocialMediaCellSize ?? CGSize(width: 40, height: 40)
+        return viewModel.getSocialMediaCellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

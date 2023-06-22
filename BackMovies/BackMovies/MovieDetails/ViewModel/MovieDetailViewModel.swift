@@ -84,7 +84,7 @@ class MovieDetailViewModel {
     
     func searchMovieOnYouTube() {
         let movieName = getMovieName
-        let baseURLString = "https://www.youtube.com/results"
+        let baseURLString = Api.youtubeLink()
         let query = movieName.replacingOccurrences(of: " ", with: "+")
         
         if let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),

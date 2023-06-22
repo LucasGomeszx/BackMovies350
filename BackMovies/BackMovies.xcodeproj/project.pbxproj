@@ -50,6 +50,7 @@
 		6469AAAA29F8B6ED0071E414 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469AAA929F8B6ED0071E414 /* RegisterViewModel.swift */; };
 		6469AAAD29F95D3A0071E414 /* RecoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469AAAC29F95D3A0071E414 /* RecoverViewModel.swift */; };
 		6469AAB029F982D90071E414 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469AAAF29F982D90071E414 /* LoginViewModel.swift */; };
+		6477E5152A448DB7009F6D61 /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6477E5142A448DB7009F6D61 /* SocialMedia.swift */; };
 		6478638529F2D0B700DF2D58 /* MovieTopCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478638429F2D0B700DF2D58 /* MovieTopCellViewModel.swift */; };
 		6478638729F2D0DD00DF2D58 /* TrailerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478638629F2D0DD00DF2D58 /* TrailerCellViewModel.swift */; };
 		6478638929F2D10700DF2D58 /* WatchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478638829F2D10700DF2D58 /* WatchCellViewModel.swift */; };
@@ -162,6 +163,7 @@
 		6469AAA929F8B6ED0071E414 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		6469AAAC29F95D3A0071E414 /* RecoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewModel.swift; sourceTree = "<group>"; };
 		6469AAAF29F982D90071E414 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		6477E5142A448DB7009F6D61 /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
 		6478638429F2D0B700DF2D58 /* MovieTopCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTopCellViewModel.swift; sourceTree = "<group>"; };
 		6478638629F2D0DD00DF2D58 /* TrailerCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCellViewModel.swift; sourceTree = "<group>"; };
 		6478638829F2D10700DF2D58 /* WatchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCellViewModel.swift; sourceTree = "<group>"; };
@@ -910,6 +912,7 @@
 				646991462A13DF3000D08C28 /* Video.swift */,
 				6436C2D52A3E69D10097BFAE /* WatchProviders.swift */,
 				647E22152A426E7F00922C78 /* ActorSocialMedia.swift */,
+				6477E5142A448DB7009F6D61 /* SocialMedia.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1325,6 +1328,7 @@
 				6469AAAD29F95D3A0071E414 /* RecoverViewModel.swift in Sources */,
 				64B17B8729BBA28B003DC667 /* SearchSelectedViewController.swift in Sources */,
 				643187C329F9F5DF009F35EB /* FavoriteViewModel.swift in Sources */,
+				6477E5152A448DB7009F6D61 /* SocialMedia.swift in Sources */,
 				64BAB2FC29F9C5B2006F99A8 /* ApiGenres.swift in Sources */,
 				646991472A13DF3000D08C28 /* Video.swift in Sources */,
 				6478639629F2D1CE00DF2D58 /* StreamingCellViewModel.swift in Sources */,
