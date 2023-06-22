@@ -6,15 +6,37 @@
 //
 
 import Foundation
+import Alamofire
+
+protocol ActorInfoViewModelProtocol: AnyObject {
+    func didFetchSocialMediaSuccess()
+}
 
 class ActorInfoViewModel {
     
     private var actorDetail: ActorModel
-    private var socialMedia: [String] = ["Insta", "Face"]
+    private var socialMedia: ActorSocialMedia?
+    private var actorSociaMedia: [String] = []
     private let defauldReturn: String = "indisponível"
     
-    init(actorDetail: ActorModel) {
+    init(actorDetail: ActorModel, delegate: ActorInfoViewModelProtocol) {
         self.actorDetail = actorDetail
+        self.delegate = delegate
+    }
+    
+    private weak var delegate: ActorInfoViewModelProtocol?
+    
+    public func fetchActorSocialMedia() {
+        AF.request(Api.getActorSocialMedia(actorId: actorDetail.id ?? 0), method: .get).validate().responseDecodable(of:ActorSocialMedia.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.socialMedia = result
+                self.getSocialMedia()
+                self.delegate?.didFetchSocialMediaSuccess()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     var getActorWork: String {
@@ -28,9 +50,9 @@ class ActorInfoViewModel {
     
     var getActorGender: String {
         if actorDetail.gender == 1 {
-           return "Feminino"
+            return "Feminino"
         } else {
-           return "Masculino"
+            return "Masculino"
         }
     }
     
@@ -52,13 +74,36 @@ class ActorInfoViewModel {
         }
     }
     
+    func getSocialMedia() {
+        if let facebook = socialMedia?.facebookID {
+            actorSociaMedia.append(facebook)
+        }
+        if let instagram = socialMedia?.instagramID {
+            actorSociaMedia.append(instagram)
+        }
+        if let tiktok = socialMedia?.tiktokID {
+            actorSociaMedia.append(tiktok)
+        }
+        if let twitter = socialMedia?.twitterID {
+            actorSociaMedia.append(twitter)
+        }
+    }
+    
+    var isNill: Bool {
+        guard let social = socialMedia else {return true}
+        if social.facebookID == nil && social.instagramID == nil && social.tiktokID == nil && social.twitterID == nil {
+            return true
+        }else {
+            return false
+        }
+    }
+    
     var getSociaMediaCount: Int {
-        socialMedia.count
+        return actorSociaMedia.count
     }
     
     var getSocialMediaCellSize: CGSize {
         CGSize(width: 40, height: 40)
     }
-    
     
 }

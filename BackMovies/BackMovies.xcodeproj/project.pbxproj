@@ -61,6 +61,7 @@
 		6478639829F57FCA00DF2D58 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639729F57FCA00DF2D58 /* Cast.swift */; };
 		6478639A29F5A21B00DF2D58 /* SimilarMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639929F5A21B00DF2D58 /* SimilarMovies.swift */; };
 		6478639D29F5C36000DF2D58 /* ActorDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6478639C29F5C36000DF2D58 /* ActorDetailsViewModel.swift */; };
+		647E22162A426E7F00922C78 /* ActorSocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647E22152A426E7F00922C78 /* ActorSocialMedia.swift */; };
 		6482AB0829D1C62100BC1FDB /* RelatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB0629D1C62100BC1FDB /* RelatedTableViewCell.swift */; };
 		6482AB0929D1C62100BC1FDB /* RelatedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6482AB0729D1C62100BC1FDB /* RelatedTableViewCell.xib */; };
 		6482AB0D29D1D63600BC1FDB /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */; };
@@ -172,6 +173,7 @@
 		6478639729F57FCA00DF2D58 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		6478639929F5A21B00DF2D58 /* SimilarMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovies.swift; sourceTree = "<group>"; };
 		6478639C29F5C36000DF2D58 /* ActorDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetailsViewModel.swift; sourceTree = "<group>"; };
+		647E22152A426E7F00922C78 /* ActorSocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorSocialMedia.swift; sourceTree = "<group>"; };
 		6482AB0629D1C62100BC1FDB /* RelatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedTableViewCell.swift; sourceTree = "<group>"; };
 		6482AB0729D1C62100BC1FDB /* RelatedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelatedTableViewCell.xib; sourceTree = "<group>"; };
 		6482AB0B29D1D63600BC1FDB /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -907,6 +909,7 @@
 				64BAB2FB29F9C5B2006F99A8 /* ApiGenres.swift */,
 				646991462A13DF3000D08C28 /* Video.swift */,
 				6436C2D52A3E69D10097BFAE /* WatchProviders.swift */,
+				647E22152A426E7F00922C78 /* ActorSocialMedia.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1283,6 +1286,7 @@
 				644BD76229D0EE830036008F /* MovieTopTableViewCell.swift in Sources */,
 				64B17B7729BBA188003DC667 /* FavoriteViewController.swift in Sources */,
 				644BD76F29D0FB2C0036008F /* TrailerTableViewCell.swift in Sources */,
+				647E22162A426E7F00922C78 /* ActorSocialMedia.swift in Sources */,
 				64A9192C29F7784F00FAE641 /* SocialMediaViewModel.swift in Sources */,
 				6478639D29F5C36000DF2D58 /* ActorDetailsViewModel.swift in Sources */,
 				6482AB1F29D20DEA00BC1FDB /* SocialMediaCollectionViewCell.swift in Sources */,

@@ -53,6 +53,10 @@ struct Api {
         "https://api.themoviedb.org/3/movie/\(movieid)/watch/providers?api_key=a418c1d2207524b9f775ba6cb3c50ad6"
     }
     
+    static func getActorSocialMedia(actorId: Int) -> String {
+        "https://api.themoviedb.org/3/person/\(actorId)/external_ids?api_key=a418c1d2207524b9f775ba6cb3c50ad6"
+    }
+    
     static func youtubeLink() -> String {
         "https://www.youtube.com/results"
     }
