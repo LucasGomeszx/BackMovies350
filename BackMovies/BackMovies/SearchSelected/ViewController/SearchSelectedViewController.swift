@@ -55,6 +55,7 @@ class SearchSelectedViewController: UIViewController {
             layout.estimatedItemSize = .zero
         }
         moviesCollectionView.register(PosterCollectionViewCell.nib(), forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
+        moviesCollectionView.register(MovieEmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: MovieEmptyCollectionViewCell.identifier)
     }
 
     private func configureView() {
@@ -68,6 +69,7 @@ class SearchSelectedViewController: UIViewController {
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
         movieSearch.barTintColor = .backGray
+        movieSearch.delegate = self
         moviesCollectionView.backgroundColor = .clear
     }
     
@@ -81,17 +83,37 @@ class SearchSelectedViewController: UIViewController {
     
 }
 
+extension SearchSelectedViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchMovie(query: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+}
+
 //MARK: - UICollectionView Delegate, DataSource
 extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.getMoviesCount
+        if viewModel.getMoviesCount == 0 {
+            return 1
+        }else {
+           return viewModel.getMoviesCount
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-        cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
-        return cell ?? UICollectionViewCell()
+        if viewModel.getMoviesCount == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieEmptyCollectionViewCell.identifier, for: indexPath) as? MovieEmptyCollectionViewCell
+            return cell ?? UICollectionViewCell()
+        }else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
+            cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
+            return cell ?? UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -102,7 +124,11 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel.getMovieCellSize
+        if viewModel.getMoviesCount == 0 {
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }else {
+           return viewModel.getMovieCellSize
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

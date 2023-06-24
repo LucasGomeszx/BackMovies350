@@ -74,6 +74,17 @@ class SearchSelectedViewModel {
         }
     }
     
+    public func searchMovie(query: String) {
+        if !query.isEmpty {
+            let encodedString = query.replacingOccurrences(of: " ", with: "%20")
+            guard let url = URL(string: Api.searchMovie(query: encodedString)) else {return}
+            service(link: url)
+            self.delegate?.didFetchMoviesSuccess()
+        }else {
+            fetchMovies()
+        }
+    }
+    
     private func service(link: URL) {
         AF.request(link, method: .get).validate().responseDecodable(of: Movies.self) { response in
             switch response.result {

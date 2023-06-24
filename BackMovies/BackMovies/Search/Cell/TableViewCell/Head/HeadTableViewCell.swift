@@ -20,8 +20,9 @@ enum HeadStrings: String {
 
 class HeadTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var movieButton: UIButton!
-    @IBOutlet weak var actorMovie: UIButton!
+
+    @IBOutlet weak var movieButton: UILabel!
+    @IBOutlet weak var actorButton: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     
     static let identifier: String = String(describing: HeadTableViewCell.self)
@@ -40,21 +41,29 @@ class HeadTableViewCell: UITableViewCell {
     private func setUpView() {
         movieButton.backgroundColor = .black
         movieButton.tintColor = .white
+        movieButton.clipsToBounds = true
         movieButton.layer.cornerRadius = 15
-        movieButton.setTitle(HeadStrings.movieButton.rawValue, for: .normal)
-        actorMovie.backgroundColor = .black
-        actorMovie.tintColor = .white
-        actorMovie.layer.cornerRadius = 15
-        actorMovie.setTitle(HeadStrings.actorButton.rawValue, for: .normal)
+        movieButton.text = HeadStrings.movieButton.rawValue
+        let movieGesture = UITapGestureRecognizer(target: self, action: #selector(tappedMovieButton))
+        movieButton.addGestureRecognizer(movieGesture)
+        movieButton.isUserInteractionEnabled = true
+        actorButton.backgroundColor = .black
+        actorButton.tintColor = .white
+        actorButton.clipsToBounds = true
+        actorButton.layer.cornerRadius = 15
+        actorButton.text = HeadStrings.actorButton.rawValue
+        let actorGesture = UITapGestureRecognizer(target: self, action: #selector(tappedActorButton))
+        actorButton.addGestureRecognizer(actorGesture)
+        actorButton.isUserInteractionEnabled = true
         genderLabel.textColor = .white
         genderLabel.text = HeadStrings.genderLabel.rawValue
     }
     
-    @IBAction func tappedMovieButton(_ sender: Any) {
+    @objc func tappedMovieButton(_ sender: Any) {
         delegate?.navMovieButton()
     }
     
-    @IBAction func tappedActorButton(_ sender: Any) {
+    @objc func tappedActorButton(_ sender: Any) {
         delegate?.navActorButton()
     }
     

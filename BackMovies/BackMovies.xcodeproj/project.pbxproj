@@ -86,6 +86,8 @@
 		64A9192629F76C2200FAE641 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9192529F76C2200FAE641 /* UIColor+Extension.swift */; };
 		64A9192929F7707D00FAE641 /* ActorMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9192829F7707D00FAE641 /* ActorMoviesViewModel.swift */; };
 		64A9192C29F7784F00FAE641 /* SocialMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9192B29F7784F00FAE641 /* SocialMediaViewModel.swift */; };
+		64AB8B6D2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8B6B2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift */; };
+		64AB8B6E2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64AB8B6C2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib */; };
 		64B17B6329BBA0BF003DC667 /* PosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B6229BBA0BF003DC667 /* PosterViewController.swift */; };
 		64B17B6529BBA0CE003DC667 /* PosterView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B17B6429BBA0CE003DC667 /* PosterView.storyboard */; };
 		64B17B7329BBA16B003DC667 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B7229BBA16B003DC667 /* SearchViewController.swift */; };
@@ -199,6 +201,8 @@
 		64A9192529F76C2200FAE641 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		64A9192829F7707D00FAE641 /* ActorMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorMoviesViewModel.swift; sourceTree = "<group>"; };
 		64A9192B29F7784F00FAE641 /* SocialMediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaViewModel.swift; sourceTree = "<group>"; };
+		64AB8B6B2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
+		64AB8B6C2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieEmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		64B17B6229BBA0BF003DC667 /* PosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewController.swift; sourceTree = "<group>"; };
 		64B17B6429BBA0CE003DC667 /* PosterView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PosterView.storyboard; sourceTree = "<group>"; };
 		64B17B7229BBA16B003DC667 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -754,6 +758,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		64AB8B6A2A474C3300F021FE /* MovieEmptyCell */ = {
+			isa = PBXGroup;
+			children = (
+				64AB8B6B2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift */,
+				64AB8B6C2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib */,
+			);
+			path = MovieEmptyCell;
+			sourceTree = "<group>";
+		};
 		64B17B6029BBA099003DC667 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -949,6 +962,7 @@
 		64E70E4829BA503200F14BFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				64AB8B6A2A474C3300F021FE /* MovieEmptyCell */,
 				6437B0A32A0018B900293FC1 /* LottieJson */,
 				64A9192429F76BF300FAE641 /* Extensions */,
 				64462B3229F03AA50021A8BE /* Alert */,
@@ -1207,6 +1221,7 @@
 				64B17B7529BBA175003DC667 /* SearchView.storyboard in Resources */,
 				644BD74E29D09A020036008F /* HeadTableViewCell.xib in Resources */,
 				6437B0A72A003C2900293FC1 /* GoogleService-Info.plist in Resources */,
+				64AB8B6E2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib in Resources */,
 				6468C8AF2A3F898C00E629F4 /* EmptyCollectionViewCell.xib in Resources */,
 				64E70E6429BA6F0C00F14BFC /* TabBarView.storyboard in Resources */,
 				64B17B6529BBA0CE003DC667 /* PosterView.storyboard in Resources */,
@@ -1277,6 +1292,7 @@
 				64A9192929F7707D00FAE641 /* ActorMoviesViewModel.swift in Sources */,
 				64501B9529B7A5EC0019D7B3 /* AppDelegate.swift in Sources */,
 				64B17B8329BBA254003DC667 /* ActorDetailViewController.swift in Sources */,
+				64AB8B6D2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift in Sources */,
 				646991452A11917E00D08C28 /* String+Extension.swift in Sources */,
 				64BAB2FF29F9C6F4006F99A8 /* BodyViewModel.swift in Sources */,
 				644BD74D29D09A020036008F /* HeadTableViewCell.swift in Sources */,
