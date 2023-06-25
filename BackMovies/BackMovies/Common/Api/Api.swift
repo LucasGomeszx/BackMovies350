@@ -81,4 +81,8 @@ struct Api {
         "https://api.themoviedb.org/3/trending/person/day?api_key=a418c1d2207524b9f775ba6cb3c50ad6&page=\(String(describing: page))"
     }
 
+    static func getSearchActor(query: String) -> String {
+        "https://api.themoviedb.org/3/search/person?api_key=a418c1d2207524b9f775ba6cb3c50ad6&query=\(String(describing: query))"
+    }
+    
 }

@@ -21,7 +21,7 @@ class ActorSearchViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         viewModel.setupDelegate(delegate: self)
-        viewModel.fetchActor()
+        viewModel.fetchPopularActor()
         configCollectionView()
     }
     
@@ -48,6 +48,7 @@ class ActorSearchViewController: UIViewController {
             layout.estimatedItemSize = .zero
         }
         actorCollectionView.register(SearchActorCollectionViewCell.nib(), forCellWithReuseIdentifier: SearchActorCollectionViewCell.identifier)
+        actorCollectionView.register(EmptyActorCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyActorCollectionViewCell.identifier)
     }
     
     @objc func tappedBackButton() {
@@ -60,17 +61,37 @@ class ActorSearchViewController: UIViewController {
 
 extension ActorSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.getActorCount
+        if viewModel.getActorCount == 0 {
+            return 1
+        }else {
+            return viewModel.getActorCount
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchActorCollectionViewCell.identifier, for: indexPath) as? SearchActorCollectionViewCell
-        cell?.setupCell(actor: viewModel.getActorInfo(index: indexPath.row))
-        return cell ?? UICollectionViewCell()
+        if viewModel.getActorCount == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyActorCollectionViewCell.identifier, for: indexPath) as? EmptyActorCollectionViewCell
+            return cell ?? UICollectionViewCell()
+        }else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchActorCollectionViewCell.identifier, for: indexPath) as? SearchActorCollectionViewCell
+            cell?.setupCell(actor: viewModel.getActorInfo(index: indexPath.row))
+            return cell ?? UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        viewModel.getActorCellSize
+        if viewModel.getActorCount == 0 {
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }else {
+            return viewModel.getActorCellSize
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc: ActorDetailViewController? = UIStoryboard(name: MovieDetailString.actorDetailView.rawValue, bundle: nil).instantiateViewController(identifier: MovieDetailString.actorDetailView.rawValue) { coder -> ActorDetailViewController? in
+            return ActorDetailViewController(coder: coder, actorId: self.viewModel.getActorId(index: indexPath.row))
+        }
+        navigationController?.pushViewController(vc ?? UINavigationController(), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

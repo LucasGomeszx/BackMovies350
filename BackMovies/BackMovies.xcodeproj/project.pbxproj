@@ -109,6 +109,8 @@
 		64B17B8729BBA28B003DC667 /* SearchSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B17B8629BBA28B003DC667 /* SearchSelectedViewController.swift */; };
 		64B17B8929BBA29B003DC667 /* SearchSelectedView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B17B8829BBA29B003DC667 /* SearchSelectedView.storyboard */; };
 		64B92BC32A069DB7009ACA48 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 64B92BC22A069DB7009ACA48 /* GoogleSignIn */; };
+		64BA90A12A48C62F0049DD24 /* EmptyActorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA909F2A48C62F0049DD24 /* EmptyActorCollectionViewCell.swift */; };
+		64BA90A22A48C62F0049DD24 /* EmptyActorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64BA90A02A48C62F0049DD24 /* EmptyActorCollectionViewCell.xib */; };
 		64BAB2F729F9B577006F99A8 /* ActorMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAB2F629F9B577006F99A8 /* ActorMovies.swift */; };
 		64BAB2FA29F9C153006F99A8 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAB2F929F9C153006F99A8 /* SearchViewModel.swift */; };
 		64BAB2FC29F9C5B2006F99A8 /* ApiGenres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAB2FB29F9C5B2006F99A8 /* ApiGenres.swift */; };
@@ -229,6 +231,8 @@
 		64B17B8429BBA266003DC667 /* ActorDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActorDetailView.storyboard; sourceTree = "<group>"; };
 		64B17B8629BBA28B003DC667 /* SearchSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectedViewController.swift; sourceTree = "<group>"; };
 		64B17B8829BBA29B003DC667 /* SearchSelectedView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchSelectedView.storyboard; sourceTree = "<group>"; };
+		64BA909F2A48C62F0049DD24 /* EmptyActorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyActorCollectionViewCell.swift; sourceTree = "<group>"; };
+		64BA90A02A48C62F0049DD24 /* EmptyActorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyActorCollectionViewCell.xib; sourceTree = "<group>"; };
 		64BAB2F629F9B577006F99A8 /* ActorMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorMovies.swift; sourceTree = "<group>"; };
 		64BAB2F929F9C153006F99A8 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		64BAB2FB29F9C5B2006F99A8 /* ApiGenres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiGenres.swift; sourceTree = "<group>"; };
@@ -274,8 +278,8 @@
 		640142492A478C8A006A644E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6401424C2A478F98006A644E /* SearchActorCollectionViewCell.swift */,
-				6401424D2A478F98006A644E /* SearchActorCollectionViewCell.xib */,
+				64BA909E2A48C45E0049DD24 /* ActorEmptyCell */,
+				64BA909D2A48C4380049DD24 /* SearchActorCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -936,6 +940,24 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		64BA909D2A48C4380049DD24 /* SearchActorCell */ = {
+			isa = PBXGroup;
+			children = (
+				6401424C2A478F98006A644E /* SearchActorCollectionViewCell.swift */,
+				6401424D2A478F98006A644E /* SearchActorCollectionViewCell.xib */,
+			);
+			path = SearchActorCell;
+			sourceTree = "<group>";
+		};
+		64BA909E2A48C45E0049DD24 /* ActorEmptyCell */ = {
+			isa = PBXGroup;
+			children = (
+				64BA909F2A48C62F0049DD24 /* EmptyActorCollectionViewCell.swift */,
+				64BA90A02A48C62F0049DD24 /* EmptyActorCollectionViewCell.xib */,
+			);
+			path = ActorEmptyCell;
+			sourceTree = "<group>";
+		};
 		64BAB2F829F9C144006F99A8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1280,6 +1302,7 @@
 				6482AB1929D2020600BC1FDB /* ActorInfoTableViewCell.xib in Resources */,
 				64B17B7529BBA175003DC667 /* SearchView.storyboard in Resources */,
 				644BD74E29D09A020036008F /* HeadTableViewCell.xib in Resources */,
+				64BA90A22A48C62F0049DD24 /* EmptyActorCollectionViewCell.xib in Resources */,
 				6437B0A72A003C2900293FC1 /* GoogleService-Info.plist in Resources */,
 				64AB8B6E2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib in Resources */,
 				6468C8AF2A3F898C00E629F4 /* EmptyCollectionViewCell.xib in Resources */,
@@ -1346,6 +1369,7 @@
 				64AB8B842A477F6C00F021FE /* ActorSearchViewController.swift in Sources */,
 				6468C8AE2A3F898C00E629F4 /* EmptyCollectionViewCell.swift in Sources */,
 				6401424B2A478D60006A644E /* ActorSearch.swift in Sources */,
+				64BA90A12A48C62F0049DD24 /* EmptyActorCollectionViewCell.swift in Sources */,
 				64B17B6329BBA0BF003DC667 /* PosterViewController.swift in Sources */,
 				64501B9929B7A5EC0019D7B3 /* LoginViewController.swift in Sources */,
 				64B17B7B29BBA1E7003DC667 /* ProfileViewController.swift in Sources */,

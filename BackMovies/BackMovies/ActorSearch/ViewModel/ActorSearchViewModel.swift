@@ -20,7 +20,8 @@ class ActorSearchViewModel {
     private var totalPage: Int = 1
     private weak var delegate: ActorSearchViewModelProtocol?
     
-    func fetchActor() {
+    func fetchPopularActor() {
+        actorList = []
         AF.request(Api.getPopularActors(page: page), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
             switch response.result {
             case .success(let result):
@@ -35,8 +36,30 @@ class ActorSearchViewModel {
         }
     }
     
-    func searchActor(query: String) {
-        
+    func searchQuaryActor(query: String) {
+        self.actorList = []
+        AF.request(Api.getSearchActor(query: query), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
+            switch response.result {
+            case .success(let result):
+                self.actorList = result.results ?? [ActorInfo()]
+                self.delegate?.didFetchActorSuccess()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    public func searchActor(query: String) {
+        if !query.isEmpty {
+            let encodedString = query.replacingOccurrences(of: " ", with: "%20")
+            searchQuaryActor(query: encodedString)
+        }else {
+            fetchPopularActor()
+        }
+    }
+    
+    public func getActorId(index: Int) -> Int {
+        actorList[index].id ?? 0
     }
     
     func setupDelegate(delegate: ActorSearchViewModelProtocol) {
