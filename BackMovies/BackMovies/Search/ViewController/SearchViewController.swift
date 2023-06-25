@@ -17,6 +17,8 @@ enum SearchStrings: String {
     case searchSelected = "SearchSelectedView"
     case alertError = "Error"
     case genresError = "Nao foi possivel carregar os Gêneros"
+    case actorSearchView  = "ActorSearchView"
+    case actorSearchViewController = "ActorSearchViewController"
 }
 
 class SearchViewController: UIViewController {
@@ -126,7 +128,8 @@ extension SearchViewController: HeadTableViewCellDelegate {
     }
     
     func navActorButton() {
-        
+        let vc: ActorSearchViewController? = UIStoryboard(name: SearchStrings.actorSearchView.rawValue, bundle: nil).instantiateViewController(withIdentifier: SearchStrings.actorSearchViewController.rawValue) as? ActorSearchViewController
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
 }

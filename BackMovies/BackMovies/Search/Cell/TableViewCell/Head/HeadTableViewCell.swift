@@ -40,7 +40,7 @@ class HeadTableViewCell: UITableViewCell {
     
     private func setUpView() {
         movieButton.backgroundColor = .black
-        movieButton.tintColor = .white
+        movieButton.textColor = .white
         movieButton.clipsToBounds = true
         movieButton.layer.cornerRadius = 15
         movieButton.text = HeadStrings.movieButton.rawValue
@@ -48,7 +48,7 @@ class HeadTableViewCell: UITableViewCell {
         movieButton.addGestureRecognizer(movieGesture)
         movieButton.isUserInteractionEnabled = true
         actorButton.backgroundColor = .black
-        actorButton.tintColor = .white
+        actorButton.textColor = .white
         actorButton.clipsToBounds = true
         actorButton.layer.cornerRadius = 15
         actorButton.text = HeadStrings.actorButton.rawValue
