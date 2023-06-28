@@ -37,7 +37,6 @@ class ActorSearchViewModel {
     }
     
     func searchQuaryActor(query: String) {
-        self.actorList = []
         AF.request(Api.getSearchActor(query: query), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
             switch response.result {
             case .success(let result):

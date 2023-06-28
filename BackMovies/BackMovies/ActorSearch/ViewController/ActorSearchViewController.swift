@@ -100,6 +100,7 @@ extension ActorSearchViewController: UICollectionViewDelegate, UICollectionViewD
     
 }
 
+//MARK: - UISearchBarDelegate
 extension ActorSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchActor(query: searchText)
@@ -110,6 +111,7 @@ extension ActorSearchViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: - ActorSearchViewModelProtocol
 extension ActorSearchViewController: ActorSearchViewModelProtocol {
     func didFetchActorSuccess() {
         actorCollectionView.reloadData()
