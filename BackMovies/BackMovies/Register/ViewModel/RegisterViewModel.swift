@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 protocol RegisterViewModelDelegate: AnyObject {
     func didCreateUserSuccess()
@@ -21,6 +22,7 @@ class RegisterViewModel {
     private var email: String?
     private var password: String?
     private var repeatedPassword: String?
+    private var firestore: Firestore = Firestore.firestore()
     private weak var delegate: RegisterViewModelDelegate?
     
     func isFormValid() -> Bool {
@@ -41,6 +43,13 @@ class RegisterViewModel {
         self.delegate?.setLottieView()
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if error == nil {
+                if let userId = authResult?.user.uid {
+                    self.firestore.collection("user").document(userId).setData([
+                        "name": self.name ?? "",
+                        "email": self.email ?? "",
+                        "id": userId
+                    ])
+                }
                 self.delegate?.removeLottieView()
                 self.delegate?.didCreateUserSuccess()
             }else {
