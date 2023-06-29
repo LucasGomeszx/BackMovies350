@@ -10,16 +10,22 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profilePhoto: UIImageView!
+    @IBOutlet weak var changeImageButton: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    var viewModel: ProfileViewModel = ProfileViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
         imageToCircle()
+        viewModel.configDelegate(delegate: self)
+        viewModel.getUserData()
     }
     
     func configureNavigation() {
         navigationController?.navigationBar.isHidden = true
-        
     }
     
     func imageToCircle() {
@@ -34,4 +40,13 @@ class ProfileViewController: UIViewController {
         tabBarController?.navigationController?.popViewController(animated: true)
     }
     
+}
+
+//MARK: - ProfileViewModelProtocol
+
+extension ProfileViewController: ProfileViewModelProtocol {
+    func didFetchUserDataSuccess(email: String, name: String) {
+        nameLabel.text = name
+        emailLabel.text = email
+    }
 }

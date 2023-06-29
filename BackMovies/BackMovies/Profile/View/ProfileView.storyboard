@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFj-6X-0zB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFj-6X-0zB">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -102,6 +103,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Perfil" selectedImage="person" catalog="system" id="iIl-ro-VAe"/>
                     <connections>
+                        <outlet property="changeImageButton" destination="oda-bt-dI9" id="VvJ-FA-eBq"/>
+                        <outlet property="emailLabel" destination="KnI-Ng-lQl" id="AbN-5h-ReI"/>
+                        <outlet property="nameLabel" destination="zCm-k5-q5d" id="f67-xq-muW"/>
                         <outlet property="profilePhoto" destination="fdW-vN-qcX" id="8Co-f9-N8G"/>
                     </connections>
                 </viewController>
