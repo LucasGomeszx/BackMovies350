@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum ProfileStrings: String {
+    case alertExit = "Sair"
+    case alertStay = "Continuar"
+    case alertMessage = "Deseja sair do BackMovies?"
+}
+
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profilePhoto: UIImageView!
@@ -37,7 +43,12 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func tappedExitButton(_ sender: Any) {
-        tabBarController?.navigationController?.popViewController(animated: true)
+        let logoutAction = UIAlertAction(title: ProfileStrings.alertExit.rawValue, style: .destructive) { _ in
+            self.viewModel.logOut()
+            self.tabBarController?.navigationController?.popViewController(animated: true)
+        }
+        let doNothing = UIAlertAction(title: ProfileStrings.alertStay.rawValue, style: .default)
+        Alert.showAlert(on: self, withTitle: ProfileStrings.alertExit.rawValue, message: ProfileStrings.alertMessage.rawValue, actions: [doNothing,logoutAction])
     }
     
 }

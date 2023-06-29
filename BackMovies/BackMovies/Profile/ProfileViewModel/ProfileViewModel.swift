@@ -23,6 +23,16 @@ class ProfileViewModel {
         self.delegate = delegate
     }
     
+    public func logOut() {
+        do {
+            try Auth.auth().signOut()
+            print("Deslogou")
+            // Deslogou com sucesso
+        } catch let signOutError as NSError {
+            print("Erro ao deslogar o usuário: \(signOutError.localizedDescription)")
+        }
+    }
+    
     public func getUserData() {
         self.auth = Auth.auth()
         self.db = Firestore.firestore()
