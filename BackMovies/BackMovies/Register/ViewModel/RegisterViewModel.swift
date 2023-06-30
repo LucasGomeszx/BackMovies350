@@ -47,7 +47,9 @@ class RegisterViewModel {
                     self.firestore.collection("user").document(userId).setData([
                         "name": self.name ?? "",
                         "email": self.email ?? "",
-                        "id": userId
+                        "id": userId,
+                        "imageURL": "",
+                        "favoriteMovies": [Int]()
                     ])
                 }
                 self.delegate?.removeLottieView()

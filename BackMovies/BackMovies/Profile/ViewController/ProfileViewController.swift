@@ -66,9 +66,11 @@ class ProfileViewController: UIViewController {
 //MARK: - ProfileViewModelProtocol
 
 extension ProfileViewController: ProfileViewModelProtocol {
-    func didFetchUserDataSuccess(email: String, name: String) {
+    func didFetchUserDataSuccess(email: String, name: String, imageUrl: String) {
         nameLabel.text = name
         emailLabel.text = email
+        guard let url = URL(string: imageUrl) else{return}
+        profilePhoto.loadImageFromURL(url)
     }
 }
 
@@ -77,6 +79,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
+            viewModel.uploadImageToFirebaseStorage(selectedImage)
             profilePhoto.image = selectedImage
         }
         dismiss(animated: true, completion: nil)
