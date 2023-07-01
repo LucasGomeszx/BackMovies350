@@ -12,6 +12,7 @@ enum MovieTopStrings: String {
     case loafImage = "imageLoad"
     case starImage = "star"
     case heartImage = "heart"
+    case heartFillImage = "heart.fill"
 }
 
 class MovieTopTableViewCell: UITableViewCell {
@@ -38,7 +39,8 @@ class MovieTopTableViewCell: UITableViewCell {
     }
     
     public func setUpCell(movieDetail: MovieDetail) {
-        viewModel = MovieTopCellViewModel(movieDetail: movieDetail)
+        viewModel = MovieTopCellViewModel(movieDetail: movieDetail, delegate: self)
+        viewModel?.getUserFavoriteMovies()
         setupLottieView()
         guard let url = URL(string: Api.posterPath + (viewModel?.posterPath ?? "") ) else {return}
         posterImageView.loadImageFromURL(url) { result in
@@ -82,8 +84,25 @@ class MovieTopTableViewCell: UITableViewCell {
         starImageView.image = UIImage(systemName: MovieTopStrings.starImage.rawValue)
         starImageView.tintColor = .white
         movieRateLebel.textColor = .white
-        heartImageView.image = UIImage(systemName: MovieTopStrings.heartImage.rawValue)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedHeartImage))
+        heartImageView.addGestureRecognizer(gesture)
+        heartImageView.isUserInteractionEnabled = true
         heartImageView.tintColor = .white
     }
     
+    @objc func tappedHeartImage() {
+        if heartImageView.image == UIImage(systemName: MovieTopStrings.heartImage.rawValue) {
+            viewModel?.addFavoriteMovie()
+            self.heartImageView.image = UIImage(systemName: MovieTopStrings.heartFillImage.rawValue)
+        }else {
+            viewModel?.deleteFavoriteMovie()
+            heartImageView.image = UIImage(systemName: MovieTopStrings.heartImage.rawValue)
+        }
+    }
+}
+
+extension MovieTopTableViewCell: MovieTopCellViewModelProtocol {
+    func setheartState() {
+        heartImageView.image = UIImage(systemName: viewModel?.verifiFavoriteMovie() ?? "")
+    }
 }
