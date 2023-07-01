@@ -6,22 +6,28 @@
 //
 
 import UIKit
+import Lottie
 
 enum ProfileStrings: String {
     case alertExit = "Sair"
+    case alertCancel = "Cancelar"
     case alertStay = "Continuar"
+    case alertImage = "Alterar Foto"
     case alertMessage = "Deseja sair do BackMovies?"
+    case alertChangeImage = "Deseja alterar a imagem?"
+    case lottieAnimationName = "registerLoad"
 }
 
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profilePhoto: UIImageView!
-    @IBOutlet weak var changeImageButton: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var loadingView: UIView!
     
     var viewModel: ProfileViewModel = ProfileViewModel()
     let imagePicker = UIImagePickerController()
+    let lottieAnimation = LottieAnimationView(name: ProfileStrings.lottieAnimationName.rawValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,19 +43,27 @@ class ProfileViewController: UIViewController {
     }
     
     func setupView() {
+        loadingView.isHidden = true
+        loadingView.backgroundColor = .black
+        lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
         let action = UITapGestureRecognizer(target: self, action: #selector(selectImageFromGallery))
-        changeImageButton.addGestureRecognizer(action)
-        changeImageButton.isUserInteractionEnabled = true
+        profilePhoto.addGestureRecognizer(action)
+        profilePhoto.isUserInteractionEnabled = true
         profilePhoto.layer.borderWidth = 1
         profilePhoto.layer.masksToBounds = false
         profilePhoto.layer.borderColor = UIColor.black.cgColor
         profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
         profilePhoto.clipsToBounds = true
     }
-    
+
     @objc func selectImageFromGallery(_ sender: UIButton) {
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        let logoutAction = UIAlertAction(title: ProfileStrings.alertStay.rawValue, style: .default) { _ in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        let doNothing = UIAlertAction(title: ProfileStrings.alertCancel.rawValue, style: .destructive)
+        Alert.showAlert(on: self, withTitle: ProfileStrings.alertImage.rawValue, message: ProfileStrings.alertChangeImage.rawValue,actions: [logoutAction,doNothing])
+
     }
     
     @IBAction func tappedExitButton(_ sender: Any) {
@@ -61,6 +75,24 @@ class ProfileViewController: UIViewController {
         Alert.showAlert(on: self, withTitle: ProfileStrings.alertExit.rawValue, message: ProfileStrings.alertMessage.rawValue, actions: [doNothing,logoutAction])
     }
     
+    private func startLottieAnimation() {
+        loadingView.addSubview(lottieAnimation)
+        NSLayoutConstraint.activate([
+            lottieAnimation.widthAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.heightAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            lottieAnimation.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
+        ])
+        lottieAnimation.loopMode = .loop
+        lottieAnimation.play()
+        loadingView.isHidden = false
+    }
+    
+    private func stopLottieAnimation() {
+        lottieAnimation.stop()
+        loadingView.isHidden = true
+    }
+    
 }
 
 //MARK: - ProfileViewModelProtocol
@@ -69,8 +101,23 @@ extension ProfileViewController: ProfileViewModelProtocol {
     func didFetchUserDataSuccess(email: String, name: String, imageUrl: String) {
         nameLabel.text = name
         emailLabel.text = email
-        guard let url = URL(string: imageUrl) else{return}
-        profilePhoto.loadImageFromURL(url)
+        guard let url = URL(string: imageUrl) else{return stopLoadAnimation()}
+        profilePhoto.loadImageFromURL(url) { result in
+            switch result {
+            case .success(_):
+                self.stopLottieAnimation()
+            case .failure(_):
+                self.stopLottieAnimation()
+            }
+        }
+    }
+    
+    func startLoadAnimation() {
+        startLottieAnimation()
+    }
+    
+    func stopLoadAnimation() {
+        stopLottieAnimation()
     }
 }
 
@@ -84,7 +131,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         dismiss(animated: true, completion: nil)
     }
-
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }

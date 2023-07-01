@@ -12,6 +12,8 @@ import FirebaseStorage
 
 protocol ProfileViewModelProtocol: AnyObject {
     func didFetchUserDataSuccess(email: String, name: String, imageUrl: String)
+    func startLoadAnimation()
+    func stopLoadAnimation()
 }
 
 class ProfileViewModel {
@@ -33,6 +35,7 @@ class ProfileViewModel {
     }
     
     public func getUserData() {
+        delegate?.startLoadAnimation()
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             print("Usuário não autenticado")
             return
@@ -49,35 +52,34 @@ class ProfileViewModel {
             if let snapshotData = snapshot?.data(),
                let email = snapshotData["email"] as? String,
                let name = snapshotData["name"] as? String,
-               let image = snapshotData["imageURL"] as? String {
+               let image = snapshotData["imageURL"] as? String,
+               let favoriteMovies = snapshotData["favoriteMovies"] as? [Any] {
+                print(favoriteMovies.count)
+                print(favoriteMovies)
                 self.delegate?.didFetchUserDataSuccess(email: email, name: name,imageUrl: image)
             }
         }
     }
     
     func uploadImageToFirebaseStorage(_ image: UIImage) {
+        delegate?.startLoadAnimation()
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             print("Erro ao obter dados da imagem")
             return
         }
         
-        // Nome único para a imagem no Firebase Storage
         let imageName = UUID().uuidString
         
-        // Referência ao local onde a imagem será armazenada no Firebase Storage
         let storageRef = Storage.storage().reference().child("profileImages/\(imageName).jpg")
         
-        // Upload da imagem para o Firebase Storage
         storageRef.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {
                 print("Erro ao fazer upload da imagem: \(error.localizedDescription)")
                 return
             }
             
-            // Sucesso no upload da imagem
             print("Imagem enviada com sucesso para o Firebase Storage")
-            
-            // Recuperar a URL de download da imagem
+
             storageRef.downloadURL { url, error in
                 if let error = error {
                     print("Erro ao obter URL de download da imagem: \(error.localizedDescription)")
@@ -85,7 +87,6 @@ class ProfileViewModel {
                 }
                 
                 if let downloadURL = url?.absoluteString {
-                    // Atualizar os dados do usuário no Firestore com o link da imagem
                     self.updateUserImageURL(downloadURL)
                 }
             }
@@ -102,12 +103,12 @@ class ProfileViewModel {
         userRef.updateData(["imageURL": imageURL]) { error in
             if let error = error {
                 print("Erro ao atualizar o link da imagem do usuário no Firestore: \(error.localizedDescription)")
+                self.delegate?.stopLoadAnimation()
             } else {
                 print("Link da imagem do usuário atualizado com sucesso no Firestore")
+                self.delegate?.stopLoadAnimation()
+
             }
         }
     }
-
-
-    
 }

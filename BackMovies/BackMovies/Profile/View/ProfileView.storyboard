@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,25 +26,14 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePhoto" translatesAutoresizingMaskIntoConstraints="NO" id="fdW-vN-qcX">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oda-bt-dI9">
-                                        <rect key="frame" x="135" y="125.99999999999999" width="25" height="24.666666666666671"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="dbn-k0-sTr"/>
-                                            <constraint firstAttribute="height" constant="23.5" id="lVo-ce-yCs"/>
-                                        </constraints>
-                                        <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91687469749999995" green="0.98710713139999995" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="fdW-vN-qcX" firstAttribute="top" secondItem="M68-Oa-qED" secondAttribute="top" id="4vg-I2-k5p"/>
-                                    <constraint firstAttribute="bottom" secondItem="oda-bt-dI9" secondAttribute="bottom" id="9YG-bC-ccm"/>
                                     <constraint firstAttribute="bottom" secondItem="fdW-vN-qcX" secondAttribute="bottom" id="Ano-9G-cWR"/>
                                     <constraint firstAttribute="height" constant="150" id="Bfb-ia-cVU"/>
                                     <constraint firstItem="fdW-vN-qcX" firstAttribute="leading" secondItem="M68-Oa-qED" secondAttribute="leading" id="ObT-C9-Kaj"/>
                                     <constraint firstAttribute="trailing" secondItem="fdW-vN-qcX" secondAttribute="trailing" id="fRu-he-QAG"/>
-                                    <constraint firstAttribute="trailing" secondItem="oda-bt-dI9" secondAttribute="trailing" constant="-10" id="uHk-HW-38X"/>
                                     <constraint firstAttribute="width" constant="150" id="x1N-f8-Ot4"/>
                                 </constraints>
                             </view>
@@ -81,43 +69,50 @@
                                     <action selector="tappedExitButton:" destination="QFj-6X-0zB" eventType="touchUpInside" id="5Ey-5x-hkb"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y9m-GZ-UQW">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LbP-y4-n6v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KnI-Ng-lQl" firstAttribute="top" secondItem="cLq-Xo-dEu" secondAttribute="bottom" constant="12" id="3av-G7-hUM"/>
                             <constraint firstItem="zCm-k5-q5d" firstAttribute="centerX" secondItem="fdW-vN-qcX" secondAttribute="centerX" id="6s6-6o-jYg"/>
+                            <constraint firstItem="Y9m-GZ-UQW" firstAttribute="top" secondItem="KPh-Ns-LyM" secondAttribute="top" id="BdU-DX-vdf"/>
                             <constraint firstItem="zCm-k5-q5d" firstAttribute="top" secondItem="M68-Oa-qED" secondAttribute="bottom" constant="24" id="DNP-dE-3h4"/>
                             <constraint firstItem="KnI-Ng-lQl" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" constant="32" id="F4q-T2-dQJ"/>
                             <constraint firstAttribute="bottom" secondItem="CQz-Cs-Hup" secondAttribute="bottom" id="FGd-DN-TAs"/>
                             <constraint firstItem="CQz-Cs-Hup" firstAttribute="trailing" secondItem="LbP-y4-n6v" secondAttribute="trailing" id="P2X-5t-fvZ"/>
                             <constraint firstItem="cLq-Xo-dEu" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" constant="32" id="UZm-zG-QOq"/>
+                            <constraint firstItem="Y9m-GZ-UQW" firstAttribute="trailing" secondItem="LbP-y4-n6v" secondAttribute="trailing" id="cEy-K2-cU8"/>
                             <constraint firstItem="LbP-y4-n6v" firstAttribute="bottom" secondItem="WyM-dy-M7b" secondAttribute="bottom" constant="16" id="cxC-Yf-4ek"/>
+                            <constraint firstItem="Y9m-GZ-UQW" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" id="eOk-qg-eg6"/>
                             <constraint firstItem="CQz-Cs-Hup" firstAttribute="top" secondItem="KPh-Ns-LyM" secondAttribute="top" id="h7j-pX-HWs"/>
                             <constraint firstItem="WyM-dy-M7b" firstAttribute="centerX" secondItem="KPh-Ns-LyM" secondAttribute="centerX" id="kW3-5S-WdE"/>
                             <constraint firstItem="M68-Oa-qED" firstAttribute="top" secondItem="LbP-y4-n6v" secondAttribute="top" constant="24" id="okO-Sv-o1H"/>
                             <constraint firstItem="M68-Oa-qED" firstAttribute="centerX" secondItem="KPh-Ns-LyM" secondAttribute="centerX" id="rAe-8z-tEU"/>
                             <constraint firstItem="CQz-Cs-Hup" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" id="wKO-EC-qQd"/>
                             <constraint firstItem="cLq-Xo-dEu" firstAttribute="top" secondItem="zCm-k5-q5d" secondAttribute="bottom" constant="44" id="zSz-Kh-cbT"/>
+                            <constraint firstAttribute="bottom" secondItem="Y9m-GZ-UQW" secondAttribute="bottom" id="zWW-y4-8U3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Perfil" selectedImage="person" catalog="system" id="iIl-ro-VAe"/>
                     <connections>
-                        <outlet property="changeImageButton" destination="oda-bt-dI9" id="VvJ-FA-eBq"/>
                         <outlet property="emailLabel" destination="KnI-Ng-lQl" id="AbN-5h-ReI"/>
+                        <outlet property="loadingView" destination="Y9m-GZ-UQW" id="mOr-nA-sVm"/>
                         <outlet property="nameLabel" destination="zCm-k5-q5d" id="f67-xq-muW"/>
                         <outlet property="profilePhoto" destination="fdW-vN-qcX" id="8Co-f9-N8G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emq-ck-M0T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5212" y="-9.4452773613193415"/>
+            <point key="canvasLocation" x="5210.7692307692305" y="-9.9526066350710902"/>
         </scene>
     </scenes>
     <resources>
         <image name="backgroundProfile" width="675" height="1500"/>
         <image name="person" catalog="system" width="128" height="121"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="profilePhoto" width="224" height="225"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
