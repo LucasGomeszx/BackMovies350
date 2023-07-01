@@ -63,7 +63,6 @@ class ProfileViewController: UIViewController {
         }
         let doNothing = UIAlertAction(title: ProfileStrings.alertCancel.rawValue, style: .destructive)
         Alert.showAlert(on: self, withTitle: ProfileStrings.alertImage.rawValue, message: ProfileStrings.alertChangeImage.rawValue,actions: [logoutAction,doNothing])
-
     }
     
     @IBAction func tappedExitButton(_ sender: Any) {

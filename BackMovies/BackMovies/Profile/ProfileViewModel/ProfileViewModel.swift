@@ -28,7 +28,6 @@ class ProfileViewModel {
         do {
             try Auth.auth().signOut()
             print("Deslogou")
-            // Deslogou com sucesso
         } catch let signOutError as NSError {
             print("Erro ao deslogar o usuário: \(signOutError.localizedDescription)")
         }
@@ -52,10 +51,7 @@ class ProfileViewModel {
             if let snapshotData = snapshot?.data(),
                let email = snapshotData["email"] as? String,
                let name = snapshotData["name"] as? String,
-               let image = snapshotData["imageURL"] as? String,
-               let favoriteMovies = snapshotData["favoriteMovies"] as? [Any] {
-                print(favoriteMovies.count)
-                print(favoriteMovies)
+               let image = snapshotData["imageURL"] as? String {
                 self.delegate?.didFetchUserDataSuccess(email: email, name: name,imageUrl: image)
             }
         }
@@ -64,7 +60,6 @@ class ProfileViewModel {
     func uploadImageToFirebaseStorage(_ image: UIImage) {
         delegate?.startLoadAnimation()
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            print("Erro ao obter dados da imagem")
             return
         }
         
@@ -95,7 +90,6 @@ class ProfileViewModel {
 
     private func updateUserImageURL(_ imageURL: String) {
         guard let currentUserID = Auth.auth().currentUser?.uid else {
-            print("Usuário não autenticado")
             return
         }
 
@@ -105,7 +99,6 @@ class ProfileViewModel {
                 print("Erro ao atualizar o link da imagem do usuário no Firestore: \(error.localizedDescription)")
                 self.delegate?.stopLoadAnimation()
             } else {
-                print("Link da imagem do usuário atualizado com sucesso no Firestore")
                 self.delegate?.stopLoadAnimation()
 
             }
