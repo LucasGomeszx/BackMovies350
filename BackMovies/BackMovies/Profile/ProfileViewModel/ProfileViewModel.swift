@@ -11,7 +11,8 @@ import FirebaseFirestore
 import FirebaseStorage
 
 protocol ProfileViewModelProtocol: AnyObject {
-    func didFetchUserDataSuccess(email: String, name: String, imageUrl: String)
+    func didFetchUserDataSuccess(user: User)
+    func didFetchUserDataFailure(error: String)
     func startLoadAnimation()
     func stopLoadAnimation()
 }
@@ -35,26 +36,15 @@ class ProfileViewModel {
     
     public func getUserData() {
         delegate?.startLoadAnimation()
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
-            print("Usuário não autenticado")
-            return
-        }
-
-        Firestore.firestore().collection("user").document(currentUserID).getDocument { [weak self] snapshot, error in
-            guard let self = self else { return }
-
-            if let error = error {
-                print("Erro ao obter os dados do usuário: \(error.localizedDescription)")
-                return
-            }
-
-            if let snapshotData = snapshot?.data(),
-               let email = snapshotData["email"] as? String,
-               let name = snapshotData["name"] as? String,
-               let image = snapshotData["imageURL"] as? String {
-                self.delegate?.didFetchUserDataSuccess(email: email, name: name,imageUrl: image)
+        FirestoreManager.shared.getUserData { result in
+            switch result {
+            case .success(let user):
+                self.delegate?.didFetchUserDataSuccess(user: user)
+            case .failure(let error):
+                self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
             }
         }
+        
     }
     
     func uploadImageToFirebaseStorage(_ image: UIImage) {
@@ -94,7 +84,7 @@ class ProfileViewModel {
         }
 
         let userRef = Firestore.firestore().collection("user").document(currentUserID)
-        userRef.updateData(["imageURL": imageURL]) { error in
+        userRef.updateData(["imageUrl": imageURL]) { error in
             if let error = error {
                 print("Erro ao atualizar o link da imagem do usuário no Firestore: \(error.localizedDescription)")
                 self.delegate?.stopLoadAnimation()

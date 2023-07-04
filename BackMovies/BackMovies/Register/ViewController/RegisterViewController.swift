@@ -106,15 +106,14 @@ class RegisterViewController: UIViewController {
     func setupLottieConstraints() {
         lottieBackgroundView.addSubview(lottieView)
         NSLayoutConstraint.activate([
-            lottieView.widthAnchor.constraint(equalToConstant: 100),
-            lottieView.heightAnchor.constraint(equalToConstant: 100),
+            lottieView.widthAnchor.constraint(equalToConstant: 65),
+            lottieView.heightAnchor.constraint(equalToConstant: 65),
             lottieView.centerXAnchor.constraint(equalTo: lottieBackgroundView.centerXAnchor),
             lottieView.centerYAnchor.constraint(equalTo: lottieBackgroundView.centerYAnchor)
         ])
     }
     
     // MARK: - Actions
-    
     
     @IBAction func tappedRegisterButton(_ sender: Any) {
         if viewModel.isFormValid() && nameTextField.hasText && emailTextField.hasText && passwordTextField.hasText && repeatPasswordTextField.hasText {

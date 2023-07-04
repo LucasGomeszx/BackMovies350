@@ -10,6 +10,7 @@ import Lottie
 
 enum ProfileStrings: String {
     case alertExit = "Sair"
+    case alertError = "Erro"
     case alertCancel = "Cancelar"
     case alertStay = "Continuar"
     case alertImage = "Alterar Foto"
@@ -55,7 +56,7 @@ class ProfileViewController: UIViewController {
         profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
         profilePhoto.clipsToBounds = true
     }
-
+    
     @objc func selectImageFromGallery(_ sender: UIButton) {
         let logoutAction = UIAlertAction(title: ProfileStrings.alertStay.rawValue, style: .default) { _ in
             self.imagePicker.sourceType = .photoLibrary
@@ -97,18 +98,23 @@ class ProfileViewController: UIViewController {
 //MARK: - ProfileViewModelProtocol
 
 extension ProfileViewController: ProfileViewModelProtocol {
-    func didFetchUserDataSuccess(email: String, name: String, imageUrl: String) {
-        nameLabel.text = name
-        emailLabel.text = email
-        guard let url = URL(string: imageUrl) else{return stopLoadAnimation()}
+    func didFetchUserDataSuccess(user: User) {
+        nameLabel.text = user.name
+        emailLabel.text = user.email
+        guard let url = URL(string: user.imageUrl ?? "") else {return self.stopLottieAnimation()}
         profilePhoto.loadImageFromURL(url) { result in
             switch result {
-            case .success(_):
+            case .success(let Image):
+                self.profilePhoto.image = Image
                 self.stopLottieAnimation()
             case .failure(_):
                 self.stopLottieAnimation()
             }
         }
+    }
+    
+    func didFetchUserDataFailure(error: String) {
+        Alert.showAlert(on: self, withTitle: ProfileStrings.alertError.rawValue, message: error, actions: nil)
     }
     
     func startLoadAnimation() {

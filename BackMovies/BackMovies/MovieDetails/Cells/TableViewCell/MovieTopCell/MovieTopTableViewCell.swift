@@ -102,7 +102,11 @@ class MovieTopTableViewCell: UITableViewCell {
 }
 
 extension MovieTopTableViewCell: MovieTopCellViewModelProtocol {
-    func setheartState() {
-        heartImageView.image = UIImage(systemName: viewModel?.verifiFavoriteMovie() ?? "")
+    func setheartState(isFavorite: Bool) {
+        if isFavorite {
+            heartImageView.image = UIImage(systemName: "heart.fill")
+        } else {
+            heartImageView.image = UIImage(systemName: "heart")
+        }
     }
 }

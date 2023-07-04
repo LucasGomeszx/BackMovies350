@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestore
 
 protocol MovieTopCellViewModelProtocol: AnyObject {
-    func setheartState()
+    func setheartState(isFavorite: Bool)
 }
 
 class MovieTopCellViewModel {
@@ -45,57 +45,38 @@ class MovieTopCellViewModel {
     }
     
     func getUserFavoriteMovies() {
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
-            print("Usuário não autenticado")
-            return
-        }
-
-        Firestore.firestore().collection("user").document(currentUserID).getDocument { [weak self] snapshot, error in
-            guard let self = self else { return }
-
-            if let error = error {
-                print("Erro ao obter os dados do usuário: \(error.localizedDescription)")
-                return
-            }
-
-            if let snapshotData = snapshot?.data(),
-               let favoriteMovies = snapshotData["favoriteMovies"] as? [Int] {
-                self.favoriteMovies = favoriteMovies
-                self.delegate?.setheartState()
-            }
-        }
-    }
-    
-    func verifiFavoriteMovie() -> String {
-        if favoriteMovies.contains(movieDetail.id ?? 0){
-            return "heart.fill"
-        }else {
-            return "heart"
-        }
-    }
-    
-    func saveFavoriteMovie() {
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
-            return
-        }
-        let userRef = Firestore.firestore().collection("user").document(currentUserID)
-        userRef.updateData(["favoriteMovies": self.favoriteMovies]) { error in
-            if let error = error {
-                print("Erro ao atualizar filmes do usuário no Firestore: \(error.localizedDescription)")
-            } else {
-                print("Dados Atualizados.")
-            }
+        FirestoreManager.shared.isMovieInFavorites(movieId: movieDetail.id ?? 0) { result in
+            switch result {
+             case .success(let isInFavorites):
+                 print("O filme está nos favoritos: \(isInFavorites)")
+                self.delegate?.setheartState(isFavorite: isInFavorites)
+             case .failure(let error):
+                 print("Erro ao verificar se o filme está nos favoritos: \(error.localizedDescription)")
+                self.delegate?.setheartState(isFavorite: false)
+             }
         }
     }
     
     func addFavoriteMovie() {
-        self.favoriteMovies.append(movieDetail.id ?? 0)
-        saveFavoriteMovie()
+        FirestoreManager.shared.addFavoriteMovie(movieId: movieDetail.id ?? 0) { result in
+            switch result {
+            case .success:
+                print("Filme adicionado aos favoritos.")
+            case .failure(let error):
+                print("Erro ao adicionar filme aos favoritos no Firestore: \(error.localizedDescription)")
+            }
+        }
     }
     
     func deleteFavoriteMovie() {
-        favoriteMovies.removeAll { $0 == movieDetail.id ?? 0 }
-        saveFavoriteMovie()
+        FirestoreManager.shared.removeFavoriteMovie(movieId: movieDetail.id ?? 0) { result in
+            switch result {
+            case .success:
+                print("Filme removido dos favoritos.")
+            case .failure(let error):
+                print("Erro ao adicionar filme aos favoritos no Firestore: \(error.localizedDescription)")
+            }
+        }
     }
     
 }
