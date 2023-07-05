@@ -40,6 +40,7 @@ class FavoriteViewController: UIViewController {
             layout.estimatedItemSize = .zero
         }
         favoriteCollectionView.register(PosterCollectionViewCell.nib(), forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
+        favoriteCollectionView.register(MovieEmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: MovieEmptyCollectionViewCell.identifier)
     }
 
     private func configureView() {
@@ -64,20 +65,31 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-        cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
-        return cell ?? UICollectionViewCell()
+        if viewModel.isArrayEmpty() {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieEmptyCollectionViewCell.identifier, for: indexPath) as? MovieEmptyCollectionViewCell
+            return cell ?? UICollectionViewCell()
+        }else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
+            cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
+            return cell ?? UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: MovieDetailsViewController? = UIStoryboard(name: FavoriteStrings.moviesDetail.rawValue, bundle: nil).instantiateViewController(identifier: FavoriteStrings.moviesDetail.rawValue) { coder -> MovieDetailsViewController? in
-            return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
+        if !viewModel.isArrayEmpty() {
+            let vc: MovieDetailsViewController? = UIStoryboard(name: FavoriteStrings.moviesDetail.rawValue, bundle: nil).instantiateViewController(identifier: FavoriteStrings.moviesDetail.rawValue) { coder -> MovieDetailsViewController? in
+                return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
+            }
+            navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
         }
-        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel.getMovieCellSize
+        if viewModel.isArrayEmpty() {
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }else {
+            return viewModel.getMovieCellSize
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -22,7 +22,12 @@ class FavoriteViewModel {
     private weak var delegate: FavoriteViewModelDelegate?
     
     var getMoviesCount: Int {
-        movieList.count
+        if movieList.count == 0 {
+            return 1
+        } else {
+            return movieList.count
+        }
+        
     }
     
     var getMovieCellSize: CGSize {
@@ -51,8 +56,12 @@ class FavoriteViewModel {
         }
     }
     
-    public func deInitListener() {
-        favoriteMoviesListener?.remove()
+    public func isArrayEmpty() -> Bool {
+        if movieList.count == 0 {
+            return true
+        }else {
+            return false
+        }
     }
     
 }
