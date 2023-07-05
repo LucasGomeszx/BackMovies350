@@ -40,6 +40,26 @@ class FirestoreManager {
         }
     }
     
+    func createUser(email: String, completion: @escaping (Error?) -> Void) {
+        let userCollection = firestore.collection(CollectionKeys.user.rawValue)
+        let userRef = userCollection.document(currentUserID)
+        
+        userRef.getDocument { document, error in
+            if let document = document, document.exists {
+                completion(nil)
+            } else {
+                let user = User(id: self.currentUserID, name: self.currentUserID, email: email, imageUrl: "", favoriteMovies: [])
+                
+                do {
+                    try userRef.setData(from: user)
+                    completion(nil)
+                } catch let error {
+                    completion(error)
+                }
+            }
+        }
+    }
+    
     func getUserData(completion: @escaping (Result<User, Error>) -> Void) {
         firestore.collection(CollectionKeys.user.rawValue).document(currentUserID).getDocument { document, error in
             
@@ -56,7 +76,6 @@ class FirestoreManager {
             do {
                 let user = try document.data(as: User.self)
                 completion(.success(user))
-                print(user)
             } catch let error {
                 completion(.failure(error))
             }

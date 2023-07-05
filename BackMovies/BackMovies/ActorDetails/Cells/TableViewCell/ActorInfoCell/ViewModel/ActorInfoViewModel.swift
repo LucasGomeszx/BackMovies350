@@ -115,21 +115,22 @@ class ActorInfoViewModel {
     }
     
     func navegationSocialMedia(index: Int) {
-        let socialMedia = actorSociaMedia[index]
-        switch socialMedia.socialMediaType {
-        case "facebook":
-            guard let url = URL(string: Api.facebookLink + (socialMedia.actorSocialMedia ?? "")) else {return}
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        case "instagram":
-            guard let url = URL(string: Api.instagramLink + (socialMedia.actorSocialMedia ?? "")) else {return}
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        case "twitter":
-            guard let url = URL(string: Api.twitterLink + (socialMedia.actorSocialMedia ?? "")) else {return}
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        default:
-            break
+        if actorSociaMedia.count != 0 {
+            let socialMedia = actorSociaMedia[index]
+            switch socialMedia.socialMediaType {
+            case "facebook":
+                guard let url = URL(string: Api.facebookLink + (socialMedia.actorSocialMedia ?? "")) else {return}
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            case "instagram":
+                guard let url = URL(string: Api.instagramLink + (socialMedia.actorSocialMedia ?? "")) else {return}
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            case "twitter":
+                guard let url = URL(string: Api.twitterLink + (socialMedia.actorSocialMedia ?? "")) else {return}
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            default:
+                break
+            }
         }
-        
     }
     
 }

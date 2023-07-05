@@ -129,41 +129,54 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func tappedGoogleButton(_ sender: Any) {
-        self.startLottieAnimation()
-        
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        
-        // Create Google Sign In configuration object.
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-        
-        // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
-            guard error == nil else {
-                self.stopLottieAnimation()
-                return
-            }
+            self.startLottieAnimation()
             
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString
-            else {
-                return
-            }
+            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
             
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: user.accessToken.tokenString)
+            // Create Google Sign In configuration object.
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
             
-            Auth.auth().signIn(with: credential) { result, error in
-                if error != nil {
+            // Start the sign in flow!
+            GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+                guard error == nil else {
                     self.stopLottieAnimation()
-                    Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error?.localizedDescription, actions: nil)
-                }else {
-                    self.stopLottieAnimation()
-                    self.naviHomeScreen()
+                    return
+                }
+                
+                guard let user = result?.user,
+                      let idToken = user.idToken?.tokenString
+                else {
+                    return
+                }
+                
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                               accessToken: user.accessToken.tokenString)
+                
+                Auth.auth().signIn(with: credential) { result, error in
+                    if let error = error {
+                        self.stopLottieAnimation()
+                        Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error.localizedDescription, actions: nil)
+                        return
+                    }
+                    
+                    guard let user = result?.user,
+                          let email = user.email else {
+                        self.stopLottieAnimation()
+                        // Tratar o caso em que o email não está disponível
+                        return
+                    }
+                    FirestoreManager.shared.createUser(email: email) { error in
+                        if let error = error {
+                            Alert.showAlert(on: self, withTitle: LoginStrings.alertError.rawValue, message: error.localizedDescription, actions: nil)
+                        }else {
+                            self.stopLottieAnimation()
+                            self.naviHomeScreen()
+                        }
+                    }
                 }
             }
         }
-    }
     
     private func validateEmailTextField(_ textField: UITextField) {
         guard let email = textField.text, !email.isEmpty else {
