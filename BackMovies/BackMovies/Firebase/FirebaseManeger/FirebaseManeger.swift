@@ -108,5 +108,24 @@ class FirestoreManager {
         }
     }
     
+    func observeFavoriteMovies(completion: @escaping (Result<[Int], Error>) -> Void) -> ListenerRegistration? {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            completion(.failure(NSError(domain: "FirestoreManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "Usuário não autenticado"])))
+            return nil
+        }
+        
+        let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
+        return userRef.addSnapshotListener { document, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let document = document, let data = document.data(), let favoriteMovies = data["favoriteMovies"] as? [Int] {
+                completion(.success(favoriteMovies))
+            } else {
+                completion(.failure(NSError(domain: "FirestoreManager", code: -2, userInfo: [NSLocalizedDescriptionKey: "Não foi possível obter os dados do usuário"])))
+            }
+        }
+    }
+
+    
 }
 

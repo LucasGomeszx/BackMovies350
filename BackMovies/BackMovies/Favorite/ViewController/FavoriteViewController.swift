@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 enum FavoriteStrings: String {
     case moviesDetail = "MoviesDetailsView"
@@ -27,7 +29,7 @@ class FavoriteViewController: UIViewController {
         configureView()
         configCollectionView()
         viewModel.setUpDelegate(delegate: self)
-        viewModel.fetchMovies()
+        viewModel.startFavoriteMoviesListener()
     }
     
     private func configCollectionView() {

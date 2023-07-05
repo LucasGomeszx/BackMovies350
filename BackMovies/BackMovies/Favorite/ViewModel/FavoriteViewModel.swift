@@ -7,6 +7,8 @@
 
 import Foundation
 import Alamofire
+import Firebase
+import FirebaseFirestore
 
 protocol FavoriteViewModelDelegate: AnyObject {
     func didFetchMoviesSuccess()
@@ -15,11 +17,12 @@ protocol FavoriteViewModelDelegate: AnyObject {
 
 class FavoriteViewModel {
     
-    private var movieList: Movies?
+    private var movieList: [Int] = []
+    private var favoriteMoviesListener: ListenerRegistration?
     private weak var delegate: FavoriteViewModelDelegate?
     
     var getMoviesCount: Int {
-        movieList?.results?.count ?? 0
+        movieList.count
     }
     
     var getMovieCellSize: CGSize {
@@ -27,23 +30,29 @@ class FavoriteViewModel {
     }
     
     public func getMoviesId(index: Int) -> Int {
-        movieList?.results?[index].id ?? 0
+        movieList[index]
     }
     
     public func setUpDelegate(delegate: FavoriteViewModelDelegate) {
         self.delegate = delegate
     }
     
-    public func fetchMovies() {
-        AF.request(Api.popularMovies(), method: .get).validate().responseDecodable(of: Movies.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.movieList = result
+    public func startFavoriteMoviesListener() {
+        movieList.removeAll()
+        
+        favoriteMoviesListener = FirestoreManager.shared.observeFavoriteMovies { result in
+            switch result {
+            case .success(let favoriteMovies):
+                self.movieList = favoriteMovies
                 self.delegate?.didFetchMoviesSuccess()
-            case.failure(_):
+            case .failure(_):
                 self.delegate?.didFetchMoviesFailure()
             }
         }
+    }
+    
+    public func deInitListener() {
+        favoriteMoviesListener?.remove()
     }
     
 }
