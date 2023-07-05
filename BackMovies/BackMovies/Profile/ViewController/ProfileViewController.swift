@@ -55,6 +55,21 @@ class ProfileViewController: UIViewController {
         profilePhoto.layer.borderColor = UIColor.black.cgColor
         profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
         profilePhoto.clipsToBounds = true
+        let nameGesture = UITapGestureRecognizer(target: self, action: #selector(changeName))
+        nameLabel.addGestureRecognizer(nameGesture)
+        nameLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc func changeName() {
+        Alert.showAlertWithTextField(on: self, withTitle: "Digite algo", message: nil, textFieldPlaceholder: "Digite aqui", cancelTitle: "Cancelar", saveTitle: "Salvar", saveHandler: { text in
+            if let text = text {
+                if !text.isEmpty {
+                    self.viewModel.saveUserName(name: text)
+                }else {
+                    Alert.showAlert(on: self, withTitle: "Erro", message: "Digite um nome valido", actions: nil)
+                }
+            }
+        })
     }
     
     @objc func selectImageFromGallery(_ sender: UIButton) {

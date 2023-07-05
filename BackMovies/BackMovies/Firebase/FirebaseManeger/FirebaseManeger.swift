@@ -82,6 +82,17 @@ class FirestoreManager {
         }
     }
     
+    func updateUserName(name: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
+        userRef.updateData(["name": name]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
     func addFavoriteMovie(movieId: Int, completion: @escaping (Result<Void, Error>) -> Void) {
          let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
          userRef.updateData(["favoriteMovies": FieldValue.arrayUnion([movieId])]) { error in

@@ -47,6 +47,17 @@ class ProfileViewModel {
         
     }
     
+    public func saveUserName(name: String) {
+        FirestoreManager.shared.updateUserName(name: name) { result in
+            switch result {
+            case .success(_):
+                self.getUserData()
+            case .failure(_):
+                print("error")
+            }
+        }
+    }
+    
     func uploadImageToFirebaseStorage(_ image: UIImage) {
         delegate?.startLoadAnimation()
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {

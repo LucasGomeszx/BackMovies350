@@ -37,20 +37,20 @@
                                     <constraint firstAttribute="width" constant="150" id="x1N-f8-Ot4"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lucas Gomes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-k5-q5d">
-                                <rect key="frame" x="106.66666666666669" y="245" width="177" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lucas Gomes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-k5-q5d">
+                                <rect key="frame" x="32" y="244.99999999999997" width="326" height="33.666666666666657"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLq-Xo-dEu">
-                                <rect key="frame" x="32" y="323" width="52" height="24"/>
+                                <rect key="frame" x="32" y="322.66666666666669" width="52" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lgomeszx@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnI-Ng-lQl">
-                                <rect key="frame" x="32" y="359" width="185" height="23"/>
+                                <rect key="frame" x="32" y="358.66666666666669" width="185" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -78,7 +78,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KnI-Ng-lQl" firstAttribute="top" secondItem="cLq-Xo-dEu" secondAttribute="bottom" constant="12" id="3av-G7-hUM"/>
-                            <constraint firstItem="zCm-k5-q5d" firstAttribute="centerX" secondItem="fdW-vN-qcX" secondAttribute="centerX" id="6s6-6o-jYg"/>
                             <constraint firstItem="Y9m-GZ-UQW" firstAttribute="top" secondItem="KPh-Ns-LyM" secondAttribute="top" id="BdU-DX-vdf"/>
                             <constraint firstItem="zCm-k5-q5d" firstAttribute="top" secondItem="M68-Oa-qED" secondAttribute="bottom" constant="24" id="DNP-dE-3h4"/>
                             <constraint firstItem="KnI-Ng-lQl" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" constant="32" id="F4q-T2-dQJ"/>
@@ -90,6 +89,8 @@
                             <constraint firstItem="Y9m-GZ-UQW" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" id="eOk-qg-eg6"/>
                             <constraint firstItem="CQz-Cs-Hup" firstAttribute="top" secondItem="KPh-Ns-LyM" secondAttribute="top" id="h7j-pX-HWs"/>
                             <constraint firstItem="WyM-dy-M7b" firstAttribute="centerX" secondItem="KPh-Ns-LyM" secondAttribute="centerX" id="kW3-5S-WdE"/>
+                            <constraint firstItem="LbP-y4-n6v" firstAttribute="trailing" secondItem="zCm-k5-q5d" secondAttribute="trailing" constant="32" id="mes-9S-zcn"/>
+                            <constraint firstItem="zCm-k5-q5d" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" constant="32" id="mwc-Ug-sc9"/>
                             <constraint firstItem="M68-Oa-qED" firstAttribute="top" secondItem="LbP-y4-n6v" secondAttribute="top" constant="24" id="okO-Sv-o1H"/>
                             <constraint firstItem="M68-Oa-qED" firstAttribute="centerX" secondItem="KPh-Ns-LyM" secondAttribute="centerX" id="rAe-8z-tEU"/>
                             <constraint firstItem="CQz-Cs-Hup" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" id="wKO-EC-qQd"/>

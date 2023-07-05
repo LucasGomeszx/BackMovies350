@@ -25,4 +25,24 @@ class Alert {
         
         viewController.present(alertController, animated: true, completion: nil)
     }
+    
+    static func showAlertWithTextField<T: UIViewController>(on viewController: T, withTitle title: String?, message: String?, textFieldPlaceholder: String?, cancelTitle: String, saveTitle: String, cancelHandler: (() -> Void)? = nil, saveHandler: ((String?) -> Void)? = nil) {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            alertController.addTextField { textField in
+                textField.placeholder = textFieldPlaceholder
+            }
+            
+            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
+            alertController.addAction(cancelAction)
+            
+            let saveAction = UIAlertAction(title: saveTitle, style: .default) { _ in
+                let text = alertController.textFields?.first?.text
+                saveHandler?(text)
+            }
+            alertController.addAction(saveAction)
+            
+            viewController.present(alertController, animated: true, completion: nil)
+        }
 }
+
