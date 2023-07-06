@@ -25,10 +25,10 @@ class WatchCellViewModel {
     }
     
     public func fetchWatchProviders() {
-        AF.request(Api.getProviders(movieid: movieDetail?.id ?? 0), method: .get).validate().responseDecodable(of: WatchProviders.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.providerList = result
+        ServiceManeger.shared.fetchWatchProviders(movieId: movieDetail?.id ?? 0) { result in
+            switch result {
+            case .success(let success):
+                self.providerList = success
                 self.delegate?.didFetchProviderSuccess()
             case .failure(_):
                 self.delegate?.didFetchProviderFailure()

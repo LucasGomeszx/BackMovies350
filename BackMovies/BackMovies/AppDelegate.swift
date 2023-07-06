@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import Firebase
 import FirebaseFirestore
 import GoogleSignIn
 import IQKeyboardManagerSwift

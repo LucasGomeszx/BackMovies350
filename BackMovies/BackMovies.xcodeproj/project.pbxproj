@@ -322,6 +322,15 @@
 			path = FirebaseManeger;
 			sourceTree = "<group>";
 		};
+		6416841F2A575A4200F60607 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				645179AD29C786E9001D7B9D /* PosterCollectionViewCell */,
+				64AB8B6A2A474C3300F021FE /* MovieEmptyCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		643187C129F9F5CE009F35EB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1083,7 +1092,7 @@
 		64E70E4829BA503200F14BFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				64AB8B6A2A474C3300F021FE /* MovieEmptyCell */,
+				6416841F2A575A4200F60607 /* Cell */,
 				6437B0A32A0018B900293FC1 /* LottieJson */,
 				64A9192429F76BF300FAE641 /* Extensions */,
 				64462B3229F03AA50021A8BE /* Alert */,
@@ -1091,7 +1100,6 @@
 				648F919729EDBB330052E375 /* Image */,
 				64CEAAF929E07F36006DCBD2 /* Model */,
 				64CEAAF629E07EFF006DCBD2 /* Service */,
-				645179AD29C786E9001D7B9D /* PosterCollectionViewCell */,
 			);
 			path = Common;
 			sourceTree = "<group>";

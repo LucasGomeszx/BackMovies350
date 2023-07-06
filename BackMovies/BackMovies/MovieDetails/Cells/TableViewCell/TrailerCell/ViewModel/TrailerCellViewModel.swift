@@ -55,10 +55,10 @@ class TrailerCellViewModel {
     }
     
     func fetchMovieVideo() {
-        AF.request(Api.movieView(movieId: movieDetail.id ?? 0), method: .get).validate().responseDecodable(of: Video.self) { response in
-            switch response.result {
-            case.success(let result):
-                self.movieVideos = result
+        ServiceManeger.shared.fetchMovieVideo(movieId: movieDetail.id ?? 0) { result in
+            switch result {
+            case .success(let success):
+                self.movieVideos = success
                 self.filterTreilerVideo()
                 self.delegate?.didFetchMovieVideoSucess()
             case .failure(_):

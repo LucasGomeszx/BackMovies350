@@ -41,10 +41,10 @@ class RelatedCellViewModel {
     }
     
     public func fetchSimilar() {
-        AF.request(Api.similarMovies(id: movieId ?? 0), method: .get).validate().responseDecodable(of: SimilarMovies.self) { response in
-            switch response.result {
-            case.success(let result):
-                self.similarMovies = result
+        ServiceManeger.shared.fetchSimilarMovies(movieId: movieId ?? 0) { result in
+            switch result {
+            case .success(let success):
+                self.similarMovies = success
                 self.delegate?.didFetchSimilarMovies()
             case .failure(_):
                 self.delegate?.didFailToFetchSimilarMovies()

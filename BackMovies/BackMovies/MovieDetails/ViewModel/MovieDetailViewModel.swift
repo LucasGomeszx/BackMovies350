@@ -28,10 +28,10 @@ class MovieDetailViewModel {
     }
     
     func fetchMovieDetail() {
-        AF.request(Api.movieDetail(id: movieId), method: .get).validate().responseDecodable(of: MovieDetail.self) { response in
-            switch response.result {
-            case.success(let result):
-                self.movieDetail = result
+        ServiceManeger.shared.fetchMovieDetail(movieId: movieId) { result in
+            switch result {
+            case .success(let success):
+                self.movieDetail = success
                 self.delegate?.fetchMovieDetailSuccess()
             case .failure(let error):
                 self.delegate?.fetchMovieDetailFailure(error: error.localizedDescription)

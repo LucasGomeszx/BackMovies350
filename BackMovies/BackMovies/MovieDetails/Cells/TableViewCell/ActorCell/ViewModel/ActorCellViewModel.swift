@@ -45,10 +45,10 @@ class ActorCellViewModel {
     }
     
     public func fetchActors() {
-        AF.request(Api.actor(id: movieId ?? 0), method: .get).validate().responseDecodable(of: Elenco.self) { response in
-            switch response.result {
-            case.success(let result):
-                self.actor = result
+        ServiceManeger.shared.fetchActors(movieId: movieId ?? 0) { result in
+            switch result {
+            case .success(let success):
+                self.actor = success
                 self.delegate?.didFetchMovies()
             case .failure(let error):
                 self.delegate?.didFailToFetchMovies(error: error.localizedDescription)

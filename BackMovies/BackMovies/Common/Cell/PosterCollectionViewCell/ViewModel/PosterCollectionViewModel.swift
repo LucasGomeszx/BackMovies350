@@ -36,13 +36,13 @@ class PosterCollectionViewModel {
     }
     
     func fetchMovieDetail() {
-        AF.request(Api.movieDetail(id: movieId), method: .get).validate().responseDecodable(of: MovieDetail.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.movieDetail = result
+        ServiceManeger.shared.fetchPosterCell(movieId: movieId) { result in
+            switch result {
+            case .success(let success):
+                self.movieDetail = success
                 self.delegate?.didFetchMovieDetailSuccess()
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                break
             }
         }
     }
