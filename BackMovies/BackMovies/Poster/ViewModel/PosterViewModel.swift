@@ -16,8 +16,10 @@ protocol PosterViewModelDelegate: AnyObject {
 class PosterViewModel {
     
     private weak var delegate: PosterViewModelDelegate?
-    private let service: Service = Service()
     private var posterList: Movies?
+    
+    private var page: Int = 0
+    private var totalPages: Int = 0
     
     func setDelegate(delegate: PosterViewModelDelegate) {
         self.delegate = delegate
@@ -44,14 +46,37 @@ class PosterViewModel {
     //MARK: - FetchMovies
     
     public func fetchMovies() {
-        AF.request(Api.posterUrl(), method: .get).validate().responseDecodable(of: Movies.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.posterList = result
+        ServiceManeger.shared.fetchMovies { result in
+            switch result {
+            case .success(let success):
+                self.page = success.page ?? 0
+                self.totalPages = success.totalPages ?? 0
+                self.posterList = success
                 self.delegate?.didFetchMovies()
             case .failure(let error):
                 self.delegate?.didFailToFetchMovies(with: error.localizedDescription)
             }
+        }
+    }
+    
+    public func getMorePosterMovies() {
+        if page < totalPages {
+            page += 1
+            ServiceManeger.shared.getMorePosterMovies(page: page) { result in
+                switch result {
+                case .success(let success):
+                    self.posterList?.results?.append(contentsOf: success.results ?? [])
+                    self.delegate?.didFetchMovies()
+                case .failure(let error):
+                    self.delegate?.didFailToFetchMovies(with: error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    private func setPage() {
+        if page < totalPages {
+            page = +1
         }
     }
     
