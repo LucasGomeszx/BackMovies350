@@ -13,6 +13,7 @@ import FirebaseFirestore
 protocol FavoriteViewModelDelegate: AnyObject {
     func didFetchMoviesSuccess()
     func didFetchMoviesFailure()
+    func didFetchError(error: String)
 }
 
 class FavoriteViewModel {
@@ -27,7 +28,6 @@ class FavoriteViewModel {
         } else {
             return movieList.count
         }
-        
     }
     
     var getMovieCellSize: CGSize {
@@ -44,14 +44,13 @@ class FavoriteViewModel {
     
     public func startFavoriteMoviesListener() {
         movieList.removeAll()
-        
         favoriteMoviesListener = FirestoreManager.shared.observeFavoriteMovies { result in
             switch result {
             case .success(let favoriteMovies):
                 self.movieList = favoriteMovies
                 self.delegate?.didFetchMoviesSuccess()
-            case .failure(_):
-                self.delegate?.didFetchMoviesFailure()
+            case .failure(let error):
+                self.delegate?.didFetchError(error: error.localizedDescription)
             }
         }
     }

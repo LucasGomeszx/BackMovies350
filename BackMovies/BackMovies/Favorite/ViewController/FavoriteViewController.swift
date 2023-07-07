@@ -108,4 +108,9 @@ extension FavoriteViewController: FavoriteViewModelDelegate {
     func didFetchMoviesFailure() {
         Alert.showAlert(on: self, withTitle: FavoriteStrings.alertError.rawValue, message: FavoriteStrings.moviesError.rawValue, actions: nil)
     }
+    
+    func didFetchError(error: String) {
+        Alert.showAlert(on: self, withTitle: FavoriteStrings.alertError.rawValue, message: FavoriteStrings.moviesError.rawValue, actions: nil)
+    }
+    
 }

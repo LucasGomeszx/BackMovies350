@@ -28,9 +28,8 @@ class ProfileViewModel {
     public func logOut() {
         do {
             try Auth.auth().signOut()
-            print("Deslogou")
         } catch let signOutError as NSError {
-            print("Erro ao deslogar o usuário: \(signOutError.localizedDescription)")
+            self.delegate?.didFetchUserDataFailure(error: signOutError.localizedDescription)
         }
     }
     
@@ -52,8 +51,8 @@ class ProfileViewModel {
             switch result {
             case .success(_):
                 self.getUserData()
-            case .failure(_):
-                print("error")
+            case .failure(let error):
+                self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
             }
         }
     }
@@ -70,15 +69,13 @@ class ProfileViewModel {
         
         storageRef.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {
-                print("Erro ao fazer upload da imagem: \(error.localizedDescription)")
+                self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
                 return
             }
-            
-            print("Imagem enviada com sucesso para o Firebase Storage")
 
             storageRef.downloadURL { url, error in
                 if let error = error {
-                    print("Erro ao obter URL de download da imagem: \(error.localizedDescription)")
+                    self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
                     return
                 }
                 
@@ -97,12 +94,12 @@ class ProfileViewModel {
         let userRef = Firestore.firestore().collection("user").document(currentUserID)
         userRef.updateData(["imageUrl": imageURL]) { error in
             if let error = error {
-                print("Erro ao atualizar o link da imagem do usuário no Firestore: \(error.localizedDescription)")
+                self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
                 self.delegate?.stopLoadAnimation()
             } else {
                 self.delegate?.stopLoadAnimation()
-
             }
         }
     }
+    
 }
