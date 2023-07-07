@@ -27,14 +27,14 @@ class ActorInfoViewModel {
     private weak var delegate: ActorInfoViewModelProtocol?
     
     public func fetchActorSocialMedia() {
-        AF.request(Api.getActorSocialMedia(actorId: actorDetail?.id ?? 0), method: .get).validate().responseDecodable(of:ActorSocialMedia.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.socialMedia = result
+        ServiceManeger.shared.fetchActorSocialMedia(actorId: actorDetail?.id ?? 0) { result in
+            switch result {
+            case .success(let success):
+                self.socialMedia = success
                 self.getSocialMedia()
                 self.delegate?.didFetchSocialMediaSuccess()
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                break
             }
         }
     }

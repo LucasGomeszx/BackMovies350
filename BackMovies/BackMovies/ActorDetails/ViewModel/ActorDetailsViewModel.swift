@@ -24,10 +24,10 @@ class ActorDetailsViewModel {
     }
 
     public func fetchActor() {
-        AF.request(Api.actorDetail(id: actorId), method: .get).validate().responseDecodable(of: ActorModel.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.actorModel = result
+        ServiceManeger.shared.fetchActorDetail(actorId: actorId) { result in
+            switch result {
+            case .success(let success):
+                self.actorModel = success
                 self.delegate?.didFetchActor()
             case .failure(_):
                 self.delegate?.didFailToFetchActor()

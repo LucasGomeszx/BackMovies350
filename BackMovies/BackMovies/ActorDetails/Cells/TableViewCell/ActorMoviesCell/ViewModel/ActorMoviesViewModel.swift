@@ -41,10 +41,10 @@ class ActorMoviesViewModel {
     }
     
     public func fetchActorMovies() {
-        AF.request(Api.actorMovies(id: actorId ?? 0), method: .get).validate().responseDecodable(of: ActorMovies.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.actorMovies = result
+        ServiceManeger.shared.fetchActorMovies(actorId: actorId ?? 0) { result in
+            switch result {
+            case .success(let success):
+                self.actorMovies = success
                 self.delegate?.didFetchActorMoviesSucess()
             case .failure(_):
                 self.delegate?.didFetchActorMoviesFailure()

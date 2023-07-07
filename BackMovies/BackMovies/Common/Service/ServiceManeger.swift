@@ -105,4 +105,39 @@ class ServiceManeger {
         }
     }
     
+    //MARK: - ActorDetail
+    
+    public func fetchActorDetail(actorId: Int, completion: @escaping (Result<ActorModel, Error>) -> Void) {
+        AF.request(Api.actorDetail(id: actorId), method: .get).validate().responseDecodable(of: ActorModel.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    public func fetchActorSocialMedia(actorId: Int, completion: @escaping (Result<ActorSocialMedia, Error>) -> Void) {
+        AF.request(Api.getActorSocialMedia(actorId: actorId), method: .get).validate().responseDecodable(of:ActorSocialMedia.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    public func fetchActorMovies(actorId: Int, completion: @escaping (Result<ActorMovies, Error>) -> Void) {
+        AF.request(Api.actorMovies(id: actorId), method: .get).validate().responseDecodable(of: ActorMovies.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }
