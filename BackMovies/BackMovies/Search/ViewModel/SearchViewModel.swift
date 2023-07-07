@@ -23,10 +23,10 @@ class SearchViewModel {
     }
     
     public func fetchGenres() {
-        AF.request(Api.apiGenres, method: .get).validate().responseDecodable(of: APIGenres.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.genresList = result
+        ServiceManeger.shared.fetchGenres { result in
+            switch result {
+            case .success(let success):
+                self.genresList = success
                 self.delegate?.didFetchGenresSucess()
             case .failure(_):
                 self.delegate?.didFetchGenresFailure()

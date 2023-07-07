@@ -18,37 +18,66 @@ class ActorSearchViewModel {
     private var actorList: [ActorInfo] = []
     private var page: Int = 1
     private var totalPage: Int = 1
+    private var query: String = ""
     private weak var delegate: ActorSearchViewModelProtocol?
     
-    func fetchPopularActor() {
-        actorList = []
-        AF.request(Api.getPopularActors(page: page), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.actorSearch = result
-                self.actorList += result.results ?? [ActorInfo()]
-                self.page = result.page ?? 0
-                self.totalPage = result.totalPages ?? 0
+    public func fetchPopularActor() {
+        actorList.removeAll()
+        page = 1
+        ServiceManeger.shared.fetchPopularActor(page: page) { result in
+            switch result {
+            case .success(let success):
+                self.actorSearch = success
+                self.actorList = success.results ?? [ActorInfo()]
+                self.page = success.page ?? 0
+                self.totalPage = success.totalPages ?? 0
                 self.delegate?.didFetchActorSuccess()
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    public func getMorePopularActor() {
+        if page < totalPage {
+            page += 1
+            ServiceManeger.shared.getMorePopulatActor(page: page) { result in
+                switch result {
+                case .success(let success):
+                    self.actorList += success.results ?? [ActorInfo()]
+                    self.delegate?.didFetchActorSuccess()
+                case .failure(_):
+                    break
+                }
             }
         }
     }
     
     func searchQuaryActor(query: String) {
-        AF.request(Api.getSearchActor(query: query), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
-            switch response.result {
-            case .success(let result):
-                self.actorList = result.results ?? [ActorInfo()]
+        actorList.removeAll()
+        page = 1
+        ServiceManeger.shared.searchQuaryActor(query: query, page: page) { result in
+            switch result {
+            case .success(let success):
+                self.actorSearch = success
+                self.actorList = success.results ?? [ActorInfo()]
+                self.page = success.page ?? 0
+                self.totalPage = success.totalPages ?? 0
                 self.delegate?.didFetchActorSuccess()
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                break
             }
         }
     }
     
+    public func getMoreActors() {
+        if query.isEmpty {
+            self.getMorePopularActor()
+        }
+    }
+    
     public func searchActor(query: String) {
+        self.query = query
         if !query.isEmpty {
             let encodedString = query.replacingOccurrences(of: " ", with: "%20")
             searchQuaryActor(query: encodedString)

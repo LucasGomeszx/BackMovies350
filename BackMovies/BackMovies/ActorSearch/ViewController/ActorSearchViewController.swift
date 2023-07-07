@@ -75,6 +75,9 @@ extension ActorSearchViewController: UICollectionViewDelegate, UICollectionViewD
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchActorCollectionViewCell.identifier, for: indexPath) as? SearchActorCollectionViewCell
             cell?.setupCell(actor: viewModel.getActorInfo(index: indexPath.row))
+            if viewModel.getActorCount - 1 == indexPath.row {
+                viewModel.getMoreActors()
+            }
             return cell ?? UICollectionViewCell()
         }
     }

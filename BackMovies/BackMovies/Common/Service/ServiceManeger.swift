@@ -140,4 +140,52 @@ class ServiceManeger {
         }
     }
     
+    //MARK: - Genres
+    
+    public func fetchGenres(completion: @escaping (Result<APIGenres, Error>) -> Void) {
+        AF.request(Api.apiGenres, method: .get).validate().responseDecodable(of: APIGenres.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - ActorSelected
+    
+    func fetchPopularActor(page: Int, completion: @escaping (Result<ActorSearch, Error>) -> Void) {
+        AF.request(Api.getPopularActors(page: page), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getMorePopulatActor(page: Int, completion: @escaping (Result<ActorSearch, Error>) -> Void) {
+        AF.request(Api.getPopularActors(page: page), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func searchQuaryActor(query: String, page: Int, completion: @escaping (Result<ActorSearch, Error>) -> Void) {
+        AF.request(Api.getSearchActor(query: query, page: page), method: .get).validate().responseDecodable(of: ActorSearch.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }
