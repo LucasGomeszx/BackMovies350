@@ -68,9 +68,6 @@ extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
         cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
-        if viewModel.getPosterCount() - 1 == indexPath.row {
-            viewModel.getMorePosterMovies()
-        }
         return cell ?? UICollectionViewCell()
     }
     

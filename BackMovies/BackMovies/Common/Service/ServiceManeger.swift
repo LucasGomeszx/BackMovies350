@@ -188,4 +188,39 @@ class ServiceManeger {
         }
     }
     
+    //MARK: - SearchSelected
+    
+    func getGenresMovies(genreId: Int, page: Int, completion: @escaping (Result<Movies, Error>) -> Void) {
+        AF.request(Api.genresMovies(id: genreId, page: page), method: .get).validate().responseDecodable(of: Movies.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getPopularMovies(page: Int, completion: @escaping (Result<Movies, Error>) -> Void) {
+        AF.request(Api.popularMovies(page: page), method: .get).validate().responseDecodable(of: Movies.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getQueryMovies(query: String, completion: @escaping (Result<Movies, Error>) -> Void) {
+        AF.request(Api.searchMovie(query: query), method: .get).validate().responseDecodable(of: Movies.self) { response in
+            switch response.result {
+            case.success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

@@ -111,7 +111,7 @@ extension SearchViewController: SearchViewModelDelegate {
 extension SearchViewController: BodyTableViewCellDelegate {
     func navSearchSelected(genres: Genre) {
         let vc: SearchSelectedViewController? = UIStoryboard(name: SearchStrings.searchSelected.rawValue, bundle: nil).instantiateViewController(identifier: SearchStrings.searchSelected.rawValue) { coder -> SearchSelectedViewController? in
-            return SearchSelectedViewController(coder: coder, code: 1, genres: genres)
+            return SearchSelectedViewController(coder: coder, type: .genres, genres: genres)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
@@ -122,7 +122,7 @@ extension SearchViewController: BodyTableViewCellDelegate {
 extension SearchViewController: HeadTableViewCellDelegate {
     func navMovieButton() {
         let vc: SearchSelectedViewController? = UIStoryboard(name: SearchStrings.searchSelected.rawValue, bundle: nil).instantiateViewController(identifier: SearchStrings.searchSelected.rawValue) { coder -> SearchSelectedViewController? in
-            return SearchSelectedViewController(coder: coder, code: 2, genres: nil)
+            return SearchSelectedViewController(coder: coder, type: .movies, genres: nil)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }

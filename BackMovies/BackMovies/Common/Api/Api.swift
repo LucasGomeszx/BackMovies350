@@ -41,12 +41,12 @@ struct Api {
     
     static let apiGenres: String = "https://api.themoviedb.org/3/genre/movie/list\(apiKey)&language=pt-BR"
     
-    static func genresMovies(id: Int) -> String {
-        "https://api.themoviedb.org/3/discover/movie\(apiKey)&language=pt-BR&sort_by=popularity.desc&include_adult=false&page=1&with_genres=\(id)"
+    static func genresMovies(id: Int, page: Int) -> String {
+        "https://api.themoviedb.org/3/discover/movie\(apiKey)&language=pt-BR&sort_by=popularity.desc&include_adult=false&page=\(page)&with_genres=\(id)"
     }
     
-    static func popularMovies() -> String {
-        "https://api.themoviedb.org/3/movie/popular\(apiKey)&language=pt-BR&page=1"
+    static func popularMovies(page: Int) -> String {
+        "https://api.themoviedb.org/3/movie/popular\(apiKey)&language=pt-BR&page=\(page)"
     }
     
     static func movieView(movieId: Int) -> String {

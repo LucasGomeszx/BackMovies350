@@ -29,8 +29,8 @@ class SearchSelectedViewController: UIViewController {
     private weak var delegate: SearchSelectedViewControllerDelegate?
     private var viewModel: SearchSelectedViewModel
     
-    init?(coder: NSCoder, code: Int, genres: Genre?) {
-        viewModel = SearchSelectedViewModel(code: code, genres: genres)
+    init?(coder: NSCoder, type: MoviesType, genres: Genre?) {
+        viewModel = SearchSelectedViewModel(type: type, genres: genres)
         super.init(coder: coder)
     }
     
@@ -98,20 +98,19 @@ extension SearchSelectedViewController: UISearchBarDelegate {
 extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if viewModel.getMoviesCount == 0 {
-            return 1
-        }else {
-           return viewModel.getMoviesCount
-        }
+        viewModel.getMoviesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if viewModel.getMoviesCount == 0 {
+        if viewModel.isArrayEmpty() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieEmptyCollectionViewCell.identifier, for: indexPath) as? MovieEmptyCollectionViewCell
             return cell ?? UICollectionViewCell()
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
             cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
+            if viewModel.getMoviesCount - 1 == indexPath.row && viewModel.getQuery == ""{
+                viewModel.getMoreMovies()
+            }
             return cell ?? UICollectionViewCell()
         }
     }
@@ -124,7 +123,7 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if viewModel.getMoviesCount == 0 {
+        if viewModel.isArrayEmpty() {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
            return viewModel.getMovieCellSize

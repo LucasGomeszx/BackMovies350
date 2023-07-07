@@ -59,21 +59,6 @@ class PosterViewModel {
         }
     }
     
-    public func getMorePosterMovies() {
-        if page < totalPages {
-            page += 1
-            ServiceManeger.shared.getMorePosterMovies(page: page) { result in
-                switch result {
-                case .success(let success):
-                    self.posterList?.results?.append(contentsOf: success.results ?? [])
-                    self.delegate?.didFetchMovies()
-                case .failure(let error):
-                    self.delegate?.didFailToFetchMovies(with: error.localizedDescription)
-                }
-            }
-        }
-    }
-    
     private func setPage() {
         if page < totalPages {
             page = +1
