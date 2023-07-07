@@ -46,8 +46,7 @@ class LoginViewController: UIViewController {
         configureNavigation()
         setupTextFieldDelegate()
         viewModel.setupDelegate(delegate: self)
-        emailTextField.text = "lucas@gmail.com"
-        passwordTextField.text = "123456"
+        viewModel.userAutentication()
     }
     
     func setUpView() {

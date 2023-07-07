@@ -61,5 +61,9 @@ class LoginViewModel {
         let passwordRegex = ".{6,}"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
     }
-    
+    func userAutentication() {
+        if Auth.auth().currentUser != nil {
+            self.delegate?.didSignInSuccess()
+        }
+    }
 }

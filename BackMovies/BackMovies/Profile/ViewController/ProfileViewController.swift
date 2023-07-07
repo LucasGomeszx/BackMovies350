@@ -63,10 +63,15 @@ class ProfileViewController: UIViewController {
     @objc func changeName() {
         Alert.showAlertWithTextField(on: self, withTitle: "Digite algo", message: nil, textFieldPlaceholder: "Digite aqui", cancelTitle: "Cancelar", saveTitle: "Salvar", saveHandler: { text in
             if let text = text {
-                if !text.isEmpty {
+                if !text.hasPrefix(" ") {
                     self.viewModel.saveUserName(name: text)
-                }else {
-                    Alert.showAlert(on: self, withTitle: "Erro", message: "Digite um nome valido", actions: nil)
+                } else {
+                    let trimmedText = text.trimmingCharacters(in: .whitespaces)
+                    if trimmedText.isEmpty {
+                        Alert.showAlert(on: self, withTitle: "Erro", message: "Digite um nome válido", actions: nil)
+                    } else {
+                        self.viewModel.saveUserName(name: trimmedText)
+                    }
                 }
             }
         })
