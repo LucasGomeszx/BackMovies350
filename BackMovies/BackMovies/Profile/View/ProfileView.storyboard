@@ -55,6 +55,20 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4L-3V-ziW">
+                                <rect key="frame" x="71.666666666666686" y="709" width="247" height="34.666666666666629"/>
+                                <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="GiK-v8-QRt"/>
+                                    <constraint firstAttribute="height" constant="34.5" id="n3J-Ey-Vjt"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sobre"/>
+                                <connections>
+                                    <action selector="tappedInfoButton:" destination="QFj-6X-0zB" eventType="touchUpInside" id="hcg-nF-FpH"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyM-dy-M7b">
                                 <rect key="frame" x="71.666666666666686" y="759.66666666666663" width="247" height="34.333333333333371"/>
                                 <color key="backgroundColor" red="0.45490196350000001" green="0.231372565" blue="0.61568629740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -82,6 +96,8 @@
                             <constraint firstItem="zCm-k5-q5d" firstAttribute="top" secondItem="M68-Oa-qED" secondAttribute="bottom" constant="24" id="DNP-dE-3h4"/>
                             <constraint firstItem="KnI-Ng-lQl" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" constant="32" id="F4q-T2-dQJ"/>
                             <constraint firstAttribute="bottom" secondItem="CQz-Cs-Hup" secondAttribute="bottom" id="FGd-DN-TAs"/>
+                            <constraint firstItem="WyM-dy-M7b" firstAttribute="top" secondItem="s4L-3V-ziW" secondAttribute="bottom" constant="16" id="HWG-tf-tsL"/>
+                            <constraint firstItem="s4L-3V-ziW" firstAttribute="centerX" secondItem="KPh-Ns-LyM" secondAttribute="centerX" id="Kx6-7s-Ofv"/>
                             <constraint firstItem="CQz-Cs-Hup" firstAttribute="trailing" secondItem="LbP-y4-n6v" secondAttribute="trailing" id="P2X-5t-fvZ"/>
                             <constraint firstItem="cLq-Xo-dEu" firstAttribute="leading" secondItem="LbP-y4-n6v" secondAttribute="leading" constant="32" id="UZm-zG-QOq"/>
                             <constraint firstItem="Y9m-GZ-UQW" firstAttribute="trailing" secondItem="LbP-y4-n6v" secondAttribute="trailing" id="cEy-K2-cU8"/>

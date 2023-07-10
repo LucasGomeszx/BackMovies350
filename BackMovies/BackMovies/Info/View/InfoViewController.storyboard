@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Info View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewController" id="Y6W-OH-hqX" customClass="InfoViewController" customModule="BackMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logoneon" translatesAutoresizingMaskIntoConstraints="NO" id="Hbk-WW-EKl">
+                                <rect key="frame" x="146.66666666666666" y="209" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="7bE-YG-0CX"/>
+                                    <constraint firstAttribute="height" constant="100" id="kRf-Za-EK7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgn-FQ-dOv">
+                                <rect key="frame" x="171" y="329" width="51.333333333333343" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0j-F3-70w">
+                                <rect key="frame" x="36" y="413" width="321" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TMDB" translatesAutoresizingMaskIntoConstraints="NO" id="ts3-vY-nWS">
+                                <rect key="frame" x="161.66666666666666" y="464" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="613-DL-l5u"/>
+                                    <constraint firstAttribute="height" constant="70" id="oQm-Jt-ZzT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="I0j-F3-70w" secondAttribute="trailing" constant="36" id="9af-bA-lo0"/>
+                            <constraint firstItem="I0j-F3-70w" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="36" id="9kw-45-Cdh"/>
+                            <constraint firstItem="mgn-FQ-dOv" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="D8s-t5-ls9"/>
+                            <constraint firstItem="Hbk-WW-EKl" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="MHQ-fm-mPa"/>
+                            <constraint firstItem="Hbk-WW-EKl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="150" id="QJR-cU-vga"/>
+                            <constraint firstItem="mgn-FQ-dOv" firstAttribute="top" secondItem="Hbk-WW-EKl" secondAttribute="bottom" constant="20" id="ghD-Rb-64F"/>
+                            <constraint firstItem="ts3-vY-nWS" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="jOs-er-PIV"/>
+                            <constraint firstItem="ts3-vY-nWS" firstAttribute="top" secondItem="I0j-F3-70w" secondAttribute="bottom" constant="30" id="nJc-ct-chT"/>
+                            <constraint firstItem="I0j-F3-70w" firstAttribute="top" secondItem="mgn-FQ-dOv" secondAttribute="bottom" constant="60" id="r1W-KR-wkL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appLogoImage" destination="Hbk-WW-EKl" id="bHh-80-AaO"/>
+                        <outlet property="appName" destination="mgn-FQ-dOv" id="Zba-GR-Lnj"/>
+                        <outlet property="tmdbImage" destination="ts3-vY-nWS" id="B1g-Ks-nQp"/>
+                        <outlet property="tmdbInfo" destination="I0j-F3-70w" id="tMG-c2-hNl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logoneon" width="1024" height="1024"/>
+        <image name="TMDB" width="185.03999328613281" height="133.39999389648438"/>
+    </resources>
+</document>

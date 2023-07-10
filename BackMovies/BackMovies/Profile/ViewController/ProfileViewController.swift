@@ -86,6 +86,11 @@ class ProfileViewController: UIViewController {
         Alert.showAlert(on: self, withTitle: ProfileStrings.alertImage.rawValue, message: ProfileStrings.alertChangeImage.rawValue,actions: [logoutAction,doNothing])
     }
     
+    @IBAction func tappedInfoButton(_ sender: Any) {
+        let vc: InfoViewController? = UIStoryboard(name: "InfoViewController", bundle: nil).instantiateViewController(withIdentifier: "InfoViewController") as? InfoViewController
+        present(vc ?? UIViewController(), animated: true)
+    }
+    
     @IBAction func tappedExitButton(_ sender: Any) {
         let logoutAction = UIAlertAction(title: ProfileStrings.alertExit.rawValue, style: .destructive) { _ in
             self.viewModel.logOut()
