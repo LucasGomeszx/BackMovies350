@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ActorMoviesTableViewCellDelegate: AnyObject {
-    func navActorMovies(movieId: Int)
+    func navActorMovies(movieId: MovieCellModel)
     func didFetchActorMoviesFailure()
 }
 
@@ -72,12 +72,12 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-        cell?.setUpCell(movieId: viewModel.getActorMoviesId(index: indexPath.row))
+        cell?.setUpCell(data: viewModel.getActorMoviesId(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navActorMovies(movieId: viewModel.getActorMoviesId(index: indexPath.row))
+//        delegate?.navActorMovies(movieId: viewModel.getActorMoviesId(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

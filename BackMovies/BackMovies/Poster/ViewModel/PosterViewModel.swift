@@ -16,8 +16,7 @@ protocol PosterViewModelDelegate: AnyObject {
 class PosterViewModel {
     
     private weak var delegate: PosterViewModelDelegate?
-    private var posterList: Movies?
-    
+    private var posterList: MoviesModel?
     private var page: Int = 0
     private var totalPages: Int = 0
     
@@ -26,17 +25,12 @@ class PosterViewModel {
     }
     
     //MARK: - Getters
-    
-    public func getMoviesId(index: Int) -> Int {
-        posterList?.results?[index].id ?? 0 
-    }
-    
     public func getCgSize() -> CGSize {
         return CGSize(width: 140, height: 260)
     }
     
-    public func getPoster(index: Int) -> Poster {
-       return posterList?.results?[index] ?? Poster()
+    public func getPoster(index: Int) -> MovieCellModel {
+        return posterList?.results?[index] ?? MovieCellModel()
     }
     
     public func getPosterCount() -> Int {
@@ -49,6 +43,7 @@ class PosterViewModel {
         ServiceManeger.shared.fetchMovies { result in
             switch result {
             case .success(let success):
+                print(success)
                 self.page = success.page ?? 0
                 self.totalPages = success.totalPages ?? 0
                 self.posterList = success
@@ -56,12 +51,6 @@ class PosterViewModel {
             case .failure(let error):
                 self.delegate?.didFailToFetchMovies(with: error.localizedDescription)
             }
-        }
-    }
-    
-    private func setPage() {
-        if page < totalPages {
-            page = +1
         }
     }
     

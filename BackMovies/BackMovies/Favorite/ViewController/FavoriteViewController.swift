@@ -70,7 +70,7 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
             return cell ?? UICollectionViewCell()
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-            cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
+            cell?.setUpCell(data: viewModel.getMoviesId(index: indexPath.row))
             return cell ?? UICollectionViewCell()
         }
     }

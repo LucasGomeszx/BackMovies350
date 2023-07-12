@@ -25,15 +25,15 @@ class RelatedCellViewModel {
     }
     
     var getSimilarMoviesCount: Int {
-        similarMovies?.results?.count ?? 0
+        similarMovies?.similarMovies?.results?.count ?? 0
     }
     
     var getSimilarMovieCellSize: CGSize {
         CGSize(width: 140, height: 275)
     }
     
-    public func getSimilarMovieId(index: Int) -> Int {
-        similarMovies?.results?[index].id ?? 0
+    public func getSimilarMovieId(index: Int) -> MovieCellModel {
+        similarMovies?.similarMovies?.results?[index] ?? MovieCellModel()
     }
     
     public func setMovieId(id: Int) {

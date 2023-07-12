@@ -35,7 +35,7 @@ class MovieDetailsViewController: UIViewController {
     
     var viewModel: MovieDetailViewModel
     
-    init?(coder: NSCoder, movieId: Int) {
+    init?(coder: NSCoder, movieId: MovieCellModel) {
         self.viewModel = MovieDetailViewModel(movieId: movieId)
         super.init(coder: coder)
     }
@@ -161,7 +161,7 @@ extension MovieDetailsViewController: ActorTableViewCellDelegate {
 //MARK: - RelatedTableViewCellDelegate
 
 extension MovieDetailsViewController: RelatedTableViewCellDelegate {
-    func navRelatedMovies(movieId: Int) {
+    func navRelatedMovies(movieId: MovieCellModel) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: MovieDetailString.movieDatailView.rawValue, bundle: nil).instantiateViewController(identifier: MovieDetailString.movieDatailView.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: movieId)
         }

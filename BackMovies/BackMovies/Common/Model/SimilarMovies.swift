@@ -9,14 +9,6 @@ import Foundation
 
 // MARK: - SimilarMovies
 struct SimilarMovies: Codable {
-    var page: Int?
-    var results: [Poster]?
-    var totalPages, totalResults: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case page, results
-        case totalPages = "total_pages"
-        case totalResults = "total_results"
-    }
+    var similarMovies: MoviesModel?
 }
 

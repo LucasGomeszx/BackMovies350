@@ -44,7 +44,7 @@ class SearchSelectedViewController: UIViewController {
         configCollectionView()
         configureView()
         viewModel.setUpDelegate(delegate: self)
-        viewModel.fetchMovies()
+//        viewModel.fetchMovies()
     }
     
     private func configCollectionView() {
@@ -85,7 +85,7 @@ class SearchSelectedViewController: UIViewController {
 
 extension SearchSelectedViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchMovie(query: searchText)
+//        viewModel.searchMovie(query: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -107,9 +107,9 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
             return cell ?? UICollectionViewCell()
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-            cell?.setUpCell(movieId: viewModel.getMoviesId(index: indexPath.row))
+            cell?.setUpCell(data: viewModel.getMoviesId(index: indexPath.row))
             if viewModel.getMoviesCount - 1 == indexPath.row && viewModel.getQuery == ""{
-                viewModel.getMoreMovies()
+//                viewModel.getMoreMovies()
             }
             return cell ?? UICollectionViewCell()
         }

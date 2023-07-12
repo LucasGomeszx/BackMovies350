@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RelatedTableViewCellDelegate: AnyObject {
-    func navRelatedMovies(movieId: Int)
+    func navRelatedMovies(movieId: MovieCellModel)
     func didFailToFetchSimilarMovies()
 }
 
@@ -71,12 +71,12 @@ extension RelatedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-        cell?.setUpCell(movieId: viewModel.getSimilarMovieId(index: indexPath.row))
+        cell?.setUpCell(data: viewModel.getSimilarMovieId(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navRelatedMovies(movieId: viewModel.getSimilarMovieId(index: indexPath.row))
+//        delegate?.navRelatedMovies(movieId: viewModel.getSimilarMovieId(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

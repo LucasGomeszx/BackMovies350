@@ -32,8 +32,8 @@ class ActorMoviesViewModel {
         actorMovies?.cast?.count ?? 0
     }
     
-    public func getActorMoviesId(index: Int) -> Int {
-        actorMovies?.cast?[index].id ?? 0
+    public func getActorMoviesId(index: Int) -> MovieCellModel {
+        actorMovies?.cast?[index] ?? MovieCellModel()
     }
     
     var getActorMoviesCellSize: CGSize {

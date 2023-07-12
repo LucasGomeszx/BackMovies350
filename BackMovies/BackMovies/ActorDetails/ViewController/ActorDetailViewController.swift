@@ -119,7 +119,7 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
 //MARK: - ActorMoviesTableViewCellDelegate
 
 extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
-    func navActorMovies(movieId: Int) {
+    func navActorMovies(movieId: MovieCellModel) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: ActorDetailStrings.movieDetail.rawValue, bundle: nil).instantiateViewController(identifier: ActorDetailStrings.movieDetail.rawValue) { coder -> MovieDetailsViewController? in
             return MovieDetailsViewController(coder: coder, movieId: movieId)
         }

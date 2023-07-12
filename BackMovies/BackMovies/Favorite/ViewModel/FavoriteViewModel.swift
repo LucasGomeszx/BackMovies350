@@ -18,7 +18,7 @@ protocol FavoriteViewModelDelegate: AnyObject {
 
 class FavoriteViewModel {
     
-    private var movieList: [Int] = []
+    private var movieList: [MovieCellModel] = []
     private var favoriteMoviesListener: ListenerRegistration?
     private weak var delegate: FavoriteViewModelDelegate?
     
@@ -34,7 +34,7 @@ class FavoriteViewModel {
         CGSize(width: 135, height: 260)
     }
     
-    public func getMoviesId(index: Int) -> Int {
+    public func getMoviesId(index: Int) -> MovieCellModel {
         movieList[index]
     }
     
@@ -47,7 +47,7 @@ class FavoriteViewModel {
         favoriteMoviesListener = FirestoreManager.shared.observeFavoriteMovies { result in
             switch result {
             case .success(let favoriteMovies):
-                self.movieList = favoriteMovies
+//                self.movieList = favoriteMovies
                 self.delegate?.didFetchMoviesSuccess()
             case .failure(let error):
                 self.delegate?.didFetchError(error: error.localizedDescription)

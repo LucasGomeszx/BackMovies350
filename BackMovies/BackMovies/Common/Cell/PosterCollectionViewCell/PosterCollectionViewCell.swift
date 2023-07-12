@@ -19,7 +19,6 @@ class PosterCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let identifier: String = String(describing: PosterCollectionViewCell.self)
-    private var viewModel: PosterCollectionViewModel?
     private let lottieAnimation: LottieAnimationView = LottieAnimationView(name: "imageLoad")
     
     // MARK: - Nib
@@ -46,14 +45,23 @@ class PosterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    public func setUpCell(movieId: Int) {
-        viewModel = PosterCollectionViewModel(movieId: movieId)
-        viewModel?.fetchMovieDetail()
-        viewModel?.setUpDelegate(delegate: self)
+    public func setUpCell(data: MovieCellModel) {
+        movieNameLabel.text = data.title
+        startLottieAnimation()
+        guard let url = URL(string: Api.posterPath + (data.posterPath ?? ""))else {return}
+        movieImageView.loadImageFromURL(url) { result in
+            switch result {
+            case .success(let image):
+                self.movieImageView.image = image
+                self.stopLottieAnimation()
+            case .failure(_):
+                self.stopLottieAnimation()
+            }
+        }
     }
     
     //MARK: - Private Methods
-    private func setupLottieView() {
+    private func startLottieAnimation() {
         lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
         movieImageView.addSubview(lottieAnimation)
         NSLayoutConstraint.activate([
@@ -66,29 +74,8 @@ class PosterCollectionViewCell: UICollectionViewCell {
         lottieAnimation.play()
     }
     
-    private func stopLottieView() {
+    private func stopLottieAnimation() {
         lottieAnimation.stop()
         lottieAnimation.removeFromSuperview()
-    }
-}
-
-// MARK: - PosterCollectionViewModelDelegate
-
-extension PosterCollectionViewCell: PosterCollectionViewModelDelegate {
-    func didFetchMovieDetailSuccess() {
-        self.movieNameLabel.text = viewModel?.getMovieDetailName
-        
-        setupLottieView()
-        guard let image = URL(string: Api.posterPath + (viewModel?.getMovieDetailPoster ?? "")) else { return }
-        movieImageView.loadImageFromURL(image) { resulti in
-            switch resulti {
-            case .success(let image):
-                self.stopLottieView()
-                self.movieImageView.image = image
-            case .failure(_):
-                self.stopLottieView()
-            }
-        }
-        
     }
 }

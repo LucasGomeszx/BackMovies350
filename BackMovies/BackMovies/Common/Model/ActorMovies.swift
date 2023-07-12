@@ -9,10 +9,5 @@ import Foundation
 
 // MARK: - ActorMovies
 struct ActorMovies: Codable {
-    var cast: [ActorMovie]?
-}
-
-// MARK: - Cast
-struct ActorMovie: Codable {
-    var id: Int?
+    var cast: [MovieCellModel]?
 }

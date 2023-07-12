@@ -15,11 +15,11 @@ protocol MovieDetailViewModelDelegate: AnyObject {
 
 class MovieDetailViewModel {
     
-    private var movieId: Int
+    private var movieId: MovieCellModel
     private var movieDetail: MovieDetail?
     private weak var delegate: MovieDetailViewModelDelegate?
     
-    init(movieId: Int){
+    init(movieId: MovieCellModel){
         self.movieId  = movieId
     }
     
@@ -28,7 +28,7 @@ class MovieDetailViewModel {
     }
     
     func fetchMovieDetail() {
-        ServiceManeger.shared.fetchMovieDetail(movieId: movieId) { result in
+        ServiceManeger.shared.fetchMovieDetail(movieId: movieId.id ?? 0) { result in
             switch result {
             case .success(let success):
                 self.movieDetail = success
@@ -79,7 +79,7 @@ class MovieDetailViewModel {
     }
     
     var getMovieId: Int {
-        movieId
+        movieId.id ?? 0
     }
     
     func searchMovieOnYouTube() {
