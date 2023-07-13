@@ -3,7 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,14 +34,22 @@
                                     <constraint firstAttribute="height" constant="30" id="vdb-fk-XqM"/>
                                 </constraints>
                             </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dy-r4-usG">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="2dy-r4-usG" secondAttribute="bottom" id="3h2-v5-WaJ"/>
                             <constraint firstItem="XlC-Yc-dxr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="4DS-z5-GqJ"/>
+                            <constraint firstItem="2dy-r4-usG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="BoC-8t-wW9"/>
                             <constraint firstItem="e1S-7m-B4U" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="26" id="Fvs-92-DkY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="tdD-Ce-ZaL" secondAttribute="bottom" constant="8" id="Znf-ic-1U0"/>
                             <constraint firstItem="tdD-Ce-ZaL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="dAb-fk-McD"/>
+                            <constraint firstItem="2dy-r4-usG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="dFf-yb-29y"/>
+                            <constraint firstItem="2dy-r4-usG" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="hZ3-9a-Ywz"/>
                             <constraint firstItem="e1S-7m-B4U" firstAttribute="centerY" secondItem="XlC-Yc-dxr" secondAttribute="centerY" id="mBw-k1-dVr"/>
                             <constraint firstItem="XlC-Yc-dxr" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ndb-Q4-FfO"/>
                             <constraint firstItem="tdD-Ce-ZaL" firstAttribute="top" secondItem="XlC-Yc-dxr" secondAttribute="bottom" constant="16" id="p3S-v9-DEe"/>
@@ -51,13 +59,14 @@
                     <connections>
                         <outlet property="backImageView" destination="e1S-7m-B4U" id="Fsk-UC-dtM"/>
                         <outlet property="detailTableView" destination="tdD-Ce-ZaL" id="1xO-mF-QDI"/>
+                        <outlet property="lottieLoadView" destination="2dy-r4-usG" id="HRf-4c-tAD"/>
                         <outlet property="mainView" destination="5EZ-qb-Rvc" id="HSY-QD-JNG"/>
                         <outlet property="titleLabel" destination="XlC-Yc-dxr" id="AH2-2f-id0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="4"/>
+            <point key="canvasLocation" x="135.38461538461539" y="3.5545023696682461"/>
         </scene>
     </scenes>
     <resources>

@@ -78,7 +78,7 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !viewModel.isArrayEmpty() {
             let vc: MovieDetailsViewController? = UIStoryboard(name: FavoriteStrings.moviesDetail.rawValue, bundle: nil).instantiateViewController(identifier: FavoriteStrings.moviesDetail.rawValue) { coder -> MovieDetailsViewController? in
-                return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
+                return MovieDetailsViewController(coder: coder, movieCellModel: self.viewModel.getMoviesId(index: indexPath.row))
             }
             navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
         }

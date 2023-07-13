@@ -15,41 +15,29 @@ protocol RelatedCellViewModelDelegate: AnyObject {
 
 class RelatedCellViewModel {
     
-    private var movieId: Int?
+    private var movieDetail: MovieDetailModel?
     private var similarMovies: SimilarMovies?
     
     weak var delegate: RelatedCellViewModelDelegate?
     
-    public func setUpDelegate(delegate: RelatedCellViewModelDelegate) {
-        self.delegate = delegate
+    public func setUpDelegate(movieDetail: MovieDetailModel) {
+        self.movieDetail = movieDetail
     }
     
     var getSimilarMoviesCount: Int {
-        similarMovies?.similarMovies?.results?.count ?? 0
+        movieDetail?.similarMovies?.results?.count ?? 0
     }
     
     var getSimilarMovieCellSize: CGSize {
         CGSize(width: 140, height: 275)
     }
     
-    public func getSimilarMovieId(index: Int) -> MovieCellModel {
-        similarMovies?.similarMovies?.results?[index] ?? MovieCellModel()
+    public func getSimilarMovie(index: Int) -> MovieCellModel {
+        movieDetail?.similarMovies?.results?[index] ?? MovieCellModel()
     }
     
-    public func setMovieId(id: Int) {
-        movieId = id
+    public func setMovieDetail(movieDetail: MovieDetailModel) {
+        self.movieDetail = movieDetail
     }
-    
-    public func fetchSimilar() {
-        ServiceManeger.shared.fetchSimilarMovies(movieId: movieId ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.similarMovies = success
-                self.delegate?.didFetchSimilarMovies()
-            case .failure(_):
-                self.delegate?.didFailToFetchSimilarMovies()
-            }
-        }
-    }
-    
+
 }

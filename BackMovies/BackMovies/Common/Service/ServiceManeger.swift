@@ -24,42 +24,7 @@ class ServiceManeger {
         }
     }
     
-    public func getMorePosterMovies(page: Int, completion: @escaping (Result<MoviesModel, Error>) -> Void) {
-        AF.request(Api.posterUrl(page: page), method: .get).validate().responseDecodable(of: MoviesModel.self) { response in
-            switch response.result {
-            case .success(let result):
-                completion(.success(result))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    //MARK: - PosterCell
-    
-    public func fetchPosterCell(movieId: Int, completion: @escaping (Result<MovieDetail, Error>) -> Void) {
-        AF.request(Api.movieDetail(id: movieId), method: .get).validate().responseDecodable(of: MovieDetail.self) { response in
-            switch response.result {
-            case .success(let result):
-                completion(.success(result))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
     //MARK: - MovieDetail
-    
-    func fetchMovieDetail(movieId: Int, completion: @escaping (Result<MovieDetail, Error>) -> Void) {
-        AF.request(Api.movieDetail(id: movieId), method: .get).validate().responseDecodable(of: MovieDetail.self) { response in
-            switch response.result {
-            case.success(let result):
-                completion(.success(result))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
     
     public func fetchMovieVideo(movieId: Int, completion: @escaping (Result<Video, Error>) -> Void) {
         AF.request(Api.movieView(movieId: movieId), method: .get).validate().responseDecodable(of: Video.self) { response in
@@ -83,8 +48,8 @@ class ServiceManeger {
         }
     }
     
-    public func fetchActors(movieId: Int, completion: @escaping (Result<Elenco, Error>) -> Void) {
-        AF.request(Api.actor(id: movieId), method: .get).validate().responseDecodable(of: Elenco.self) { response in
+    public func fetchActors(movieId: Int, completion: @escaping (Result<CastModel, Error>) -> Void) {
+        AF.request(Api.actor(id: movieId), method: .get).validate().responseDecodable(of: CastModel.self) { response in
             switch response.result {
             case.success(let result):
                 completion(.success(result))
@@ -94,8 +59,8 @@ class ServiceManeger {
         }
     }
     
-    public func fetchSimilarMovies(movieId: Int, completion: @escaping (Result<SimilarMovies, Error>) -> Void) {
-        AF.request(Api.similarMovies(id: movieId), method: .get).validate().responseDecodable(of: SimilarMovies.self) { response in
+    public func fetchSimilarMovies(movieId: Int, completion: @escaping (Result<MoviesModel, Error>) -> Void) {
+        AF.request(Api.similarMovies(id: movieId), method: .get).validate().responseDecodable(of: MoviesModel.self) { response in
             switch response.result {
             case.success(let result):
                 completion(.success(result))

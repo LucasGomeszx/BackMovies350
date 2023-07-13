@@ -73,7 +73,7 @@ extension PosterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: PosterStrings.moviesDetailsView.rawValue, bundle: nil).instantiateViewController(identifier: PosterStrings.moviesDetailsView.rawValue) { coder -> MovieDetailsViewController? in
-            return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getPoster(index: indexPath.row))
+            return MovieDetailsViewController(coder: coder, movieCellModel: self.viewModel.getPoster(index: indexPath.row))
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }

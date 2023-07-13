@@ -41,10 +41,9 @@ class WatchTableViewCell: UITableViewCell {
         configureCollection()
     }
     
-    public func setUpCell(movieDetail: MovieDetail, delegate: WatchCellStringsProtocol) {
+    public func setUpCell(movieDetail: MovieDetailModel, delegate: WatchCellStringsProtocol) {
         self.delegate = delegate
         viewModel.setUpViewModel(movieDetail: movieDetail, delegate: self)
-        viewModel.fetchWatchProviders()
     }
     
     private func setUpView() {

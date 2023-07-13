@@ -8,52 +8,28 @@
 import Foundation
 import Alamofire
 
-protocol ActorCellViewModelDelegate: AnyObject {
-    func didFetchMovies()
-    func didFailToFetchMovies(error: String)
-}
-
 class ActorCellViewModel {
     
-    weak var delegate: ActorCellViewModelDelegate?
+    private var movieDetail: MovieDetailModel?
     
-    private var actor: Elenco?
-    private var movieId: Int?
-    
-    public func setUpViewModel(id: Int) {
-        movieId = id
+    public func setUpViewModel(movieDetail: MovieDetailModel) {
+        self.movieDetail = movieDetail
     }
     
     public func getCast(index: Int) -> Cast {
-        return actor?.cast?[index] ?? Cast()
+        return movieDetail?.movieCast?.cast?[index] ?? Cast()
     }
     
     public func getCastId(index: Int) -> Int {
-        actor?.cast?[index].id ?? 0
+        movieDetail?.movieCast?.cast?[index].id ?? 0
     }
     
     var getActorCount: Int {
-        actor?.cast?.count ?? 0
+        movieDetail?.movieCast?.cast?.count ?? 0
     }
     
     var getCellSize: CGSize {
         CGSize(width: 125, height: 275)
-    }
-    
-    public func setUpDelegate(delegate: ActorCellViewModelDelegate) {
-        self.delegate = delegate
-    }
-    
-    public func fetchActors() {
-        ServiceManeger.shared.fetchActors(movieId: movieId ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.actor = success
-                self.delegate?.didFetchMovies()
-            case .failure(let error):
-                self.delegate?.didFailToFetchMovies(error: error.localizedDescription)
-            }
-        }
     }
 
 }

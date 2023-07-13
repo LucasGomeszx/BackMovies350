@@ -15,41 +15,28 @@ protocol WatchCellViewModelProtocol: AnyObject {
 
 class WatchCellViewModel {
     
-    private var movieDetail: MovieDetail?
-    private var providerList: WatchProviders?
+    private var movieDetail: MovieDetailModel?
     private weak var delegate: WatchCellViewModelProtocol?
     
-    public func setUpViewModel(movieDetail: MovieDetail, delegate: WatchCellViewModelProtocol) {
+    public func setUpViewModel(movieDetail: MovieDetailModel, delegate: WatchCellViewModelProtocol) {
         self.movieDetail = movieDetail
         self.delegate = delegate
     }
     
-    public func fetchWatchProviders() {
-        ServiceManeger.shared.fetchWatchProviders(movieId: movieDetail?.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.providerList = success
-                self.delegate?.didFetchProviderSuccess()
-            case .failure(_):
-                self.delegate?.didFetchProviderFailure()
-            }
-        }
-    }
-    
     func getProvider(index: Int) -> Flatrate {
-        providerList?.results?.br?.flatrate?[index] ?? Flatrate()
+        movieDetail?.movieProvider?.results?.br?.flatrate?[index] ?? Flatrate()
     }
     
     var getProviderCount: Int {
-        if providerList?.results?.br?.flatrate?.count == nil {
+        if movieDetail?.movieProvider?.results?.br?.flatrate?.count == nil {
             return 1
         }else {
-            return providerList?.results?.br?.flatrate?.count ?? 0
+            return movieDetail?.movieProvider?.results?.br?.flatrate?.count ?? 0
         }
     }
     
     var isEmpty: Bool {
-        if providerList?.results?.br?.flatrate?.count == nil {
+        if movieDetail?.movieProvider?.results?.br?.flatrate?.count == nil {
             return true
         }else {
             return false

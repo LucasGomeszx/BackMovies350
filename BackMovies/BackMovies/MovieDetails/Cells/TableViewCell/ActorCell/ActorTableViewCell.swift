@@ -52,10 +52,8 @@ class ActorTableViewCell: UITableViewCell {
         actorCollectionView.register(ActorCollectionViewCell.nib(), forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
     }
     
-    public func setUpCell(id: Int) {
-        viewModel.setUpViewModel(id: id)
-        viewModel.setUpDelegate(delegate: self)
-        viewModel.fetchActors()
+    public func setUpCell(movieDetail: MovieDetailModel) {
+        viewModel.setUpViewModel(movieDetail: movieDetail)
     }
     
 }
@@ -83,19 +81,6 @@ extension ActorTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-    }
-    
-}
-
-//MARK: - ActorCellViewModelDelegate
-
-extension ActorTableViewCell : ActorCellViewModelDelegate {
-    func didFetchMovies() {
-        actorCollectionView.reloadData()
-    }
-    
-    func didFailToFetchMovies(error: String) {
-        delegate?.didFetchActorError()
     }
     
 }

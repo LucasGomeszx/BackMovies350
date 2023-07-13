@@ -8,9 +8,14 @@
 import Foundation
 
 struct ActorModel: Codable {
-    var biography, birthday: String?
-    var gender, id: Int?
-    var knownForDepartment, name, placeOfBirth, profilePath: String?
+    var biography: String?
+    var birthday: String?
+    var gender: Int?
+    var id: Int?
+    var knownForDepartment: String?
+    var name: String?
+    var placeOfBirth: String?
+    var profilePath: String?
 
     enum CodingKeys: String, CodingKey {
         case biography, birthday, gender, id

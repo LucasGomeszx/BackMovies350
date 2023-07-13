@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 enum TableViewSection: Int {
     case movieTopCell
@@ -29,14 +30,16 @@ enum MovieDetailString: String {
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var lottieLoadView: UIView!
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailTableView: UITableView!
     
     var viewModel: MovieDetailViewModel
+    let lottieAnimation = LottieAnimationView(name: ProfileStrings.lottieAnimationName.rawValue)
     
-    init?(coder: NSCoder, movieId: MovieCellModel) {
-        self.viewModel = MovieDetailViewModel(movieId: movieId)
+    init?(coder: NSCoder, movieCellModel: MovieCellModel) {
+        self.viewModel = MovieDetailViewModel(movieCellModel: movieCellModel)
         super.init(coder: coder)
     }
     
@@ -48,10 +51,13 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         viewModel.setUpDelegate(delegate: self)
+        startLottieAnimation()
         viewModel.fetchMovieDetail()
     }
     
     private func setUpView() {
+        lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
+        lottieLoadView.backgroundColor = .lottieBack
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedBackButton))
         backImageView.addGestureRecognizer(gesture)
         backImageView.isUserInteractionEnabled = true
@@ -80,6 +86,24 @@ class MovieDetailsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    private func startLottieAnimation() {
+        lottieLoadView.addSubview(lottieAnimation)
+        NSLayoutConstraint.activate([
+            lottieAnimation.widthAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.heightAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.centerXAnchor.constraint(equalTo: lottieLoadView.centerXAnchor),
+            lottieAnimation.centerYAnchor.constraint(equalTo: lottieLoadView.centerYAnchor)
+        ])
+        lottieAnimation.loopMode = .loop
+        lottieAnimation.play()
+        lottieLoadView.isHidden = false
+    }
+    
+    private func stopLottieAnimation() {
+        lottieAnimation.stop()
+        lottieLoadView.isHidden = true
+    }
+    
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -106,12 +130,12 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case .actorsCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorTableViewCell.identifier, for: indexPath) as? ActorTableViewCell
             cell?.delegate = self
-            cell?.setUpCell(id: viewModel.getMovieId)
+            cell?.setUpCell(movieDetail: viewModel.getMovieDetail)
             return cell ?? UITableViewCell()
         case .relatedCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: RelatedTableViewCell.identifier, for: indexPath) as? RelatedTableViewCell
             cell?.delegate = self
-            cell?.setUpCell(id: viewModel.getMovieId)
+            cell?.setUpCell(movieDetail: viewModel.getMovieDetail)
             return cell ?? UITableViewCell()
         case .mapCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: MapTableViewCell.identifier, for: indexPath) as? MapTableViewCell
@@ -161,9 +185,9 @@ extension MovieDetailsViewController: ActorTableViewCellDelegate {
 //MARK: - RelatedTableViewCellDelegate
 
 extension MovieDetailsViewController: RelatedTableViewCellDelegate {
-    func navRelatedMovies(movieId: MovieCellModel) {
+    func navRelatedMovies(movieCellModel: MovieCellModel) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: MovieDetailString.movieDatailView.rawValue, bundle: nil).instantiateViewController(identifier: MovieDetailString.movieDatailView.rawValue) { coder -> MovieDetailsViewController? in
-            return MovieDetailsViewController(coder: coder, movieId: movieId)
+            return MovieDetailsViewController(coder: coder, movieCellModel: movieCellModel)
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
@@ -179,6 +203,7 @@ extension MovieDetailsViewController: RelatedTableViewCellDelegate {
 extension MovieDetailsViewController: MovieDetailViewModelDelegate {
     func fetchMovieDetailSuccess() {
         setUpTableView()
+        stopLottieAnimation()
     }
     
     func fetchMovieDetailFailure(error: String) {

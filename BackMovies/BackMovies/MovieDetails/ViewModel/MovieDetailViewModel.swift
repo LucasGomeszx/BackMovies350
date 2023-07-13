@@ -15,32 +15,28 @@ protocol MovieDetailViewModelDelegate: AnyObject {
 
 class MovieDetailViewModel {
     
-    private var movieId: MovieCellModel
-    private var movieDetail: MovieDetail?
+    private var movieDetail: MovieDetailModel?
+    private var movieCellDetail: MovieCellModel
+    private var movieVideo: Video?
+    private var movieProvider: WatchProviders?
+    private var movieCast: CastModel?
+    private var similarMovies: MoviesModel?
     private weak var delegate: MovieDetailViewModelDelegate?
     
-    init(movieId: MovieCellModel){
-        self.movieId  = movieId
+    init(movieCellModel: MovieCellModel){
+        movieCellDetail = movieCellModel
+    }
+    
+    private var getMovieId: Int {
+        movieCellDetail.id ?? 0
     }
     
     public func setUpDelegate(delegate: MovieDetailViewModelDelegate) {
         self.delegate = delegate
     }
     
-    func fetchMovieDetail() {
-        ServiceManeger.shared.fetchMovieDetail(movieId: movieId.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.movieDetail = success
-                self.delegate?.fetchMovieDetailSuccess()
-            case .failure(let error):
-                self.delegate?.fetchMovieDetailFailure(error: error.localizedDescription)
-            }
-        }
-    }
-    
     var getMovieName: String {
-        movieDetail?.title ?? ""
+        movieCellDetail.title ?? ""
     }
     
     var getTableViewCellCount: Int {
@@ -49,13 +45,6 @@ class MovieDetailViewModel {
     
     var getMovieTopCellSize: CGFloat {
         640
-    }
-    
-    func getTrailerCellSize(width: CGFloat) -> CGFloat {
-        let text = movieDetail?.overview ?? ""
-        let font = UIFont.systemFont(ofSize: 14)
-        let estimateHeight = text.heightWithConstrainedWidth(width: width, font: font)
-        return estimateHeight + 380
     }
     
     var getWatchCellSize: CGFloat {
@@ -74,12 +63,15 @@ class MovieDetailViewModel {
         250
     }
     
-    var getMovieDetail: MovieDetail {
-        movieDetail ?? MovieDetail()
+    var getMovieDetail: MovieDetailModel {
+        movieDetail ?? MovieDetailModel()
     }
     
-    var getMovieId: Int {
-        movieId.id ?? 0
+    func getTrailerCellSize(width: CGFloat) -> CGFloat {
+        let text = movieCellDetail.overview ?? ""
+        let font = UIFont.systemFont(ofSize: 14)
+        let estimateHeight = text.heightWithConstrainedWidth(width: width, font: font)
+        return estimateHeight + 380
     }
     
     func searchMovieOnYouTube() {
@@ -91,6 +83,59 @@ class MovieDetailViewModel {
            let url = URL(string: "\(baseURLString)?search_query=\(encodedQuery)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+    
+    public func fetchMovieDetail() {
+        ServiceManeger.shared.fetchMovieVideo(movieId: getMovieId) { result in
+            switch result {
+            case .success(let success):
+                self.movieVideo = success
+                self.fetchWatchProviders()
+            case .failure(let failure):
+                self.delegate?.fetchMovieDetailFailure(error: failure.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchWatchProviders() {
+        ServiceManeger.shared.fetchWatchProviders(movieId: getMovieId) { result in
+            switch result {
+            case .success(let success):
+                self.movieProvider = success
+                self.fetchActors()
+            case .failure(let failure):
+                self.delegate?.fetchMovieDetailFailure(error: failure.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchActors() {
+        ServiceManeger.shared.fetchActors(movieId: getMovieId) { result in
+            switch result {
+            case .success(let success):
+                self.movieCast = success
+                self.fetchSimilarMovies()
+            case .failure(let failure):
+                self.delegate?.fetchMovieDetailFailure(error: failure.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchSimilarMovies() {
+        ServiceManeger.shared.fetchSimilarMovies(movieId: getMovieId) { result in
+            switch result {
+            case .success(let success):
+                self.similarMovies = success
+                self.createMovieDetailModel()
+            case .failure(let failure):
+                self.delegate?.fetchMovieDetailFailure(error: failure.localizedDescription)
+            }
+        }
+    }
+    
+    private func createMovieDetailModel() {
+        self.movieDetail = MovieDetailModel(movieCellModel: movieCellDetail, movieVideo: movieVideo, movieProvider: movieProvider, movieCast: movieCast, similarMovies: similarMovies)
+        self.delegate?.fetchMovieDetailSuccess()
     }
     
 }

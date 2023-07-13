@@ -117,7 +117,7 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: SearchSelectedStrings.moviesDetail.rawValue, bundle: nil).instantiateViewController(identifier: SearchSelectedStrings.moviesDetail.rawValue) { coder -> MovieDetailsViewController? in
-            return MovieDetailsViewController(coder: coder, movieId: self.viewModel.getMoviesId(index: indexPath.row))
+            return MovieDetailsViewController(coder: coder, movieCellModel: self.viewModel.getMoviesId(index: indexPath.row))
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }

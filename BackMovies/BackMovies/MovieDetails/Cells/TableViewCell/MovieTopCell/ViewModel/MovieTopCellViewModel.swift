@@ -15,21 +15,20 @@ protocol MovieTopCellViewModelProtocol: AnyObject {
 
 class MovieTopCellViewModel {
     
-    private var movieDetail: MovieDetail
-    private var favoriteMovies: [Int] = []
+    private var movieDetail: MovieDetailModel
     private weak var delegate: MovieTopCellViewModelProtocol?
     
-    init(movieDetail: MovieDetail, delegate: MovieTopCellViewModelProtocol) {
+    init(movieDetail: MovieDetailModel, delegate: MovieTopCellViewModelProtocol) {
         self.movieDetail = movieDetail
         self.delegate = delegate
     }
     
     var posterPath: String {
-        return movieDetail.posterPath ?? ""
+        return movieDetail.movieCellModel?.posterPath ?? ""
     }
     
     var title: String {
-        movieDetail.title ?? ""
+        movieDetail.movieCellModel?.title ?? ""
     }
     
     var voteAvg: String {
@@ -37,7 +36,7 @@ class MovieTopCellViewModel {
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 1
         
-        if let voteAverage = movieDetail.voteAverage {
+        if let voteAverage = movieDetail.movieCellModel?.voteAverage {
             return formatter.string(from: NSNumber(value: voteAverage)) ?? "0.0"
         } else {
             return "0.0"
@@ -45,7 +44,7 @@ class MovieTopCellViewModel {
     }
     
     func getUserFavoriteMovies() {
-        FirestoreManager.shared.isMovieInFavorites(movieId: movieDetail.id ?? 0) { result in
+        FirestoreManager.shared.isMovieInFavorites(movieId: movieDetail.movieCellModel?.id ?? 0) { result in
             switch result {
              case .success(let isInFavorites):
                  print("O filme está nos favoritos: \(isInFavorites)")
@@ -58,7 +57,7 @@ class MovieTopCellViewModel {
     }
     
     func addFavoriteMovie() {
-        FirestoreManager.shared.addFavoriteMovie(movieId: movieDetail.id ?? 0) { result in
+        FirestoreManager.shared.addFavoriteMovie(movieId: movieDetail.movieCellModel?.id ?? 0) { result in
             switch result {
             case .success:
                 print("Filme adicionado aos favoritos.")
@@ -69,7 +68,7 @@ class MovieTopCellViewModel {
     }
     
     func deleteFavoriteMovie() {
-        FirestoreManager.shared.removeFavoriteMovie(movieId: movieDetail.id ?? 0) { result in
+        FirestoreManager.shared.removeFavoriteMovie(movieId: movieDetail.movieCellModel?.id ?? 0) { result in
             switch result {
             case .success:
                 print("Filme removido dos favoritos.")

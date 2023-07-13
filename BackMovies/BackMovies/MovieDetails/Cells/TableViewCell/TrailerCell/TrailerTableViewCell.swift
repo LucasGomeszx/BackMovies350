@@ -35,11 +35,10 @@ class TrailerTableViewCell: UITableViewCell {
         setUpView()
     }
     
-    public func setUpCell(movieDetail: MovieDetail) {
+    public func setUpCell(movieDetail: MovieDetailModel) {
         viewModel = TrailerCellViewModel(movieDetail: movieDetail)
-        viewModel?.setupDelegate(delegate: self)
-        viewModel?.fetchMovieVideo()
         sinopseContencLabel.text = viewModel?.getOverview
+        videoView.load(withVideoId: viewModel?.getMovieVideoKey ?? "")
     }
     
     private func setUpView() {
@@ -52,10 +51,4 @@ class TrailerTableViewCell: UITableViewCell {
         sinopseContencLabel.textColor = .textColor
     }
 
-}
-
-extension TrailerTableViewCell: TrailerCellViewModelProtocol {
-    func didFetchMovieVideoSucess() {
-        videoView.load(withVideoId: viewModel?.getMovieVideoKey ?? "")
-    }
 }

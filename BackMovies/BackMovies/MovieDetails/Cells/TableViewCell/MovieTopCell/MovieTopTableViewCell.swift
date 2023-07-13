@@ -38,7 +38,7 @@ class MovieTopTableViewCell: UITableViewCell {
         setUpView()
     }
     
-    public func setUpCell(movieDetail: MovieDetail) {
+    public func setUpCell(movieDetail: MovieDetailModel) {
         viewModel = MovieTopCellViewModel(movieDetail: movieDetail, delegate: self)
         viewModel?.getUserFavoriteMovies()
         setupLottieView()

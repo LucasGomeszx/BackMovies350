@@ -128,6 +128,7 @@
 		64CEAAFB29E08323006DCBD2 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEAAFA29E08323006DCBD2 /* Service.swift */; };
 		64CEAAFD29E08342006DCBD2 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEAAFC29E08342006DCBD2 /* NetworkHandler.swift */; };
 		64CEAAFF29E09F0B006DCBD2 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEAAFE29E09F0B006DCBD2 /* MoviesModel.swift */; };
+		64E3658F2A5F00C000DD2083 /* MovieDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3658E2A5F00C000DD2083 /* MovieDetailModel.swift */; };
 		64E70E5629BA659B00F14BFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5529BA659B00F14BFC /* RegisterViewController.swift */; };
 		64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */; };
 		64E70E5C29BA6E7000F14BFC /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */; };
@@ -256,6 +257,7 @@
 		64CEAAFA29E08323006DCBD2 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		64CEAAFC29E08342006DCBD2 /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		64CEAAFE29E09F0B006DCBD2 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
+		64E3658E2A5F00C000DD2083 /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
 		64E70E5529BA659B00F14BFC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		64E70E5729BA65BF00F14BFC /* RegisterView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterView.storyboard; sourceTree = "<group>"; };
 		64E70E5B29BA6E7000F14BFC /* RecoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewController.swift; sourceTree = "<group>"; };
@@ -1064,6 +1066,8 @@
 		64CEAAF929E07F36006DCBD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				64E3658E2A5F00C000DD2083 /* MovieDetailModel.swift */,
+				64392E282A5E38BD00D68B96 /* MovieCellModel.swift */,
 				64CEAAFE29E09F0B006DCBD2 /* MoviesModel.swift */,
 				6478639729F57FCA00DF2D58 /* Cast.swift */,
 				6478639929F5A21B00DF2D58 /* SimilarMovies.swift */,
@@ -1077,7 +1081,6 @@
 				6477E5142A448DB7009F6D61 /* SocialMedia.swift */,
 				6401424A2A478D60006A644E /* ActorSearch.swift */,
 				640EA6162A5258AB0086F891 /* User.swift */,
-				64392E282A5E38BD00D68B96 /* MovieCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1521,6 +1524,7 @@
 				64BAB30229F9D712006F99A8 /* SearchSelectedViewModel.swift in Sources */,
 				644BD78429D141AF0036008F /* ActorTableViewCell.swift in Sources */,
 				6478638929F2D10700DF2D58 /* WatchCellViewModel.swift in Sources */,
+				64E3658F2A5F00C000DD2083 /* MovieDetailModel.swift in Sources */,
 				6469AAAA29F8B6ED0071E414 /* RegisterViewModel.swift in Sources */,
 				6478639429F2D1B400DF2D58 /* ActorCollectionViewCellViewModel.swift in Sources */,
 				644BD75229D0A7D50036008F /* BodyTableViewCell.swift in Sources */,

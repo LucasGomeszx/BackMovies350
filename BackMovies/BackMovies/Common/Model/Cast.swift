@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Elenco
-struct Elenco: Codable {
+struct CastModel: Codable {
     var id: Int?
     var cast: [Cast]?
 }

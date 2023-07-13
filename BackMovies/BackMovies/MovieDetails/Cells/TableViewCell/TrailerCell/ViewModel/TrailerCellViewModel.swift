@@ -14,21 +14,16 @@ protocol TrailerCellViewModelProtocol: AnyObject {
 
 class TrailerCellViewModel {
     
-    private let movieDetail: MovieDetail
-    private var movieVideos: Video?
+    private let movieDetail: MovieDetailModel
     private var movieTrailer: [String] = []
     private var delegate: TrailerCellViewModelProtocol?
     
-    init(movieDetail: MovieDetail) {
+    init(movieDetail: MovieDetailModel) {
         self.movieDetail = movieDetail
     }
     
-    func setupDelegate(delegate: TrailerCellViewModelProtocol) {
-        self.delegate = delegate
-    }
-    
     var getOverview: String {
-        guard let over = movieDetail.overview else {return "Sinopse indisponivel"}
+        guard let over = movieDetail.movieCellModel?.overview else {return "Sinopse indisponivel"}
         
         if over == "" {
             return "Sinopse indisponivel"
@@ -38,6 +33,7 @@ class TrailerCellViewModel {
     }
     
     var getMovieVideoKey: String {
+        filterTreilerVideo()
         if movieTrailer.isEmpty {
             return ""
         }else {
@@ -46,23 +42,10 @@ class TrailerCellViewModel {
     }
     
     private func filterTreilerVideo() {
-        guard let video = movieVideos?.results else {return}
+        guard let video = movieDetail.movieVideo?.results else {return}
         for key in video {
             if key.type == "Trailer" {
                 self.movieTrailer.append(key.key ?? "")
-            }
-        }
-    }
-    
-    func fetchMovieVideo() {
-        ServiceManeger.shared.fetchMovieVideo(movieId: movieDetail.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.movieVideos = success
-                self.filterTreilerVideo()
-                self.delegate?.didFetchMovieVideoSucess()
-            case .failure(_):
-                break
             }
         }
     }
