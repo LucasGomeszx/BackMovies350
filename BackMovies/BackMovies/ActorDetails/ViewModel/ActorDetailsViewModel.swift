@@ -22,18 +22,6 @@ class ActorDetailsViewModel {
     init(actorId: Int) {
         self.actorId = actorId
     }
-
-    public func fetchActor() {
-        ServiceManeger.shared.fetchActorDetail(actorId: actorId) { result in
-            switch result {
-            case .success(let success):
-                self.actorModel = success
-                self.delegate?.didFetchActor()
-            case .failure(_):
-                self.delegate?.didFailToFetchActor()
-            }
-        }
-    }
     
     public func setUpDelegate(delegate: ActorDetailsViewModelDelegate) {
         self.delegate = delegate
@@ -64,6 +52,42 @@ class ActorDetailsViewModel {
     
     var getActorMoviesCell: CGFloat {
         340
+    }
+    
+    public func fetchActor() {
+        ServiceManeger.shared.fetchActorDetail(actorId: actorId) { result in
+            switch result {
+            case .success(let success):
+                self.actorModel = success
+                self.fetchActorMovies()
+            case .failure(_):
+                self.delegate?.didFailToFetchActor()
+            }
+        }
+    }
+    
+    private func fetchActorMovies() {
+        ServiceManeger.shared.fetchActorMovies(actorId: actorId) { result in
+            switch result {
+            case .success(let success):
+                self.actorModel?.listMovies = success
+                self.fetchActorSocialMedia()
+            case .failure(_):
+                self.delegate?.didFailToFetchActor()
+            }
+        }
+    }
+    
+    private func fetchActorSocialMedia() {
+        ServiceManeger.shared.fetchActorSocialMedia(actorId: actorId) { result in
+            switch result {
+            case .success(let success):
+                self.actorModel?.actorSocialMedia = success
+                self.delegate?.didFetchActor()
+            case .failure(_):
+                self.delegate?.didFailToFetchActor()
+            }
+        }
     }
     
 }

@@ -16,6 +16,8 @@ struct ActorModel: Codable {
     var name: String?
     var placeOfBirth: String?
     var profilePath: String?
+    var listMovies: ActorMovies?
+    var actorSocialMedia: ActorSocialMedia?
 
     enum CodingKeys: String, CodingKey {
         case biography, birthday, gender, id

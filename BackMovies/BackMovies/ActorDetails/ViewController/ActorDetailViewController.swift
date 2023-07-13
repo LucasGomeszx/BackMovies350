@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 enum ActorDetailSection: Int {
     case ActorTopCell
@@ -24,11 +25,13 @@ enum ActorDetailStrings: String {
 class ActorDetailViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var lottieLoadView: UIView!
     @IBOutlet weak var actorTitleLabel: UILabel!
     @IBOutlet weak var actorTableView: UITableView!
     @IBOutlet weak var backButton: UIImageView!
     
     var viewModel: ActorDetailsViewModel
+    let lottieAnimation = LottieAnimationView(name: ProfileStrings.lottieAnimationName.rawValue)
     
     init?(coder: NSCoder, actorId: Int) {
         viewModel = ActorDetailsViewModel(actorId: actorId)
@@ -42,11 +45,13 @@ class ActorDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        startLottieAnimation()
         viewModel.setUpDelegate(delegate: self)
         viewModel.fetchActor()
     }
     
     private func setUpView() {
+        lottieLoadView.backgroundColor = .lottieBack
         mainView.backgroundColor = .black
         actorTitleLabel.text = ActorDetailStrings.actorLabel.rawValue
         actorTitleLabel.textColor = .white
@@ -72,6 +77,25 @@ class ActorDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    private func startLottieAnimation() {
+        lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
+        lottieLoadView.addSubview(lottieAnimation)
+        NSLayoutConstraint.activate([
+            lottieAnimation.widthAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.heightAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.centerXAnchor.constraint(equalTo: lottieLoadView.centerXAnchor),
+            lottieAnimation.centerYAnchor.constraint(equalTo: lottieLoadView.centerYAnchor)
+        ])
+        lottieAnimation.loopMode = .loop
+        lottieAnimation.play()
+        lottieLoadView.isHidden = false
+    }
+    
+    private func stopLottieAnimation() {
+        lottieAnimation.stop()
+        lottieLoadView.isHidden = true
+    }
+    
 }
 
 //MARK: - TableViewDelegate, TableViewDataSource
@@ -93,7 +117,7 @@ extension ActorDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return cell ?? UITableViewCell()
         case .ActorMoviesCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActorMoviesTableViewCell.identifier, for: indexPath) as? ActorMoviesTableViewCell
-            cell?.setUpCell(actorId: viewModel.getActorId)
+            cell?.setUpCell(actorModel: viewModel.getActorDetail)
             cell?.delegate = self
             return cell ?? UITableViewCell()
         default:
@@ -136,6 +160,7 @@ extension ActorDetailViewController: ActorMoviesTableViewCellDelegate {
 extension ActorDetailViewController: ActorDetailsViewModelDelegate {
     func didFetchActor() {
         configureTableView()
+        stopLottieAnimation()
     }
     
     func didFailToFetchActor() {

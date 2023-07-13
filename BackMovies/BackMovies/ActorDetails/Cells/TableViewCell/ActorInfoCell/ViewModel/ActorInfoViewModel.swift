@@ -8,36 +8,16 @@
 import Foundation
 import Alamofire
 
-protocol ActorInfoViewModelProtocol: AnyObject {
-    func didFetchSocialMediaSuccess()
-}
-
 class ActorInfoViewModel {
     
     private var actorDetail: ActorModel?
-    private var socialMedia: ActorSocialMedia?
     private var actorSociaMedia: [SocialMedia] = []
     private let defauldReturn: String = "indisponível"
     
-    func setupViewModel(actorDetail: ActorModel, delegate: ActorInfoViewModelProtocol) {
+    func setupViewModel(actorDetail: ActorModel) {
         self.actorDetail = actorDetail
-        self.delegate = delegate
-    }
-    
-    private weak var delegate: ActorInfoViewModelProtocol?
-    
-    public func fetchActorSocialMedia() {
-        ServiceManeger.shared.fetchActorSocialMedia(actorId: actorDetail?.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.socialMedia = success
-                self.getSocialMedia()
-                self.delegate?.didFetchSocialMediaSuccess()
-            case .failure(_):
-                break
-            }
-        }
-    }
+        getSocialMedia()
+    }    
     
     var getActorWork: String {
         guard let work = actorDetail?.knownForDepartment else {return defauldReturn}
@@ -79,19 +59,19 @@ class ActorInfoViewModel {
     }
     
     func getSocialMedia() {
-        if let facebook = socialMedia?.facebookID {
+        if let facebook = actorDetail?.actorSocialMedia?.facebookID {
             actorSociaMedia.append(SocialMedia(socialMediaType: "facebook", actorSocialMedia: facebook))
         }
-        if let instagram = socialMedia?.instagramID {
+        if let instagram = actorDetail?.actorSocialMedia?.instagramID {
             actorSociaMedia.append(SocialMedia(socialMediaType: "instagram", actorSocialMedia: instagram))
         }
-        if let twitter = socialMedia?.twitterID {
+        if let twitter = actorDetail?.actorSocialMedia?.twitterID {
             actorSociaMedia.append(SocialMedia(socialMediaType: "twitter", actorSocialMedia: twitter))
         }
     }
     
     var isNill: Bool {
-        guard let social = socialMedia else {return true}
+        guard let social = actorDetail?.actorSocialMedia else {return true}
         if social.facebookID == nil && social.instagramID == nil && social.tiktokID == nil && social.twitterID == nil {
             return true
         }else {

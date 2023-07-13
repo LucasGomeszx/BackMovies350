@@ -56,7 +56,6 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func setUpView() {
-        lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
         lottieLoadView.backgroundColor = .lottieBack
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedBackButton))
         backImageView.addGestureRecognizer(gesture)
@@ -87,6 +86,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func startLottieAnimation() {
+        lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
         lottieLoadView.addSubview(lottieAnimation)
         NSLayoutConstraint.activate([
             lottieAnimation.widthAnchor.constraint(equalToConstant: 65),

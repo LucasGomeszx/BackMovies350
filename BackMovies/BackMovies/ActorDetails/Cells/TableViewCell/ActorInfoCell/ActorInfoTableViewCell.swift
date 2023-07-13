@@ -48,8 +48,7 @@ class ActorInfoTableViewCell: UITableViewCell {
     }
     
     public func setUpCell(actor: ActorModel) {
-        viewModel.setupViewModel(actorDetail: actor, delegate: self)
-        viewModel.fetchActorSocialMedia()
+        viewModel.setupViewModel(actorDetail: actor)
         knownInfoLabel.text = viewModel.getActorWork
         genderInfoLabel.text = viewModel.getActorGender
         birthInfoLabel.text = viewModel.getActorBirthday
@@ -126,11 +125,4 @@ extension ActorInfoTableViewCell: UICollectionViewDelegate, UICollectionViewData
         return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
     
-}
-
-//MARK: - ActorInfoViewModelProtocol
-extension ActorInfoTableViewCell: ActorInfoViewModelProtocol {
-    func didFetchSocialMediaSuccess() {
-        socialMediaCollectionView.reloadData()
-    }
 }

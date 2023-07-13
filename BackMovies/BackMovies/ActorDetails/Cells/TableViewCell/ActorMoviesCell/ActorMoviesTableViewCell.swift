@@ -37,10 +37,8 @@ class ActorMoviesTableViewCell: UITableViewCell {
         configureCollectionView()
     }
     
-    public func setUpCell(actorId: Int) {
-        viewModel.setUpViewModel(actorId: actorId)
-        viewModel.serUpDelegate(delegate: self)
-        viewModel.fetchActorMovies()
+    public func setUpCell(actorModel: ActorModel) {
+        viewModel.setUpViewModel(actorModel: actorModel)
     }
     
     private func setUpView() {
@@ -72,12 +70,12 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-        cell?.setUpCell(data: viewModel.getActorMoviesId(index: indexPath.row))
+        cell?.setUpCell(data: viewModel.getActorMovies(index: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        delegate?.navActorMovies(movieId: viewModel.getActorMoviesId(index: indexPath.row))
+        delegate?.navActorMovies(movieId: viewModel.getActorMovies(index: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -88,17 +86,4 @@ extension ActorMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDa
         return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
     
-}
-
-//MARK: - ActorMoviesTableViewCell
-
-extension ActorMoviesTableViewCell: ActorMoviesViewModelDelegate {
-    func didFetchActorMoviesSucess() {
-        actorMoviesCollectionView.reloadData()
-    }
-    
-    func didFetchActorMoviesFailure() {
-        
-    }
-
 }
