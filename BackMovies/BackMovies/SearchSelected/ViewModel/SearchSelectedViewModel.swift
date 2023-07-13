@@ -24,7 +24,7 @@ class SearchSelectedViewModel {
     private var MyMovies: MoviesModel?
     private var movieList: [MovieCellModel] = []
     private var page: Int = 1
-    private var totalPages: Int = 1
+    private var totalPages: Int = 30
     private var query: String = ""
     private weak var delegate: SearchSelectedViewModelDelegate?
     private var movieType: MoviesType
@@ -47,7 +47,7 @@ class SearchSelectedViewModel {
         self.delegate = delegate
     }
     
-    func getMoviesId(index: Int) -> MovieCellModel {
+    func getMovies(index: Int) -> MovieCellModel {
         return movieList[index]
     }
     
@@ -79,111 +79,109 @@ class SearchSelectedViewModel {
             return "Filmes"
         }
     }
-//    
-//    public func fetchMovies() {
-//        switch movieType {
-//        case .genres:
-//            self.getGenresMovies()
-//        case .movies:
-//            self.getPopularMovies()
-//        }
-//    }
-//    
-//    public func searchMovie(query: String) {
-//        self.query = query
-//        if !query.isEmpty {
-//            let encodedString = query.replacingOccurrences(of: " ", with: "%20")
-//            getQueryMovies(query: encodedString)
-//        }else {
-//            fetchMovies()
-//        }
-//    }
-//    
-//    public func getMoreMovies() {
-//        if page < totalPages {
-//            switch movieType {
-//            case .genres:
-//                getMoreGenresMovies()
-//            case .movies:
-//                getMorePopularMovies()
-//            }
-//        }
-//    }
-//
-//    private func getGenresMovies() {
-//        page = 1
-//        self.movieList.removeAll()
-//        ServiceManeger.shared.getGenresMovies(genreId: genresMovies?.id ?? 0, page: page) { result in
-//            switch result {
-//            case .success(let success):
-//                self.page = success.page ?? 0
-//                self.totalPages = success.totalPages ?? 0
-//                self.MyMovies = success
-//                self.movieList = success.results ?? [MovieCellModel()]
-//                self.delegate?.didFetchMoviesSuccess()
-//            case .failure(_):
-//                self.delegate?.didFetchMoviesFailure()
-//            }
-//        }
-//    }
-//
-//    private func getMoreGenresMovies() {
-//        page += 1
-//        ServiceManeger.shared.getGenresMovies(genreId: genresMovies?.id ?? 0, page: page) { result in
-//            switch result {
-//            case .success(let success):
-//                self.page = success.page ?? 0
-//                self.movieList += success.results ?? [MovieCellModel()]
-//                self.delegate?.didFetchMoviesSuccess()
-//            case .failure(_):
-//                self.delegate?.didFetchMoviesFailure()
-//            }
-//        }
-//    }
-//
-//    private func getPopularMovies() {
-//        page = 1
-//        self.movieList.removeAll()
-//        ServiceManeger.shared.getPopularMovies(page: page) { result in
-//            switch result {
-//            case .success(let success):
-//                self.page = success.page ?? 0
-//                self.totalPages = success.totalPages ?? 0
-//                self.MyMovies = success
-//                self.movieList = success.results ?? [MovieCellModel()]
-//                self.delegate?.didFetchMoviesSuccess()
-//            case .failure(_):
-//                self.delegate?.didFetchMoviesFailure()
-//            }
-//        }
-//    }
-//
-//    private func getMorePopularMovies() {
-//        page += 1
-//        ServiceManeger.shared.getPopularMovies(page: page) { result in
-//            switch result {
-//            case .success(let success):
-//                self.page = success.page ?? 0
-//                self.movieList += success.results ?? [MovieCellModel()]
-//                self.delegate?.didFetchMoviesSuccess()
-//            case .failure(_):
-//                self.delegate?.didFetchMoviesFailure()
-//            }
-//        }
-//    }
-//
-//    private func getQueryMovies(query: String) {
-//        self.movieList.removeAll()
-//        ServiceManeger.shared.getQueryMovies(query: query) { result in
-//            switch result {
-//            case .success(let success):
-//                self.MyMovies = success
-//                self.movieList = success.results ?? [MovieCellModel()]
-//                self.delegate?.didFetchMoviesSuccess()
-//            case .failure(_):
-//                self.delegate?.didFetchMoviesFailure()
-//            }
-//        }
-//    }
+    
+    public func fetchMovies() {
+        switch movieType {
+        case .genres:
+            self.getGenresMovies()
+        case .movies:
+            self.getPopularMovies()
+        }
+    }
+    
+    public func searchMovie(query: String) {
+        self.query = query
+        if !query.isEmpty {
+            let encodedString = query.replacingOccurrences(of: " ", with: "%20")
+            getQueryMovies(query: encodedString)
+        }else {
+            fetchMovies()
+        }
+    }
+    
+    public func getMoreMovies() {
+        if page <= totalPages {
+            switch movieType {
+            case .genres:
+                getMoreGenresMovies()
+            case .movies:
+                getMorePopularMovies()
+            }
+        }
+    }
+
+    private func getGenresMovies() {
+        page = 1
+        self.movieList.removeAll()
+        ServiceManeger.shared.getGenresMovies(genreId: genresMovies?.id ?? 0, page: page) { result in
+            switch result {
+            case .success(let success):
+                self.page = success.page ?? 0
+                self.MyMovies = success
+                self.movieList = success.results ?? [MovieCellModel()]
+                self.delegate?.didFetchMoviesSuccess()
+            case .failure(_):
+                self.delegate?.didFetchMoviesFailure()
+            }
+        }
+    }
+
+    private func getMoreGenresMovies() {
+        page += 1
+        ServiceManeger.shared.getGenresMovies(genreId: genresMovies?.id ?? 0, page: page) { result in
+            switch result {
+            case .success(let success):
+                self.page = success.page ?? 0
+                self.movieList += success.results ?? [MovieCellModel()]
+                self.delegate?.didFetchMoviesSuccess()
+            case .failure(_):
+                self.delegate?.didFetchMoviesFailure()
+            }
+        }
+    }
+
+    private func getPopularMovies() {
+        page = 1
+        self.movieList.removeAll()
+        ServiceManeger.shared.getPopularMovies(page: page) { result in
+            switch result {
+            case .success(let success):
+                self.page = success.page ?? 0
+                self.MyMovies = success
+                self.movieList = success.results ?? [MovieCellModel()]
+                self.delegate?.didFetchMoviesSuccess()
+            case .failure(_):
+                self.delegate?.didFetchMoviesFailure()
+            }
+        }
+    }
+
+    private func getMorePopularMovies() {
+        page += 1
+        ServiceManeger.shared.getPopularMovies(page: page) { result in
+            switch result {
+            case .success(let success):
+                self.page = success.page ?? 0
+                self.movieList += success.results ?? [MovieCellModel()]
+                self.delegate?.didFetchMoviesSuccess()
+            case .failure(_):
+                self.delegate?.didFetchMoviesFailure()
+            }
+        }
+    }
+
+    private func getQueryMovies(query: String) {
+        self.movieList.removeAll()
+        ServiceManeger.shared.getQueryMovies(query: query) { result in
+            switch result {
+            case .success(let success):
+                self.MyMovies = success
+                self.movieList = success.results ?? [MovieCellModel()]
+                self.delegate?.didFetchMoviesSuccess()
+            case .failure(_):
+                self.delegate?.didFetchMoviesFailure()
+            }
+        }
+    }
     
 }

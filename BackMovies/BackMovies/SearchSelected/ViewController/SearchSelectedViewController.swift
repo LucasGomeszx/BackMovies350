@@ -44,7 +44,7 @@ class SearchSelectedViewController: UIViewController {
         configCollectionView()
         configureView()
         viewModel.setUpDelegate(delegate: self)
-//        viewModel.fetchMovies()
+        viewModel.fetchMovies()
     }
     
     private func configCollectionView() {
@@ -85,7 +85,7 @@ class SearchSelectedViewController: UIViewController {
 
 extension SearchSelectedViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        viewModel.searchMovie(query: searchText)
+        viewModel.searchMovie(query: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -107,9 +107,9 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
             return cell ?? UICollectionViewCell()
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell
-            cell?.setUpCell(data: viewModel.getMoviesId(index: indexPath.row))
+            cell?.setUpCell(data: viewModel.getMovies(index: indexPath.row))
             if viewModel.getMoviesCount - 1 == indexPath.row && viewModel.getQuery == ""{
-//                viewModel.getMoreMovies()
+                viewModel.getMoreMovies()
             }
             return cell ?? UICollectionViewCell()
         }
@@ -117,7 +117,7 @@ extension SearchSelectedViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc: MovieDetailsViewController? = UIStoryboard(name: SearchSelectedStrings.moviesDetail.rawValue, bundle: nil).instantiateViewController(identifier: SearchSelectedStrings.moviesDetail.rawValue) { coder -> MovieDetailsViewController? in
-            return MovieDetailsViewController(coder: coder, movieCellModel: self.viewModel.getMoviesId(index: indexPath.row))
+            return MovieDetailsViewController(coder: coder, movieCellModel: self.viewModel.getMovies(index: indexPath.row))
         }
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }

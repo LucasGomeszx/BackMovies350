@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 enum SearchTableViewSection: Int {
     case head
@@ -24,14 +25,17 @@ enum SearchStrings: String {
 class SearchViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var lottieLoadView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchTableView: UITableView!
     
     var viewModel: SearchViewModel = SearchViewModel()
+    let lottieAnimation = LottieAnimationView(name: ProfileStrings.lottieAnimationName.rawValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        startLottieAnimation()
         configureNavigation()
         configureTableView()
         viewModel.setUpDelegate(delegate: self)
@@ -39,6 +43,7 @@ class SearchViewController: UIViewController {
     }
     
     private func setUpView() {
+        lottieLoadView.backgroundColor = .lottieBack
         mainView.backgroundColor = .black
         titleLabel.textColor = .white
         titleLabel.text = SearchStrings.titleLabel.rawValue
@@ -57,6 +62,25 @@ class SearchViewController: UIViewController {
     
     private func configureNavigation() {
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func startLottieAnimation() {
+        lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
+        lottieLoadView.addSubview(lottieAnimation)
+        NSLayoutConstraint.activate([
+            lottieAnimation.widthAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.heightAnchor.constraint(equalToConstant: 65),
+            lottieAnimation.centerXAnchor.constraint(equalTo: lottieLoadView.centerXAnchor),
+            lottieAnimation.centerYAnchor.constraint(equalTo: lottieLoadView.centerYAnchor)
+        ])
+        lottieAnimation.loopMode = .loop
+        lottieAnimation.play()
+        lottieLoadView.isHidden = false
+    }
+    
+    private func stopLottieAnimation() {
+        lottieAnimation.stop()
+        lottieLoadView.isHidden = true
     }
     
 }
@@ -98,6 +122,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: SearchViewModelDelegate {
     func didFetchGenresSucess() {
+        stopLottieAnimation()
         searchTableView.reloadData()
     }
     

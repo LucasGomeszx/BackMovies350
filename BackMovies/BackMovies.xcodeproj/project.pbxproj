@@ -1152,8 +1152,8 @@
 		64E70E4B29BA508100F14BFC /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				64BAB2F829F9C144006F99A8 /* ViewModel */,
 				644BD74729D099530036008F /* Cell */,
+				64BAB2F829F9C144006F99A8 /* ViewModel */,
 				64B17B6729BBA113003DC667 /* ViewController */,
 				64B17B6629BBA10B003DC667 /* View */,
 			);
