@@ -43,11 +43,10 @@ class FavoriteViewModel {
     }
     
     public func startFavoriteMoviesListener() {
-        movieList.removeAll()
         favoriteMoviesListener = FirestoreManager.shared.observeFavoriteMovies { result in
             switch result {
             case .success(let favoriteMovies):
-//                self.movieList = favoriteMovies
+                self.movieList = favoriteMovies
                 self.delegate?.didFetchMoviesSuccess()
             case .failure(let error):
                 self.delegate?.didFetchError(error: error.localizedDescription)

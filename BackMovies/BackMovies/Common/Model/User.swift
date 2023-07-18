@@ -12,5 +12,5 @@ struct User: Codable {
     var name: String?
     var email: String?
     var imageUrl: String?
-    var favoriteMovies: [Int]?
+    var favoriteMovies: [MovieCellModel]?
 }

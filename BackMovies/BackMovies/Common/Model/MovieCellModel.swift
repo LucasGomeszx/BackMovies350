@@ -9,7 +9,9 @@ import Foundation
 
 struct MovieCellModel: Codable {
     var id: Int?
-    var overview, posterPath, title: String?
+    var overview: String?
+    var posterPath: String?
+    var title: String?
     var voteAverage: Double?
 
     enum CodingKeys: String, CodingKey {

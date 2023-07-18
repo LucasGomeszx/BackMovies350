@@ -44,7 +44,7 @@ class MovieTopCellViewModel {
     }
     
     func getUserFavoriteMovies() {
-        FirestoreManager.shared.isMovieInFavorites(movieId: movieDetail.movieCellModel?.id ?? 0) { result in
+        FirestoreManager.shared.isMovieInFavorites(movieId: movieDetail.movieCellModel ?? MovieCellModel()) { result in
             switch result {
              case .success(let isInFavorites):
                  print("O filme está nos favoritos: \(isInFavorites)")
@@ -57,10 +57,10 @@ class MovieTopCellViewModel {
     }
     
     func addFavoriteMovie() {
-        FirestoreManager.shared.addFavoriteMovie(movieId: movieDetail.movieCellModel?.id ?? 0) { result in
+        FirestoreManager.shared.addFavoriteMovie(movieId: movieDetail.movieCellModel ?? MovieCellModel()) { result in
             switch result {
             case .success:
-                print("Filme adicionado aos favoritos.")
+                break
             case .failure(let error):
                 print("Erro ao adicionar filme aos favoritos no Firestore: \(error.localizedDescription)")
             }
@@ -68,10 +68,10 @@ class MovieTopCellViewModel {
     }
     
     func deleteFavoriteMovie() {
-        FirestoreManager.shared.removeFavoriteMovie(movieId: movieDetail.movieCellModel?.id ?? 0) { result in
+        FirestoreManager.shared.removeFavoriteMovie(movieId: movieDetail.movieCellModel ?? MovieCellModel()) { result in
             switch result {
             case .success:
-                print("Filme removido dos favoritos.")
+                break
             case .failure(let error):
                 print("Erro ao adicionar filme aos favoritos no Firestore: \(error.localizedDescription)")
             }
