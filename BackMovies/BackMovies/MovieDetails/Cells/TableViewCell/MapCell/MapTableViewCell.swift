@@ -52,7 +52,6 @@ class MapTableViewCell: UITableViewCell {
         let search = MKLocalSearch(request: request)
         search.start { (response, error) in
             guard let response = response, error == nil else {
-                print("Erro ao buscar cinemas: \(error?.localizedDescription ?? "")")
                 return
             }
 

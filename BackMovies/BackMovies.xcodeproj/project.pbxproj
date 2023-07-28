@@ -97,8 +97,6 @@
 		64A9192629F76C2200FAE641 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9192529F76C2200FAE641 /* UIColor+Extension.swift */; };
 		64A9192929F7707D00FAE641 /* ActorMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9192829F7707D00FAE641 /* ActorMoviesViewModel.swift */; };
 		64A9192C29F7784F00FAE641 /* SocialMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9192B29F7784F00FAE641 /* SocialMediaViewModel.swift */; };
-		64A99B702A5C8D9600773F45 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A99B6F2A5C8D9600773F45 /* InfoViewController.swift */; };
-		64A99B742A5C8DBD00773F45 /* InfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A99B732A5C8DBD00773F45 /* InfoViewController.storyboard */; };
 		64AB8B6D2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8B6B2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift */; };
 		64AB8B6E2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64AB8B6C2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib */; };
 		64AB8B842A477F6C00F021FE /* ActorSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8B832A477F6C00F021FE /* ActorSearchViewController.swift */; };
@@ -222,14 +220,13 @@
 		648F91A229EDBBBD0052E375 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		64947D502A02BBD400E2B989 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		649EF43529F99ACF002D0475 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		64A001782A7303000047DC5D /* BackMovies.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = BackMovies.entitlements; sourceTree = "<group>"; };
 		64A9191C29F747A300FAE641 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		64A9191F29F75A1600FAE641 /* ActorTopCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTopCellViewModel.swift; sourceTree = "<group>"; };
 		64A9192229F7638B00FAE641 /* ActorInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInfoViewModel.swift; sourceTree = "<group>"; };
 		64A9192529F76C2200FAE641 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		64A9192829F7707D00FAE641 /* ActorMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorMoviesViewModel.swift; sourceTree = "<group>"; };
 		64A9192B29F7784F00FAE641 /* SocialMediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaViewModel.swift; sourceTree = "<group>"; };
-		64A99B6F2A5C8D9600773F45 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		64A99B732A5C8DBD00773F45 /* InfoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InfoViewController.storyboard; sourceTree = "<group>"; };
 		64AB8B6B2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		64AB8B6C2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieEmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		64AB8B832A477F6C00F021FE /* ActorSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorSearchViewController.swift; sourceTree = "<group>"; };
@@ -530,6 +527,7 @@
 		64501B9329B7A5EC0019D7B3 /* BackMovies */ = {
 			isa = PBXGroup;
 			children = (
+				64A001782A7303000047DC5D /* BackMovies.entitlements */,
 				640EA6122A52585D0086F891 /* Firebase */,
 				64E70E4829BA503200F14BFC /* Common */,
 				64E70E4529BA4F9C00F14BFC /* Login */,
@@ -540,7 +538,6 @@
 				64E70E4B29BA508100F14BFC /* Search */,
 				64E70E4C29BA509200F14BFC /* Favorite */,
 				64E70E4D29BA509A00F14BFC /* Profile */,
-				64A99B6E2A5C8D6D00773F45 /* Info */,
 				64E70E4E29BA50CC00F14BFC /* MovieDetails */,
 				64E70E4F29BA50D900F14BFC /* ActorDetails */,
 				64E70E5029BA512400F14BFC /* SearchSelected */,
@@ -823,31 +820,6 @@
 				64A9192B29F7784F00FAE641 /* SocialMediaViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		64A99B6E2A5C8D6D00773F45 /* Info */ = {
-			isa = PBXGroup;
-			children = (
-				64A99B722A5C8DA600773F45 /* View */,
-				64A99B712A5C8D9A00773F45 /* ViewController */,
-			);
-			path = Info;
-			sourceTree = "<group>";
-		};
-		64A99B712A5C8D9A00773F45 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				64A99B6F2A5C8D9600773F45 /* InfoViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		64A99B722A5C8DA600773F45 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				64A99B732A5C8DBD00773F45 /* InfoViewController.storyboard */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		64AB8B6A2A474C3300F021FE /* MovieEmptyCell */ = {
@@ -1385,7 +1357,6 @@
 				644BD74E29D09A020036008F /* HeadTableViewCell.xib in Resources */,
 				64BA90A22A48C62F0049DD24 /* EmptyActorCollectionViewCell.xib in Resources */,
 				6437B0A72A003C2900293FC1 /* GoogleService-Info.plist in Resources */,
-				64A99B742A5C8DBD00773F45 /* InfoViewController.storyboard in Resources */,
 				64AB8B6E2A474C4D00F021FE /* MovieEmptyCollectionViewCell.xib in Resources */,
 				6468C8AF2A3F898C00E629F4 /* EmptyCollectionViewCell.xib in Resources */,
 				64E70E6429BA6F0C00F14BFC /* TabBarView.storyboard in Resources */,
@@ -1458,7 +1429,6 @@
 				6478639029F2D16200DF2D58 /* MapCellViewModel.swift in Sources */,
 				64B17B7329BBA16B003DC667 /* SearchViewController.swift in Sources */,
 				64A9192929F7707D00FAE641 /* ActorMoviesViewModel.swift in Sources */,
-				64A99B702A5C8D9600773F45 /* InfoViewController.swift in Sources */,
 				640EA6152A52587D0086F891 /* FirebaseManeger.swift in Sources */,
 				64501B9529B7A5EC0019D7B3 /* AppDelegate.swift in Sources */,
 				64B17B8329BBA254003DC667 /* ActorDetailViewController.swift in Sources */,
@@ -1679,6 +1649,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BackMovies/BackMovies.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VM23EZY4K2;
@@ -1699,6 +1671,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gomeszx.BackMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1714,6 +1687,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BackMovies/BackMovies.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VM23EZY4K2;
@@ -1734,6 +1709,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gomeszx.BackMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
