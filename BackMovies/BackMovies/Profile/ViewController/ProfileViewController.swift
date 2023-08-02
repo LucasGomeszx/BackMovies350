@@ -35,6 +35,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         configureNavigation()
         setupView()
+        viewModel.configDelegate(delegate: self)
         viewModel.getUserData()
     }
     
@@ -70,15 +71,6 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    @objc func selectImageFromGallery(_ sender: UIButton) {
-        let logoutAction = UIAlertAction(title: ProfileStrings.alertStay.rawValue, style: .default) { _ in
-            self.imagePicker.sourceType = .photoLibrary
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
-        let doNothing = UIAlertAction(title: ProfileStrings.alertCancel.rawValue, style: .destructive)
-        Alert.showAlert(on: self, withTitle: ProfileStrings.alertImage.rawValue, message: ProfileStrings.alertChangeImage.rawValue,actions: [logoutAction,doNothing])
-    }
-    
     @IBAction func tappedExitButton(_ sender: Any) {
         let logoutAction = UIAlertAction(title: ProfileStrings.alertExit.rawValue, style: .destructive) { _ in
             self.viewModel.logOut()
@@ -106,4 +98,25 @@ class ProfileViewController: UIViewController {
         loadingView.isHidden = true
     }
     
+}
+
+extension ProfileViewController: ProfileViewModelProtocol {
+    
+    func didFetchUserDataSuccess(user: User) {
+        nameLabel.text = user.name
+        emailLabel.text = user.email
+        stopLottieAnimation()
+    }
+    
+    func didFetchUserDataFailure(error: String) {
+        Alert.showAlert(on: self, withTitle: ProfileStrings.alertError.rawValue, message: error, actions: nil)
+    }
+    
+    func startLoadAnimation() {
+        startLottieAnimation()
+    }
+    
+    func stopLoadAnimation() {
+        stopLottieAnimation()
+    }
 }
