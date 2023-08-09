@@ -17,7 +17,6 @@
 		6416841D2A57443100F60607 /* ServiceManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6416841C2A57443100F60607 /* ServiceManeger.swift */; };
 		643187C329F9F5DF009F35EB /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643187C229F9F5DF009F35EB /* FavoriteViewModel.swift */; };
 		6436C2D62A3E69D10097BFAE /* WatchProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6436C2D52A3E69D10097BFAE /* WatchProviders.swift */; };
-		6437B0A52A0018CA00293FC1 /* imageLoad.json in Resources */ = {isa = PBXBuildFile; fileRef = 6437B0A42A0018CA00293FC1 /* imageLoad.json */; };
 		6437B0A72A003C2900293FC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6437B0A62A003C2900293FC1 /* GoogleService-Info.plist */; };
 		6437B0B62A01699C00293FC1 /* registerLoad.json in Resources */ = {isa = PBXBuildFile; fileRef = 6437B0B52A01699C00293FC1 /* registerLoad.json */; };
 		64392E292A5E38BD00D68B96 /* MovieCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64392E282A5E38BD00D68B96 /* MovieCellModel.swift */; };
@@ -134,6 +133,7 @@
 		64E70E5E29BA6E7B00F14BFC /* RecoverView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E5D29BA6E7B00F14BFC /* RecoverView.storyboard */; };
 		64E70E6229BA6F0400F14BFC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E70E6129BA6F0400F14BFC /* TabBarViewController.swift */; };
 		64E70E6429BA6F0C00F14BFC /* TabBarView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E70E6329BA6F0C00F14BFC /* TabBarView.storyboard */; };
+		B291B2A52A83D18700301447 /* imageLoad.json in Resources */ = {isa = PBXBuildFile; fileRef = B291B2A42A83D18700301447 /* imageLoad.json */; };
 		C40A91832B057310F1ACCEC3 /* Pods_BackMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A0BBAD6F68ED6C38DE4A68 /* Pods_BackMovies.framework */; };
 /* End PBXBuildFile section */
 
@@ -148,7 +148,6 @@
 		6416841C2A57443100F60607 /* ServiceManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManeger.swift; sourceTree = "<group>"; };
 		643187C229F9F5DF009F35EB /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		6436C2D52A3E69D10097BFAE /* WatchProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchProviders.swift; sourceTree = "<group>"; };
-		6437B0A42A0018CA00293FC1 /* imageLoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = imageLoad.json; path = ../../../../../Downloads/imageLoad.json; sourceTree = "<group>"; };
 		6437B0A62A003C2900293FC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6437B0B52A01699C00293FC1 /* registerLoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = registerLoad.json; sourceTree = "<group>"; };
 		64392E282A5E38BD00D68B96 /* MovieCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellModel.swift; sourceTree = "<group>"; };
@@ -265,6 +264,7 @@
 		64E70E6329BA6F0C00F14BFC /* TabBarView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarView.storyboard; sourceTree = "<group>"; };
 		A16CA2DC4241D7C45BD0736C /* Pods-BackMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackMovies.debug.xcconfig"; path = "Target Support Files/Pods-BackMovies/Pods-BackMovies.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A0BBAD6F68ED6C38DE4A68 /* Pods_BackMovies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackMovies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B291B2A42A83D18700301447 /* imageLoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = imageLoad.json; sourceTree = "<group>"; };
 		C28BC18955AA454C1F37B431 /* Pods-BackMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackMovies.release.xcconfig"; path = "Target Support Files/Pods-BackMovies/Pods-BackMovies.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -347,7 +347,7 @@
 		6437B0A32A0018B900293FC1 /* LottieJson */ = {
 			isa = PBXGroup;
 			children = (
-				6437B0A42A0018CA00293FC1 /* imageLoad.json */,
+				B291B2A42A83D18700301447 /* imageLoad.json */,
 				6437B0B52A01699C00293FC1 /* registerLoad.json */,
 			);
 			path = LottieJson;
@@ -1349,6 +1349,7 @@
 				644BD75D29D0B0580036008F /* BodyCollectionViewCell.xib in Resources */,
 				645179B129C78F43001D7B9D /* PosterCollectionViewCell.xib in Resources */,
 				644BD78529D141AF0036008F /* ActorTableViewCell.xib in Resources */,
+				B291B2A52A83D18700301447 /* imageLoad.json in Resources */,
 				64E70E5829BA65BF00F14BFC /* RegisterView.storyboard in Resources */,
 				6401424F2A478F98006A644E /* SearchActorCollectionViewCell.xib in Resources */,
 				64501B9C29B7A5EC0019D7B3 /* Main.storyboard in Resources */,
@@ -1363,7 +1364,6 @@
 				64B17B6529BBA0CE003DC667 /* PosterView.storyboard in Resources */,
 				644BD78A29D144A90036008F /* ActorCollectionViewCell.xib in Resources */,
 				64B17B8929BBA29B003DC667 /* SearchSelectedView.storyboard in Resources */,
-				6437B0A52A0018CA00293FC1 /* imageLoad.json in Resources */,
 				64B17B7D29BBA1F0003DC667 /* ProfileView.storyboard in Resources */,
 				6437B0B62A01699C00293FC1 /* registerLoad.json in Resources */,
 				644BD78029D12E540036008F /* StreamingCollectionViewCell.xib in Resources */,
@@ -1653,9 +1653,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VM23EZY4K2;
+				DEVELOPMENT_TEAM = A88KDLH4J3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BackMovies/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BackMovies;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1668,7 +1670,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gomeszx.BackMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1691,9 +1693,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VM23EZY4K2;
+				DEVELOPMENT_TEAM = A88KDLH4J3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BackMovies/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BackMovies;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1706,7 +1710,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gomeszx.BackMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
