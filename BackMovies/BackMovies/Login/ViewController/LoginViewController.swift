@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginGoolge: UIButton!
+    @IBOutlet weak var loginApple: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var recoverLabel: UILabel!
@@ -61,9 +62,31 @@ class LoginViewController: UIViewController {
         registerButton.layer.cornerRadius = 20
         loginGoolge.layer.cornerRadius = 20
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedRecoverButton))
+        loginApple.layer.cornerRadius = 20
         recoverLabel.textColor = .white
         recoverLabel.addGestureRecognizer(tapGesture)
         recoverLabel.isUserInteractionEnabled = true
+        let image = resizeImage(image: UIImage(named: "apple") ?? UIImage(), targetSize: CGSize(width: 20, height: 20))
+        loginApple.setImage(image, for: .normal)
+
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+
+        // Mantém a proporção da imagem original
+        let scaleFactor = min(widthRatio, heightRatio)
+
+        let scaledSize = CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor)
+        let renderer = UIGraphicsImageRenderer(size: scaledSize)
+        let scaledImage = renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: scaledSize))
+        }
+        
+        return scaledImage
     }
     
     func setupTextFieldDelegate() {
@@ -178,6 +201,10 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    
+    @IBAction func tappedLoginApple(_ sender: Any) {
+        print("AAAAAAA")
+    }
     
     private func validateEmailTextField(_ textField: UITextField) {
         guard let email = textField.text, !email.isEmpty else {

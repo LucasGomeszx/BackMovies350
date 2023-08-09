@@ -13,7 +13,7 @@ protocol RelatedTableViewCellDelegate: AnyObject {
 }
 
 enum RelatedStrings: String {
-    case relatedLabel = "Filmes Relacionados :"
+    case relatedLabel = "Filmes Relacionados:"
 }
 
 class RelatedTableViewCell: UITableViewCell {

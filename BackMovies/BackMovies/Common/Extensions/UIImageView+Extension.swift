@@ -39,6 +39,7 @@ extension UIImageView {
             }
         }.resume()
     }
+    
 }
 
 // Enum que representa os possíveis erros que podem ocorrer ao carregar uma imagem

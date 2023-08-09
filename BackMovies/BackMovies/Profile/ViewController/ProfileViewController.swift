@@ -21,10 +21,11 @@ enum ProfileStrings: String {
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var tmdbLabel: UILabel!
+    @IBOutlet weak var exitButton: UIButton!
     
     var viewModel: ProfileViewModel = ProfileViewModel()
     let imagePicker = UIImagePickerController()
@@ -36,7 +37,6 @@ class ProfileViewController: UIViewController {
         setupView()
         viewModel.configDelegate(delegate: self)
         viewModel.getUserData()
-        imagePicker.delegate = self
     }
     
     func configureNavigation() {
@@ -44,20 +44,14 @@ class ProfileViewController: UIViewController {
     }
     
     func setupView() {
+        tmdbLabel.textColor = .textColor
         loadingView.isHidden = true
         loadingView.backgroundColor = .black
         lottieAnimation.translatesAutoresizingMaskIntoConstraints = false
-        let action = UITapGestureRecognizer(target: self, action: #selector(selectImageFromGallery))
-        profilePhoto.addGestureRecognizer(action)
-        profilePhoto.isUserInteractionEnabled = true
-        profilePhoto.layer.borderWidth = 1
-        profilePhoto.layer.masksToBounds = false
-        profilePhoto.layer.borderColor = UIColor.black.cgColor
-        profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
-        profilePhoto.clipsToBounds = true
         let nameGesture = UITapGestureRecognizer(target: self, action: #selector(changeName))
         nameLabel.addGestureRecognizer(nameGesture)
         nameLabel.isUserInteractionEnabled = true
+        exitButton.layer.cornerRadius = 10
     }
     
     @objc func changeName() {
@@ -75,20 +69,6 @@ class ProfileViewController: UIViewController {
                 }
             }
         })
-    }
-    
-    @objc func selectImageFromGallery(_ sender: UIButton) {
-        let logoutAction = UIAlertAction(title: ProfileStrings.alertStay.rawValue, style: .default) { _ in
-            self.imagePicker.sourceType = .photoLibrary
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
-        let doNothing = UIAlertAction(title: ProfileStrings.alertCancel.rawValue, style: .destructive)
-        Alert.showAlert(on: self, withTitle: ProfileStrings.alertImage.rawValue, message: ProfileStrings.alertChangeImage.rawValue,actions: [logoutAction,doNothing])
-    }
-    
-    @IBAction func tappedInfoButton(_ sender: Any) {
-        let vc: InfoViewController? = UIStoryboard(name: "InfoViewController", bundle: nil).instantiateViewController(withIdentifier: "InfoViewController") as? InfoViewController
-        present(vc ?? UIViewController(), animated: true)
     }
     
     @IBAction func tappedExitButton(_ sender: Any) {
@@ -120,22 +100,12 @@ class ProfileViewController: UIViewController {
     
 }
 
-//MARK: - ProfileViewModelProtocol
-
 extension ProfileViewController: ProfileViewModelProtocol {
+    
     func didFetchUserDataSuccess(user: User) {
         nameLabel.text = user.name
         emailLabel.text = user.email
-        guard let url = URL(string: user.imageUrl ?? "") else {return self.stopLottieAnimation()}
-        profilePhoto.loadImageFromURL(url) { result in
-            switch result {
-            case .success(let Image):
-                self.profilePhoto.image = Image
-                self.stopLottieAnimation()
-            case .failure(_):
-                self.stopLottieAnimation()
-            }
-        }
+        stopLottieAnimation()
     }
     
     func didFetchUserDataFailure(error: String) {
@@ -149,21 +119,4 @@ extension ProfileViewController: ProfileViewModelProtocol {
     func stopLoadAnimation() {
         stopLottieAnimation()
     }
-}
-
-//MARK: - ProfileViewController
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            viewModel.uploadImageToFirebaseStorage(selectedImage)
-            profilePhoto.image = selectedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
 }

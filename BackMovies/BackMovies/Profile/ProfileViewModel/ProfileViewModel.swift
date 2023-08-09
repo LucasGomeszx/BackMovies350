@@ -57,49 +57,4 @@ class ProfileViewModel {
         }
     }
     
-    func uploadImageToFirebaseStorage(_ image: UIImage) {
-        delegate?.startLoadAnimation()
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            return
-        }
-        
-        let imageName = UUID().uuidString
-        
-        let storageRef = Storage.storage().reference().child("profileImages/\(imageName).jpg")
-        
-        storageRef.putData(imageData, metadata: nil) { metadata, error in
-            if let error = error {
-                self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
-                return
-            }
-
-            storageRef.downloadURL { url, error in
-                if let error = error {
-                    self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
-                    return
-                }
-                
-                if let downloadURL = url?.absoluteString {
-                    self.updateUserImageURL(downloadURL)
-                }
-            }
-        }
-    }
-
-    private func updateUserImageURL(_ imageURL: String) {
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
-            return
-        }
-
-        let userRef = Firestore.firestore().collection("user").document(currentUserID)
-        userRef.updateData(["imageUrl": imageURL]) { error in
-            if let error = error {
-                self.delegate?.didFetchUserDataFailure(error: error.localizedDescription)
-                self.delegate?.stopLoadAnimation()
-            } else {
-                self.delegate?.stopLoadAnimation()
-            }
-        }
-    }
-    
 }

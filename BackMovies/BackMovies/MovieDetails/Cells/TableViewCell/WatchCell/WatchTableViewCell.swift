@@ -13,8 +13,8 @@ protocol WatchCellStringsProtocol: AnyObject {
 }
 
 enum WatchCellStrings: String {
-    case whereWatch = "Onde assistir ?"
-    case movieVideos = "Que tal videos sobre o filme ?"
+    case whereWatch = "Onde assistir?"
+    case movieVideos = "Que tal videos sobre o filme?"
     case youtubeImage = "youtube"
 }
 

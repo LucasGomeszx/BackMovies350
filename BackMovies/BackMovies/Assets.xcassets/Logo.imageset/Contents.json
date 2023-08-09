@@ -1,8 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Captura de Tela 2023-02-06 às 11.55.16 - cópia.png",
-      "idiom" : "universal"
+      "filename" : "Logo.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
