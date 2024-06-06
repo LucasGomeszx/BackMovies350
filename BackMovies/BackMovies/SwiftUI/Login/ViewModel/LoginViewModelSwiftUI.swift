@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
 class LoginViewModelSwiftUI: ObservableObject {
     
@@ -17,6 +19,8 @@ class LoginViewModelSwiftUI: ObservableObject {
     @Published var goToRecoveryView: Bool = false
     @Published var goToTabBarView: Bool = false
     @Published var isLoading: Bool = false
+    @Published var showAlert: Bool = false
+    @Published var alertError: String = ""
     
     func goToResgisterView() {
         goToRegisterView.toggle()
@@ -34,13 +38,13 @@ class LoginViewModelSwiftUI: ObservableObject {
         isLoading = true
         Auth.auth().signIn(withEmail: emailTextField, password: passwordTextField) { authResult, error in
             if error != nil {
+                self.alertError = error?.localizedDescription ?? ""
+                self.showAlert = true
                 self.isLoading = false
-                print(error?.localizedDescription)
             }else {
                 self.isLoading = false
                 self.goToTabBar()
             }
         }
     }
-    
 }

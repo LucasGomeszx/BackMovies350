@@ -135,10 +135,8 @@ struct LoginView: View {
                     
                     if viewModel.isLoading {
                         ZStack {
-                            Image(.apple)
-                                .resizable()
-                                .scaledToFit()
-                                .scaleEffect(0.1)
+                            LottieView(name: "registerLoad", loopMode: .loop)
+                                .scaleEffect(0.2)
                                 .offset(y: -50)
                         }
                         .frame(width: geo.size.width, height: geo.size.height)
@@ -162,6 +160,11 @@ struct LoginView: View {
                     TabBarStoryboard()
                         .ignoresSafeArea()
                         .navigationBarBackButtonHidden()
+                }
+                .alert("Error", isPresented: $viewModel.showAlert) {
+                    
+                } message: {
+                    Text(viewModel.alertError)
                 }
             }
         }
