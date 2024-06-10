@@ -27,56 +27,9 @@ struct LoginView: View {
                             .frame(width: geo.size.width / 1.5)
                             .padding(.top, 100)
                         
-                        Text("E-mail")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(.white)
-                            .frame(width: geo.size.width - 26, alignment: .leading)
-                            .padding(.horizontal)
+                        BackMoviesTextField(textFieldText: $viewModel.emailTextField, placeholder: "E-mail", label: "E-mail")
                         
-                        
-                        ZStack(alignment: .leading) {
-                            if viewModel.emailTextField.isEmpty {
-                                Text("E-mail:")
-                                    .foregroundStyle(.gray.opacity(0.5))
-                                    .padding(.horizontal)
-                            }
-                            TextField("", text: $viewModel.emailTextField)
-                                .padding(.horizontal)
-                            
-                        }
-                        .frame(width: geo.size.width - 26, height:50 , alignment: .leading)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .font(.system(size: 20))
-                        .background(Color.backGray)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.bottom, 10)
-                        
-                        Text("Senha")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(.white)
-                            .frame(width: geo.size.width - 26, alignment: .leading)
-                            .padding(.horizontal)
-                        
-                        
-                        ZStack(alignment: .leading) {
-                            if viewModel.passwordTextField.isEmpty {
-                                Text("Senha:")
-                                    .foregroundStyle(.gray.opacity(0.5))
-                                    .padding(.horizontal)
-                            }
-                            SecureField("", text: $viewModel.passwordTextField)
-                                .padding(.horizontal)
-                            
-                        }
-                        .frame(width: geo.size.width - 26, height:50 , alignment: .leading)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .font(.system(size: 20))
-                        .background(Color.backGray)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                        BackMoviesSecureField(textFieldText: $viewModel.passwordTextField, placeholder: "Senha", label: "Senha")
                         
                         Button {
                             viewModel.loginBackMovies()
@@ -132,6 +85,7 @@ struct LoginView: View {
                         Spacer()
                         
                     }
+                    .frame(width: geo.size.width - 26, height: geo.size.height)
                     
                     if viewModel.isLoading {
                         ZStack {
@@ -147,8 +101,7 @@ struct LoginView: View {
                 .ignoresSafeArea()
                 .frame(width: geo.size.width, height: geo.size.height)
                 .navigationDestination(isPresented: $viewModel.goToRegisterView) {
-                    RegisterStoryboard()
-                        .ignoresSafeArea()
+                    RegisterView()
                         .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(isPresented: $viewModel.goToRecoveryView) {
@@ -169,19 +122,6 @@ struct LoginView: View {
             }
         }
         .ignoresSafeArea()
-    }
-}
-
-struct RegisterStoryboard: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
-        // Aqui você carrega o ViewController do Storyboard
-        let storyboard = UIStoryboard(name: "RegisterView", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(identifier: "RegisterViewController")
-        return viewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Atualizar o UIViewController, se necessário
     }
 }
 
