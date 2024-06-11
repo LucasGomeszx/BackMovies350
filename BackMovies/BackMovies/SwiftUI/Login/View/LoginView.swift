@@ -116,8 +116,7 @@ struct LoginView: View {
                         .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(isPresented: $viewModel.goToTabBarView) {
-                    TabBarStoryboard()
-                        .ignoresSafeArea()
+                    TabBarView()
                         .navigationBarBackButtonHidden()
                 }
                 .alert("Error", isPresented: $viewModel.showAlert) {
@@ -136,19 +135,6 @@ struct RecoverStoryboard: UIViewControllerRepresentable {
         // Aqui você carrega o ViewController do Storyboard
         let storyboard = UIStoryboard(name: "RecoverView", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(identifier: "RecoverViewController")
-        return viewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Atualizar o UIViewController, se necessário
-    }
-}
-
-struct TabBarStoryboard: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
-        // Aqui você carrega o ViewController do Storyboard
-        let storyboard = UIStoryboard(name: "TabBarView", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(identifier: "TabBarViewController")
         return viewController
     }
     
