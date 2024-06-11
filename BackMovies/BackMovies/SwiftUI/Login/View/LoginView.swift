@@ -27,9 +27,15 @@ struct LoginView: View {
                             .frame(width: geo.size.width / 1.5)
                             .padding(.top, 100)
                         
-                        BackMoviesTextField(textFieldText: $viewModel.emailTextField, placeholder: "E-mail", label: "E-mail")
+                        BackMoviesTextField(textFieldText: $viewModel.emailTextField,
+                                            borderColor: Color.clear,
+                                            placeholder: "E-mail",
+                                            label: "E-mail")
                         
-                        BackMoviesSecureField(textFieldText: $viewModel.passwordTextField, placeholder: "Senha", label: "Senha")
+                        BackMoviesSecureField(textFieldText: $viewModel.passwordTextField,
+                                              borderColor: Color.clear,
+                                              placeholder: "Senha",
+                                              label: "Senha")
                         
                         Button {
                             viewModel.loginBackMovies()

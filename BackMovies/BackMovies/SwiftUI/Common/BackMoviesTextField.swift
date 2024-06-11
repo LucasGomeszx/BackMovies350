@@ -10,6 +10,7 @@ import SwiftUI
 struct BackMoviesTextField: View {
     
     @Binding var textFieldText: String
+    var borderColor: Color
     var placeholder: String
     var label: String
 
@@ -34,6 +35,7 @@ struct BackMoviesTextField: View {
             .font(.system(size: 20))
             .background(Color.backGray)
             .foregroundColor(.white)
+            .border(borderColor, width: 2)
             .clipShape(RoundedRectangle(cornerRadius: 5.0))
         }
         .fixedSize(horizontal: false, vertical: true)
@@ -43,5 +45,5 @@ struct BackMoviesTextField: View {
 #Preview {
     @State var name = ""
     
-    return BackMoviesTextField(textFieldText: $name, placeholder: "", label: "Text")
+    return BackMoviesTextField(textFieldText: $name, borderColor: Color.white, placeholder: "", label: "Text")
 }

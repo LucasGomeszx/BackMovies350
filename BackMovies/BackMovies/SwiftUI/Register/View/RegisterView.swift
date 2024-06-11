@@ -46,16 +46,28 @@ struct RegisterView: View {
                         
                     }
                     
-                    BackMoviesTextField(textFieldText: $viewModel.name, placeholder: "Nome", label: "Nome")
+                    BackMoviesTextField(textFieldText: $viewModel.name,
+                                        borderColor: viewModel.nameValid ? Color.clear : Color.red,
+                                        placeholder: "Nome",
+                                        label: "Nome")
  
-                    BackMoviesTextField(textFieldText: $viewModel.name, placeholder: "E-mail", label: "E-mail")
+                    BackMoviesTextField(textFieldText: $viewModel.email,
+                                        borderColor: viewModel.emailValid ? Color.clear : Color.red,
+                                        placeholder: "E-mail",
+                                        label: "Nome")
                     
-                    BackMoviesSecureField(textFieldText: $viewModel.password, placeholder: "Senha:", label: "Senha")
+                    BackMoviesSecureField(textFieldText: $viewModel.password,
+                                          borderColor: viewModel.passwordValid ? Color.clear : Color.red,
+                                          placeholder: "Senha:",
+                                          label: "Senha")
 
-                    BackMoviesSecureField(textFieldText: $viewModel.repeatPassword, placeholder: "Repita senha:", label: "Repita senha")
+                    BackMoviesSecureField(textFieldText: $viewModel.repeatedPassword,
+                                          borderColor: viewModel.repeatedPasswordValid ? Color.clear : Color.red,
+                                          placeholder: "Repita senha:",
+                                          label: "Repita senha")
                     
                     Button {
-                        
+                        viewModel.registerUser()
                     } label: {
                         Text("Cadastrar")
                             .font(.system(size: 20))
@@ -68,6 +80,11 @@ struct RegisterView: View {
                     
                     Spacer()
                     
+                }
+                .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+                    
+                } message: {
+                    Text(viewModel.alertMessage)
                 }
                 .padding(.horizontal)
                 .frame(width: geo.size.width, height: geo.size.height)
