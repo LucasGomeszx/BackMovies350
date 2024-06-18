@@ -13,8 +13,7 @@ struct TabBarView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            PosterStoryboard()
-                .ignoresSafeArea()
+            PosterView()
                 .tabItem { Label("Cinema", systemImage: "film") }
                 .tag(1)
             

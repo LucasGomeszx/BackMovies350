@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieCellModel: Codable {
+struct MovieCellModel: Codable, Identifiable {
     var id: Int?
     var overview: String?
     var posterPath: String?
