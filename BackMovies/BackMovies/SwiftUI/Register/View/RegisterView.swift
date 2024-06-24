@@ -21,28 +21,28 @@ struct RegisterView: View {
                 
                 VStack(spacing: 15) {
                     
-                    HStack(alignment: .center) {
+                    HStack {
                         
-                        Button {
-                            dismiss()
-                        }label: {
-                            Image(systemName: "arrow.backward")
-                                .resizable()
+                        ZStack(alignment: .leading) {
+                            
+                            Text("Cadastro")
                                 .foregroundStyle(.white)
-                                .frame(width: 25, height: 25)
-                                .padding()
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .frame(width: geo.size.width - 16)
+                            
+                            Button {
+                                dismiss()
+                            }label: {
+                                Image(systemName: "arrow.backward")
+                                    .resizable()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 25, height: 25)
+                                    .padding()
+                            }
+                            
                         }
-                        
-                        Spacer()
-                        
-                        Text("Cadastro")
-                            .foregroundStyle(.white)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding()
-                            .offset(x: -26)
-                        
-                        Spacer()
+
                         
                     }
                     

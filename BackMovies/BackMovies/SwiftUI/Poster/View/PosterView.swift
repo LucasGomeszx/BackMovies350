@@ -18,17 +18,22 @@ struct PosterView: View {
                     VStack {
                         Text("Cinema")
                             .font(.title)
+                            .foregroundStyle(.white)
                             .bold()
                             .padding(.top, 25)
                         
                         ScrollView {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
                                 ForEach(viewModel.posterList.results ?? []) { poster in
-                                    MovieCard(movieData: poster)
+                                    NavigationLink {
+                                        MovieDetailView(viewModel: MovieDetailViewModelSwiftUI(movieData: poster))
+                                            .navigationBarBackButtonHidden()
+                                    } label: {
+                                        MovieCard(movieData: poster)
+                                    }
                                 }
                             }
                         }
-                        .padding(.vertical)
                         .frame(width: geo.size.width - 32, height: geo.size.height - 64)
                         .scrollIndicators(.hidden)
                         
@@ -42,10 +47,10 @@ struct PosterView: View {
                     viewModel.fetchMovies()
                 })
                 .frame(width:geo.size.width, height: geo.size.height)
+                .background(.black)
             }
         }
     }
-    
 }
 
 #Preview {

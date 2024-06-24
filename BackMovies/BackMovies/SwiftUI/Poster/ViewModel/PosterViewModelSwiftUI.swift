@@ -15,7 +15,6 @@ class PosterViewModelSwiftUI: ObservableObject {
         ServiceManeger.shared.fetchMovies { result in
             switch result {
             case .success(let success):
-                print(success)
                 self.posterList = success
             case .failure(let error):
                 print(error.localizedDescription)
