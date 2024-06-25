@@ -32,6 +32,7 @@
 		55DC57702C2B05C200597876 /* ActorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DC576F2C2B05C200597876 /* ActorCard.swift */; };
 		55DC57722C2B07F100597876 /* ActorCellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DC57712C2B07F100597876 /* ActorCellMock.swift */; };
 		55DC57742C2B45AE00597876 /* SimilarMoviesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DC57732C2B45AE00597876 /* SimilarMoviesCell.swift */; };
+		55DC57762C2B5A8A00597876 /* MovieDetailMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DC57752C2B5A8A00597876 /* MovieDetailMock.swift */; };
 		640142482A478927006A644E /* ActorSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640142472A478927006A644E /* ActorSearchViewModel.swift */; };
 		6401424B2A478D60006A644E /* ActorSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6401424A2A478D60006A644E /* ActorSearch.swift */; };
 		6401424E2A478F98006A644E /* SearchActorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6401424C2A478F98006A644E /* SearchActorCollectionViewCell.swift */; };
@@ -197,6 +198,7 @@
 		55DC576F2C2B05C200597876 /* ActorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCard.swift; sourceTree = "<group>"; };
 		55DC57712C2B07F100597876 /* ActorCellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCellMock.swift; sourceTree = "<group>"; };
 		55DC57732C2B45AE00597876 /* SimilarMoviesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesCell.swift; sourceTree = "<group>"; };
+		55DC57752C2B5A8A00597876 /* MovieDetailMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailMock.swift; sourceTree = "<group>"; };
 		640142472A478927006A644E /* ActorSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorSearchViewModel.swift; sourceTree = "<group>"; };
 		6401424A2A478D60006A644E /* ActorSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorSearch.swift; sourceTree = "<group>"; };
 		6401424C2A478F98006A644E /* SearchActorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchActorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 			children = (
 				556E42132C21E69500DAAC80 /* MovieCellMock.swift */,
 				55DC57712C2B07F100597876 /* ActorCellMock.swift */,
+				55DC57752C2B5A8A00597876 /* MovieDetailMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1694,6 +1697,7 @@
 				64AB8B6D2A474C4D00F021FE /* MovieEmptyCollectionViewCell.swift in Sources */,
 				646991452A11917E00D08C28 /* String+Extension.swift in Sources */,
 				64B8C2CF2A4CD1940010FE5F /* ProfileViewModel.swift in Sources */,
+				55DC57762C2B5A8A00597876 /* MovieDetailMock.swift in Sources */,
 				556E42162C21EEF400DAAC80 /* PosterViewModelSwiftUI.swift in Sources */,
 				64BAB2FF29F9C6F4006F99A8 /* BodyViewModel.swift in Sources */,
 				644BD74D29D09A020036008F /* HeadTableViewCell.swift in Sources */,

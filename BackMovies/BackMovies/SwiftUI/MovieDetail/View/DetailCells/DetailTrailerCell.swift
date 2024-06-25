@@ -50,7 +50,8 @@ struct DetailTrailerCell: View {
             Spacer()
             
         }
-        .frame(width: size.width - 32)
+        .padding(.horizontal, 32)
+        .frame(width: size.width)
     }
 }
 
@@ -70,7 +71,8 @@ struct YTWrapper : UIViewRepresentable {
 
 #Preview {
     var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies[0])
-    
+    var mock = MockMovieDetail.init().movieDetail
+    viewModel.movieVideo = mock.movieVideo
     return GeometryReader { geo in
         DetailTrailerCell(size: CGSize(width: geo.size.width, height: geo.size.height))
             .environmentObject(viewModel)

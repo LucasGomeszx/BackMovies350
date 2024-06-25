@@ -10,32 +10,11 @@ import Foundation
 class MovieCellModelMock {
     static let sampleMovies: [MovieCellModel] = [
         MovieCellModel(
-            id: 1,
-            overview: "An epic adventure of a hobbit named Frodo who embarks on a quest to destroy the One Ring.",
-            posterPath: "/poster1.jpg",
-            title: "The Lord of the Rings: The Fellowship of the Ring",
+            id: 1022789,
+            overview: "Divertida Mente 2, da Disney e Pixar, volta a entrar na mente da agora adolescente Riley, no momento em que a Sala de Comando passa por uma repentina demolição para dar lugar a algo totalmente inesperado: novas Emoções. Alegria, Tristeza, Raiva, Medo e Nojinho, que há muito tempo comandam uma operação de sucesso, não sabem ao certo como se sentem quando a Ansiedade, a Inveja, o Tédio e a Vergonha chegam.",
+            posterPath: "/9h2KgGXSmWigNTn3kQdEFFngj9i.jpg",
+            title: "Divertida Mente 2",
             voteAverage: 8.8
-        ),
-        MovieCellModel(
-            id: 2,
-            overview: "A group of friends navigate the ups and downs of high school life.",
-            posterPath: "/poster2.jpg",
-            title: "High School Musical",
-            voteAverage: 6.4
-        ),
-        MovieCellModel(
-            id: 3,
-            overview: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-            posterPath: "/poster3.jpg",
-            title: "The Godfather",
-            voteAverage: 9.2
-        ),
-        MovieCellModel(
-            id: 4,
-            overview: "In a post-apocalyptic wasteland, Max teams up with Furiosa to flee from a cult leader and his army.",
-            posterPath: "/poster4.jpg",
-            title: "Mad Max: Fury Road",
-            voteAverage: 8.1
         )
     ]
 }

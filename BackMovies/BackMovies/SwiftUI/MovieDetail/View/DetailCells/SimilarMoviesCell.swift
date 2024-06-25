@@ -37,7 +37,10 @@ struct SimilarMoviesCell: View {
 }
 
 #Preview {
+    let movieDetailMock = MockMovieDetail.init().movieDetail
     var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies.first ?? MovieCellModel())
+    viewModel.movieDetail = movieDetailMock
+    viewModel.similarMovies = movieDetailMock.similarMovies
     return GeometryReader { geo in
         SimilarMoviesCell(size: CGSize(width: geo.size.width, height: geo.size.height))
             .environmentObject(viewModel)

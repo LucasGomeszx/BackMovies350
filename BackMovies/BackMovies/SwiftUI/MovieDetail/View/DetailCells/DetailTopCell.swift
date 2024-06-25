@@ -112,13 +112,13 @@ struct DetailTopCell: View {
             Spacer()
             
         }
-        .frame(width: size.width - 32)
+        .padding(.horizontal, 32)
+        .frame(width: size.width)
     }
 }
 
 #Preview {
     var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies[0])
-    
     return GeometryReader { geo in
         DetailTopCell(size: CGSize(width: geo.size.width, height: geo.size.height))
             .environmentObject(viewModel)

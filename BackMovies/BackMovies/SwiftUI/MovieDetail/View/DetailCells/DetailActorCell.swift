@@ -45,7 +45,6 @@ struct DetailActorCell: View {
 
 #Preview {
     var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies[0])
-    
     return GeometryReader { geo in
         DetailActorCell(size: CGSize(width: geo.size.width, height: geo.size.height))
             .environmentObject(viewModel)
