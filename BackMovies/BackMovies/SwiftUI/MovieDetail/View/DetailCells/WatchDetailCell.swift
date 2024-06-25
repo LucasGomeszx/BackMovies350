@@ -82,6 +82,8 @@ struct WatchDetailCell: View {
 
 #Preview {
     var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies[0])
-    return WatchDetailCell(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        .environmentObject(viewModel)
+    return GeometryReader { geo in
+        WatchDetailCell(size: CGSize(width: geo.size.width, height: geo.size.height))
+            .environmentObject(viewModel)
+    }
 }

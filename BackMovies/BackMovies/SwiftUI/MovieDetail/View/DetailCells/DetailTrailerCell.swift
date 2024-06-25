@@ -71,6 +71,8 @@ struct YTWrapper : UIViewRepresentable {
 #Preview {
     var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies[0])
     
-    return DetailTrailerCell(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        .environmentObject(viewModel)
+    return GeometryReader { geo in
+        DetailTrailerCell(size: CGSize(width: geo.size.width, height: geo.size.height))
+            .environmentObject(viewModel)
+    }
 }

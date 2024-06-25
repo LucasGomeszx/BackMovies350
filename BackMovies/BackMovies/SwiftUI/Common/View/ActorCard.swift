@@ -54,6 +54,7 @@ struct ActorCard: View {
         }
         .frame(width: 160, height: 300)
         .background(.black)
+        .shadow(color: .black.opacity(0.5), radius: 10, x: 0, y: 5)
         .clipShape(RoundedRectangle(cornerRadius: 26))
     }
 }

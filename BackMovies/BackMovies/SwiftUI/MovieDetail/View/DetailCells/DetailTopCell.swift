@@ -54,9 +54,11 @@ struct DetailTopCell: View {
                 case .failure:
                     Image(.empty)
                         .resizable()
-                        .frame(width: size.width - 64, height: 450)
+                        .frame(width: size.width, height: 450)
+                        .padding(.horizontal, -32)
                         .scaledToFill()
                         .clipShape(RoundedRectangle(cornerRadius: 30))
+                        .border(.red)
                 @unknown default:
                     EmptyView()
                         .frame(width: size.width - 64, height: 450)
@@ -115,6 +117,10 @@ struct DetailTopCell: View {
 }
 
 #Preview {
-    return DetailTopCell(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        .environmentObject(MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies[0]))
+    var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies[0])
+    
+    return GeometryReader { geo in
+        DetailTopCell(size: CGSize(width: geo.size.width, height: geo.size.height))
+            .environmentObject(viewModel)
+    }
 }
