@@ -34,6 +34,22 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
         return movieTrailer.first ?? ""
     }
     
+    var getMovieName: String {
+        movieData.title ?? ""
+    }
+    
+    var getUrlYoutube: URL {
+        let movieName = getMovieName
+        let baseURLString = Api.youtubeLink()
+        let query = movieName.replacingOccurrences(of: " ", with: "+")
+        
+        if let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: "\(baseURLString)?search_query=\(encodedQuery)") {
+            return url
+        }
+        return URL(fileURLWithPath: "")
+    }
+    
     private func filterTrailerVideo() {
         guard let video = movieVideo?.results else { return }
         for key in video where key.type == "Trailer" {
