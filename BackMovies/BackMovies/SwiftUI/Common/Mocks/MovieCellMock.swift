@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 class MovieCellModelMock {
     static let sampleMovies: [MovieCellModel] = [
         MovieCellModel(

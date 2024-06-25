@@ -29,6 +29,8 @@ struct MovieDetailView: View {
                             
                             WatchDetailCell(size: geo.size)
                             
+                            DetailActorCell(size: geo.size)
+                            
                             Spacer()
                         }
                         .padding(.horizontal, 32)
