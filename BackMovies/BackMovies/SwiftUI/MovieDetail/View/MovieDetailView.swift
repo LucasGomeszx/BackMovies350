@@ -16,10 +16,13 @@ struct MovieDetailView: View {
             ZStack {
                 switch viewModel.satus {
                 case .getfetching:
-                    ProgressView()
-                        .frame(width: geo.size.width, height: geo.size.height)
-                        .background(Color.backGray)
-                        .tint(.blue)
+                    ZStack {
+                        LottieView(name: "registerLoad", loopMode: .loop)
+                            .scaleEffect(0.2)
+                            .offset(y: -25)
+                    }
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .background(Color.backGray)
                 case .success:
                     ScrollView {
                         VStack {

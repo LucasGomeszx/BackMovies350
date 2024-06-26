@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestore
 
 enum MovieDetailStatus {
     case getfetching
@@ -16,6 +18,7 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
     
     @Published var satus: MovieDetailStatus = .getfetching
     @Published var movieData: MovieCellModel
+    @Published var isFavorite: Bool = false
     var movieDetail: MovieDetailModel?
     var movieCellDetail: MovieCellModel?
     var movieVideo: Video?
@@ -36,6 +39,49 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
     
     var getMovieName: String {
         movieData.title ?? ""
+    }
+    
+    func getUserFavoriteMovies() {
+        FirestoreManager.shared.isMovieInFavorites(movieId: movieData) { result in
+            switch result {
+            case .success(let isInFavorites):
+                self.isFavorite = isInFavorites
+            case .failure(let error):
+                self.isFavorite = false
+            }
+        }
+    }
+    
+    func tappedHeartImage() {
+        if !isFavorite {
+            self.addFavoriteMovie()
+            self.isFavorite.toggle()
+        }else {
+            self.deleteFavoriteMovie()
+            self.isFavorite.toggle()
+        }
+    }
+    
+    func addFavoriteMovie() {
+        FirestoreManager.shared.addFavoriteMovie(movieId: movieData) { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                print("Erro ao adicionar filme aos favoritos no Firestore: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func deleteFavoriteMovie() {
+        FirestoreManager.shared.removeFavoriteMovie(movieId: movieData) { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                print("Erro ao adicionar filme aos favoritos no Firestore: \(error.localizedDescription)")
+            }
+        }
     }
     
     var getUrlYoutube: URL {
@@ -116,9 +162,8 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
     }
     
     private func createMovieDetailModel() {
-        DispatchQueue.main.async {
-            self.movieDetail = MovieDetailModel(movieCellModel: self.movieCellDetail, movieVideo: self.movieVideo, movieProvider: self.movieProvider, movieCast: self.movieCast, similarMovies: self.similarMovies)
-            self.satus = .success
-        }
+        self.movieDetail = MovieDetailModel(movieCellModel: self.movieCellDetail, movieVideo: self.movieVideo, movieProvider: self.movieProvider, movieCast: self.movieCast, similarMovies: self.similarMovies)
+        self.getUserFavoriteMovies()
+        self.satus = .success
     }
 }

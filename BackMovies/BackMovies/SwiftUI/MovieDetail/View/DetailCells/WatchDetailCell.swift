@@ -54,12 +54,11 @@ struct WatchDetailCell: View {
                                     }
                                 }
                             }
-                            
-                            Spacer()
                         }
                     }
                 }
-                .frame(width: size.width - 64, height: 80)
+                .padding(.horizontal, 16)
+                .frame(height: 80)
                 
                 Text("Que tal videos sobre o filme?")
                     .bold()
@@ -72,11 +71,11 @@ struct WatchDetailCell: View {
                     .onTapGesture {
                         openURL(viewModel.getUrlYoutube)
                     }
-                
-                Spacer()
             }
+            .padding(.horizontal, 32)
         }
-        .frame(width: size.width - 32)
+        .border(.red)
+        .frame(width: size.width)
     }
 }
 

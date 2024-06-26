@@ -87,27 +87,25 @@ struct DetailTopCell: View {
                         .foregroundStyle(.white)
                         .font(.system(size: 20))
                 }
-                .padding(.leading, 32)
                 
                 Spacer()
                 
                 Button {
-                    
+                    viewModel.tappedHeartImage()
                 } label: {
-                    Image(systemName: "heart")
+                    Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 25, height: 25)
                         .foregroundStyle(.white)
-                        .padding(.trailing, 32)
                 }
                 
             }
+            .padding(.horizontal, 16)
             
             Divider()
                 .frame(height: 2)
                 .background(Color.lineGray)
-                .padding(.horizontal, 16)
             
             Spacer()
             

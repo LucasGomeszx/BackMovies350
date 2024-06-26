@@ -38,13 +38,11 @@ struct DetailTrailerCell: View {
                     .font(.title3)
                     .bold()
                     .padding(.bottom, 2)
-                    .padding(.horizontal, 16)
                 
                 Text(viewModel.movieData.overview ?? "Indisponivel")
                     .foregroundStyle(Color.textColor)
                     .font(.system(size: 16))
                     .bold()
-                    .padding(.horizontal, 16)
             }
             
             Spacer()
