@@ -39,31 +39,36 @@ struct DetailTopCell: View {
                 .padding()
             }
             
-            AsyncImage(url: URL(string: Api.posterPath + (viewModel.movieData.posterPath ?? ""))) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                        .frame(width: size.width, height: 450)
-                        .padding(.horizontal, -32)
-                case .success(let image):
-                    image
-                        .resizable()
-                        .frame(width: size.width - 64, height: 450)
-                        .scaledToFill()
-                        .clipShape(RoundedRectangle(cornerRadius: 30))
-                case .failure:
-                    Image(.empty)
-                        .resizable()
-                        .frame(width: size.width, height: 450)
-                        .padding(.horizontal, -32)
-                        .scaledToFill()
-                        .clipShape(RoundedRectangle(cornerRadius: 30))
-                        .border(.red)
-                @unknown default:
-                    EmptyView()
-                        .frame(width: size.width - 64, height: 450)
+            ZStack {
+                CacheAsyncImage(url: URL(string: Api.posterPath + (viewModel.movieData.posterPath ?? "")) ?? URL(fileURLWithPath: "")) { image in
+                    switch image {
+                    case .empty:
+                        ProgressView()
+                            .frame(width: size.width, height: 450)
+                            .padding(.horizontal, -32)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .frame(width: size.width - 64, height: 450)
+                            .scaledToFill()
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                    case .failure:
+                        Image(.empty)
+                            .resizable()
+                            .frame(width: size.width, height: 450)
+                            .padding(.horizontal, -32)
+                            .scaledToFill()
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                            .border(.red)
+                    @unknown default:
+                        EmptyView()
+                            .frame(width: size.width - 64, height: 450)
+                    }
                 }
             }
+            .background(Color.backGray)
+            .frame(width: size.width - 64, height: 450)
+            .clipShape(RoundedRectangle(cornerRadius: 30))
             
             Text(viewModel.movieData.title ?? "")
                 .font(.title)

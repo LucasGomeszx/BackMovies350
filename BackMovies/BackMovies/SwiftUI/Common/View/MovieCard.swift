@@ -13,28 +13,31 @@ struct MovieCard: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: Api.posterPath + (movieData.posterPath ?? ""))) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                        .frame(width: 160, height: 260)
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 160, height: 260)
-                        .clipped()
-                case .failure:
-                    Image(.empty)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 160, height: 260)
-                        .background(Color.gray.opacity(0.3))
-                @unknown default:
-                    EmptyView()
-                        .frame(width: 160, height: 260)
+            
+            ZStack {
+                CacheAsyncImage(url: URL(string: Api.posterPath + (movieData.posterPath ?? "")) ?? URL(fileURLWithPath: "")) { image in
+                    switch image {
+                    case .empty:
+                        LottieView(name: "", loopMode: .loop)
+                            .scaleEffect(0.15)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .frame(width: 160, height: 260)
+                            .scaledToFill()
+                    case .failure:
+                        Image(.empty)
+                            .resizable()
+                            .frame(width: 160, height: 260)
+                            .scaledToFill()
+                    @unknown default:
+                        EmptyView()
+                            .frame(width: 160, height: 260)
+                    }
                 }
             }
+            .frame(width: 160, height: 260)
+            .background(Color.backGray)
             
             Spacer()
             

@@ -14,11 +14,11 @@ struct ActorCard: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                AsyncImage(url: URL(string: Api.posterPath + (movieCast.profilePath ?? ""))) { phase in
+                CacheAsyncImage(url: URL(string: Api.posterPath + (movieCast.profilePath ?? "")) ?? URL(fileURLWithPath: "")) { phase in
                     switch phase {
                     case .empty:
-                        ProgressView()
-                            .frame(width: 160, height: 240)
+                        LottieView(name: "", loopMode: .loop)
+                            .scaleEffect(0.15)
                     case .success(let image):
                         image
                             .resizable()
@@ -34,7 +34,7 @@ struct ActorCard: View {
                             .frame(width: 160, height: 240)
                     }
                 }
-                                
+                
                 Text(movieCast.name ?? "")
                     .foregroundStyle(Color.textColor)
                     .lineLimit(2)

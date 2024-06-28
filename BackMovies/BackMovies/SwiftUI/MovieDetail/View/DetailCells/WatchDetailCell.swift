@@ -74,7 +74,6 @@ struct WatchDetailCell: View {
             }
             .padding(.horizontal, 32)
         }
-        .border(.red)
         .frame(width: size.width)
     }
 }

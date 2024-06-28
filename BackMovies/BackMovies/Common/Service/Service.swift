@@ -7,51 +7,29 @@
 
 import Foundation
 
-protocol ServiceProtocol {
-    func request<T: Decodable>(_ request: NetworkRequest, completion: @escaping NetworkResult<T>)
-}
+class Service {
 
-class Service: ServiceProtocol {
-    
-    func request<T: Decodable>(_ request: NetworkRequest, completion: @escaping NetworkResult<T>) {
-        
+    func request<T: Decodable>(_ request: NetworkRequest) async throws -> T {
         guard let url = URL(string: request.endpointURL) else {
-            completion(.failure(NetworkError.invalidURL(url: request.endpointURL)))
-            return
+            throw NetworkError.invalidURL(url: request.endpointURL)
         }
         
-        let session = URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            if let error = error {
-                completion(.failure(NetworkError.networkError(error: error)))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse else {
-                completion(.failure(NetworkError.invalidResponse))
-                return
-            }
-            
-            guard (200..<300).contains(response.statusCode) else {
-                completion(.failure(NetworkError.invalidStatusCode(statusCode: response.statusCode)))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkError.noData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let result = try decoder.decode(T.self, from: data)
-                completion(.success(result))
-            } catch {
-                completion(.failure(NetworkError.decodeError(error: error)))
-            }
-
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
         }
-        session.resume()
+        
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            throw NetworkError.invalidStatusCode(statusCode: httpResponse.statusCode)
+        }
+        
+        let decoder = JSONDecoder()
+        do {
+            let result = try decoder.decode(T.self, from: data)
+            return result
+        } catch {
+            throw NetworkError.decodeError(error: error)
+        }
     }
-    
 }

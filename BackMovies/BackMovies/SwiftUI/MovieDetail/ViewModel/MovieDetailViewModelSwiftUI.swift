@@ -55,10 +55,10 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
     func tappedHeartImage() {
         if !isFavorite {
             self.addFavoriteMovie()
-            self.isFavorite.toggle()
+            self.isFavorite = true
         }else {
             self.deleteFavoriteMovie()
-            self.isFavorite.toggle()
+            self.isFavorite = false
         }
     }
     
@@ -107,56 +107,49 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
     
     public func fetchMovieDetail() {
         ServiceManeger.shared.fetchMovieVideo(movieId: movieData.id ?? 0) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let success):
-                    self.movieVideo = success
-                    self.fetchWatchProviders()
-                case .failure:
-                    break
-                }
+            switch result {
+            case .success(let success):
+                self.movieVideo = success
+                self.fetchWatchProviders()
+            case .failure:
+                break
             }
         }
     }
     
     private func fetchWatchProviders() {
         ServiceManeger.shared.fetchWatchProviders(movieId: movieData.id ?? 0) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let success):
-                    self.movieProvider = success
-                    self.fetchActors()
-                case .failure:
-                    break
-                }
+            switch result {
+            case .success(let success):
+                self.movieProvider = success
+                self.fetchActors()
+            case .failure:
+                break
             }
         }
     }
     
     private func fetchActors() {
         ServiceManeger.shared.fetchActors(movieId: movieData.id ?? 0) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let success):
-                    self.movieCast = success
-                    self.fetchSimilarMovies()
-                case .failure:
-                    break
-                }
+            switch result {
+            case .success(let success):
+                self.movieCast = success
+                self.fetchSimilarMovies()
+            case .failure:
+                break
             }
+            
         }
     }
     
     private func fetchSimilarMovies() {
         ServiceManeger.shared.fetchSimilarMovies(movieId: movieData.id ?? 0) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let success):
-                    self.similarMovies = success
-                    self.createMovieDetailModel()
-                case .failure:
-                    break
-                }
+            switch result {
+            case .success(let success):
+                self.similarMovies = success
+                self.createMovieDetailModel()
+            case .failure:
+                break
             }
         }
     }
