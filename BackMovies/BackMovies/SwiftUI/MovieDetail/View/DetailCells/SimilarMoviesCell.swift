@@ -21,7 +21,7 @@ struct SimilarMoviesCell: View {
             
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(viewModel.similarMovies?.results ?? [MovieCellModel()], id: \.id) { movie in
+                    ForEach(viewModel.movieDetail?.similarMovies?.results ?? [MovieCellModel()], id: \.id) { movie in
                         MovieCard(movieData: movie)
                     }
                 }
@@ -40,7 +40,7 @@ struct SimilarMoviesCell: View {
     let movieDetailMock = MockMovieDetail.init().movieDetail
     var viewModel = MovieDetailViewModelSwiftUI(movieData: MovieCellModelMock.sampleMovies.first ?? MovieCellModel())
     viewModel.movieDetail = movieDetailMock
-    viewModel.similarMovies = movieDetailMock.similarMovies
+    viewModel.movieDetail?.similarMovies = movieDetailMock.similarMovies
     return GeometryReader { geo in
         SimilarMoviesCell(size: CGSize(width: geo.size.width, height: geo.size.height))
             .environmentObject(viewModel)

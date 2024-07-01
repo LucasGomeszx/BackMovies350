@@ -12,6 +12,7 @@
 		551F6CCC2C0E52F80013B406 /* Pods_BackMovies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4A0BBAD6F68ED6C38DE4A68 /* Pods_BackMovies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		551F6CCF2C0E53180013B406 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 551F6CCE2C0E53180013B406 /* FirebaseFirestoreSwift */; };
 		554238282C2DB7C30057D8AB /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554238272C2DB7C30057D8AB /* CacheAsyncImage.swift */; };
+		5542382A2C2EEECF0057D8AB /* SwiftUIServiceManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554238292C2EEECF0057D8AB /* SwiftUIServiceManeger.swift */; };
 		556931F82C29B18300E356D8 /* DetailTrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556931F72C29B18300E356D8 /* DetailTrailerCell.swift */; };
 		556E42112C21DF1B00DAAC80 /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E42102C21DF1B00DAAC80 /* MovieCard.swift */; };
 		556E42142C21E69500DAAC80 /* MovieCellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E42132C21E69500DAAC80 /* MovieCellMock.swift */; };
@@ -179,6 +180,7 @@
 /* Begin PBXFileReference section */
 		55166ED22C0F3DCB007DB922 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		554238272C2DB7C30057D8AB /* CacheAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheAsyncImage.swift; sourceTree = "<group>"; };
+		554238292C2EEECF0057D8AB /* SwiftUIServiceManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIServiceManeger.swift; sourceTree = "<group>"; };
 		556931F72C29B18300E356D8 /* DetailTrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrailerCell.swift; sourceTree = "<group>"; };
 		556E42102C21DF1B00DAAC80 /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 		556E42132C21E69500DAAC80 /* MovieCellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellMock.swift; sourceTree = "<group>"; };
@@ -1305,6 +1307,7 @@
 				64CEAAFA29E08323006DCBD2 /* Service.swift */,
 				64CEAAFC29E08342006DCBD2 /* NetworkHandler.swift */,
 				6416841C2A57443100F60607 /* ServiceManeger.swift */,
+				554238292C2EEECF0057D8AB /* SwiftUIServiceManeger.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1696,6 +1699,7 @@
 				6401424B2A478D60006A644E /* ActorSearch.swift in Sources */,
 				64BA90A12A48C62F0049DD24 /* EmptyActorCollectionViewCell.swift in Sources */,
 				64B17B6329BBA0BF003DC667 /* PosterViewController.swift in Sources */,
+				5542382A2C2EEECF0057D8AB /* SwiftUIServiceManeger.swift in Sources */,
 				64501B9929B7A5EC0019D7B3 /* LoginViewController.swift in Sources */,
 				64B17B7B29BBA1E7003DC667 /* ProfileViewController.swift in Sources */,
 				6478639029F2D16200DF2D58 /* MapCellViewModel.swift in Sources */,

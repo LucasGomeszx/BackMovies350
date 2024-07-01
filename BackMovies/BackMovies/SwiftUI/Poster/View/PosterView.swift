@@ -43,9 +43,11 @@ struct PosterView: View {
                     .background(Color.backGray)
                     .clipShape(RoundedRectangle(cornerRadius: 26.0))
                 }
-                .onAppear(perform: {
-                    viewModel.fetchMovies()
-                })
+                .onAppear {
+                    Task {
+                        try await viewModel.fetchMovies()
+                    }
+                }
                 .frame(width:geo.size.width, height: geo.size.height)
                 .background(.black)
             }

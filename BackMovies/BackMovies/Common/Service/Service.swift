@@ -9,9 +9,9 @@ import Foundation
 
 class Service {
 
-    func request<T: Decodable>(_ request: NetworkRequest) async throws -> T {
-        guard let url = URL(string: request.endpointURL) else {
-            throw NetworkError.invalidURL(url: request.endpointURL)
+    func request<T: Decodable>(_ request: String) async throws -> T {
+        guard let url = URL(string: request) else {
+            throw NetworkError.invalidURL(url: request)
         }
         
         let (data, response) = try await URLSession.shared.data(from: url)
@@ -32,4 +32,5 @@ class Service {
             throw NetworkError.decodeError(error: error)
         }
     }
+    
 }

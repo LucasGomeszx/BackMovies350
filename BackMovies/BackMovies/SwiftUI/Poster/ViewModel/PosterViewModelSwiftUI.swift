@@ -7,18 +7,17 @@
 
 import Foundation
 
+@MainActor
 class PosterViewModelSwiftUI: ObservableObject {
     
     @Published var posterList: MoviesModel = MoviesModel()
     
-    public func fetchMovies() {
-        ServiceManeger.shared.fetchMovies { result in
-            switch result {
-            case .success(let success):
-                self.posterList = success
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    public func fetchMovies() async throws {
+        do {
+            let posterList = try await SwiftUIServiceManeger().fetchMovies()
+            self.posterList = posterList
+        } catch {
+            
         }
     }
     

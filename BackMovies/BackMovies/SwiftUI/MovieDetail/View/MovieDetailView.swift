@@ -51,7 +51,9 @@ struct MovieDetailView: View {
             .frame(width: geo.size.width, height: geo.size.height)
             .background(.black)
             .onAppear {
-                self.viewModel.fetchMovieDetail()
+                Task {
+                   try await viewModel.fetchMovieDetailsConcurrently(movieId:viewModel.movieData.id ?? 0)
+                }
             }
         }
     }

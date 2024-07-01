@@ -20,16 +20,10 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
     @Published var movieData: MovieCellModel
     @Published var isFavorite: Bool = false
     var movieDetail: MovieDetailModel?
-    var movieCellDetail: MovieCellModel?
-    var movieVideo: Video?
-    var movieProvider: WatchProviders?
-    var movieCast: CastModel?
-    var similarMovies: MoviesModel?
     var movieTrailer: [String] = []
     
     init(movieData: MovieCellModel) {
         self.movieData = movieData
-        fetchMovieDetail()
     }
     
     var getMovieVideoKey: String {
@@ -46,7 +40,7 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
             switch result {
             case .success(let isInFavorites):
                 self.isFavorite = isInFavorites
-            case .failure(let error):
+            case .failure(_):
                 self.isFavorite = false
             }
         }
@@ -97,7 +91,7 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
     }
     
     private func filterTrailerVideo() {
-        guard let video = movieVideo?.results else { return }
+        guard let video = movieDetail?.movieVideo?.results else { return }
         for key in video where key.type == "Trailer" {
             if let keyString = key.key {
                 self.movieTrailer.append(keyString)
@@ -105,58 +99,21 @@ class MovieDetailViewModelSwiftUI: ObservableObject {
         }
     }
     
-    public func fetchMovieDetail() {
-        ServiceManeger.shared.fetchMovieVideo(movieId: movieData.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.movieVideo = success
-                self.fetchWatchProviders()
-            case .failure:
-                break
+    public func fetchMovieDetailsConcurrently(movieId: Int) async throws {
+        async let video = SwiftUIServiceManeger.shered.fetchMovieVideo(movieId: movieId)
+        async let watchProviders = SwiftUIServiceManeger.shered.fetchWatchProviders(movieId: movieId)
+        async let actors = SwiftUIServiceManeger.shered.fetchActors(movieId: movieId)
+        async let similarMovies = SwiftUIServiceManeger.shered.fetchSimilarMovies(movieId: movieId)
+
+        do {
+            let (videoResult, watchProvidersResult, actorsResult, similarMoviesResult) = try await (video, watchProviders, actors, similarMovies)
+            movieDetail = MovieDetailModel(movieCellModel: movieData, movieVideo: videoResult, movieProvider: watchProvidersResult, movieCast: actorsResult, similarMovies: similarMoviesResult)
+            DispatchQueue.main.async {
+                self.satus = .success
             }
+        } catch {
+            throw error
         }
     }
     
-    private func fetchWatchProviders() {
-        ServiceManeger.shared.fetchWatchProviders(movieId: movieData.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.movieProvider = success
-                self.fetchActors()
-            case .failure:
-                break
-            }
-        }
-    }
-    
-    private func fetchActors() {
-        ServiceManeger.shared.fetchActors(movieId: movieData.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.movieCast = success
-                self.fetchSimilarMovies()
-            case .failure:
-                break
-            }
-            
-        }
-    }
-    
-    private func fetchSimilarMovies() {
-        ServiceManeger.shared.fetchSimilarMovies(movieId: movieData.id ?? 0) { result in
-            switch result {
-            case .success(let success):
-                self.similarMovies = success
-                self.createMovieDetailModel()
-            case .failure:
-                break
-            }
-        }
-    }
-    
-    private func createMovieDetailModel() {
-        self.movieDetail = MovieDetailModel(movieCellModel: self.movieCellDetail, movieVideo: self.movieVideo, movieProvider: self.movieProvider, movieCast: self.movieCast, similarMovies: self.similarMovies)
-        self.getUserFavoriteMovies()
-        self.satus = .success
-    }
 }
